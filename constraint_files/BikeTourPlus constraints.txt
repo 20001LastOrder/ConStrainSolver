@@ -1,0 +1,129 @@
+for each BikeTourPlus:
+   // number of riding weeks must be greater than or equal to zero
+   nrWeeks >= 0
+
+   // price of guide per week must be greater than or equal to zero
+   priceOfGuidePerWeek >= 0
+
+for each User:
+   // unique email already captured by unique keyword in Umple
+
+   // email must not contain any spaces
+   not email.contains(" ")
+
+   // email must contain some characters (anything is allowed except @), a @, some characters, a dot, and some characters
+   // this is a simplified check sufficient for this application
+   email.indexOf("@") > 0 // index starts at zero
+   email.indexOf("@") = email.lastIndexOf("@")
+   email.indexOf("@") < email.lastIndexOf(".") - 1
+   email.lastIndexOf(".") < email.length() - 1
+
+   // email cannot be manager@btp.com unless it is for the manager
+   (not (self instanceof Manager)) implies (email <> "manager@btp.com")
+
+for each Manager:
+   // email has to be manager@btp.com
+   email = "manager@btp.com"
+
+   // password must be at least four characters long
+   password.length() > 3
+   // password must contain a special character out of !#$
+   password.contains("!") or password.contains("#") or password.contains("$")
+   // password must contain an upper case character
+   there exists a character c in password such that Character.isUpperCase(c) = true
+   // password must contain a lower case character
+   there exists a character c in password such that Character.isLowerCase(c) = true
+
+for each NamedUser:
+   // name must not be empty or null
+   name <> ""
+   name <> null
+
+   // emergencyContact must not be empty or null
+   emergencyContact <> ""
+   emergencyContact <> null
+
+   // password must not be empty or null
+   password <> ""
+   password <> null
+
+for each Participant:
+   // number of weeks must be greater than zero and less than or equal to the number of biking weeks in the biking season
+   nrWeeks > 0
+   nrWeeks <= climbSafe.nrWeeks
+
+   // number of weeks must be less than or equal to the number of available weeks
+   weekAvailableUntil - weekAvailableFrom >= nrWeeks - 1
+
+   // week from which the participant is available must be less than or equal to the week until which the participant is available
+   weekAvailableFrom <= weekAvailableUntil
+
+   // week from which the participant is available must be greater than zero and 
+   // less than or equal to the number of biking weeks in the biking season
+   weekAvailableFrom > 0
+   weekAvailableFrom <= bikeTourPlus.nrWeeks
+
+   // week until which the participant is available must be greater than zero and 
+   // less than or equal to the number of biking weeks in the biking season
+   weekAvailableUntil > 0
+   weekAvailableUntil <= bikeTourPlus.nrWeeks
+
+   // constraints for authorizationCode and refundedPercentageAmount to be defined later
+
+for each BookedItem:
+   // quantity must be greater than zero
+   quantity > 0
+
+for each BookableItem:
+   // unique name already captured by unique keyword in Umple   
+
+   // name must not be empty or null
+   name <> ""
+   name <> null
+
+for each Gear:
+   // price must be greater than or equal to zero
+   pricePerWeek >= 0
+
+for each Combo:
+   // discount must be greater than or equal to zero and less than or equal to 100
+   discount >= 0
+   discount <= 100
+
+   // a combo contains at least two different kinds of gear
+   // covered by domain model
+
+for each ComboItem:
+   // quantity must be greater than zero
+   quantity > 0
+
+for each Lodge:
+   // unique name already captured by unique keyword in Umple   
+
+   // name must not be empty or null
+   name <> ""
+   name <> null
+
+   // address must not be empty or null
+   address <> ""
+   address <> null
+
+for each BikeTour:
+   // unique id already captured by unique keyword in Umple   
+
+   // start week must be less than or equal to the end week
+   startWeek <= endWeek
+
+   // start week must be greater than zero and less than or equal to the number of biking weeks in the biking season
+   startWeek > 0
+   startWeek <= bikeTourPlus.nrWeeks
+
+   // end week must be greater than zero and less than or equal to the number of biking weeks in the biking season
+   endWeek > 0
+   endWeek <= bikeTourPlus.nrWeeks
+
+   // a lodge is only assigned if requested by at least one participant of the bike tour
+   (lodge <> null) implies (there exists a p in participants such that participant.lodgeRequired = true)
+
+   // if a lodge was requested by at least one participant of the bike tour, then it needs to be assigned
+   (there exists a p in participants such that participant.lodgeRequired = true) implies (lodge <> null)
