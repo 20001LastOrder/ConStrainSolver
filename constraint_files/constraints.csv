@@ -1,0 +1,93 @@
+﻿Name,Content,NL description,NL negation
+German IBAN,"A German IBAN consists of 22 characters which are characterized as follows:
+The first two characters represent the country code (here, the constant “DE”)
+while the third and fourth characters are a checksum. The remaining 18 digits
+represent the Basic Bank Account Number (BBAN).
+We can compute valid IBANs using a given country code as follows: Represent
+the country code as a digit where “A” equals 10, “B” equals 11, etc. The German
+country code “DE” is hence encoded as 1314. Concatenate two zeros to the
+encoded country code (i.e., 131400) and prepend the BBAN. ","1. The length of the bank number is 22
+
+2. The first 4 numbers of the bank number must be: 1210 (CA)
+
+3. The next 2 numbers must be 00","1. The length of the bank account must not be 22
+
+2. The first  4 numbers of the bank number must not be: 1210 (CA)
+
+3. The next 2 numbers must not be 00"
+Date,,"1. The date must contain two hyphens (-)
+2. The part before the first hyphen must be a number between 0 and 2025
+3. The part after the first hyphen but before the second hyphen must be a number between 1 and 12
+4. The part after the second hyphen is a number between 1 and 31","1. The date must contain either no hyphen, one hyphen or more than two hyphens 
+
+2. If there is at least one hyphen, the part before the first hyphen must be either a number smaller than 0 or a number larger than 2025
+
+3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen must be a number smaller than 1 or a number larger than 12
+
+4. If there are at least two hyphens, the part after the second hyphen must be a number smaller than 1 or larger than 31"
+Email," not email.contains("" "")
+
+// email must contain some characters (anything is allowed except @), a @, some characters, a dot, and some characters
+// this is a simplified check sufficient for this application
+email.indexOf(""@"") > 0 // index starts at zero
+email.indexOf(""@"") = email.lastIndexOf(""@"")
+email.indexOf(""@"") < email.lastIndexOf(""."") - 1
+email.lastIndexOf(""."") < email.length() - 1
+
+// email cannot contain the word “manager”
+”manager” not in email
+","1. The email is not empty
+
+2. The email must contain some characters (anything is allowed except @), a @, some characters, a dot, and some characters
+
+3. The email cannot contain the word “manager”","1. The email must be empty
+
+2. The email must not contain the character @ or dot (.)
+
+3. The email must contain the word “manager”"
+Name,"Capitalization, Specific characters, ","1. The name must only contain letter a-z
+
+2. The name must contain at least one space
+
+3. The name cannot end with a space
+
+4. The first character and all character followed by a space must be capitalized ","1. The name must contain some letters other than a-z
+
+2. The name must contain no space
+
+3. The name must end with a space
+
+4. The first character and all character followed by a space must not be capitalized"
+Password,"// password must be at least four characters long
+password.length() > 3
+// password must contain a special character out of !#$
+password.contains(""!"") or password.contains(""#"") or password.contains(""$"")
+// password must contain an upper case character
+there exists a character c in password such that Character.isUpperCase(c) = true
+// password must contain a lower case character
+there exists a character c in password such that Character.isLowerCase(c) = true","1. The password must be at least 4 characters long
+
+2. The password must contain one of the following characters: !, #, $
+
+3. The password must contain some upper case characters
+
+4. The password must contain some lower case characters
+
+5. The password must contain some number","1. The password must contain less than 4 characters
+
+2. The password must not contain any of the following characters: !, #, $
+
+3. The password must not contain any upper case characters
+
+4. The password must not contain any lower case characters
+
+5. The password must not contain any numbers"
+Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","1. The url must either start with http:// or https://
+
+2. The url must not contain any spaces
+
+3. The url must contain at least one dot character (.)","1. The url cannot start with http:// or https://
+
+2. The url must contain at least one space
+
+3. The url must contain no dot character (.)c"
