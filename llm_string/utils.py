@@ -4,7 +4,7 @@ import re
 from langchain_core.output_parsers import PydanticOutputParser
 
 
-class REPydanticOutputParser(PydanticOutputParser):
+class JSONPydanticOutputParser(PydanticOutputParser):
     def parse(self, output: str):
         json_pattern = re.compile(r"```json\n(.*?)\n```", re.DOTALL)
         match = json_pattern.search(output)
