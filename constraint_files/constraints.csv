@@ -1,4 +1,4 @@
-﻿Name,Content,NL description,NL negation,SMT-LIB2
+﻿Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
 Name,"Capitalization, Specific characters, ","1. The name must only contain letters a-z, letters A-Z and spaces.
 
 2. The name must contain at least one space.
@@ -28,8 +28,18 @@ Name,"Capitalization, Specific characters, ","1. The name must only contain lett
 (assert (not (= (str.at s 0) "" "")))
 
 (assert (str.in.re (str.at s 0) (re.range ""A"" ""Z"")))
-        
-(assert (not (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) ))))"
+
+(assert (not (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) ))))","(assert (not (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))))
+
+(assert (not (str.contains s "" "")))
+
+(assert (str.suffixof "" "" s))
+
+(assert (= (str.at s 0) "" ""))
+
+(assert (not (str.in.re (str.at s 0) (re.range ""A"" ""Z""))))
+
+(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) )))"
 Email," not email.contains("" "")
 
 // email must contain some characters (anything is allowed except @), a @, some characters, a dot, and some characters
@@ -65,13 +75,23 @@ email.lastIndexOf(""."") < email.length() - 1
 
 (assert (not (= (str.at s 0) ""@"")))
 
-(assert (= (str.count s ""@"") 1))
+(assert (and (str.contains s ""@"") (not (str.in.re s  (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar))))))
 
 (assert (str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) "".""))
 
 (assert (not (= (str.at s (- (str.len s) 1)) ""."")))
 
-(assert (not (str.contains s ""manager"")))"
+(assert (not (str.contains s ""manager"")))","(assert (str.contains s "" ""))
+
+(assert (= (str.at s 0) ""@""))
+
+(assert (not (and (str.contains s ""@"") (not (str.in.re s  (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar)))))))
+
+(assert (not (str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) ""."")))
+
+(assert (= (str.at s (- (str.len s) 1)) "".""))
+
+(assert (str.contains s ""manager""))"
 Password,"// password must be at least four characters long
 password.length() > 3
 // password must contain a special character out of !#$
@@ -99,11 +119,19 @@ there exists a character c in password such that Character.isLowerCase(c) = true
 
 (assert (or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$"")))
 
-(assert (exists ((i Int)) (and (>= i 0) (< i (str.len s)) (str.is-upper (str.at s i)))))
+(assert (str.in.re s  (re.++ (re.* re.allchar) (re.range ""A"" ""Z"") (re.* re.allchar))))
 
-(assert (exists ((i Int)) (and (>= i 0) (< i (str.len s)) (str.is-lower (str.at s i)))))
+(assert (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar))))
 
-(assert (exists ((i Int)) (and (>= i 0) (< i (str.len s)) (str.is-digit (str.at s i)))))"
+(assert (str.in.re s  (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar))))","(assert (not (>= (str.len s) 4)))
+
+(assert (not (or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))))
+
+(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""A"" ""Z"") (re.* re.allchar)))))
+
+(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar)))))
+
+(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar)))))"
 Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","1. The url must either start with http:// or https://
 
 2. The url must not contain any spaces
@@ -112,7 +140,15 @@ Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","
 
 2. The url must contain at least one space
 
-3. The url must contain no dot character (.)c",
+3. The url must contain no dot character (.)","(assert (or (str.prefixof ""http://"" s) (str.prefixof ""https://"" s)))
+
+(assert (not (str.contains s "" "")))
+
+(assert (str.contains s "".""))","(assert (not (or (str.prefixof ""http://"" s) (str.prefixof ""https://"" s))))
+
+(assert (str.contains s "" ""))
+
+(assert (not (str.contains s ""."")))"
 Date,,"1. The date must contain two hyphens (-)
 
 2. The part before the first hyphen must be a number between 0 and 2025
@@ -125,7 +161,19 @@ Date,,"1. The date must contain two hyphens (-)
 
 3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen must be a number smaller than 1 or a number larger than 12
 
-4. If there are at least two hyphens, the part after the second hyphen must be a number smaller than 1 or larger than 31",
+4. If there are at least two hyphens, the part after the second hyphen must be a number smaller than 1 or larger than 31","(assert (str.contains s ""dummy""))
+
+(assert (str.contains s ""dummy""))
+
+(assert (str.contains s ""dummy""))
+
+(assert (str.contains s ""dummy""))","(assert (str.contains s ""dummy""))
+
+(assert (str.contains s ""dummy""))
+
+(assert (str.contains s ""dummy""))
+
+(assert (str.contains s ""dummy""))"
 German IBAN,"A German IBAN consists of 22 characters which are characterized as follows:
 The first two characters represent the country code (here, the constant “DE”)
 while the third and fourth characters are a checksum. The remaining 18 digits
@@ -145,4 +193,8 @@ encoded country code (i.e., 131400) and prepend the BBAN. ","1. The length of th
 
 (assert (= (str.substr s 0 4) ""1210""))
 
-(assert (= (str.substr s 4 2) ""00""))"
+(assert (= (str.substr s 4 2) ""00""))","(assert (not (= (str.len s) 22)))
+
+(assert (not (= (str.substr s 0 4) ""1210"")))
+
+(assert (not (= (str.substr s 4 2) ""00"")))"
