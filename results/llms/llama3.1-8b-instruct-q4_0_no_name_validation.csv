@@ -1,0 +1,34 @@
+name,result,truth_masks,valid?
+Name,AB C,"[True, True, True, True, True, True]",True
+Name,M! C-,"[False, True, True, True, True, True]",True
+Name,John,"[True, False, True, True, True, True]",True
+Name,T  John ,"[True, True, False, True, True, True]",False
+Name, Ab ,"[True, True, True, False, True, True]",False
+Name,hello World,"[True, True, True, True, False, True]",True
+Name,Jen Doe Jr.,"[True, True, True, True, True, False]",False
+Email,John@Doe.J,"[True, True, True, True, True, True]",True
+Email,Jane Smith@example,"[False, True, True, True, True, True]",False
+Email,@example.io,"[True, False, True, True, True, True]",True
+Email,john.doe@test.example.io,"[True, True, False, True, True, True]",False
+Email,john@designercom,"[True, True, True, False, True, True]",True
+Email,john.doe@com,"[True, True, True, True, False, True]",False
+Email,managers@example,"[True, True, True, True, True, False]",False
+Password,abc!edP1,"[True, True, True, True, True]",True
+Password,A1$,"[False, True, True, True, True]",False
+Password,2aa3,"[True, False, True, True, True]",False
+Password,abc!1,"[True, True, False, True, True]",True
+Password,A!$4,"[True, True, True, False, True]",True
+Password,$AaD,"[True, True, True, True, False]",True
+Url,https://.com,"[True, True, True]",True
+Url,test.example.com,"[False, True, True]",True
+Url,https://sub domain.example,"[True, False, True]",True
+Url,https//hello,"[True, True, False]",False
+Date,100-7-15,"[True, True, True, True]",False
+Date,2025-12-31,"[False, True, True, True]",False
+Date,2027-01-01,"[True, False, True, True]",False
+Date,2001-12-31,"[True, True, False, True]",False
+Date,2022-08-32,"[True, True, True, False]",False
+German IBAN,121000100000000000,"[True, True, True]",False
+German IBAN,DE12100034XXYYZZ,"[False, True, True]",False
+German IBAN,DE123456780,"[True, False, True]",False
+German IBAN,1210501234567890123456789,"[True, True, False]",False

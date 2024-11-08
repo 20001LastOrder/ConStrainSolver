@@ -11,7 +11,7 @@ from llm_string.prompt import Result, get_prompt
 from llm_string.utils import JSONPydanticOutputParser
 from langchain_ollama import ChatOllama
 
-from z3 import Solver, sat
+from z3 import Solver, sat, unsat
 
 
 def call_llm(
@@ -150,10 +150,14 @@ def main(args):
             constraints = constraint_store.get_smt_constraints(name, truth_masks)
 
             # add assertion of result
-            constraints = ['(assert (= s "' + result + '"))'] + constraints
+            if result != "UNSAT":
+                constraints = ['(assert (= s "' + result + '"))'] + constraints
             sat_res, _ = call_smt(constraints)
 
-            df.loc[index, "valid?"] = sat_res
+            if result != "UNSAT":
+                df.loc[index, "valid?"] = sat_res == sat
+            else:
+                df.loc[index, "valid?"] = sat_res == unsat
 
         validation_path = save_path_name + "_validation.csv"
         df.to_csv(validation_path, index=False)
