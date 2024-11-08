@@ -2,3 +2,4 @@ z3-solver
 pandas==2.2.3
 langchain==0.3.2
 langchain-openai==0.2.2
+langchain-ollama==0.2.0
