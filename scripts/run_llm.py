@@ -126,6 +126,40 @@ def main(args):
     names = constraint_store.get_constraint_names()
     results = []
 
+    # Set save path
+    if args.approach == "smt":
+        # smt
+        save_path_name = os.path.join(args.output_path, f"{args.smt_solver}")
+    else:
+        # llm  or validate
+        if args.use_variable_name:
+            save_path_name = os.path.join(args.output_path, f"{args.llm}")
+        else:
+            save_path_name = os.path.join(args.output_path, f"{args.llm}_no_name")
+
+    save_path = save_path_name + ".csv"
+
+    # if validating
+    if args.approach == "validate":
+        # read the csv
+        df = pandas.read_csv(save_path, encoding="utf-8")
+        for index, row in tqdm(df.iterrows()):
+            name = row["name"]
+            result = row["result"]
+            truth_masks = eval(row["truth_masks"])
+            constraints = constraint_store.get_smt_constraints(name, truth_masks)
+
+            # add assertion of result
+            constraints = ['(assert (= s "' + result + '"))'] + constraints
+            sat_res, _ = call_smt(constraints)
+
+            df.loc[index, "valid?"] = sat_res
+
+        validation_path = save_path_name + "_validation.csv"
+        df.to_csv(validation_path, index=False)
+        return
+
+    # if not validating
     if args.approach == "llm":
         llm = (
             ChatOpenAI(model=args.llm)
@@ -152,7 +186,9 @@ def main(args):
     elif args.use_variable_name:
         save_path = os.path.join(args.output_path, f"{args.llm.replace(':', '-')}.csv")
     else:
-        save_path = os.path.join(args.output_path, f"{args.llm.replace(':', '-')}_no_name.csv")
+        save_path = os.path.join(
+            args.output_path, f"{args.llm.replace(':', '-')}_no_name.csv"
+        )
 
     # Save CSV
     df = pandas.DataFrame(results)
@@ -162,7 +198,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--approach", type=str, choices=["llm", "smt"], required=True)
+    parser.add_argument(
+        "--approach", type=str, choices=["llm", "smt", "validate"], required=True
+    )
     parser.add_argument("--file_path", type=str, required=True)
     parser.add_argument("--output_path", type=str, required=True)
     parser.add_argument("--llm_family", type=str, default="openai")
