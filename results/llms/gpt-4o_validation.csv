@@ -23,11 +23,11 @@ Url,https://example.com,"[True, True, True]",True
 Url,example.com,"[False, True, True]",True
 Url,http:// example.com,"[True, False, True]",True
 Url,https://example,"[True, True, False]",True
-Date,2023-10-15,"[True, True, True, True]",False
+Date,2023-10-15,"[True, True, True, True]",True
 Date,2023-05-15-15,"[False, True, True, True]",False
-Date,2026-5-15,"[True, False, True, True]",False
-Date,2025-0-31,"[True, True, False, True]",False
-Date,2022-05-32,"[True, True, True, False]",False
+Date,2026-5-15,"[True, False, True, True]",True
+Date,2025-0-31,"[True, True, False, True]",True
+Date,2022-05-32,"[True, True, True, False]",True
 German IBAN,DE00121000123456789012,"[True, True, True]",False
 German IBAN,DE0012100001234567,"[False, True, True]",False
 German IBAN,DE00370400440005320130,"[True, False, True]",False

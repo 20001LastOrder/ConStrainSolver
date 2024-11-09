@@ -64,6 +64,7 @@ def evaluate_constraints_llm(
 def call_smt(constraints: list[str]) -> Result:
 
     solver = Solver()
+    solver.set("timeout", 10000)
     problem = ["(declare-const s String)"] + constraints
     cons_str = "\n".join(problem)
     solver.from_string(cons_str)

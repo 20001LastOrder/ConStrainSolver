@@ -23,11 +23,11 @@ Url,https://example.com,"[True, True, True]",True
 Url,www.example.com,"[False, True, True]",True
 Url,http://example.com/path with space,"[True, False, True]",True
 Url,http://intranet,"[True, True, False]",True
-Date,2023-5-15,"[True, True, True, True]",False
+Date,2023-5-15,"[True, True, True, True]",True
 Date,2023-12-31-,"[False, True, True, True]",False
-Date,2026-12-31,"[True, False, True, True]",False
+Date,2026-12-31,"[True, False, True, True]",True
 Date,UNSAT,"[True, True, False, True]",False
-Date,2023-05-32,"[True, True, True, False]",False
+Date,2023-05-32,"[True, True, True, False]",True
 German IBAN,12100012345678901234,"[True, True, True]",False
 German IBAN,DE00121000123456789012345,"[False, True, True]",False
 German IBAN,DE89370400440053201300,"[True, False, True]",False

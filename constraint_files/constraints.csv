@@ -161,19 +161,19 @@ Date,,"1. The date must contain two hyphens (-)
 
 3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen must be a number smaller than 1 or a number larger than 12
 
-4. If there are at least two hyphens, the part after the second hyphen must be a number smaller than 1 or larger than 31","(assert (str.contains s ""dummy""))
+4. If there are at least two hyphens, the part after the second hyphen must be a number smaller than 1 or larger than 31","(assert (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar)))) ))
 
-(assert (str.contains s ""dummy""))
+(assert (let ((part1 (str.substr s 0 (str.indexof s ""-"" 0)))) (and (>= (str.to.int part1) 0) (<= (str.to.int part1) 2025))))
 
-(assert (str.contains s ""dummy""))
+(assert (let ((start2 (+ (str.indexof s ""-"" 0) 1)) (end2 (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12)))))
 
-(assert (str.contains s ""dummy""))","(assert (str.contains s ""dummy""))
+(assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31)))))","(assert (not (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar)))) )))
 
-(assert (str.contains s ""dummy""))
+(assert (let ((part1 (str.substr s 0 (str.indexof s ""-"" 0)))) (not (and (>= (str.to.int part1) 0) (<= (str.to.int part1) 2025)))))
 
-(assert (str.contains s ""dummy""))
+(assert (let ((start2 (+ (str.indexof s ""-"" 0) 1)) (end2 (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (not (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12))))))
 
-(assert (str.contains s ""dummy""))"
+(assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))"
 German IBAN,"A German IBAN consists of 22 characters which are characterized as follows:
 The first two characters represent the country code (here, the constant “DE”)
 while the third and fourth characters are a checksum. The remaining 18 digits

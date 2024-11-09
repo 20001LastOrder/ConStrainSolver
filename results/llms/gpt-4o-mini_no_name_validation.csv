@@ -23,11 +23,11 @@ Url,https://example.com,"[True, True, True]",True
 Url,example.com,"[False, True, True]",True
 Url,https://example.com/search?q=hello world,"[True, False, True]",True
 Url,UNSAT,"[True, True, False]",False
-Date,2023-10-15,"[True, True, True, True]",False
+Date,2023-10-15,"[True, True, True, True]",True
 Date,2023-03-15,"[False, True, True, True]",False
 Date,-1-1-15,"[True, False, True, True]",False
-Date,2022-0-15,"[True, True, False, True]",False
-Date,2023-5-32,"[True, True, True, False]",False
+Date,2022-0-15,"[True, True, False, True]",True
+Date,2023-5-32,"[True, True, True, False]",True
 German IBAN,121000000000000000000,"[True, True, True]",False
 German IBAN,DE001210001234567890,"[False, True, True]",False
 German IBAN,DE0012345678901234567890,"[True, False, True]",False
