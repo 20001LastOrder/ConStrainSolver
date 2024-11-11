@@ -6,12 +6,12 @@ PROMPT_TEXT = """You are a test engineering working on coming up with test cases
 
 First, explain the meaning of each constraint. Then think step by step to find a string value for {name} that satisfy ALL following constraints:
 {constraints}
-The value should be as realistic for {name} as possible.
+If the name {name} is meaningful. The value should be as realistic for {name} as possible.
 
 The output should follow the following format, if not possible, assign the value "UNSAT":
 {output_format}
 
-Result:
+Keep the results concise. If the answer is not correct, then you will be fired from your job.
 """  # noqa: E501
 
 

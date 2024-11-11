@@ -10,14 +10,16 @@ from constraints import ConstraintStore
 from llm_string.prompt import Result, get_prompt
 from llm_string.utils import JSONPydanticOutputParser
 from langchain_ollama import ChatOllama
-
+from itertools import product
 from z3 import Solver, sat, unsat
 
 
 def call_llm(
     name: str, constraints: list[str], chain: Runnable, parser: JSONPydanticOutputParser
 ) -> Result:
+    name = name.strip()
     constraints = "\n".join(constraints)
+
     while True:
         result = chain.invoke(input={"name": name, "constraints": constraints})
         try:
@@ -35,30 +37,24 @@ def evaluate_constraints_llm(
     args,
 ):
     num_constraint = constraint_store.get_num_constraints(name)
-    truth_masks = [True for _ in range(num_constraint)]
+
+    # generate combinations of truth masks for the constraints
+    truth_masks_comb = list(product([True, False], repeat=num_constraint))
 
     # get the full positive constraints
-    constraints = constraint_store.get_nl_constraints(name, truth_masks)
-    if args.use_variable_name:
-        result = call_llm(name, constraints, chain, parser)
-    else:
-        constraints = [
-            constraint.replace(name.lower(), "x") for constraint in constraints
-        ]
-        result = call_llm("x", constraints, chain, parser)
-    results.append(
-        {"name": name, "result": result.value, "truth_masks": truth_masks.copy()}
-    )
-
-    # get the (partially) negative constraints
-    for i in tqdm(range(num_constraint), desc=f"Evaluating {name}"):
-        truth_masks[i] = False
+    for truth_masks in tqdm(truth_masks_comb, desc=f"Evaluating {name}"):
         constraints = constraint_store.get_nl_constraints(name, truth_masks)
-        result = call_llm(name, constraints, chain, parser)
+        if args.use_variable_name:
+            result = call_llm(name, constraints, chain, parser)
+        else:
+            constraints = [
+                constraint.replace(name.lower(), "x") for constraint in constraints
+            ]
+            result = call_llm("x", constraints, chain, parser)
+
         results.append(
-            {"name": name, "result": result.value, "truth_masks": truth_masks.copy()}
+            {"name": name, "result": result.value, "truth_masks": truth_masks}
         )
-        truth_masks[i] = True
 
 
 def call_smt(constraints: list[str]) -> Result:
@@ -144,10 +140,10 @@ def main(args):
     if args.approach == "validate":
         # read the csv
         df = pandas.read_csv(save_path, encoding="utf-8")
-        for index, row in tqdm(df.iterrows()):
+        for index, row in tqdm(list(df.iterrows())):
             name = row["name"]
-            result = row["result"]
-            truth_masks = eval(row["truth_masks"])
+            result = str(row["result"])
+            truth_masks = list(eval(row["truth_masks"]))
             constraints = constraint_store.get_smt_constraints(name, truth_masks)
 
             # add assertion of result

@@ -6,7 +6,6 @@ from langchain_core.output_parsers import PydanticOutputParser
 
 class JSONPydanticOutputParser(PydanticOutputParser):
     def parse(self, output: str):
-        print(output)
         json_pattern = re.compile(r"```(json)?\n(.*?)\n```", re.DOTALL)
         match = json_pattern.search(output)
 

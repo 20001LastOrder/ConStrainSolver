@@ -174,7 +174,7 @@ Date,,"1. The date must contain two hyphens (-)
 (assert (let ((start2 (+ (str.indexof s ""-"" 0) 1)) (end2 (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (not (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12))))))
 
 (assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))"
-German IBAN,"A German IBAN consists of 22 characters which are characterized as follows:
+IBAN,"A German IBAN consists of 22 characters which are characterized as follows:
 The first two characters represent the country code (here, the constant “DE”)
 while the third and fourth characters are a checksum. The remaining 18 digits
 represent the Basic Bank Account Number (BBAN).
