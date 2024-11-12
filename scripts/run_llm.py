@@ -1,17 +1,17 @@
 import os
 from argparse import ArgumentParser
+from itertools import product
 
 import pandas
 from langchain_core.runnables import Runnable
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from tqdm import tqdm
+from z3 import Solver, sat, unsat
 
 from constraints import ConstraintStore
 from llm_string.prompt import Result, get_prompt
 from llm_string.utils import JSONPydanticOutputParser
-from langchain_ollama import ChatOllama
-from itertools import product
-from z3 import Solver, sat, unsat
 
 
 def call_llm(
@@ -143,12 +143,15 @@ def main(args):
         for index, row in tqdm(list(df.iterrows())):
             name = row["name"]
             result = str(row["result"])
+            result = result.replace('"', '""')
+
             truth_masks = list(eval(row["truth_masks"]))
             constraints = constraint_store.get_smt_constraints(name, truth_masks)
 
             # add assertion of result
             if result != "UNSAT":
                 constraints = ['(assert (= s "' + result + '"))'] + constraints
+
             sat_res, _ = call_smt(constraints)
 
             if result != "UNSAT":
