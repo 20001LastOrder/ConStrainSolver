@@ -7,7 +7,7 @@ from langchain_core.runnables import Runnable
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from tqdm import tqdm
-from z3 import Solver, sat, unsat
+from z3 import Solver, sat, unsat, unknown
 
 from constraints import ConstraintStore
 from llm_string.prompt import Result, get_prompt
@@ -41,7 +41,7 @@ def evaluate_constraints_llm(
     # generate combinations of truth masks for the constraints
     truth_masks_comb = list(product([True, False], repeat=num_constraint))
 
-    # get the full positive constraints
+    # get the all possible constraints
     for truth_masks in tqdm(truth_masks_comb, desc=f"Evaluating {name}"):
         constraints = constraint_store.get_nl_constraints(name, truth_masks)
         if args.use_variable_name:
@@ -60,7 +60,7 @@ def evaluate_constraints_llm(
 def call_smt(constraints: list[str]) -> Result:
 
     solver = Solver()
-    solver.set("timeout", 10000)
+    solver.set("timeout", 60000)
     problem = ["(declare-const s String)"] + constraints
     cons_str = "\n".join(problem)
     solver.from_string(cons_str)
@@ -85,25 +85,11 @@ def evaluate_constraints_smt(
 ):
     # TODO integrate other SMT solvers (maybe)
     num_constraint = constraint_store.get_num_constraints(name)
-    truth_masks = [True for _ in range(num_constraint)]
+    truth_masks_comb = list(product([True, False], repeat=num_constraint))
 
-    # get the full positive constraints
-    constraints = constraint_store.get_smt_constraints(name, truth_masks)
-    sat_res, str_val = call_smt(constraints)
 
-    results.append(
-        {
-            "name": name,
-            "sat": sat_res,
-            "result": str_val,
-            "truth_masks": truth_masks.copy(),
-        }
-    )
-
-    # get the (partially) negative constraints
-    for i in tqdm(range(num_constraint), desc=f"Evaluating {name}"):
-        truth_masks[i] = False
-
+    # generate combinations of truth masks for the constraints
+    for truth_masks in tqdm(truth_masks_comb, desc=f"Evaluating {name}"):
         constraints = constraint_store.get_smt_constraints(name, truth_masks)
         sat_res, str_val = call_smt(constraints)
         results.append(
@@ -111,10 +97,9 @@ def evaluate_constraints_smt(
                 "name": name,
                 "sat": sat_res,
                 "result": str_val,
-                "truth_masks": truth_masks.copy(),
+                "truth_masks": truth_masks,
             }
         )
-        truth_masks[i] = True
 
 
 def main(args):
@@ -154,11 +139,14 @@ def main(args):
 
             sat_res, _ = call_smt(constraints)
 
-            if result != "UNSAT":
-                df.loc[index, "valid?"] = sat_res == sat
-            else:
-                df.loc[index, "valid?"] = sat_res == unsat
+            if sat_res == unknown:
+                df.loc[index, "valid?"] = -1
+                continue
 
+            if result != "UNSAT":
+                df.loc[index, "valid?"] = int(sat_res == sat)
+            else:
+                df.loc[index, "valid?"] = int(sat_res == unsat)
         validation_path = save_path_name + "_validation.csv"
         df.to_csv(validation_path, index=False)
         return
@@ -166,9 +154,9 @@ def main(args):
     # if not validating
     if args.approach == "llm":
         llm = (
-            ChatOpenAI(model=args.llm)
+            ChatOpenAI(model=args.llm, temperature=0.7)
             if args.llm_family == "openai"
-            else ChatOllama(model=args.llm, max_new_tokens=500)
+            else ChatOllama(model=args.llm, max_new_tokens=500, temperature=0.8)
         )
 
         parser = JSONPydanticOutputParser(pydantic_object=Result)
