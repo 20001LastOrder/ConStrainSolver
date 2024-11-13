@@ -7,11 +7,13 @@ from langchain_core.runnables import Runnable
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from tqdm import tqdm
+from z3 import Solver, sat, unsat, unknown
 
 from constraints import ConstraintStore
 from llm_string.prompt import Result, get_prompt
 from llm_string.utils import JSONPydanticOutputParser
 
+import subprocess
 
 def call_llm(
     name: str, constraints: list[str], chain: Runnable, parser: JSONPydanticOutputParser
@@ -59,10 +61,48 @@ def evaluate_constraints_llm(
 def call_smt(constraints: list[str], smt_solver) -> Result:
 
     problem = ["(declare-const s String)"] + constraints
-    cons_str = "\n".join(problem)
-    
-    if smt_solver.startswith("z3"):
-        from z3 import Solver, sat, unsat, unknown
+
+    if smt_solver == "cvc5":
+        problem = ["(set-logic QF_SLIA)", "(set-option :strings-exp true)", "(set-option :produce-unsat-cores true)", "(set-option :produce-models true)"] + problem
+
+        problem = problem + ["(check-sat)", "(get-model)"]
+        cons_str = "\n".join(problem)
+
+        cons_str = cons_str.replace("str.to.re", "str.to_re")
+        cons_str = cons_str.replace("str.in.re", "str.in_re")
+        cons_str = cons_str.replace("str.to.int", "str.to_int")
+        cons_str = cons_str.replace("re.complement", "re.comp")
+        
+        with open("constraints.smt2", "w") as f:
+            f.write(cons_str)
+
+        result = subprocess.run(["solvers/cvc5-Win64-x86_64-static/bin/cvc5.exe", "constraints.smt2", "--tlimit=5000"], capture_output=True, text=True)
+        output = result.stdout.strip()
+        
+        # parse outcome
+        sat_res = output.split('\n')[0]
+
+        # parse the value of s
+        if sat_res == "sat":
+            # Extract the value of s from the output
+            string_val_line = output.split('\n')[2]
+            assert string_val_line.startswith('(define-fun s () String "')
+
+            str_val = string_val_line[len('(define-fun s () String "'):-2]
+
+
+            start_index = output.find('(define-fun s () String "') + len('(define-fun s () String "')
+            end_index = output.find('")', start_index)
+            str_val = output[start_index:end_index]
+        else:
+            str_val = None
+
+        if sat_res == "":
+            sat_res = "unknown"
+        return sat_res, str_val
+
+    elif smt_solver.startswith("z3"):
+        cons_str = "\n".join(problem)
 
         solver = Solver()
         solver.set("timeout", 30000)
@@ -82,8 +122,6 @@ def call_smt(constraints: list[str], smt_solver) -> Result:
             str_val = None
 
         return sat_res, str_val
-    elif smt_solver == "cvc5":
-        from cvc5 import Solver, Result, SmtEngine
 
 
 def evaluate_constraints_smt(
@@ -207,7 +245,7 @@ if __name__ == "__main__":
     parser.add_argument("--llm_family", type=str, default="openai")
     parser.add_argument("--llm", type=str)
     parser.add_argument("--use_variable_name", action="store_true")
-    parser.add_argument("--smt_solver", type=str, choices=["z3", "z3str3"])
+    parser.add_argument("--smt_solver", type=str, choices=["z3", "z3str3", "cvc5"])
 
     args = parser.parse_args()
     main(args)
