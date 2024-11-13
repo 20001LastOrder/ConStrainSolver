@@ -7,7 +7,6 @@ from langchain_core.runnables import Runnable
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from tqdm import tqdm
-from z3 import Solver, sat, unsat, unknown
 
 from constraints import ConstraintStore
 from llm_string.prompt import Result, get_prompt
@@ -57,31 +56,41 @@ def evaluate_constraints_llm(
         )
 
 
-def call_smt(constraints: list[str]) -> Result:
+def call_smt(constraints: list[str], smt_solver) -> Result:
 
-    solver = Solver()
-    solver.set("timeout", 60000)
     problem = ["(declare-const s String)"] + constraints
     cons_str = "\n".join(problem)
-    solver.from_string(cons_str)
+    
+    if smt_solver.startswith("z3"):
+        from z3 import Solver, sat, unsat, unknown
 
-    # call the solver
-    sat_res = solver.check()
-    if sat_res == sat:
-        model = solver.model()
-        str_val = model[model.decls()[0]]
-        # str_val = str_val.as_string() # NOTE this is taking long for some reason
-        # str_val = str_val.strip('"')
-    else:
-        str_val = None
+        solver = Solver()
+        solver.set("timeout", 30000)
+        if smt_solver == "z3str3":
+            solver.set("string_solver","z3str3")
 
-    return sat_res, str_val
+        solver.from_string(cons_str)
+
+        # call the solver
+        sat_res = solver.check()
+        if sat_res == sat:
+            model = solver.model()
+            str_val = model[model.decls()[0]]
+            # str_val = str_val.as_string() # NOTE this is taking long for some reason
+            # str_val = str_val.strip('"')
+        else:
+            str_val = None
+
+        return sat_res, str_val
+    elif smt_solver == "cvc5":
+        from cvc5 import Solver, Result, SmtEngine
 
 
 def evaluate_constraints_smt(
     name: str,
     results: list[dict],
     constraint_store: ConstraintStore,
+    args,
 ):
     # TODO integrate other SMT solvers (maybe)
     num_constraint = constraint_store.get_num_constraints(name)
@@ -91,7 +100,7 @@ def evaluate_constraints_smt(
     # generate combinations of truth masks for the constraints
     for truth_masks in tqdm(truth_masks_comb, desc=f"Evaluating {name}"):
         constraints = constraint_store.get_smt_constraints(name, truth_masks)
-        sat_res, str_val = call_smt(constraints)
+        sat_res, str_val = call_smt(constraints, args.smt_solver)
         results.append(
             {
                 "name": name,
@@ -170,7 +179,7 @@ def main(args):
                 name, results, chain, constraint_store, parser, args
             )
         else:
-            evaluate_constraints_smt(name, results, constraint_store)
+            evaluate_constraints_smt(name, results, constraint_store, args)
 
     # Set save path
     if args.approach == "smt":
@@ -198,7 +207,7 @@ if __name__ == "__main__":
     parser.add_argument("--llm_family", type=str, default="openai")
     parser.add_argument("--llm", type=str)
     parser.add_argument("--use_variable_name", action="store_true")
-    parser.add_argument("--smt_solver", type=str, choices=["z3"])
+    parser.add_argument("--smt_solver", type=str, choices=["z3", "z3str3"])
 
     args = parser.parse_args()
     main(args)
