@@ -184,7 +184,7 @@ def main(args):
             if result != "UNSAT":
                 constraints = ['(assert (= s "' + result + '"))'] + constraints
 
-            sat_res, _ = call_smt(constraints)
+            sat_res, _ = call_smt(constraints, "z3")
 
             if sat_res == unknown:
                 df.loc[index, "valid?"] = -1

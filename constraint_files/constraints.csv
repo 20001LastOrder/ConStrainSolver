@@ -1,25 +1,25 @@
-﻿Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
-Name,"Capitalization, Specific characters, ","1. The name must only contain letters a-z, letters A-Z and spaces.
+Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
+Name,"Capitalization, Specific characters, ","1. The name shall only contain letters a-z, letters A-Z and space characters.
 
-2. The name must contain at least one space.
+2. The name shall contain at least one space character.
 
-3. The name cannot end with a space.
+3. The name shall not end with a space character.
 
-4. The name cannot start with a space.
+4. The name shall not  start with a space character.
 
-5. The first character must be capitalized.
+5. The first character in the name shall be capitalized.
 
-6. All character followed by a space must be capitalized.","1. The name must only contain characters other than letters a-z, letters A-Z or spaces.
+6. Any character in the name following a space character shall be capitalized.","1. The name shall not contain letters a-z, letters A-Z and spaces.
 
-2. The name must contain no space.
+2. The name shall contain no space character.
 
-3. The name must end with a space.
+3. The name shall end with a space character.
 
-4. The name must start  with a space.
+4. The name shall start  with a space character.
 
-5. The first character must not be capitalized.
+5. The first character in the name shall not be capitalized.
 
-6. There must be some character following a space that is not capitalized.","(assert (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" "")))))
+6. In the name, there shall be some character following a space character which is not capitalized.","(assert (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" "")))))
 
 (assert (str.contains s "" ""))
 
@@ -51,27 +51,27 @@ email.lastIndexOf(""."") < email.length() - 1
 
 // email cannot contain the word “manager”
 ”manager” not in email
-","1. The email does not contain a space character.
+","1. The email shall not contain a space character.
 
-2. The email does not start with a @ character.
+2. The email shall not start with a @ character.
 
-3. The email has exactly one @ character.
+3. The email shall have exactly one @ character.
 
-4. The email has a . character after the @ character.
+4. If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.
 
-5. The final character of the email is not a . character.
+5. The final character of the email shall not be a dot character (.).
 
-6. The email cannot contain the word “manager”.","1. The email must contain a space character.
+6. The email shall not contain the word “manager”.","1. The email shall contain a space character.
 
-2. The email must start with a @ character.
+2. The email shall start with a @ character.
 
-3. The email must have either no @ characters or more than one @ character.
+3. The email shall have either no @ characters or more than one @ character.
 
-4. The email must not have a . character after the @ character.
+4. If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.
 
-5. The final character of the email is a . character.
+5. The final character of the email shall be a dot character (.).
 
-6. The email must contain the word “manager”.","(assert (not (str.contains s "" "")))
+6. The email shall contain the word “manager”.","(assert (not (str.contains s "" "")))
 
 (assert (not (= (str.at s 0) ""@"")))
 
@@ -99,23 +99,23 @@ password.contains(""!"") or password.contains(""#"") or password.contains(""$"")
 // password must contain an upper case character
 there exists a character c in password such that Character.isUpperCase(c) = true
 // password must contain a lower case character
-there exists a character c in password such that Character.isLowerCase(c) = true","1. The password must be at least 4 characters long.
+there exists a character c in password such that Character.isLowerCase(c) = true","1. The password shall be at least 4 characters long.
 
-2. The password must contain one of the following characters: !, #, $
+2. The password shall contain one of the following characters: !, #, $.
 
-3. The password must contain some upper case characters
+3. The password shall contain at least one upper case characters.
 
-4. The password must contain some lower case characters
+4. The password shall contain at least one lower case characters.
 
-5. The password must contain some number","1. The password must contain less than 4 characters
+5. The password shall contain at least one number.","1. The password shall contain less than 4 characters.
 
-2. The password must not contain any of the following characters: !, #, $
+2. The password shall not contain any of the following characters: !, #, $.
 
-3. The password must not contain any upper case characters
+3. The password shall not contain any upper case characters.
 
-4. The password must not contain any lower case characters
+4. The password shall not contain any lower case characters.
 
-5. The password must not contain any numbers","(assert (>= (str.len s) 4))
+5. The password shall not contain any numbers.","(assert (>= (str.len s) 4))
 
 (assert (or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$"")))
 
@@ -132,15 +132,15 @@ there exists a character c in password such that Character.isLowerCase(c) = true
 (assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar)))))
 
 (assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar)))))"
-Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","1. The url must either start with http:// or https://
+Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","1. The url shall start with either http:// or https://.
 
-2. The url must not contain any spaces
+2. The url shall not contain any spaces.
 
-3. The url must contain at least one dot character (.)","1. The url cannot start with http:// or https://
+3. The url shall contain at least one dot character (.).","1. The url shall not start with http://, nor with https://.
 
-2. The url must contain at least one space
+2. The url shall contain at least one space.
 
-3. The url must contain no dot character (.)","(assert (or (str.prefixof ""http://"" s) (str.prefixof ""https://"" s)))
+3. The url shall not contain any dot character (.).","(assert (or (str.prefixof ""http://"" s) (str.prefixof ""https://"" s)))
 
 (assert (not (str.contains s "" "")))
 
@@ -149,19 +149,19 @@ Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","
 (assert (str.contains s "" ""))
 
 (assert (not (str.contains s ""."")))"
-Date,,"1. The date must contain two hyphens (-)
+Date,,"1. The date shall contain two hyphens.
 
-2. The part before the first hyphen must be a number between 0 and 2025
+2. The part before the first hyphen shall be a number between 0 and 2025.
 
-3. The part after the first hyphen but before the second hyphen must be a number between 1 and 12
+3. The part after the first hyphen but before the second hyphen shall be a number between 1 and 12.
 
-4. The part after the second hyphen is a number between 1 and 31","1. The date must contain either no hyphen, one hyphen or more than two hyphens 
+4. The part after the second hyphen shall be a number between 1 and 31.","1. The date shall contain either no hyphens, one hyphen or more than two hyphens.
 
-2. If there is at least one hyphen, the part before the first hyphen must be either a number smaller than 0 or a number larger than 2025
+2. If there is at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.
 
-3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen must be a number smaller than 1 or a number larger than 12
+3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.
 
-4. If there are at least two hyphens, the part after the second hyphen must be a number smaller than 1 or larger than 31","(assert (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar)))) ))
+4. If there are at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","(assert (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar)))) ))
 
 (assert (let ((part1 (str.substr s 0 (str.indexof s ""-"" 0)))) (and (>= (str.to.int part1) 0) (<= (str.to.int part1) 2025))))
 
@@ -181,15 +181,15 @@ represent the Basic Bank Account Number (BBAN).
 We can compute valid IBANs using a given country code as follows: Represent
 the country code as a digit where “A” equals 10, “B” equals 11, etc. The German
 country code “DE” is hence encoded as 1314. Concatenate two zeros to the
-encoded country code (i.e., 131400) and prepend the BBAN. ","1. The length of the bank number is 22
+encoded country code (i.e., 131400) and prepend the BBAN. ","1. The length of the bank number shall be 22.
 
-2. The first 4 numbers of the bank number must be: 1210 (CA)
+2. The first 4 numbers of the bank number shall be: 1210 (CA).
 
-3. The next 2 numbers must be 00","1. The length of the bank account must not be 22
+3. The next 2 numbers shall be 00.","1. The length of the bank account shall not be 22.
 
-2. The first  4 numbers of the bank number must not be: 1210 (CA)
+2. The first 4 numbers of the bank number shall not be: 1210 (CA).
 
-3. The next 2 numbers must not be 00","(assert (= (str.len s) 22))
+3. The next 2 numbers shall not be 00.","(assert (= (str.len s) 22))
 
 (assert (= (str.substr s 0 4) ""1210""))
 
