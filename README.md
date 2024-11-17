@@ -1,4 +1,4 @@
-# ConStrainSolver
+# llm-string-constraints
 
 ## Run LLM Experiments
 ```bash
