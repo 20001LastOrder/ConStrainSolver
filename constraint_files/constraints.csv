@@ -1,4 +1,4 @@
-Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
+﻿Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
 Name,"Capitalization, Specific characters, ","1. The name shall only contain letters a-z, letters A-Z and space characters.
 
 2. The name shall contain at least one space character.
@@ -19,7 +19,7 @@ Name,"Capitalization, Specific characters, ","1. The name shall only contain let
 
 5. The first character in the name shall not be capitalized.
 
-6. In the name, there shall be some character following a space character which is not capitalized.","(assert (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" "")))))
+6. In the name, there shall be some characters following a space character which are not capitalized.","(assert (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" "")))))
 
 (assert (str.contains s "" ""))
 

@@ -20,7 +20,6 @@ def call_llm(
 ) -> Result:
     name = name.strip()
     constraints = "\n".join(constraints)
-
     while True:
         result = chain.invoke(input={"name": name, "constraints": constraints})
         try:

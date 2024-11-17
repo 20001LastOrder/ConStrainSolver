@@ -1,193 +1,193 @@
 name,result,truth_masks,valid?
-Name,John Happy,"(True, True, True, True, True, True)",1.0
+Name,John Smith,"(True, True, True, True, True, True)",1.0
 Name,John Smith,"(True, True, True, True, True, False)",0.0
-Name,an i m A N,"(True, True, True, True, False, True)",0.0
-Name,hello friend,"(True, True, True, True, False, False)",1.0
-Name,Mr. John Smith,"(True, True, True, False, True, True)",0.0
-Name,A b Smith,"(True, True, True, False, True, False)",0.0
-Name,a A b,"(True, True, True, False, False, True)",0.0
-Name, a aBc,"(True, True, True, False, False, False)",1.0
-Name,John Smith ,"(True, True, False, True, True, True)",1.0
-Name,A a ,"(True, True, False, True, True, False)",1.0
-Name,a B e E,"(True, True, False, True, False, True)",0.0
-Name,a ob ,"(True, True, False, True, False, False)",1.0
-Name,UNSAT,"(True, True, False, False, True, True)",1.0
-Name,A Mr.  Smith,"(True, True, False, False, True, False)",0.0
-Name,a c D ,"(True, True, False, False, False, True)",0.0
-Name,a john smith ,"(True, True, False, False, False, False)",0.0
-Name,ALLCAPS,"(True, False, True, True, True, True)",1.0
-Name,Jane,"(True, False, True, True, True, False)",0.0
-Name,aA,"(True, False, True, True, False, True)",1.0
-Name,johnsmith,"(True, False, True, True, False, False)",0.0
-Name,Alexander Bell,"(True, False, True, False, True, True)",0.0
-Name,Sp,"(True, False, True, False, True, False)",0.0
-Name,UNSAT,"(True, False, True, False, False, True)",1.0
-Name,,"(True, False, True, False, False, False)",0.0
-Name,John Smith ,"(True, False, False, True, True, True)",0.0
-Name,Alice ,"(True, False, False, True, True, False)",0.0
-Name,a' .,"(True, False, False, True, False, True)",0.0
-Name,johno ,"(True, False, False, True, False, False)",0.0
-Name, John ,"(True, False, False, False, True, True)",0.0
-Name,UNSAT,"(True, False, False, False, True, False)",1.0
-Name, A B C D E ,"(True, False, False, False, False, True)",0.0
-Name,john a,"(True, False, False, False, False, False)",0.0
-Name,Ab!c #d efg,"(False, True, True, True, True, True)",0.0
-Name,A*1,"(False, True, True, True, True, False)",0.0
-Name,! # ,"(False, True, True, True, False, True)",0.0
-Name,a!b,"(False, True, True, True, False, False)",0.0
-Name,Mr. A!,"(False, True, True, False, True, True)",0.0
-Name, A! example,"(False, True, True, False, True, False)",0.0
-Name,_ A ! B #,"(False, True, True, False, False, True)",0.0
-Name, 'a'.-b,"(False, True, True, False, False, False)",1.0
-Name,¢ - (R) - (SM),"(False, True, False, True, True, True)",0.0
-Name,Mc $,"(False, True, False, True, True, False)",0.0
-Name,! aB C!,"(False, True, False, True, False, True)",0.0
-Name,a !c# ,"(False, True, False, True, False, False)",1.0
-Name,+ ++++,"(False, True, False, False, True, True)",0.0
-Name,! D e,"(False, True, False, False, True, False)",0.0
-Name,** a *,"(False, True, False, False, False, True)",0.0
-Name,% #,"(False, True, False, False, False, False)",0.0
-Name,X#,"(False, False, True, True, True, True)",1.0
-Name,A $@#a,"(False, False, True, True, True, False)",0.0
-Name,a1!@#_2*,"(False, False, True, True, False, True)",1.0
-Name,abc#,"(False, False, True, True, False, False)",0.0
-Name," !Hello, World!","(False, False, True, False, True, True)",0.0
-Name,A!@#,"(False, False, True, False, True, False)",0.0
-Name,Ab C,"(False, False, True, False, False, True)",0.0
-Name, !Ä#,"(False, False, True, False, False, False)",0.0
-Name,#ID123,"(False, False, False, True, True, True)",0.0
-Name,!A ,"(False, False, False, True, True, False)",0.0
-Name,ABC,"(False, False, False, True, False, True)",0.0
-Name,_a ,"(False, False, False, True, False, False)",0.0
-Name, A B C ,"(False, False, False, False, True, True)",0.0
-Name,@John a ,"(False, False, False, False, True, False)",0.0
-Name,.! ,"(False, False, False, False, False, True)",0.0
-Name,_3 ! ,"(False, False, False, False, False, False)",0.0
-Email,test.email+alex@example.com,"(True, True, True, True, True, True)",1.0
-Email,manager.@example,"(True, True, True, True, True, False)",0.0
-Email,john@example.,"(True, True, True, True, False, True)",1.0
-Email,john.manager@company.,"(True, True, True, True, False, False)",1.0
-Email,John@example.com,"(True, True, True, False, True, True)",0.0
-Email,john_manager,"(True, True, True, False, True, False)",0.0
-Email,example@john.,"(True, True, True, False, False, True)",0.0
-Email,john@manager.email.,"(True, True, True, False, False, False)",0.0
-Email,test@example.com,"(True, True, False, True, True, True)",0.0
-Email,manager@exa@mple.manager,"(True, True, False, True, True, False)",1.0
-Email,john.doe@company.com,"(True, True, False, True, False, True)",0.0
-Email,manager@example.,"(True, True, False, True, False, False)",0.0
-Email,janedoe,"(True, True, False, False, True, True)",1.0
-Email,myemaill.manager.manager@domain,"(True, True, False, False, True, False)",0.0
-Email,john_jane,"(True, True, False, False, False, True)",0.0
-Email,john.manager@company.email.,"(True, True, False, False, False, False)",0.0
-Email,johnDoeCom,"(True, False, True, True, True, True)",0.0
-Email,@manager.comtest,"(True, False, True, True, True, False)",1.0
-Email,test@example.,"(True, False, True, True, False, True)",0.0
-Email,example@manag.com.,"(True, False, True, True, False, False)",0.0
-Email,jane@examplecom!,"(True, False, True, False, True, True)",0.0
-Email,@manager.com,"(True, False, True, False, True, False)",0.0
-Email,@g.john.,"(True, False, True, False, False, True)",0.0
-Email,@examplemanager.,"(True, False, True, False, False, False)",0.0
-Email,test@example.com,"(True, False, False, True, True, True)",0.0
-Email,manager.example.com.manager,"(True, False, False, True, True, False)",0.0
-Email,user@domain.com.,"(True, False, False, True, False, True)",0.0
-Email,john_manager@manager.com.,"(True, False, False, True, False, False)",0.0
-Email,@example.sub.com,"(True, False, False, False, True, True)",0.0
-Email,@@manager,"(True, False, False, False, True, False)",1.0
-Email,example@domain@com.,"(True, False, False, False, False, True)",0.0
-Email,@manager.s,"(True, False, False, False, False, False)",0.0
-Email,John Smith @ Email.johN,"(False, True, True, True, True, True)",1.0
-Email,John Doe@myco m.manager,"(False, True, True, True, True, False)",1.0
-Email,John Doe @example.com.tld .,"(False, True, True, True, False, True)",1.0
-Email,john manager@company.com.,"(False, True, True, True, False, False)",1.0
-Email,John @example,"(False, True, True, False, True, True)",1.0
-Email,John Manager example,"(False, True, True, False, True, False)",0.0
-Email,Smith Johnson.,"(False, True, True, False, False, True)",0.0
-Email,manager John@Smith.,"(False, True, True, False, False, False)",0.0
-Email,john doe@jane.smith,"(False, True, False, True, True, True)",0.0
-Email,John Doe Manager@Company.com,"(False, True, False, True, True, False)",0.0
-Email,John Smith @example.com .com,"(False, True, False, True, False, True)",0.0
-Email,The @ manager .,"(False, True, False, True, False, False)",0.0
-Email,johnsmith@example.com,"(False, True, False, False, True, True)",0.0
-Email,"""@ John ! Manager ""","(False, True, False, False, True, False)",0.0
-Email,Emily Jane Doe.,"(False, True, False, False, False, True)",1.0
-Email,John Smith manager .,"(False, True, False, False, False, False)",1.0
-Email,example@domain.com,"(False, False, True, True, True, True)",0.0
-Email,@manager .example,"(False, False, True, True, True, False)",1.0
-Email,john google .space,"(False, False, True, True, False, True)",0.0
-Email,@John Manager@example.,"(False, False, True, True, False, False)",0.0
-Email,@example employee,"(False, False, True, False, True, True)",1.0
-Email,john(manager).com,"(False, False, True, False, True, False)",0.0
-Email,John@Smith.,"(False, False, True, False, False, True)",0.0
-Email,@Manager John Smith.com,"(False, False, True, False, False, False)",0.0
-Email,@ test.example.com,"(False, False, False, True, True, True)",0.0
-Email,@@@manager ,"(False, False, False, True, True, False)",0.0
-Email,@example Domain Inc.@example.com,"(False, False, False, True, False, True)",0.0
-Email,@example manager @domain.,"(False, False, False, True, False, False)",1.0
-Email,support@example.com !,"(False, False, False, False, True, True)",0.0
-Email,john manager smith@examplename com,"(False, False, False, False, True, False)",0.0
-Email,test @example.name.,"(False, False, False, False, False, True)",0.0
-Email,@manager manager manager@,"(False, False, False, False, False, False)",0.0
-Password,Aa1d$,"(True, True, True, True, True)",1.0
-Password,AbcDa!,"(True, True, True, True, False)",1.0
-Password,$A4123,"(True, True, True, False, True)",1.0
-Password,AA#,"(True, True, True, False, False)",0.0
-Password,ae!5,"(True, True, False, True, True)",1.0
-Password,a!ae,"(True, True, False, True, False)",1.0
-Password,Jane#9,"(True, True, False, False, True)",0.0
-Password,$!##$,"(True, True, False, False, False)",1.0
-Password,P@ssw0rd,"(True, False, True, True, True)",1.0
+Name,jo hn,"(True, True, True, True, False, True)",0.0
+Name,a b c,"(True, True, True, True, False, False)",1.0
+Name, A N a,"(True, True, True, False, True, True)",0.0
+Name,A b,"(True, True, True, False, True, False)",0.0
+Name,a Name,"(True, True, True, False, False, True)",0.0
+Name, a hello,"(True, True, True, False, False, False)",1.0
+Name,John ,"(True, True, False, True, True, True)",1.0
+Name,A b ,"(True, True, False, True, True, False)",1.0
+Name,a A ,"(True, True, False, True, False, True)",1.0
+Name,a b ,"(True, True, False, True, False, False)",1.0
+Name, J,"(True, True, False, False, True, True)",0.0
+Name, A a ,"(True, True, False, False, True, False)",0.0
+Name,UNSAT,"(True, True, False, False, False, True)",0.0
+Name, `a A,"(True, True, False, False, False, False)",0.0
+Name,JohnPeterDoe,"(True, False, True, True, True, True)",1.0
+Name,UNSAT,"(True, False, True, True, True, False)",-1.0
+Name,UNSAT,"(True, False, True, True, False, True)",0.0
+Name,John jones,"(True, False, True, True, False, False)",0.0
+Name,UNSAT,"(True, False, True, False, True, True)",1.0
+Name, Aa,"(True, False, True, False, True, False)",0.0
+Name,,"(True, False, True, False, False, True)",0.0
+Name, a ,"(True, False, True, False, False, False)",0.0
+Name,A ,"(True, False, False, True, True, True)",0.0
+Name,A a b,"(True, False, False, True, True, False)",0.0
+Name,A,"(True, False, False, True, False, True)",0.0
+Name,UNSAT,"(True, False, False, True, False, False)",-1.0
+Name,A,"(True, False, False, False, True, True)",0.0
+Name,A Nam ,"(True, False, False, False, True, False)",0.0
+Name,UNSAT,"(True, False, False, False, False, True)",1.0
+Name,a name,"(True, False, False, False, False, False)",0.0
+Name,!123!,"(False, True, True, True, True, True)",0.0
+Name,J_ohN,"(False, True, True, True, True, False)",0.0
+Name,$ _ B C,"(False, True, True, True, False, True)",0.0
+Name,!hello world,"(False, True, True, True, False, False)",1.0
+Name,A B C,"(False, True, True, False, True, True)",0.0
+Name, ! . ,"(False, True, True, False, True, False)",0.0
+Name,! ' ,"(False, True, True, False, False, True)",0.0
+Name,! x ,"(False, True, True, False, False, False)",0.0
+Name,A MAC ,"(False, True, False, True, True, True)",0.0
+Name,D 123,"(False, True, False, True, True, False)",0.0
+Name, xX ,"(False, True, False, True, False, True)",0.0
+Name,1abc def ,"(False, True, False, True, False, False)",1.0
+Name,UNSAT,"(False, True, False, False, True, True)",1.0
+Name, Mr.,"(False, True, False, False, True, False)",0.0
+Name,		,"(False, True, False, False, False, True)",0.0
+Name, !,"(False, True, False, False, False, False)",0.0
+Name,AbC,"(False, False, True, True, True, True)",0.0
+Name,!,"(False, False, True, True, True, False)",0.0
+Name,#N4me,"(False, False, True, True, False, True)",1.0
+Name,_____,"(False, False, True, True, False, False)",0.0
+Name,UNSAT,"(False, False, True, False, True, True)",1.0
+Name,UNSAT,"(False, False, True, False, True, False)",1.0
+Name,#1,"(False, False, True, False, False, True)",0.0
+Name, a s b,"(False, False, True, False, False, False)",0.0
+Name,UNSAT,"(False, False, False, True, True, True)",-1.0
+Name,UNSAT,"(False, False, False, True, True, False)",-1.0
+Name,!A1,"(False, False, False, True, False, True)",0.0
+Name,!!@#_x ,"(False, False, False, True, False, False)",0.0
+Name, 3,"(False, False, False, False, True, True)",0.0
+Name,UNSAT,"(False, False, False, False, True, False)",1.0
+Name, a B ,"(False, False, False, False, False, True)",0.0
+Name, Z !,"(False, False, False, False, False, False)",0.0
+Email,john.smith@example.com,"(True, True, True, True, True, True)",1.0
+Email,johndoe+john.manager@examp.com,"(True, True, True, True, True, False)",1.0
+Email,john.doe@example.com,"(True, True, True, True, False, True)",0.0
+Email,manager.sample@update,"(True, True, True, True, False, False)",0.0
+Email,john.doe@example.com,"(True, True, True, False, True, True)",0.0
+Email,john.manager@example.com,"(True, True, True, False, True, False)",0.0
+Email,test@example.com.,"(True, True, True, False, False, True)",0.0
+Email,m@anager.example.,"(True, True, True, False, False, False)",0.0
+Email,john.doe@example.com,"(True, True, False, True, True, True)",0.0
+Email,managernager.,"(True, True, False, True, True, False)",0.0
+Email,example123@example.com.,"(True, True, False, True, False, True)",0.0
+Email,localpart@manager.user.manager.,"(True, True, False, True, False, False)",0.0
+Email,johnd0e@Company.com,"(True, True, False, False, True, True)",0.0
+Email,email@manager,"(True, True, False, False, True, False)",0.0
+Email,john@.com.uk,"(True, True, False, False, False, True)",0.0
+Email,manager.,"(True, True, False, False, False, False)",1.0
+Email,@examplea,"(True, False, True, True, True, True)",0.0
+Email,@manager.com,"(True, False, True, True, True, False)",1.0
+Email,manager@user.example.com.,"(True, False, True, True, False, True)",0.0
+Email,@manager..,"(True, False, True, True, False, False)",1.0
+Email,@example.com,"(True, False, True, False, True, True)",0.0
+Email,@manager.example,"(True, False, True, False, True, False)",0.0
+Email,@example.,"(True, False, True, False, False, True)",0.0
+Email,manager@example.com.,"(True, False, True, False, False, False)",0.0
+Email,user@@.example.com,"(True, False, False, True, True, True)",0.0
+Email,@manager.com,"(True, False, False, True, True, False)",0.0
+Email,a@example.com,"(True, False, False, True, False, True)",0.0
+Email,@manager@.com.,"(True, False, False, True, False, False)",1.0
+Email,Example@.com,"(True, False, False, False, True, True)",0.0
+Email,test.manager@company.com,"(True, False, False, False, True, False)",0.0
+Email,@test.com.,"(True, False, False, False, False, True)",0.0
+Email,@@@@@@manager.,"(True, False, False, False, False, False)",0.0
+Email,my email @example.com,"(False, True, True, True, True, True)",1.0
+Email,test @example .com manager,"(False, True, True, True, True, False)",1.0
+Email,John Doe@example.com,"(False, True, True, True, False, True)",0.0
+Email,John @ manager .,"(False, True, True, True, False, False)",1.0
+Email,john smith@example.io,"(False, True, True, False, True, True)",0.0
+Email,John Smith manager @ example.com,"(False, True, True, False, True, False)",0.0
+Email,John @example.,"(False, True, True, False, False, True)",0.0
+Email,john @ manager.,"(False, True, True, False, False, False)",0.0
+Email,john.doe@example.com,"(False, True, False, True, True, True)",0.0
+Email,manager @.,"(False, True, False, True, True, False)",0.0
+Email,John Doe and Jane john doe@example.com.,"(False, True, False, True, False, True)",0.0
+Email,manager example.com,"(False, True, False, True, False, False)",0.0
+Email,First Name @ Email@,"(False, True, False, False, True, True)",1.0
+Email,example manager example@newexample@example.com,"(False, True, False, False, True, False)",0.0
+Email,john smith@@.,"(False, True, False, False, False, True)",0.0
+Email,manager @ example.com.,"(False, True, False, False, False, False)",0.0
+Email,@John Doe customer,"(False, False, True, True, True, True)",0.0
+Email,@manager local,"(False, False, True, True, True, False)",0.0
+Email,test@example.user.,"(False, False, True, True, False, True)",0.0
+Email,@manag.er,"(False, False, True, True, False, False)",0.0
+Email,@John Doe,"(False, False, True, False, True, True)",1.0
+Email,@ manager manager,"(False, False, True, False, True, False)",1.0
+Email,@@ something .,"(False, False, True, False, False, True)",0.0
+Email,Personal Manager.,"(False, False, True, False, False, False)",0.0
+Email,@example .com,"(False, False, False, True, True, True)",0.0
+Email,@ manager.@manager,"(False, False, False, True, True, False)",1.0
+Email,@example test.,"(False, False, False, True, False, True)",0.0
+Email,team@manager.team.,"(False, False, False, True, False, False)",0.0
+Email,@@example.com,"(False, False, False, False, True, True)",0.0
+Email,[space]@#@manager,"(False, False, False, False, True, False)",0.0
+Email,@@hello.,"(False, False, False, False, False, True)",0.0
+Email,@ manager .,"(False, False, False, False, False, False)",0.0
+Password,Aa1!23,"(True, True, True, True, True)",1.0
+Password,Aa#!,"(True, True, True, True, False)",1.0
+Password,D4$,"(True, True, True, False, True)",0.0
+Password,ABCD$,"(True, True, True, False, False)",1.0
+Password,aaaa!0,"(True, True, False, True, True)",1.0
+Password,!abc,"(True, True, False, True, False)",1.0
+Password,!!!!!,"(True, True, False, False, True)",0.0
+Password,!!##,"(True, True, False, False, False)",1.0
+Password,aBc8D,"(True, False, True, True, True)",1.0
 Password,Abcd,"(True, False, True, True, False)",1.0
-Password,ABCD1,"(True, False, True, False, True)",1.0
-Password,ABCDEF,"(True, False, True, False, False)",1.0
-Password,ab1ce,"(True, False, False, True, True)",1.0
-Password,aaaa,"(True, False, False, True, False)",1.0
-Password,3##$,"(True, False, False, False, True)",0.0
-Password,cadj,"(True, False, False, False, False)",0.0
-Password,A!a1,"(False, True, True, True, True)",0.0
-Password,!Aa,"(False, True, True, True, False)",1.0
-Password,!A1,"(False, True, True, False, True)",1.0
-Password,Z$,"(False, True, True, False, False)",1.0
-Password,$1a,"(False, True, False, True, True)",1.0
-Password,ab!,"(False, True, False, True, False)",1.0
-Password,$23,"(False, True, False, False, True)",1.0
-Password,!#,"(False, True, False, False, False)",1.0
-Password,aA1,"(False, False, True, True, True)",1.0
-Password,aA,"(False, False, True, True, False)",1.0
-Password,AB,"(False, False, True, False, True)",0.0
-Password,A,"(False, False, True, False, False)",1.0
-Password,ab3,"(False, False, False, True, True)",1.0
-Password,ab,"(False, False, False, True, False)",1.0
-Password,11,"(False, False, False, False, True)",1.0
-Password,*,"(False, False, False, False, False)",1.0
-Url,https://example.com,"(True, True, True)",1.0
-Url,http://example.com,"(True, True, False)",0.0
-Url,https://sub.example,"(True, False, True)",0.0
-Url,http:// some space,"(True, False, False)",1.0
+Password,AB1A,"(True, False, True, False, True)",1.0
+Password,UNSAT,"(True, False, True, False, False)",0.0
+Password,a1pwd,"(True, False, False, True, True)",1.0
+Password,password,"(True, False, False, True, False)",1.0
+Password,_222,"(True, False, False, False, True)",1.0
+Password,####,"(True, False, False, False, False)",0.0
+Password,A1#,"(False, True, True, True, True)",0.0
+Password,A$a,"(False, True, True, True, False)",1.0
+Password,A$4,"(False, True, True, False, True)",1.0
+Password,A##,"(False, True, True, False, False)",1.0
+Password,a1!,"(False, True, False, True, True)",1.0
+Password,!a,"(False, True, False, True, False)",1.0
+Password,!3#,"(False, True, False, False, True)",1.0
+Password,!!,"(False, True, False, False, False)",1.0
+Password,1Aa,"(False, False, True, True, True)",1.0
+Password,Abc,"(False, False, True, True, False)",1.0
+Password,A1,"(False, False, True, False, True)",1.0
+Password,UNSAT,"(False, False, True, False, False)",0.0
+Password,1a,"(False, False, False, True, True)",1.0
+Password,abc,"(False, False, False, True, False)",1.0
+Password,3,"(False, False, False, False, True)",1.0
+Password,UNSAT,"(False, False, False, False, False)",0.0
+Url,http://example.com,"(True, True, True)",1.0
+Url,http://example,"(True, True, False)",1.0
+Url,http:// example.,"(True, False, True)",1.0
+Url,http://  ,"(True, False, False)",1.0
 Url,example.com,"(False, True, True)",1.0
-Url,abcom,"(False, True, False)",1.0
-Url,example site.test,"(False, False, True)",1.0
-Url,Acme 123 Main St,"(False, False, False)",1.0
-Date,2022-06-15,"(True, True, True, True)",1.0
-Date,2022-01-32,"(True, True, True, False)",1.0
-Date,2022-01-01,"(True, True, False, True)",0.0
-Date,2025-00-31,"(True, True, False, False)",0.0
-Date,-2024-07-15,"(True, False, True, True)",0.0
-Date,-2025-09-32,"(True, False, True, False)",0.0
-Date,2030-05-01,"(True, False, False, True)",0.0
-Date,-123-13-32,"(True, False, False, False)",0.0
-Date,2024-11-10,"(False, True, True, True)",0.0
-Date,0-1-UNSAT,"(False, True, True, False)",0.0
-Date,1999-00-01,"(False, True, False, True)",0.0
-Date,2025-00-32,"(False, True, False, False)",0.0
-Date,2025-13-29,"(False, False, True, True)",0.0
-Date,-1234-01-1234,"(False, False, True, False)",0.0
-Date,abc-2026,"(False, False, False, True)",0.0
-Date,-2025-0-31,"(False, False, False, False)",1.0
-IBAN,1210000032123456789012345,"(True, True, True)",0.0
-IBAN,1210AB,"(True, True, False)",0.0
-IBAN,123400DE123456,"(True, False, True)",0.0
-IBAN,1230 13 5432 1123 4567 89,"(True, False, False)",0.0
+Url,test_url,"(False, True, False)",1.0
+Url,/path/to/directory/file name,"(False, False, True)",0.0
+Url,My Website With Multiple Spaces And No Dots,"(False, False, False)",1.0
+Date,2025-06-15,"(True, True, True, True)",1.0
+Date,1000-12-31,"(True, True, True, False)",0.0
+Date,2025-01-25,"(True, True, False, True)",0.0
+Date,2022-01-32,"(True, True, False, False)",0.0
+Date,-0001-06-15,"(True, False, True, True)",0.0
+Date,2026-05-01,"(True, False, True, False)",0.0
+Date,-2025-01-01,"(True, False, False, True)",0.0
+Date,9999-13-32,"(True, False, False, False)",1.0
+Date,2025-09-15,"(False, True, True, True)",0.0
+Date,1999,"(False, True, True, False)",0.0
+Date,2024-01-25,"(False, True, False, True)",0.0
+Date,1999-15-22,"(False, True, False, False)",0.0
+Date,-999,"(False, False, True, True)",0.0
+Date,2026-01-31,"(False, False, True, False)",0.0
+Date,-2025,"(False, False, False, True)",0.0
+Date,2200-13-32,"(False, False, False, False)",0.0
+IBAN,1210001234567890123456,"(True, True, True)",1.0
+IBAN,121015002000050,"(True, True, False)",0.0
+IBAN,CH123400CH0123,"(True, False, True)",0.0
+IBAN,123411,"(True, False, False)",0.0
 IBAN,12100012,"(False, True, True)",1.0
-IBAN,FR111234567890123456,"(False, True, False)",0.0
-IBAN,IT12340000 + some_other_valid_iban_characters,"(False, False, True)",0.0
-IBAN,DE11-1234567890123,"(False, False, False)",1.0
+IBAN,CA121011,"(False, True, False)",0.0
+IBAN,UNSAT,"(False, False, True)",0.0
+IBAN,NL001111123456789,"(False, False, False)",1.0
