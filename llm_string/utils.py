@@ -2,6 +2,8 @@ import json
 import re
 
 from langchain_core.output_parsers import PydanticOutputParser
+from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 
 
 class JSONPydanticOutputParser(PydanticOutputParser):
@@ -14,3 +16,12 @@ class JSONPydanticOutputParser(PydanticOutputParser):
             return self._parse_obj(json_object)
         else:
             raise ValueError("No JSON found in the output.")
+
+
+def get_llm(args):
+    if args.llm_family == "openai":
+        return ChatOpenAI(model=args.model, temperature=args.temperature)
+    else:
+        return ChatOllama(
+            model=args.model, max_new_tokens=500, temperature=args.temperature
+        )

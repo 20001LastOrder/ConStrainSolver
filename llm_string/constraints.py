@@ -1,5 +1,6 @@
 import pandas as pd
-from z3 import Solver, Not
+
+from llm_string.string_solvers.base import ConstraintProblem
 
 
 class ConstraintStore:
@@ -45,7 +46,7 @@ class ConstraintStore:
             else:
                 results.append(self.df.loc[name, "NL negation"][i])
         return results
-    
+
     def get_smt_constraints(self, name: str, truth_masks: list[bool]) -> list[str]:
         """
 
@@ -67,5 +68,12 @@ class ConstraintStore:
                 results.append(self.df.loc[name, "SMT-LIB2"][i])
             else:
                 results.append(self.df.loc[name, "SMT-LIB2 negation"][i])
-        
+
         return results
+
+    def get_problem(self, name: str, truth_masks: list[bool]) -> ConstraintProblem:
+        return ConstraintProblem(
+            nl_constraints=self.get_nl_constraints(name, truth_masks),
+            smt_constraints=self.get_smt_constraints(name, truth_masks),
+            name=name,
+        )
