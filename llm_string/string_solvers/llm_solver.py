@@ -1,5 +1,6 @@
 from langchain_core.language_models import BaseChatModel
 
+from llm_string.base import Result
 from llm_string.prompts.llm_prompt import get_prompt
 from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
 from llm_string.utils import JSONPydanticOutputParser
@@ -7,7 +8,7 @@ from llm_string.utils import JSONPydanticOutputParser
 
 class LLMSolver(BaseStringSolver):
     llm: BaseChatModel
-    parser: JSONPydanticOutputParser = JSONPydanticOutputParser()
+    parser: JSONPydanticOutputParser = JSONPydanticOutputParser(pydantic_object=Result)
     use_variable_name: bool = True
 
     def solve(self, problem: ConstraintProblem) -> ConstraintProblem:

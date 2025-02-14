@@ -20,8 +20,8 @@ class JSONPydanticOutputParser(PydanticOutputParser):
 
 def get_llm(args):
     if args.llm_family == "openai":
-        return ChatOpenAI(model=args.model, temperature=args.temperature)
+        return ChatOpenAI(model=args.llm, temperature=args.temperature)
     else:
         return ChatOllama(
-            model=args.model, max_new_tokens=500, temperature=args.temperature
+            model=args.llm, max_new_tokens=500, temperature=args.temperature
         )

@@ -70,7 +70,7 @@ class Z3Solver(BaseStringSolver):
     solver_name: str
     timeout: int = 30000
 
-    status_map: dict = {sat: "sat", unsat: "unsat", unknown: "unknown"}
+    status_map: dict = {str(sat): "sat", str(unsat): "unsat", str(unknown): "unknown"}
 
     def solve(self, string_problem: ConstraintProblem) -> ConstraintProblem:
         problem = ["(declare-const s String)"] + string_problem.smt_constraints
@@ -93,7 +93,7 @@ class Z3Solver(BaseStringSolver):
         else:
             str_val = None
 
-        string_problem.status = self.status_map[sat_res]
+        string_problem.status = self.status_map[str(sat_res)]
         string_problem.value = str_val
 
         return string_problem

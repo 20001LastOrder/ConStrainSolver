@@ -11,7 +11,7 @@ By default, variable names in the prompt sent ot the LLM are replaced with a gen
 
 * Run an LLM:
 ```bash
-python -m scripts.run_generation --approach llm --file_path=constraint_files/constraints.csv --output_path results/llms --llm gpt-4o-mini
+python -m scripts.run_generation --approach llm --file_path=constraint_files/constraints.csv --output_path results/llms --llm gpt-4o-mini --use_variable_name
 ```
 
 * Validate the generated LLM outputs

@@ -48,7 +48,7 @@ def validate_constraints(
     for index, row in tqdm(list(df.iterrows())):
         name = row["name"]
         result = str(row["result"])
-        status = str(row.get("status"), "sat" if result != "UNSAT" else "unsat")
+        status = str(row.get("status", "sat" if result != "UNSAT" else "unsat"))
         result = result.replace('"', '""')
 
         truth_masks = list(eval(row["truth_masks"]))
@@ -70,7 +70,6 @@ def validate_constraints(
 
 
 def main(args):
-    solver = get_solver(args)
     constraint_store = ConstraintStore(file_path=args.file_path)
     names = constraint_store.get_constraint_names()
     results = []
@@ -97,6 +96,7 @@ def main(args):
         df.to_csv(validation_path, index=False)
         return
 
+    solver = get_solver(args)
     for name in tqdm(names, desc="Evaluating all constraints"):
         results.extend(evaluate_constraints(solver, name, constraint_store))
 
@@ -125,6 +125,8 @@ if __name__ == "__main__":
     parser.add_argument("--output_path", type=str, required=True)
     parser.add_argument("--llm_family", type=str, default="openai")
     parser.add_argument("--llm", type=str)
+    parser.add_argument("--temperature", type=float, default=0.7)
+
     parser.add_argument("--use_variable_name", action="store_true")
     parser.add_argument("--smt_solver", type=str, choices=["z3", "z3str3", "cvc5"])
 
