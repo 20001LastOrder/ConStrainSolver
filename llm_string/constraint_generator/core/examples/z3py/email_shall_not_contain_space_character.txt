@@ -1,0 +1,7 @@
+The email shall not contain a space character.
+```
+{
+  "variables": ["email"],
+  "constraint": "Not(Contains(email, ' '))"
+}
+```
