@@ -4,7 +4,10 @@ from llm_string.string_solvers.base import ConstraintProblem
 
 
 class ConstraintStore:
+    file_path: str
+
     def __init__(self, file_path: str):
+        self.file_path = file_path
         self.df = pd.read_csv(file_path, encoding="utf-8", index_col=0)
         self.df["NL description"] = self.df["NL description"].apply(
             lambda x: x.replace("\r", "").split("\n\n")

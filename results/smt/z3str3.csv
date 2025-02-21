@@ -1,4 +1,4 @@
-name,sat,result,truth_masks
+name,status,result,truth_masks
 Name,sat,"""Pc Z""","(True, True, True, True, True, True)"
 Name,sat,"""H  d""","(True, True, True, True, True, False)"
 Name,sat,"""h Mp""","(True, True, True, True, False, True)"

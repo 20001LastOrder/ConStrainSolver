@@ -1,0 +1,7 @@
+defaults:
+  - llm: gpt-4o-mini
+  - validator: ground_truth
+
+_target_: llm_string.string_solvers.llm_solver_with_validation.LLMSolverWithValidation
+use_variable_name: True
+name: llm_with_validation

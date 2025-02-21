@@ -1,0 +1,6 @@
+defaults:
+  - constraint_store: mo2re
+  - _self_
+
+input_path: results/ground_truth.csv
+output_path: ${input_path}_validation.csv

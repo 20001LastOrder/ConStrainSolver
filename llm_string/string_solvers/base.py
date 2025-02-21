@@ -13,6 +13,8 @@ class ConstraintProblem(BaseModel):
 
 
 class BaseStringSolver(BaseModel, ABC):
+    name: str = ""
+
     @abstractmethod
     def solve(self, problem: ConstraintProblem) -> ConstraintProblem:
         pass

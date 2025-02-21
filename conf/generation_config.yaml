@@ -1,0 +1,11 @@
+defaults:
+  - constraint_store: mo2re
+  - string_solver: llm_solver
+  - _self_
+
+output_folder: outputs/${string_solver.name}/${now:%Y-%m-%d_%H-%M-%S}/
+hydra:
+  run:
+    dir: ${output_folder}
+
+num_processes: 8

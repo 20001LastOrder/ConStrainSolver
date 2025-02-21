@@ -1,0 +1,6 @@
+defaults:
+  - llm: gpt-4o-mini
+
+_target_: llm_string.string_solvers.llm_solver.LLMSolver
+use_variable_name: True
+name: llm

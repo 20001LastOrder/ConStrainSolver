@@ -6,6 +6,9 @@ from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
 
 
 class CVC5Solver(BaseStringSolver):
+    name: str = "cvc5"
+    solver_name: str = "csv5"
+
     def solve(self, string_problem: ConstraintProblem) -> ConstraintProblem:
         problem = ["(declare-const s String)"] + string_problem.smt_constraints
 
@@ -67,6 +70,7 @@ class CVC5Solver(BaseStringSolver):
 
 
 class Z3Solver(BaseStringSolver):
+    name: str = "z3_family"
     solver_name: str
     timeout: int = 30000
 
