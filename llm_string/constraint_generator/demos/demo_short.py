@@ -6,4 +6,3 @@ evaluator = get_constraint_evaluator(
 )
 
 print(evaluator.safe_evaluate("john doe@gmail.com"))
-

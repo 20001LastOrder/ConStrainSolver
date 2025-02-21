@@ -8,7 +8,7 @@ import os
 
 os.environ["OPENAI_API_KEY"] = "your_openai_api_key"
 ```
-3. Run `constrain_generator/main.py`
+3. Run `llm_string/constraint_generator/demos/demo.py`
 
 #### Understanding the demo
 

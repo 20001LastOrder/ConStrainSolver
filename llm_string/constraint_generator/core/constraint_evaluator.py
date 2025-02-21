@@ -2,9 +2,9 @@ import keyword
 
 from z3 import *
 
-from llm_string.constraint_generator.core.model import Constraint
+from llm_string.models import Constraint
 
-import llm_string.constraint_generator.utils.logging_overrides as logging
+import llm_string.logging.logging_overrides as logging
 
 logger = logging.getLogger('constraint_evaluator')
 
@@ -92,11 +92,20 @@ class ConstraintEvaluator:
 
 
     def evaluate(self, *args) -> bool:
+        """
+        Evaluate whether the arguments satisfy the constraint. If there is an error with variables or the constraint, an exception is raised.
+        :param args: list of values for each variable in the constraint, where the order is defined by the Constraint object.
+        :return: True if the constraint is satisfied, False if it is not.
+        :raises IndexError: if the number of arguments does not match the number of variables in the constraint.
+        :raises ValueError: if there is an error with the variables or the constraint.
+        """
         logger.debug("Evaluating [%s] with constraint \"%s\".", str(args), self.constraint)
 
         if len(args) != len(self.constraint.variables):
             logger.error("Expected %d arguments, but got %d.", len(self.constraint.variables), len(args))
             raise IndexError(f"Expected {len(self.constraint.variables)} arguments, but got {len(args)}.")
+
+        base_expression = self.solver.sexpr()
 
         if self.constraint_type == "smt-lib2":
             for variable, value in zip(self.constraint.variables, args):
@@ -137,9 +146,17 @@ class ConstraintEvaluator:
         is_sat = str(self.solver.check()) == "sat"
         logger.info("Constraint is satisfied: %s.", is_sat)
 
+        self.solver.reset()
+        self.solver.from_string(base_expression)
+
         return is_sat
 
     def safe_evaluate(self, *args) -> bool:
+        """
+        Safely evaluate whether the arguments satisfy the constraint. See also evaluate().
+        :param args: list of values for each variable in the constraint, where the order is defined by the Constraint object.
+        :return: True if the constraint is satisfied, False if it is not or if an error occurred.
+        """
         try:
             return self.evaluate(*args)
         except Exception as ex:
