@@ -2,7 +2,7 @@ import os
 
 from langchain_core.prompts import PromptTemplate
 
-from llm_string.constraint_generator.core.model import Constraint
+from llm_string.models import Constraint
 
 HISTORY_PROMPT_FILE_RELATIVE_PATH = "constraint_generator_history_prompt.txt"
 

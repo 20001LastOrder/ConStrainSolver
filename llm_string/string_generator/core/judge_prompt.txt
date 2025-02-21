@@ -1,0 +1,25 @@
+You are a constraint engineer tasked with verifying example strings against a given constraint:
+{nl_constraint}
+
+An engineer has translated this into a {constraint_type} constraint, which serves as an evaluator expression for determining whether example strings satisfy the constraint:
+{constraint_c}
+
+Another engineer has provided the following example strings as valid instances of the constraint:
+{example_strings}
+
+However, after evaluation, all example strings were found to be invalid according to the evaluator expression. This suggests one or both of the following issues:
+1. The evaluator expression does not correctly represent the natural language constraint.
+2. The example strings does not actually satisfy the natural language constraint.
+
+Your task is to act as a judge and determine the source of the error by addressing the following points:
+
+1. Explain the meaning of the natural language constraint in your own words.
+2. Describe the {constraint_type} constraint in your own words and analyze whether it is an accurate translation of the natural language constraint. Justify your reasoning.
+3. For each example string, determine whether it is valid based on the natural language constraint. Explain your reasoning for each case.
+
+In the end, determine whether the issue lies with the evaluator expression or the example strings, or both.
+
+The output should follow the following format:
+{output_format}
+
+Keep the results concise. If the answer is not correct, then you will be fired from your job.
