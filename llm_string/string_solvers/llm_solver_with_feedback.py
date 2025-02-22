@@ -43,6 +43,7 @@ class LLMSolverWithFeedback(BaseStringSolver):
 
         while iter_count < self.max_retries:
             logger.info(f"current_result: {result}")
+            logger.info(f"previous_values: {previous_values}")
             if result.lower() == "unsat":
                 result = ""
 

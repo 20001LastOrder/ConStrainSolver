@@ -10,7 +10,7 @@ If the word "{name}" is meaningful, the value should be as realistic for "{name}
 One of your team members has already tried to solve this problem with the following string values:
 {previous_values}
 
-However, this value does not satisfy all constraints. Your task is to find a new string value that satisfies all constraints.
+However, this value does not satisfy all constraints, avoid generating strings similar to these. Your task is to find a new string value that satisfies all constraints.
 
 The output should follow the following format. If no value can satisfy all constraints, assign the value "UNSAT":
 {output_format}

@@ -54,11 +54,13 @@ def evaluate_constraints(
 
     results = sorted(results, key=lambda x: x[1])
 
+    result_dicts = []
     for result, idx in results:
         result["name"] = name
         result["truth_masks"] = truth_masks_comb[idx]
+        result_dicts.append(result)
 
-    return results
+    return result_dicts
 
 
 @hydra.main(version_base=None, config_path="../conf", config_name="generation_config")
