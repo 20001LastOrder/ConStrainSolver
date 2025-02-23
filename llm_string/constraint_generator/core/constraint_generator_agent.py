@@ -1,7 +1,7 @@
 from langchain_openai import ChatOpenAI
 
 from llm_string.constraint_generator.core.history_helper import format_history
-from llm_string.string_generator.core.string_generator_agent import StringGeneratorAgent, parse_strings
+from llm_string.string_generator.core.string_generator_agent import StringGeneratorAgent
 from llm_string.utils import JSONPydanticOutputParser
 
 from llm_string.constraint_generator.core.constraint_evaluator import ConstraintEvaluator
@@ -85,7 +85,7 @@ class ConstraintGeneratorAgent:
                 judgement = None
                 while steps <= max_steps:
                     logger.info("Calling examples generator agent.")
-                    failed_examples = self._execute_examples_step(constraint_text, evaluator)
+                    failed_examples = self._execute_examples_step(constraint_text, evaluator, max_retries_per_attempt)
                     steps += 1
 
                     if len(failed_examples) == 0:
@@ -110,7 +110,7 @@ class ConstraintGeneratorAgent:
 
             elif use_examples:
                 logger.info("Calling examples generator agent.")
-                failed_examples = self._execute_examples_step(constraint_text, evaluator)
+                failed_examples = self._execute_examples_step(constraint_text, evaluator, max_retries_per_attempt)
                 steps += 1
 
                 if len(failed_examples) > 0:
@@ -126,11 +126,16 @@ class ConstraintGeneratorAgent:
         return last_evaluator
 
 
-    def _execute_examples_step(self, constraint_text: str, evaluator: ConstraintEvaluator) -> list[list[str]]:
+    def _execute_examples_step(self, constraint_text: str, evaluator: ConstraintEvaluator, max_retries: int) -> list[list[str]]:
         string_generator_agent = StringGeneratorAgent(self.model_name, self.temperature)
 
         try:
-            example_strings = string_generator_agent.generate_strings(constraint_text, variables=evaluator.constraint.variables, number_of_items=10)
+            example_strings = string_generator_agent.generate_strings_with_retries(
+                constraint_text,
+                variables=evaluator.constraint.variables,
+                number_of_items=10,
+                max_retries=max_retries
+            )
         except Exception as e:
             logger.error("Error generating example strings: %s", str(e))
             return []

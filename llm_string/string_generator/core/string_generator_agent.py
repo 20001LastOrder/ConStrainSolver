@@ -69,7 +69,24 @@ class StringGeneratorAgent:
             logger.warn("Expected a total of %d items, got %d instead. Proceeding with the items generated.",
                         number_of_items * repetitions, len(examples))
 
-        return examples
+        return [[example] for example in examples]
+
+
+    def generate_strings_with_retries(self, constraint: str, number_of_items: int, repetitions=1, variables=None, max_retries=5):
+        while max_retries >= 0:
+            try:
+                strings = self.generate_strings(constraint, number_of_items, repetitions, variables)
+
+                if len(strings) == 0:
+                    raise ValueError("Received empty list.")
+
+                return strings
+            except Exception as e:
+                logger.error("Error generating strings: %s", str(e))
+                max_retries -= 1
+
+        logger.error("Max retries reached. Returning empty list.")
+        return []
 
 
 # def parse_strings(variables: list[str], items: list[dict[str, str]]) -> list[list[str]]:

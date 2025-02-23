@@ -3,7 +3,18 @@ from llm_string.constraint_generator.core.constraint_generator_agent import Cons
 from llm_string.logging.logging_overrides import addConsoleToLogger, removeConsoleFromLogger, getLogger
 
 
-def get_constraint_evaluator(constraint: str, constraint_type: str, max_retries_per_attempt=0, model_name='gpt-4o-mini', temperature=0.5, max_steps=10, use_examples=False, use_judge=False, fault_tolerant=False, verbose=False) -> ConstraintEvaluator | None:
+def get_constraint_evaluator(
+        constraint: str,
+        constraint_type: str,
+        max_retries_per_attempt=0,
+        model_name='gpt-4o-mini',
+        temperature=0.5,
+        max_steps=10,
+        use_examples=False,
+        use_judge=False,
+        fault_tolerant=False,
+        verbose=False
+) -> ConstraintEvaluator | None:
     """
     Get a constraint evaluator from a given natural language constraint.
     :param constraint: the natural language constraint.
@@ -41,11 +52,24 @@ def get_constraint_evaluator(constraint: str, constraint_type: str, max_retries_
 
     return evaluator
 
-def get_constraint(constraint: str, constraint_type: str, max_retries_per_attempt=0, model_name='gpt-4o-mini', temperature=0.5, max_steps=10, use_examples=False, use_judge=False, fault_tolerant=False, verbose=False) -> str | None:
+def get_constraint(
+        constraint: str,
+        constraint_type: str,
+        variables: list[str]=None,
+        max_retries_per_attempt=0,
+        model_name='gpt-4o-mini',
+        temperature=0.5,
+        max_steps=10,
+        use_examples=False,
+        use_judge=False,
+        fault_tolerant=False,
+        verbose=False
+) -> str | None:
     """
     Get a constraint string from a given natural language constraint.
     :param constraint: the natural language constraint.
     :param constraint_type: the type of constraint. Accepted values are "smt-lib2" and "z3py".
+    :param variables: the variables to use in the constraint. The default variable is a single variable named 's'.
     :param max_retries_per_attempt: the maximum number of retries for the LLM to generate the constraint.
     :param model_name: the LLM model to use. Default is "gpt-4o-mini".
     :param temperature: the temperature to use for the LLM. Default is 0.5.
@@ -56,9 +80,20 @@ def get_constraint(constraint: str, constraint_type: str, max_retries_per_attemp
     :param verbose: whether the log should also print to the console.
     :return: the string constraint in the selected constraint type if successful, None otherwise.
     """
+    if variables is None:
+        variables = ['s']
+
     evaluator = get_constraint_evaluator(constraint, constraint_type, max_retries_per_attempt, model_name, temperature, max_steps, use_examples, use_judge, fault_tolerant, verbose)
 
     if evaluator is None:
         return None
 
-    return evaluator.constraint.constraint
+    constraint_string = evaluator.constraint.constraint
+
+    if len(evaluator.constraint.variables) != len(variables):
+        return None
+
+    for oldVar, newVar in zip(evaluator.constraint.variables, variables):
+        constraint_string = constraint_string.replace(oldVar, newVar)
+
+    return constraint_string
