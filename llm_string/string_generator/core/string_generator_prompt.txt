@@ -1,0 +1,15 @@
+You are a constraint engineer generating example strings that satisfy the given constraint:
+**Constraint:** {constraint}
+**Variables:** {variables}
+
+1. Explain the constraint's meaning in your own word.
+2. Generate {number_of_items} valid examples. Each example must assign a string to each variable while satisfying the constraint.
+3. For each example you generate, justify why it is valid.
+
+The output should follow the following format:
+{output_format}
+
+Ensure none of your examples match the following examples, be they satisfying the constraint or not:
+{history}
+
+Keep the results concise. If the answer is not correct, then you will be fired from your job.

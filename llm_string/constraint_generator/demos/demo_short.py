@@ -5,5 +5,9 @@ evaluator = get_constraint_evaluator(
     constraint_type="smt-lib2"
 )
 
-print(evaluator.safe_evaluate("john doe@gmail.com"))
+if evaluator is not None:
+    print(evaluator.safe_evaluate("john doe@gmail.com"))
 
+print(evaluator.constraint.constraint)
+# alternatively, from llm_string.constraint_generator import get_constraint,
+# and call the function with the same parameters as get_constraint_evaluator
