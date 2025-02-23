@@ -6,6 +6,7 @@ from langchain_openai import ChatOpenAI
 
 from llm_string.models import SingleVariableExamples, MultiVariableExamples
 from llm_string.logging.logging_overrides import getLogger
+from llm_string.utils import StringArrayOutputParser
 
 PROMPT_FILE_RELATIVE_PATH = "string_generator_prompt.txt"
 
@@ -26,9 +27,9 @@ class StringGeneratorAgent:
             variables = ["string"]
 
         if len(variables) == 1:
-            parser = PydanticOutputParser(pydantic_object=SingleVariableExamples)
+            parser = StringArrayOutputParser()
         else:
-            parser = PydanticOutputParser(pydantic_object=MultiVariableExamples)
+            raise NotImplementedError("Only one variable is supported at the moment.")
 
         prompt_template = PromptTemplate(
             template=PROMPT_TEXT,
@@ -38,7 +39,7 @@ class StringGeneratorAgent:
             },
         )
 
-        chain = prompt_template | ChatOpenAI(model_name=self.model_name, temperature=self.temperature) | parser
+        chain = prompt_template | ChatOpenAI(model_name=self.model_name, temperature=self.temperature)
 
         if repetitions < 1:
             logger.error("Repetitions must be at least 1. Returning empty list.")
@@ -49,12 +50,16 @@ class StringGeneratorAgent:
         for _ in range(repetitions):
             try:
                 logger.info("Sending constraint to the LLM: constraint='%s', number_of_items=%d", constraint, number_of_items)
-                new_examples = chain.invoke({"constraint": constraint, "variables": variables, "number_of_items": number_of_items, "history": str(examples)}).examples
+                llm_response = chain.invoke({"constraint": constraint, "variables": variables, "number_of_items": number_of_items, "history": str(examples)})
+
+                new_examples = parser.parse(llm_response.content)
+
+                if new_examples is None:
+                    logger.error("No examples parse from the LLM.")
+                    new_examples = []
+
                 logger.info("Received %d items from the LLM: %s", len(new_examples), str(new_examples))
-                if len(variables) == 1:
-                    examples.extend([{variables[0]: example} for example in new_examples])
-                else:
-                    examples.extend(new_examples)
+                examples.extend(new_examples)
             except Exception as e:
                 logger.error("Error invoking chain: %s", str(e))
 
@@ -64,20 +69,20 @@ class StringGeneratorAgent:
             logger.warn("Expected a total of %d items, got %d instead. Proceeding with the items generated.",
                         number_of_items * repetitions, len(examples))
 
-        return parse_strings(variables, examples)
+        return examples
 
 
-def parse_strings(variables: list[str], items: list[dict[str, str]]) -> list[list[str]]:
-    output = []
-
-    for item in items:
-        parsed_list = []
-        for i in range(len(variables)):
-            variable = variables[i]
-
-            if variable in item:
-                parsed_list.append(item[variable])
-
-        output.append(parsed_list)
-
-    return output
+# def parse_strings(variables: list[str], items: list[dict[str, str]]) -> list[list[str]]:
+#     output = []
+#
+#     for item in items:
+#         parsed_list = []
+#         for i in range(len(variables)):
+#             variable = variables[i]
+#
+#             if variable in item:
+#                 parsed_list.append(item[variable])
+#
+#         output.append(parsed_list)
+#
+#     return output
