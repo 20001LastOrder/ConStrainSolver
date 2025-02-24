@@ -5,6 +5,10 @@ class Constraint(BaseModel):
     variables: list[str] = Field(description="The names of the variables in the constraint.")
     constraint: str = Field(description="The constraint in string format.")
 
+class Constraints(BaseModel):
+    variables: list[str] = Field(description="The names of the variables in the constraint.")
+    constraint: list[str] = Field(description="The constraints in string format.")
+
 class SingleVariableExamples(BaseModel):
     examples: list[str] = Field(description="The strings satisfying the constraint.")
 

@@ -2,7 +2,7 @@ from llm_string.logging.logging_overrides import getLogger, addConsoleToLogger
 from llm_string.models import Constraint
 from llm_string.string_generator.core.judge_agent import JudgeAgent
 
-getLogger('judge_demo')
+getLogger()
 
 addConsoleToLogger()
 

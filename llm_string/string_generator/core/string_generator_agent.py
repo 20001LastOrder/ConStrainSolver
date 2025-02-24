@@ -14,7 +14,7 @@ PROMPT_FILE_RELATIVE_PATH = "string_generator_prompt.txt"
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), PROMPT_FILE_RELATIVE_PATH), "r") as f:
     PROMPT_TEXT = f.read()
 
-logger = getLogger('string_generator_agent')
+logger = getLogger()
 
 class StringGeneratorAgent:
     def __init__(self, model_name='gpt-4o-mini', temperature=0.5):
@@ -22,7 +22,7 @@ class StringGeneratorAgent:
         self.temperature = temperature
 
 
-    def generate_strings(self, constraint: str, number_of_items: int, repetitions=1, variables=None) -> list[list[str]]:
+    def generate_strings(self, constraint: str | list[str], number_of_items: int, repetitions=1, variables=None) -> list[list[str]]:
         if variables is None or len(variables) < 1:
             variables = ["string"]
 
@@ -49,8 +49,8 @@ class StringGeneratorAgent:
 
         for _ in range(repetitions):
             try:
-                logger.info("Sending constraint to the LLM: constraint='%s', number_of_items=%d", constraint, number_of_items)
-                llm_response = chain.invoke({"constraint": constraint, "variables": variables, "number_of_items": number_of_items, "history": str(examples)})
+                logger.info("Sending constraint to the LLM: constraint='{0}', number_of_items={1}", constraint, number_of_items)
+                llm_response = chain.invoke({"constraint": str(constraint), "variables": variables, "number_of_items": number_of_items, "history": str(examples)})
 
                 new_examples = parser.parse(llm_response.content)
 
@@ -58,21 +58,21 @@ class StringGeneratorAgent:
                     logger.error("No examples parse from the LLM.")
                     new_examples = []
 
-                logger.info("Received %d items from the LLM: %s", len(new_examples), str(new_examples))
+                logger.info("Received {0} items from the LLM: {1}", len(new_examples), str(new_examples))
                 examples.extend(new_examples)
             except Exception as e:
-                logger.error("Error invoking chain: %s", str(e))
+                logger.error("Error invoking chain: {0}", str(e))
 
         if len(examples) == number_of_items * repetitions:
-            logger.info("Received a total of %d items. Returning items.", len(examples))
+            logger.info("Received a total of {0} items. Returning items.", len(examples))
         else:
-            logger.warn("Expected a total of %d items, got %d instead. Proceeding with the items generated.",
+            logger.warning("Expected a total of {0} items, got {1} instead. Proceeding with the items generated.",
                         number_of_items * repetitions, len(examples))
 
         return [[example] for example in examples]
 
 
-    def generate_strings_with_retries(self, constraint: str, number_of_items: int, repetitions=1, variables=None, max_retries=5):
+    def generate_strings_with_retries(self, constraint: str | list[str], number_of_items: int, repetitions=1, variables=None, max_retries=5):
         while max_retries >= 0:
             try:
                 strings = self.generate_strings(constraint, number_of_items, repetitions, variables)
@@ -82,7 +82,7 @@ class StringGeneratorAgent:
 
                 return strings
             except Exception as e:
-                logger.error("Error generating strings: %s", str(e))
+                logger.error("Error generating strings: {0}", str(e))
                 max_retries -= 1
 
         logger.error("Max retries reached. Returning empty list.")

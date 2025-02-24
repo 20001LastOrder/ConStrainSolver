@@ -8,9 +8,9 @@ from llm_string.constraint_generator.core.constraint_evaluator import Constraint
 from llm_string.models import Constraint, Judgement
 from llm_string.constraint_generator.core.prompt_template_generator import get_prompt_template
 
-import llm_string.logging.logging_overrides as logging
+from llm_string.logging.logging_overrides import getLogger
 
-logger = logging.getLogger('constraint_generator_agent')
+logger = getLogger()
 
 class ConstraintGeneratorAgent:
     constraint = None
@@ -26,26 +26,26 @@ class ConstraintGeneratorAgent:
         self.temperature = temperature
 
     def _get_evaluator(self, constraint_text: str, max_retries=0) -> ConstraintEvaluator | None:
-        logger.debug("Received constraint: %s with max_retries=%d", constraint_text, max_retries)
+        logger.debug("Received constraint: {0} with max_retries={1}", constraint_text, max_retries)
 
         attempt = 0
 
         history = []
 
         while attempt <= max_retries:
-            logger.info("Attempt %d: sending constraint to the LLM: %s", attempt + 1, constraint_text)
+            logger.info("Attempt {0}: sending constraint to the LLM: {1}", attempt + 1, constraint_text)
 
             history_text = format_history(history)
-            logger.debug("Full prompt: %s", self.chain.steps[0].invoke({"constraint": constraint_text, "history": history_text}))
+            logger.debug("Full prompt: {0}", self.chain.steps[0].invoke({"constraint": constraint_text, "history": history_text}))
 
             try:
                 constraint = self.chain.invoke({"constraint": constraint_text, "history": history_text})
             except Exception as e:
-                logger.error("Error invoking chain: %s", str(e))
+                logger.error("Error invoking chain: {0}", str(e))
                 attempt += 1
                 continue
 
-            logger.info(f"Received constraint from the LLM: %s", str(constraint))
+            logger.info("Received constraint from the LLM: {0}", str(constraint))
 
             try:
                 evaluator = ConstraintEvaluator(self.constraint_type, constraint)
@@ -53,11 +53,11 @@ class ConstraintGeneratorAgent:
                 logger.info("Successfully created evaluator. Returning evaluator.")
                 return evaluator
             except Exception as e:
-                logger.error("Error creating evaluator for constraint %s: %s", constraint, str(e))
+                logger.error("Error creating evaluator for constraint {0}: {1}", constraint, str(e))
                 history.append((constraint, e))
                 attempt += 1
 
-        logger.error("Failed to create evaluator after %d attempts. See log for details.", max_retries + 1)
+        logger.error("Failed to create evaluator after {0} attempts. See log for details.", max_retries + 1)
 
         return None
 
@@ -92,7 +92,7 @@ class ConstraintGeneratorAgent:
                         logger.info("Evaluator passed all examples.")
                         break
 
-                    logger.error("Evaluator failed examples: %s.", failed_examples)
+                    logger.error("Evaluator failed examples: {0}.", failed_examples)
 
                     logger.info("Calling judge agent.")
                     judgement = self._execute_judge_step()
@@ -114,7 +114,7 @@ class ConstraintGeneratorAgent:
                 steps += 1
 
                 if len(failed_examples) > 0:
-                    logger.error("Evaluator failed examples: %s. Retry", failed_examples)
+                    logger.error("Evaluator failed examples: {0}. Retry", failed_examples)
 
                     continue
                 else:
@@ -137,7 +137,7 @@ class ConstraintGeneratorAgent:
                 max_retries=max_retries
             )
         except Exception as e:
-            logger.error("Error generating example strings: %s", str(e))
+            logger.error("Error generating example strings: {0}", str(e))
             return []
 
         failed_examples = []

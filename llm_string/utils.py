@@ -38,7 +38,7 @@ class StringArrayOutputParser:
         matches = string_array_pattern.findall(output)
 
         if not matches:
-            raise ValueError("No string array found in the output.")
+            raise ValueError("No string array found in the output.", output)
 
         lists = [ast.literal_eval(m) for m in matches]
 

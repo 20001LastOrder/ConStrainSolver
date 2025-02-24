@@ -1,0 +1,7 @@
+['1. The email shall not contain a space character.', '2. The email shall not start with a @ character.', '3. The email shall have exactly one @ character.']
+```
+{
+    "variables": ["email"],
+    "constraints": ["(not (str.contains email \" \"))", "(not (= (str.at email 0) \"@\"))", "(assert (and (str.contains email \"@\") (not (str.in.re email  (re.++ (re.* re.allchar) (str.to.re \"@\") (re.* re.allchar) (str.to.re \"@\") (re.* re.allchar))))))"]
+}
+```

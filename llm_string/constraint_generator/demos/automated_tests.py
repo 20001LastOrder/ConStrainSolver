@@ -6,7 +6,7 @@ from llm_string.logging.logging_overrides import getLogger, addConsoleToLogger
 verbose = True
 max_retries = 0
 
-logger = getLogger("main")
+logger = getLogger()
 
 if verbose:
     addConsoleToLogger()
@@ -35,7 +35,7 @@ failed = 0
 
 for _type in supported_types:
     for constraint in constraints:
-        logger.info(f"Constraint received: %s", constraint)
+        logger.info("Constraint received: {0}", constraint)
 
         logger.info("Running a new LLM agent.")
 

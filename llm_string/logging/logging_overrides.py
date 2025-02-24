@@ -1,22 +1,16 @@
-import logging
+import sys
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                    datefmt='%m-%d %H:%M',
-                    filename='../llm.log',
-                    filemode='a')
+from loguru import logger
 
-console = logging.StreamHandler()
+logger.remove()
 
-console.setLevel(logging.INFO)
+logger.add("../../llm.log", level="DEBUG")
 
-console.setFormatter(logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s'))
-
-def getLogger(name):
-    return logging.getLogger(name)
+def getLogger():
+    return logger
 
 def addConsoleToLogger():
-    logging.getLogger().addHandler(console)
+    return logger.add(sys.stderr, level="INFO")
 
-def removeConsoleFromLogger():
-    logging.getLogger().removeHandler(console)
+def removeConsoleFromLogger(logger_id: int):
+    logger.remove(logger_id)

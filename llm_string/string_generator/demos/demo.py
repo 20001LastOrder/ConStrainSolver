@@ -3,10 +3,12 @@ from llm_string.string_generator.core.string_generator_agent import StringGenera
 
 verbose = True
 
-logger = getLogger("main")
+logger = getLogger()
+
+logger_id = -1
 
 if verbose:
-    addConsoleToLogger()
+    logger_id = addConsoleToLogger()
 
 agent = StringGeneratorAgent()
 
@@ -19,7 +21,7 @@ items = agent.generate_strings(constraint, 2, 3)
 logger.info("Agent run successfully.")
 
 if verbose:
-    removeConsoleFromLogger()
+    removeConsoleFromLogger(logger_id)
 
 print("Items generated: ", items)
 
