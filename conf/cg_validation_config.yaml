@@ -1,0 +1,3 @@
+defaults:
+  - constraint_store: mo2re_independent
+  - _self_

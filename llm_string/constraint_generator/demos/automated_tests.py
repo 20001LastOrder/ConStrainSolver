@@ -1,12 +1,12 @@
 import time
 
-from llm_string.constraint_generator.core.llm_agent import LLMAgent
-from llm_string.constraint_generator.utils.logging_overrides import getLogger, addConsoleToLogger
+from llm_string.constraint_generator.core.constraint_generator_agent import ConstraintGeneratorAgent
+from llm_string.logging.logging_overrides import getLogger, addConsoleToLogger
 
 verbose = True
 max_retries = 0
 
-logger = getLogger("main")
+logger = getLogger()
 
 if verbose:
     addConsoleToLogger()
@@ -35,13 +35,13 @@ failed = 0
 
 for _type in supported_types:
     for constraint in constraints:
-        logger.info(f"Constraint received: %s", constraint)
+        logger.info("Constraint received: {0}", constraint)
 
         logger.info("Running a new LLM agent.")
 
-        agent = LLMAgent(_type)
+        agent = ConstraintGeneratorAgent(_type)
 
-        evaluator = agent.get_evaluator(constraint, max_retries=max_retries)
+        evaluator = agent.get_evaluator(constraint, max_retries_per_attempt=max_retries)
 
         if evaluator is None:
             print("Failed to create evaluator.")

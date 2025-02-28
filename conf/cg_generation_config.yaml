@@ -1,0 +1,11 @@
+defaults:
+  - constraint_store: mo2re_independent
+  - _self_
+
+output_folder: llm_string/constraint_generator/evaluations/outputs/${now:%Y-%m-%d_%H-%M-%S}/
+num_processes: 12
+model_name: gpt-4o-mini
+max_retries_per_attempt: 3
+max_steps: 5
+use_examples: false
+independent: true

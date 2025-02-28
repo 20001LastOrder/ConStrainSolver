@@ -15,3 +15,6 @@ def get_z3py_example() -> (str, str):
 
 def get_smt_lib2_example() -> (str, str):
     return _get_example("smtlib2/email_shall_not_contain_space_character.txt")
+
+def get_smt_lib2_batch_example() -> (str, str):
+    return _get_example("smtlib2_batch/email.txt")
