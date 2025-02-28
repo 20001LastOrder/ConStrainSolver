@@ -1,5 +1,6 @@
 import argparse
 import ast
+import json
 import os
 
 import pandas as pd
@@ -47,9 +48,13 @@ def process_one_sample(path: str, folder_name: str) -> dict:
     with open(os.path.join(full_path, "smt.txt"), "r") as file:
         result["SMT-LIB2"] = file.read()
 
+    # read smt negation
+    with open(os.path.join(full_path, "smt_negation.txt"), "r") as file:
+        result["SMT-LIB2 negation"] = file.read()
+
     # read functions
     functions = extract_function_blocks(os.path.join(full_path, "program.py"))
-    result["Functions"] = functions
+    result["Functions"] = json.dumps(functions)
 
     return result
 

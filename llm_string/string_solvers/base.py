@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Literal
+from typing import Callable, Literal
 
 from pydantic import BaseModel
 
@@ -7,6 +7,7 @@ from pydantic import BaseModel
 class ConstraintProblem(BaseModel):
     nl_constraints: list[str] = []
     smt_constraints: list[str] = []
+    python_checkers: list[Callable] = []
     name: str
     status: Literal["sat", "unsat", "unknown"] = "unknown"
     value: str = ""

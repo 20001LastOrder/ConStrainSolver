@@ -1,0 +1,11 @@
+(assert (str.contains s "" ""))
+
+(assert (= (str.at s 0) ""@""))
+
+(assert (not (and (str.contains s ""@"") (not (str.in.re s  (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar)))))))
+
+(assert (not (str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) ""."")))
+
+(assert (= (str.at s (- (str.len s) 1)) "".""))
+
+(assert (str.contains s ""manager""))
