@@ -1,0 +1,69 @@
+def constraint1(expression: str) -> bool:
+    """
+    An arithmetic expression shall only contain digits (0-9) and arithmetic operators (+, -, *, /).
+    """
+    return all(char.isdigit() or char in "+-*/" for char in expression)
+
+
+def constraint2(expression: str) -> bool:
+    """
+    The arithmetic operators (+, -, *, /) in an arithmetic expression shall not appear consecutively.
+    """
+    patterns = [
+        "++",
+        "--",
+        "**",
+        "//",
+        "+-",
+        "-+",
+        "*/",
+        "/*",
+        "/-",
+        "-/",
+        "+/",
+        "/+",
+        "*-",
+        "-*",
+        "*+",
+        "+*",
+    ]
+    return not any(pattern in expression for pattern in patterns)
+
+
+def constraint3(expression: str) -> bool:
+    """
+    Except for the minus sign (-), every operator (+, *, /) shall have a number before and after it.
+    """
+    for i in range(1, len(expression) - 1):
+        if (
+            expression[i] in "+*/"
+            and not expression[i - 1].isdigit()
+            and not expression[i + 1].isdigit()
+        ):
+            return False
+    return True
+
+
+def constraint4(expression: str) -> bool:
+    """
+    An expression shall not start with operators +, *, /.
+    """
+    return (
+        not expression.startswith("+")
+        and not expression.startswith("*")
+        and not expression.startswith("/")
+    )
+
+
+if __name__ == "__main__":
+    expression = input("Enter the arithmetic expression: ")
+
+    if (
+        constraint1(expression)
+        and constraint2(expression)
+        and constraint3(expression)
+        and constraint4(expression)
+    ):
+        print("The expression is valid.")
+    else:
+        print("The expression is invalid.")

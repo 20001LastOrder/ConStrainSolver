@@ -1,0 +1,11 @@
+1. The ISBN shall include digits (0–9) , the letter "X", or hyphens.
+
+2. The last character of the ISBN shall either be digits (0-9) or the letter "X".
+
+3. The ISBN shall contain exactly 10 characters excluding hyphens.
+
+4. Hyphens shall not be at the beginning of the ISBN.
+
+5. Hyphens shall not occur consecutively in the ISBN.
+
+6. An ISBN shall contain at most 3 hyphens

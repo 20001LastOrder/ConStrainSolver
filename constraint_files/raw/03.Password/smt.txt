@@ -1,0 +1,9 @@
+(assert (>= (str.len s) 4))
+
+(assert (or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$"")))
+
+(assert (str.in.re s  (re.++ (re.* re.allchar) (re.range ""A"" ""Z"") (re.* re.allchar))))
+
+(assert (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar))))
+
+(assert (str.in.re s  (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar))))

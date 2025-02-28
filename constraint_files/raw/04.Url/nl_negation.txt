@@ -1,0 +1,5 @@
+1. The url shall not start with http://, nor with https://.
+
+2. The url shall contain at least one space.
+
+3. The url shall not contain any dot character (.).

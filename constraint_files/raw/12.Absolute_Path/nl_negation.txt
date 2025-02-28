@@ -1,0 +1,9 @@
+1. The absolute path shall have fewer than 10 characters.
+
+2. The absolute path shall not start with the root directory "/".
+
+3. The absolute path shall contains at least one space.
+
+4. The absolute path shall end with "/".
+
+5. The absolute path shall contain at least one instance of consecutive "/" characters.

@@ -1,0 +1,9 @@
+1. There exists at least one character in the DNA sequence that is not "A", "T", "C", or "G".
+
+2. The length of the DNA sequence shall be less than 10.
+
+3. The length of the DNA sequence shall not a multiple of three.
+
+4. The DNA sequence shall not start with "ATG".
+
+5. The DNA sequence shall not end with "TAA", "TAG", or "TGA".

@@ -1,0 +1,5 @@
+1. The length of the bank account shall not be 22.
+
+2. The first 4 numbers of the bank number shall not be: 1210 (CA).
+
+3. The next 2 numbers shall not be 00.
