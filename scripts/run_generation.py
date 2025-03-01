@@ -78,11 +78,9 @@ def main(cfg: DictConfig):
 
     for name in tqdm(names, desc="Evaluating all constraints"):
         results.extend(evaluate_constraints(cfg, name, constraint_store))
-
-    # Save CSV
-    df = pd.DataFrame(results)
-    print(df)
-    df.to_csv(save_path, index=False)
+        # Save CSV for each case
+        df = pd.DataFrame(results)
+        df.to_csv(save_path, index=False)
 
 
 if __name__ == "__main__":

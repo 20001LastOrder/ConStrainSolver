@@ -4,7 +4,7 @@
 
 3. The email shall have exactly one @ character.
 
-4. If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.
+4. The email shall include a dot character (.) after the @ character but before the end.
 
 5. The final character of the email shall not be a dot character (.).
 

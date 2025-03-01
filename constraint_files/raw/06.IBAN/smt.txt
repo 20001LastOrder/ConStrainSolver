@@ -1,5 +1,5 @@
 (assert (= (str.len s) 22))
 
-(assert (= (str.substr s 0 4) ""1210""))
+(assert (= (str.substr s 0 4) "1210"))
 
-(assert (= (str.substr s 4 2) ""00""))
+(assert (= (str.substr s 4 2) "00"))

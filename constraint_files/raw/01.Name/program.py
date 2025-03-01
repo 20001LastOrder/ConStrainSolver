@@ -37,7 +37,7 @@ def constraint6(name: str) -> bool:
     """
     Any character in the name following a space character shall be capitalized.
     """
-    for i in range(1, len(name) - 1):
+    for i in range(0, len(name) - 1):
         if name[i].isspace():
             if not name[i + 1].isupper():
                 return False

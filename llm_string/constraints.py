@@ -1,5 +1,4 @@
 import json
-from typing import Callable
 
 import pandas as pd
 from loguru import logger
@@ -10,10 +9,13 @@ from llm_string.string_solvers.base import ConstraintProblem
 class ConstraintStore:
     file_path: str
 
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str, sample_ids: list[str] = None):
         self.file_path = file_path
         self.df = pd.read_csv(file_path, encoding="utf-8", index_col="Name")
         self.df.fillna("", inplace=True)
+
+        if sample_ids is not None:
+            self.df = self.df.loc[sample_ids]
 
         self.df["NL description"] = self.df["NL description"].apply(
             lambda x: x.replace("\r", "").split("\n\n")
@@ -28,8 +30,8 @@ class ConstraintStore:
             lambda x: x.replace("\r", "").split("\n\n")
         )
 
-        self.df["Functions"] = self.df["Functions"].astype(object).apply(
-            lambda x: json.loads(x)
+        self.df["Functions"] = (
+            self.df["Functions"].astype(object).apply(lambda x: json.loads(x))
         )
 
     def get_constraint_names(self) -> list[str]:
@@ -90,41 +92,15 @@ class ConstraintStore:
 
         return results
 
-    def get_python_programs(self, name: str, truth_masks: list[bool]) -> list[Callable]:
+    def get_python_programs(self, name: str, truth_masks: list[bool]) -> list[str]:
         functions = self.df.loc[name, "Functions"]
-        results = []
-
-        for i, mask in enumerate(truth_masks):
-            func = source_code_to_function(functions[i])
-            if mask:
-                results.append(func)
-            else:
-                results.append(lambda x: not func(x))
-
-        return results
+        return functions
 
     def get_problem(self, name: str, truth_masks: list[bool]) -> ConstraintProblem:
         return ConstraintProblem(
             nl_constraints=self.get_nl_constraints(name, truth_masks),
             smt_constraints=self.get_smt_constraints(name, truth_masks),
-            python_checkers=self.get_python_programs(name, truth_masks),
+            truth_masks=truth_masks,
+            python_programs=self.get_python_programs(name, truth_masks),
             name=name,
         )
-
-
-def source_code_to_function(source_code: str) -> Callable:
-    """
-    Extracts the function definition from the source code.
-
-    Args:
-        source_code (str): The source code of the program.
-
-    Returns:
-        Callable: The callable function object
-    """
-    namespace = {}
-    exec(source_code, namespace)
-    for name, obj in namespace.items():
-        if callable(obj):
-            return obj
-    return None

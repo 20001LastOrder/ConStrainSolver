@@ -1,5 +1,5 @@
-(assert (or (str.prefixof ""http://"" s) (str.prefixof ""https://"" s)))
+(assert (or (str.prefixof "http://" s) (str.prefixof "https://" s)))
 
-(assert (not (str.contains s "" "")))
+(assert (not (str.contains s " ")))
 
-(assert (str.contains s "".""))
+(assert (str.contains s "."))

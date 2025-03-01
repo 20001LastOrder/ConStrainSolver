@@ -1,11 +1,11 @@
-(assert (not (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))))
+(assert (not (str.in.re s (re.* (re.union (re.range "a" "z") (re.range "A" "Z") (str.to.re " "))))))
 
-(assert (not (str.contains s "" "")))
+(assert (not (str.contains s " ")))
 
-(assert (str.suffixof "" "" s))
+(assert (str.suffixof " " s))
 
-(assert (= (str.at s 0) "" ""))
+(assert (= (str.at s 0) " "))
 
-(assert (not (str.in.re (str.at s 0) (re.range ""A"" ""Z""))))
+(assert (not (str.in.re (str.at s 0) (re.range "A" "Z"))))
 
-(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) )))
+(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re " ") (re.inter (re.complement (re.range "A" "Z")) re.allchar ) (re.* re.allchar) )))

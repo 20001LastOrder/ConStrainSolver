@@ -30,7 +30,7 @@ def constraint4(date: str) -> bool:
     If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.
     """
     if date.count("-") >= 2:
-        part = date.split("-")[2]
+        part = date.split("-", 2)[2]
         return part.isdigit() and 1 <= int(part) <= 31
     return True
 

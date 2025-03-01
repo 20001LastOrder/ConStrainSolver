@@ -24,8 +24,8 @@ def constraint4(email: str) -> bool:
     If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.
     """
     if "@" in email:
-        return "." in email.split("@")[1]
-    return True
+        return "." in email.split("@", 1)[1]
+    return False
 
 
 def constraint5(email: str) -> bool:
