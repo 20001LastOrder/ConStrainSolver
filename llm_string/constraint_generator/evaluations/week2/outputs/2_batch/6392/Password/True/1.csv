@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(exists ((c String)) (and (str.contains s (str.to.re (str.concat (str.from.char c) """"))) (isUpper c)))","(exists ((c String)) (and (str.contains s (str.to.re (str.concat (str.from.char c) """"))) (isLower c)))",0,0
+"(str.contains s (str.to.re ""[A-Z]+""))","(str.contains s (str.to.re ""[a-z]+""))",0,1
+(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (isUpper (str.at s i)))),(exists ((j Int)) (and (>= j 0) (< j (str.len s)) (isLower (str.at s j)))),0,2
+"(exists ((c String)) (and (str.contains s c) (isUpper c) (not (= c """"))))","(exists ((c String)) (and (str.contains s c) (isLower c) (not (= c """"))))",0,3
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""a"" ""z"")))))",1,4
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""a"" ""z"")))))",1,5
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""a"" ""z"")))))",1,6
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""a"" ""z"")))))",1,7
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""a"" ""z"")))))",1,8
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""a"" ""z"")))))",1,9

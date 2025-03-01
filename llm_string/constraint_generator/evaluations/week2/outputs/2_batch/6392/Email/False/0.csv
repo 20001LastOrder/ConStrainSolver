@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,0
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,1
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,2
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,3
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,4
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,5
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,6
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,7
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,8
+"(str.contains s "" "")","(= (str.at s 0) ""@"")",1,9

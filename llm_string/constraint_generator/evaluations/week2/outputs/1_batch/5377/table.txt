@@ -1,0 +1,6 @@
+Constraint Generation Results with Batch Size of 1
+model_name='gpt-4o-mini' use_examples=True max_retries_per_attempt=1
+Steps              |        Step 1        |        Step 2        |        Step 3        |        Step 4        |        Step 5       
+Syntactical Recall |    20/32 (62.5%)     |    21/32 (65.62%)    |    21/32 (65.62%)    |    22/32 (68.75%)    |    21/32 (65.62%)   
+Semantic Precision |    17/20 (85.0%)     |    17/21 (80.95%)    |    17/21 (80.95%)    |    18/22 (81.82%)    |    18/21 (85.71%)   
+Overall Recall     |    17/32 (53.12%)    |    17/32 (53.12%)    |    17/32 (53.12%)    |    18/32 (56.25%)    |    18/32 (56.25%)   

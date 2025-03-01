@@ -1,0 +1,6 @@
+constraint0,level,step
+"(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (not (str.in.re (str.at s i) (str.to.re ""[a-z]"")))))",1,0
+"(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (not (str.in.re (str.at s i) (str.to.re ""[a-z]"")))))",1,1
+"(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (not (str.in.re (str.at s i) (str.to.re ""[a-z]"")))))",1,2
+"(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (not (str.in.re (str.at s i) (str.to.re ""[a-z]"")))))",1,3
+"(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (not (str.in.re (str.at s i) (str.to.re ""[a-z]"")))))",1,4

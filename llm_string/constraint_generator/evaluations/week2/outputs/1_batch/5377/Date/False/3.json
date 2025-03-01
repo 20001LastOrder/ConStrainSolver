@@ -1,0 +1,1 @@
+{"name": "Date", "mask": false, "nl_constraints": ["If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31."]}

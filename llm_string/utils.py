@@ -1,30 +1,37 @@
 import ast
 import json
 import re
+from typing import Optional
 
 from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.output_parsers.json import TBaseModel
+from langchain_core.outputs import Generation
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
+from typing_extensions import override
 
-code_block_string_array_pattern = re.compile(
-    r"```[^\[]*((\[\s?(\"[^\"]+\",\s?)+\"[^\"]+\"\s?])|(\[\s?('[^']+',\s?)+'[^']+'\s?]))[^`]*```",
-    re.DOTALL)
+code_block_string_array_pattern = re.compile(r"```[^\[]*((\[\s*(\"[^\"]+\",\s*)+\"[^\"]+\"\s*])|(\[\s*('[^']+',\s*)+'[^']+'\s*]))[^`]*```", re.DOTALL)
 
-string_array_pattern = re.compile(
-    r"(\[\s?(\"[^\"]+\",\s?)+\"[^\"]+\"\s?])|(\[\s?('[^']+',\s?)+'[^']+'\s?])",
-    re.DOTALL)
+string_array_pattern = re.compile(r"(\[\s*(\"[^\"]+\",\s*)+\"[^\"]+\"\s*])|(\[\s*('[^']+',\s*)+'[^']+'\s*])", re.DOTALL)
+
+json_pattern = re.compile(r"```(json)?\s*(\{[^`]*)", re.DOTALL)
 
 
 class JSONPydanticOutputParser(PydanticOutputParser):
-    def parse(self, output: str):
-        json_pattern = re.compile(r"```(json)?\n(.*?)\n```", re.DOTALL)
-        match = json_pattern.search(output)
+    @override
+    def parse_result(
+        self, result: list[Generation], *, partial: bool = False
+    ) -> Optional[TBaseModel]:
+        try:
+            return super().parse_result(result, partial=partial)
+        except Exception as e:
+            match = json_pattern.search(result[0].text)
 
-        if match:
-            json_object = json.loads(match.group(2))
-            return self._parse_obj(json_object)
-        else:
-            raise ValueError("No JSON found in the output.")
+            if match:
+                json_object = json.loads(match.group(2))
+                return self._parse_obj(json_object)
+            else:
+                raise ValueError("No JSON found in the output.")
 
 class StringArrayOutputParser:
     def parse(self, output: str):

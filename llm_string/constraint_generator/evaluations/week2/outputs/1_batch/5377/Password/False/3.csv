@@ -1,0 +1,6 @@
+constraint0,level,step
+,0,0
+"(forall ((c String)) (=> (str.contains s c) (not (str.in.re c (re.+ (str.to.re ""[a-z]""))))))",1,1
+"(forall ((c String)) (=> (str.contains s c) (not (str.in.re c (re.+ (str.to.re ""[a-z]""))))))",2,2
+"(forall ((c String)) (=> (str.contains s c) (not (str.in.re c (re.+ (str.to.re ""[a-z]""))))))",2,3
+"(forall ((c String)) (=> (str.contains s c) (not (str.in.re c (re.+ (str.to.re ""[a-z]""))))))",2,4

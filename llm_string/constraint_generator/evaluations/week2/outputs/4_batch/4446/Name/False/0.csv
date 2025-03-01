@@ -1,0 +1,21 @@
+constraint0,constraint1,constraint2,constraint3,level,step
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,0
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,1
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,2
+"(not (str.matches s (str.to.re ""[a-zA-Z ]*"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,3
+"(not (str.matches s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,4
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (sub (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,5
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,6
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,7
+(not (str.contains s (str.from_char_list (list (char.from_int 97) (char.from_int 122))))),"(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,8
+"(not (str.contains s "" ""))","(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z""))))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,9
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,10
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,11
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,12
+(not (str.contains s (str.from_char_list (list (char.of_int 97) (char.of_int 122) (char.of_int 65) (char.of_int 90) (char.of_int 32))))),"(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,13
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,14
+(not (str.contains s (str.from_char_list (list (char.of_nat 97) (char.of_nat 122) (char.of_nat 65) (char.of_nat 90) (char.of_nat 32))))),"(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,15
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,16
+"(not (str.matches s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,17
+"(not (str.matches s (str.to.re ""[a-zA-Z ]*"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,18
+"(not (str.contains s (str.to.re ""[a-zA-Z ]"")))","(not (str.contains s "" ""))","(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",0,19

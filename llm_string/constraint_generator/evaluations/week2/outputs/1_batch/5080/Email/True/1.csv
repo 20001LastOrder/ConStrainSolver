@@ -1,0 +1,6 @@
+constraint0,level,step
+"(not (= (str.at s 0) ""@""))",1,0
+"(not (= (str.at s 0) ""@""))",1,1
+"(not (= (str.at s 0) ""@""))",1,2
+"(not (= (str.at s 0) ""@""))",1,3
+"(not (= (str.at s 0) ""@""))",1,4

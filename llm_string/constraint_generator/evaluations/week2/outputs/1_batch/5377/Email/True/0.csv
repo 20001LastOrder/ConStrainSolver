@@ -1,0 +1,6 @@
+constraint0,level,step
+"(not (str.contains s "" ""))",1,0
+"(not (str.contains s "" ""))",2,1
+"(not (str.contains s "" ""))",2,2
+"(not (str.contains s "" ""))",2,3
+"(not (str.contains s "" ""))",2,4

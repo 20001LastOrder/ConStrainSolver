@@ -1,0 +1,6 @@
+constraint0,level,step
+"(str.contains s "" "")",1,0
+"(str.contains s "" "")",1,1
+"(str.contains s "" "")",1,2
+"(str.contains s "" "")",1,3
+"(str.contains s "" "")",1,4

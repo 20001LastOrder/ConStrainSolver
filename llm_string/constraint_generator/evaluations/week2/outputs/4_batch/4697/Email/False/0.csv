@@ -1,0 +1,29 @@
+constraint0,constraint1,constraint2,constraint3,level,step
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (str.length s)) ""."")))",0,0
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"") 1))","(=> (str.contains s ""@"") (not (str.contains (str.substr s (str.indexof s ""@"") (str.length s)) ""."")))",0,1
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")
+    1))","(=> (str.contains s ""@"")
+    (not (str.contains (str.substr s (+ (str.indexof s ""@"")
+    1) (str.length s)) ""."")))",0,2
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"") (str.length s)) ""."")))",0,3
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"") (str.len s)) ""."")))",0,4
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"") (str.length s)) ""."")))",0,5
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@""). 1))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@""). 1) (str.length s)) ""."")))",0,6
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count (str.to.re s) ""@"")
+        1))","(implies (str.contains s ""@"")
+        (not (str.contains (str.substr s (+ (str.indexof s ""@"")
+        1) (str.length s)) ""."")))",0,7
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"" 0) (str.length s)) ""."")))",0,8
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")
+        1))","(=> (str.contains s ""@"") (not (str.contains (str.substr s (str.indexof s ""@"")
+        (str.len s)) ""."")))",0,9
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count (str.to.re s) (str.to.re ""@"")) 1))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (str.length s)) ""."")))",0,10
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (str.length s)) ""."")))",0,11
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"") 1))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (str.length s)) ""."")))",0,12
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"")(str.len s)) ""."")))",0,13
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"") 1))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"")(1)) (str.length s)) ""."")))",0,14
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"") 1))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (str.length s)) ""."")))",0,15
+"(str.contains s "" "")","(= (str.at s 0) ""@"")(not (str.contains s ""@""))","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"")(1)) (str.length s)) ""."")))",0,16
+"(str.contains s "" "")","(= (str.at s 0) ""@"")[0]","(or (not (str.contains s ""@"")) (> (str.count s ""@"") 1))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"") (str.length s)) ""."")))",0,17
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(=> (str.contains s ""@"")(not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (str.length s)) ""."")))",0,18
+"(str.contains s "" "")","(= (str.at s 0) ""@"")","(or (not (str.contains s ""@"")) (> (str.count s ""@"")(1)))","(implies (str.contains s ""@"")(not (str.contains (str.substr s (str.indexof s ""@"")(str.length s)) ""."")))",0,19

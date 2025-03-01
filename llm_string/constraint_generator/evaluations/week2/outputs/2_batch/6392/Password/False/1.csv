@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(forall ((c String)) (=> (str.contains s c) (or (not (str.contains c ""ABCDEFGHIJKLMNOPQRSTUVWXYZ"")))))","(forall ((c String)) (=> (str.contains s c) (or (not (str.contains c ""abcdefghijklmnopqrstuvwxyz""))))",0,0
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,1
+"(not (exists ((c String)) (and (str.contains s c) (or (and (>= c ""A"") (<= c ""Z"")) (and (>= c ""a"") (<= c ""z""))))))","(not (exists ((c String)) (and (str.contains s c) (and (>= c ""a"") (<= c ""z"")))))",0,2
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,3
+"(not (exists ((c String)) (and (str.contains s c) (or (and (>= (str.to.utf8 c) (str.to.utf8 ""A"")) (<= (str.to.utf8 c) (str.to.utf8 ""Z""))) (and (>= (str.to.utf8 c) (str.to.utf8 ""a"")) (<= (str.to.utf8 c) (str.to.utf8 ""z"")))))))","(not (exists ((c String)) (and (str.contains s c) (and (>= (str.to.utf8 c) (str.to.utf8 ""a"")) (<= (str.to.utf8 c) (str.to.utf8 ""z"")))))",0,4
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,5
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,6
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,7
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,8
+"(not (str.contains s (str.to.re ""[A-Z]"")))","(not (str.contains s (str.to.re ""[a-z]"")))",0,9

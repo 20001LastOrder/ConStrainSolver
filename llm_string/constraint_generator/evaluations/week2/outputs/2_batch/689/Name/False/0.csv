@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",1,0
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,1
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,2
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,3
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,4
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,5
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,6
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,7
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,8
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))","(not (str.contains s "" ""))",2,9

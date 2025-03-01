@@ -1,0 +1,6 @@
+constraint0,level,step
+"(and (str.contains s ""@"")(not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"")(re.* re.allchar) (str.to.re ""@"")(re.* re.allchar)))))",1,0
+"(and (str.contains s ""@"")(not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"")(re.* re.allchar) (str.to.re ""@"")(re.* re.allchar)))))",2,1
+"(and (str.contains s ""@"")(not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"")(re.* re.allchar) (str.to.re ""@"")(re.* re.allchar)))))",2,2
+"(and (str.contains s ""@"")(not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"")(re.* re.allchar) (str.to.re ""@"")(re.* re.allchar)))))",2,3
+"(and (str.contains s ""@"")(not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"")(re.* re.allchar) (str.to.re ""@"")(re.* re.allchar)))))",2,4

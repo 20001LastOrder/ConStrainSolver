@@ -1,0 +1,1 @@
+{"name": "Date", "mask": false, "nl_constraints": ["If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025."]}

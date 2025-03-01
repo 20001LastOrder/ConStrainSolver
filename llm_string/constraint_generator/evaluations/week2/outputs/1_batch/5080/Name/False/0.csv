@@ -1,0 +1,6 @@
+constraint0,level,step
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))",1,0
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))",1,1
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))",1,2
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))",1,3
+"(not (str.in.re s (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))))",1,4

@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,0
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,1
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,2
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,3
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,4
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,5
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,6
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,7
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,8
+"(= (str.at s (- (str.len s) 1)) "" "")","(= (str.at s 0) "" "")",1,9
