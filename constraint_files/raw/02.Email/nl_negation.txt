@@ -1,0 +1,11 @@
+1. The email shall contain a space character.
+
+2. The email shall start with a @ character.
+
+3. The email shall have either no @ characters or more than one @ character.
+
+4. If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.
+
+5. The final character of the email shall be a dot character (.).
+
+6. The email shall contain the word "manager".

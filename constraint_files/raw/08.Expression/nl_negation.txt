@@ -1,0 +1,7 @@
+1. There is at least one character in the arithmetic expression that is neither a digit (0–9) nor one of the arithmetic operators (+, –, *, /).
+
+2. There is at least one instance in the arithmetic expression where two arithmetic operators (+, –, *, /) appear consecutively.
+
+3. There exists at least one occurrence of an operator from the set {+, *, /} that does not have a number immediately before it or does not have a number immediately after it.
+
+4. The arithmetic expression shall start with one of the operators +, *, or /.

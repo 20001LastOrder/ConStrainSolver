@@ -1,0 +1,9 @@
+1. The DNA sequence shall only contain letters "A", "T", "C" and "G".
+
+2. The length of The DNA sequence shall be at least 10.
+
+3. The length of The DNA sequence shall be a multiple of three.
+
+4. The DNA sequence shall starts with "ATG".
+
+5. The DNA sequence shall end with one of the following strings: "TAA", "TAG" or "TGA".

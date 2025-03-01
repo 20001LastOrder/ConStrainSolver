@@ -1,0 +1,11 @@
+1. The name shall only contain letters a-z, letters A-Z and space characters.
+
+2. The name shall contain at least one space character.
+
+3. The name shall not end with a space character.
+
+4. The name shall not start with a space character.
+
+5. The first character in the name shall be capitalized.
+
+6. Any character in the name following a space character shall be capitalized.

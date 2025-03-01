@@ -2,7 +2,8 @@ import subprocess
 
 from z3 import Solver, sat, unknown, unsat
 
-from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
+from llm_string.string_solvers.base import BaseStringSolver
+from llm_string.structs import ConstraintProblem
 
 
 class CVC5Solver(BaseStringSolver):

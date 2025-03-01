@@ -3,9 +3,11 @@ from loguru import logger
 
 from llm_string.base import Result
 from llm_string.prompts.llm_prompt import get_prompt
-from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
-from llm_string.string_solvers.utils import generation_with_retry
-from llm_string.string_validator import StringValidator
+from llm_string.string_solvers.base import BaseStringSolver
+from llm_string.string_solvers.utils import (generation_with_retry,
+                                             value_to_status)
+from llm_string.string_validator import BaseValidator, StringValidator
+from llm_string.structs import ConstraintProblem, SolutionStore
 from llm_string.utils import JSONPydanticOutputParser
 
 
@@ -13,7 +15,7 @@ class LLMSolverWithValidation(BaseStringSolver):
     name: str = "llm_with_validation"
     llm: BaseChatModel
     parser: JSONPydanticOutputParser = JSONPydanticOutputParser(pydantic_object=Result)
-    validator: StringValidator = StringValidator()
+    validator: BaseValidator = StringValidator()
     max_retries: int = 5
     use_variable_name: bool = True
 
@@ -28,48 +30,45 @@ class LLMSolverWithValidation(BaseStringSolver):
 
         return constraints, name
 
-    def feedback_loop(
-        self,
-        nl_constraints: list[str],
-        formal_constraints: list[str],
-        name: str,
-        initial_result: str,
-    ) -> str:
-        chain = get_prompt(self.parser) | self.llm
+    def feedback_loop(self, problem: ConstraintProblem) -> str:
+        prompt = get_prompt(self.parser)
+        chain =  prompt | self.llm
         iter_count = 0
-        result = initial_result
+        solution_store = SolutionStore()
 
         while iter_count < self.max_retries:
-            logger.info(f"current_result: {result}")
-            if result.lower() == "unsat":
-                result = ""
+            logger.info(f"current_result: {problem.value}, status {problem.status}")
+            validation_result = self.validator.validate(problem)
+            solution_store.add_solution(validation_result)
 
-            validation_status = self.validator.validate(
-                "sat" if result != "" else "unsat", formal_constraints, result
-            )
-
-            if (validation_status == "sat" and result != "") or (
-                validation_status == "unsat" and result == ""
+            if (
+                validation_result.status == "sat"
             ):
                 logger.info("Validation successful.")
                 break
 
             logger.info("Validation failed. Retrying...")
-
+            constraints, name = self.prepare_nl_constraints(
+                problem.nl_constraints, problem.name
+            )
+        
+            # logger.info(prompt.format(name=name, constraints=constraints))
             result = generation_with_retry(
                 chain,
                 {
                     "name": name,
-                    "constraints": nl_constraints,
+                    "constraints": constraints,
                 },
                 self.parser,
             )
+            result, status = value_to_status(result)
+            problem.status = status
+            problem.value = result
 
             iter_count += 1
 
-        logger.info(f"Final_result: {result}")
-
-        return "unsat" if result == "" else result
+        best_result = solution_store.get_best_solution()
+        return best_result.value
 
     def solve(self, problem: ConstraintProblem) -> ConstraintProblem:
         prompt = get_prompt(self.parser)
@@ -77,18 +76,19 @@ class LLMSolverWithValidation(BaseStringSolver):
         name = problem.name.strip()
 
         constraints, name = self.prepare_nl_constraints(problem.nl_constraints, name)
+        # logger.info(prompt.format(name=name, constraints=constraints))
 
         result = generation_with_retry(
             chain,
             {"name": name, "constraints": constraints},
             self.parser,
         )
+        result, status = value_to_status(result)
+        problem.status = status
+        problem.value = result
 
-        result = self.feedback_loop(constraints, problem.smt_constraints, name, result)
+        result = self.feedback_loop(problem)
 
-        if result.lower() != "unsat":
-            problem.status = "sat"
-            problem.value = result
-        else:
-            problem.status = "unsat"
+        result, status = value_to_status(result)        
+
         return problem

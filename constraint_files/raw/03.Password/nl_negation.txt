@@ -1,0 +1,9 @@
+1. The password shall contain less than 4 characters.
+
+2. The password shall not contain any of the following characters: !, #, $.
+
+3. The password shall not contain any upper case characters.
+
+4. The password shall not contain any lower case characters.
+
+5. The password shall not contain any numbers.

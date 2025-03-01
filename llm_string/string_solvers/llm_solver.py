@@ -2,8 +2,9 @@ from langchain_core.language_models import BaseChatModel
 
 from llm_string.base import Result
 from llm_string.prompts.llm_prompt import get_prompt
-from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
+from llm_string.string_solvers.base import BaseStringSolver
 from llm_string.string_solvers.utils import generation_with_retry
+from llm_string.structs import ConstraintProblem
 from llm_string.utils import JSONPydanticOutputParser
 
 

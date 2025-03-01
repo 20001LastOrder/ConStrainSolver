@@ -1,11 +1,11 @@
-﻿Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
-Name,"Capitalization, Specific characters, ","1. The name shall only contain letters a-z, letters A-Z and space characters.
+sample_id,Name,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation,Functions
+01,Name,"1. The name shall only contain letters a-z, letters A-Z and space characters.
 
 2. The name shall contain at least one space character.
 
 3. The name shall not end with a space character.
 
-4. The name shall not  start with a space character.
+4. The name shall not start with a space character.
 
 5. The first character in the name shall be capitalized.
 
@@ -39,39 +39,28 @@ Name,"Capitalization, Specific characters, ","1. The name shall only contain let
 
 (assert (not (str.in.re (str.at s 0) (re.range ""A"" ""Z""))))
 
-(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) )))"
-Email," not email.contains("" "")
-
-// email must contain some characters (anything is allowed except @), a @, some characters, a dot, and some characters
-// this is a simplified check sufficient for this application
-email.indexOf(""@"") > 0 // index starts at zero
-email.indexOf(""@"") = email.lastIndexOf(""@"")
-email.indexOf(""@"") < email.lastIndexOf(""."") - 1
-email.lastIndexOf(""."") < email.length() - 1
-
-// email cannot contain the word “manager”
-”manager” not in email
-","1. The email shall not contain a space character.
+(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) )))","[""def constraint1(name: str) -> bool:\n    \""\""\""\n    The name shall only contain letters a-z, letters A-Z and space characters.\n    \""\""\""\n    return all(c.isalpha() or c.isspace() for c in name)"", ""def constraint2(name: str) -> bool:\n    \""\""\""\n    The name shall contain at least one space character.\n    \""\""\""\n    return any(c.isspace() for c in name)"", ""def constraint3(name: str) -> bool:\n    \""\""\""\n    The name shall not end with a space character.\n    \""\""\""\n    return not name.endswith(\"" \"")"", ""def constraint4(name: str) -> bool:\n    \""\""\""\n    The name shall not start with a space character.\n    \""\""\""\n    return not name.startswith(\"" \"")"", ""def constraint5(name: str) -> bool:\n    \""\""\""\n    The first character in the name shall be capitalized.\n    \""\""\""\n    return name[0].isupper()"", ""def constraint6(name: str) -> bool:\n    \""\""\""\n    Any character in the name following a space character shall be capitalized.\n    \""\""\""\n    for i in range(0, len(name) - 1):\n        if name[i].isspace():\n            if not name[i + 1].isupper():\n                return False\n    return True""]"
+02,Email,"1. The email shall not contain a space character.
 
 2. The email shall not start with a @ character.
 
 3. The email shall have exactly one @ character.
 
-4. If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.
+4. The email shall include a dot character (.) after the @ character but before the end.
 
 5. The final character of the email shall not be a dot character (.).
 
-6. The email shall not contain the word “manager”.","1. The email shall contain a space character.
+6. The email shall not contain the word ""manager""","1. The email shall contain a space character.
 
 2. The email shall start with a @ character.
 
 3. The email shall have either no @ characters or more than one @ character.
 
-4. If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.
+4. If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.
 
 5. The final character of the email shall be a dot character (.).
 
-6. The email shall contain the word “manager”.","(assert (not (str.contains s "" "")))
+6. The email shall contain the word ""manager"".","(assert (not (str.contains s "" "")))
 
 (assert (not (= (str.at s 0) ""@"")))
 
@@ -91,15 +80,8 @@ email.lastIndexOf(""."") < email.length() - 1
 
 (assert (= (str.at s (- (str.len s) 1)) "".""))
 
-(assert (str.contains s ""manager""))"
-Password,"// password must be at least four characters long
-password.length() > 3
-// password must contain a special character out of !#$
-password.contains(""!"") or password.contains(""#"") or password.contains(""$"")
-// password must contain an upper case character
-there exists a character c in password such that Character.isUpperCase(c) = true
-// password must contain a lower case character
-there exists a character c in password such that Character.isLowerCase(c) = true","1. The password shall be at least 4 characters long.
+(assert (str.contains s ""manager""))","[""def constraint1(email: str) -> bool:\n    \""\""\""\n    The email shall not contain a space character.\n    \""\""\""\n    return \"" \"" not in email"", ""def constraint2(email: str) -> bool:\n    \""\""\""\n    The email shall not start with a @ character.\n    \""\""\""\n    return not email.startswith(\""@\"")"", ""def constraint3(email: str) -> bool:\n    \""\""\""\n    The email shall have exactly one @ character.\n    \""\""\""\n    return email.count(\""@\"") == 1"", ""def constraint4(email: str) -> bool:\n    \""\""\""\n    If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.\n    \""\""\""\n    if \""@\"" in email:\n        return \"".\"" in email.split(\""@\"", 1)[1]\n    return False"", ""def constraint5(email: str) -> bool:\n    \""\""\""\n    The final character of the email shall not be a dot character (.).\n    \""\""\""\n    return not email.endswith(\"".\"")"", ""def constraint6(email: str) -> bool:\n    \""\""\""\n    The email shall not contain the word \u00e2\u20ac\u0153manager\n    \""\""\""\n    return \""manager\"" not in email""]"
+03,Password,"1. The password shall be at least 4 characters long.
 
 2. The password shall contain one of the following characters: !, #, $.
 
@@ -131,8 +113,8 @@ there exists a character c in password such that Character.isLowerCase(c) = true
 
 (assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar)))))
 
-(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar)))))"
-Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","1. The url shall start with either http:// or https://.
+(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar)))))","[""def constraint1(password: str) -> bool:\n    \""\""\""\n    The password shall be at least 4 characters long.\n    \""\""\""\n    return len(password) >= 4"", ""def constraint2(password: str) -> bool:\n    \""\""\""\n    The password shall contain one of the following characters: !, #, $.\n    \""\""\""\n    return any(char in password for char in \""!#$\"")"", ""def constraint3(password: str) -> bool:\n    \""\""\""\n    The password shall contain at least one upper case characters.\n    \""\""\""\n    return any(char.isupper() for char in password)"", ""def constraint4(password: str) -> bool:\n    \""\""\""\n    The password shall contain at least one lower case characters.\n    \""\""\""\n    return any(char.islower() for char in password)"", ""def constraint5(password: str) -> bool:\n    \""\""\""\n    The password shall contain at least one number.\n    \""\""\""\n    return any(char.isdigit() for char in password)""]"
+04,Url,"1. The url shall start with either http:// or https://.
 
 2. The url shall not contain any spaces.
 
@@ -148,20 +130,20 @@ Url,"url.substring(0, 6) = ""http://"" or url.substring(0, 7) = ""https://”","
 
 (assert (str.contains s "" ""))
 
-(assert (not (str.contains s ""."")))"
-Date,,"1. The date shall contain two hyphens.
+(assert (not (str.contains s ""."")))","[""def constraint1(url: str) -> bool:\n    \""\""\""\n    The url shall start with either http:// or https://.\n    \""\""\""\n    return url.startswith(\""http://\"") or url.startswith(\""https://\"")"", ""def constraint2(url: str) -> bool:\n    \""\""\""\n    The url shall not contain any spaces.\n    \""\""\""\n    return \"" \"" not in url"", ""def constraint3(url: str) -> bool:\n    \""\""\""\n    The url shall contain at least one dot character (.).\n    \""\""\""\n    return \"".\"" in url""]"
+05,Date,"1. The date shall contain two hyphens.
 
-2. The part before the first hyphen shall be a number between 0 and 2025.
+2. If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.
 
-3. The part after the first hyphen but before the second hyphen shall be a number between 1 and 12.
+3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.
 
-4. The part after the second hyphen shall be a number between 1 and 31.","1. The date shall contain either no hyphens, one hyphen or more than two hyphens.
+4. If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","1. The date shall contain either no hyphens, one hyphen or more than two hyphens.
 
-2. If there is at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.
+2. There must be at least one hyphen the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.
 
-3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.
+3. There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.
 
-4. If there are at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","(assert (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar)))) ))
+4. There must be at least two hyphens an d the part after the second hyphen shall be a number smaller than 1 or larger than 31.","(assert (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar) (str.to.re ""-"") (re.* re.allchar)))) ))
 
 (assert (let ((part1 (str.substr s 0 (str.indexof s ""-"" 0)))) (and (>= (str.to.int part1) 0) (<= (str.to.int part1) 2025))))
 
@@ -173,19 +155,12 @@ Date,,"1. The date shall contain two hyphens.
 
 (assert (let ((start2 (+ (str.indexof s ""-"" 0) 1)) (end2 (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (not (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12))))))
 
-(assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))"
-IBAN,"A German IBAN consists of 22 characters which are characterized as follows:
-The first two characters represent the country code (here, the constant “DE”)
-while the third and fourth characters are a checksum. The remaining 18 digits
-represent the Basic Bank Account Number (BBAN).
-We can compute valid IBANs using a given country code as follows: Represent
-the country code as a digit where “A” equals 10, “B” equals 11, etc. The German
-country code “DE” is hence encoded as 1314. Concatenate two zeros to the
-encoded country code (i.e., 131400) and prepend the BBAN. ","1. The length of the bank number shall be 22.
+(assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))","[""def constraint1(date: str) -> bool:\n    \""\""\""\n    The date shall contain two hyphens.\n    \""\""\""\n    return date.count(\""-\"") == 2"", ""def constraint2(date: str) -> bool:\n    \""\""\""\n    If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.\n    \""\""\""\n    if \""-\"" in date:\n        part = date.split(\""-\"")[0]\n        return part.isdigit() and 0 <= int(part) <= 2025\n    return True"", ""def constraint3(date: str) -> bool:\n    \""\""\""\n    If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.\n    \""\""\""\n    if date.count(\""-\"") >= 2:\n        part = date.split(\""-\"")[1]\n        return part.isdigit() and 1 <= int(part) <= 12\n    return True"", ""def constraint4(date: str) -> bool:\n    \""\""\""\n    If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.\n    \""\""\""\n    if date.count(\""-\"") >= 2:\n        part = date.split(\""-\"", 2)[2]\n        return part.isdigit() and 1 <= int(part) <= 31\n    return True""]"
+06,IBAN,"1. The length of the bank number shall be 22.
 
 2. The first 4 numbers of the bank number shall be: 1210 (CA).
 
-3. The next 2 numbers shall be 00.","1. The length of the bank account shall not be 22.
+3. The next 2 numbers after the first 4 numbers shall be 00.","1. The length of the bank account shall not be 22.
 
 2. The first 4 numbers of the bank number shall not be: 1210 (CA).
 
@@ -197,4 +172,90 @@ encoded country code (i.e., 131400) and prepend the BBAN. ","1. The length of th
 
 (assert (not (= (str.substr s 0 4) ""1210"")))
 
-(assert (not (= (str.substr s 4 2) ""00"")))"
+(assert (not (= (str.substr s 4 2) ""00"")))","[""def constraint1(iban: str) -> bool:\n    \""\""\""\n    The length of the bank number shall be 22.\n    \""\""\""\n    return len(iban) == 22"", ""def constraint2(iban: str) -> bool:\n    \""\""\""\n    The first 4 numbers of the bank number shall be: 1210 (CA).\n    \""\""\""\n    return iban.startswith(\""1210\"")"", ""def constraint3(iban: str) -> bool:\n    \""\""\""\n    The next 2 numbers after the first 4 numbers shall be 00.\n    \""\""\""\n    if len(iban) >= 6:\n        return iban[4:6] == \""00\""\n    return False""]"
+07,ISBN,"1. The ISBN shall include digits (0â€“9) , the letter ""X"", or hyphens.
+
+2. The last character of the ISBN shall either be digits (0-9) or the letter ""X"".
+
+3. The ISBN shall contain exactly 10 characters excluding hyphens.
+
+4. Hyphens shall not be at the beginning of the ISBN.
+
+5. Hyphens shall not occur consecutively in the ISBN.
+
+6. An ISBN shall contain at most 3 hyphens","1. There exists at least one character in the ISBN that is not a digit (0â€“9), not the letter ""X"", and not a hyphen.
+
+2. The last character of the ISBN is neither a digit (0-9) nor the letter ""X"".
+
+3. When hyphens are excluded, the ISBN contains fewer or more than 10 characters.
+
+4. A hyphen shall be at the beginning of the ISBN.
+
+5. There are at least two hyphens that occur consecutively in the ISBN.
+
+6. The ISBN contains more than 3 hyphens.",,,"[""def constraint1(isbn: str) -> bool:\n    \""\""\""\n    The ISBN shall include digits (0\u00e2\u20ac\u201c9) , the letter \""X\"", or hyphens.\n    \""\""\""\n    return all(char.isdigit() or char in \""X-\"" for char in isbn)"", ""def constraint2(isbn: str) -> bool:\n    \""\""\""\n    The last character of the ISBN shall either be digits (0-9) or the letter \""X\"".\n    \""\""\""\n    if len(isbn) == 0:\n        return False\n    return isbn[-1].isdigit() or isbn[-1] == \""X\"""", ""def constraint3(isbn: str) -> bool:\n    \""\""\""\n    The ISBN shall contain exactly 10 characters excluding hyphens.\n    \""\""\""\n    return len(isbn.replace(\""-\"", \""\"")) == 10"", ""def constraint4(isbn: str) -> bool:\n    \""\""\""\n    Hyphens shall not be at the beginning of the ISBN.\n    \""\""\""\n    return not isbn.startswith(\""-\"")"", ""def constraint5(isbn: str) -> bool:\n    \""\""\""\n    Hyphens shall not occur consecutively in the ISBN.\n    \""\""\""\n    return \""--\"" not in isbn"", ""def constraint6(isbn: str) -> bool:\n    \""\""\""\n    An ISBN shall contain at most 3 hyphens\n    \""\""\""\n    return isbn.count(\""-\"") <= 3""]"
+08,Expression,"1. An arithmetic expression shall only contain digits (0-9) and arithmetic operators (+, -, *, /).
+
+2. The arithmetic operators (+, -, *, /) in an arithmetic expression shall not appear consecutively.
+
+3. Except for the minus sign (-), every operator (+, *, /) shall have a number before and after it.
+
+4. An expression shall not start with operators +, *, /.","1. There is at least one character in the arithmetic expression that is neither a digit (0â€“9) nor one of the arithmetic operators (+, â€“, *, /).
+
+2. There is at least one instance in the arithmetic expression where two arithmetic operators (+, â€“, *, /) appear consecutively.
+
+3. There exists at least one occurrence of an operator from the set {+, *, /} that does not have a number immediately before it or does not have a number immediately after it.
+
+4. The arithmetic expression shall start with one of the operators +, *, or /.",,,"[""def constraint1(expression: str) -> bool:\n    \""\""\""\n    An arithmetic expression shall only contain digits (0-9) and arithmetic operators (+, -, *, /).\n    \""\""\""\n    return all(char.isdigit() or char in \""+-*/\"" for char in expression)"", ""def constraint2(expression: str) -> bool:\n    \""\""\""\n    The arithmetic operators (+, -, *, /) in an arithmetic expression shall not appear consecutively.\n    \""\""\""\n    patterns = [\n        \""++\"",\n        \""--\"",\n        \""**\"",\n        \""//\"",\n        \""+-\"",\n        \""-+\"",\n        \""*/\"",\n        \""/*\"",\n        \""/-\"",\n        \""-/\"",\n        \""+/\"",\n        \""/+\"",\n        \""*-\"",\n        \""-*\"",\n        \""*+\"",\n        \""+*\"",\n    ]\n    return not any(pattern in expression for pattern in patterns)"", ""def constraint3(expression: str) -> bool:\n    \""\""\""\n    Except for the minus sign (-), every operator (+, *, /) shall have a number before and after it.\n    \""\""\""\n    for i in range(1, len(expression) - 1):\n        if (\n            expression[i] in \""+*/\""\n            and not expression[i - 1].isdigit()\n            and not expression[i + 1].isdigit()\n        ):\n            return False\n    return True"", ""def constraint4(expression: str) -> bool:\n    \""\""\""\n    An expression shall not start with operators +, *, /.\n    \""\""\""\n    return (\n        not expression.startswith(\""+\"")\n        and not expression.startswith(\""*\"")\n        and not expression.startswith(\""/\"")\n    )""]"
+09,Palidrome,"1. A palindrome shall be at least 3 characters long
+
+2. A palindrome shall be identical to its reverse","1. A palindrome shall be at most 2 characters long
+
+2. A palindrome shall not be identical to its reverse",,,"[""def constraint1(palindrome: str) -> bool:\n    \""\""\""\n    A palindrome shall be at least 3 characters long\n    \""\""\""\n    return len(palindrome) >= 3"", ""def constraint2(palindrome: str) -> bool:\n    \""\""\""\n    A palindrome shall be identical to its reverse\n    \""\""\""\n    return palindrome == palindrome[::-1]""]"
+10,Parentheses,"1. A parentheses string shall be at least 10 characters long
+
+2. A parentheses string shall only contains ""("" and "")"" charaters.
+
+3. The total number of ""("" characters shall be equal to the total number of "")"" characters in a parentheses string.
+
+4. When scanning from left to right on the parentheses string, at no point shall the count of "")"" characters exceed the count of ""("" characters.","1. A parentheses string shall be at most 10 characters long
+
+1. There exists at least one character in a parentheses string that is neither ""("" nor "")"".
+
+2. The total number of ""("" characters shall not equal to the total number of "")"" characters in a parentheses string.
+
+3.  There exists at least one position in a parentheses string such that, when scanning from left to right up to that point, the count of "")"" characters exceeds the count of ""("" characters.",,,"[""def constraint1(parentheses: str) -> bool:\n    \""\""\""\n    A parentheses string shall only contains \""(\"" and \"")\"" charaters.\n    \""\""\""\n    return all(char in \""()\"" for char in parentheses)"", ""def constraint2(parentheses: str) -> bool:\n    \""\""\""\n    The total number of \""(\"" characters shall be equal to the total number of \"")\"" characters in a parentheses string.\n    \""\""\""\n    return parentheses.count(\""(\"") == parentheses.count(\"")\"")"", ""def constraint3(parentheses: str) -> bool:\n    \""\""\""\n    When scanning from left to right on the parentheses string, at no point shall the count of \"")\"" characters exceed the count of \""(\"" characters.\n    \""\""\""\n    count = 0\n    for char in parentheses:\n        if char == \""(\"":\n            count += 1\n        elif char == \"")\"":\n            count -= 1\n        if count < 0:\n            return False\n    return True""]"
+11,DNA,"1. The DNA sequence shall only contain letters ""A"", ""T"", ""C"" and ""G"".
+
+2. The length of The DNA sequence shall be at least 10.
+
+3. The length of The DNA sequence shall be a multiple of three.
+
+4. The DNA sequence shall starts with ""ATG"".
+
+5. The DNA sequence shall end with one of the following strings: ""TAA"", ""TAG"" or ""TGA"".","1. There exists at least one character in the DNA sequence that is not ""A"", ""T"", ""C"", or ""G"".
+
+2. The length of the DNA sequence shall be less than 10.
+
+3. The length of the DNA sequence shall not a multiple of three.
+
+4. The DNA sequence shall not start with ""ATG"".
+
+5. The DNA sequence shall not end with ""TAA"", ""TAG"", or ""TGA"".",,,"[""def constraint1(dna: str) -> bool:\n    \""\""\""\n    The DNA sequence shall only contain letters \""A\"", \""T\"", \""C\"" and \""G\"".\n    \""\""\""\n    return all(char in \""ATCG\"" for char in dna)"", ""def constraint2(dna: str) -> bool:\n    \""\""\""\n    The length of The DNA sequence shall be at least 10.\n    \""\""\""\n    return len(dna) >= 10"", ""def constraint3(dna: str) -> bool:\n    \""\""\""\n    The length of The DNA sequence shall be a multiple of three.\n    \""\""\""\n    return len(dna) % 3 == 0"", ""def constraint4(dna: str) -> bool:\n    \""\""\""\n    The DNA sequence shall starts with \""ATG\"".\n    \""\""\""\n    return dna.startswith(\""ATG\"")"", ""def constraint5(dna: str) -> bool:\n    \""\""\""\n    The DNA sequence shall end with one of the following strings: \""TAA\"", \""TAG\"" or \""TGA\"".\n    \""\""\""\n    return dna.endswith(\""TAA\"") or dna.endswith(\""TAG\"") or dna.endswith(\""TGA\"")""]"
+12,Absolute_Path,"1. The absolute path shall have at least 10 characters
+
+2. The absolute path shall start with the root directory ""/"".
+
+3. The absolute path shall not contain any spaces.
+
+4. The absolute path shall not end with ""/"".
+
+5. The absolute path shall not contain consecutive ""/"" characters.","1. The absolute path shall have fewer than 10 characters.
+
+2. The absolute path shall not start with the root directory ""/"".
+
+3. The absolute path shall contains at least one space.
+
+4. The absolute path shall end with ""/"".
+
+5. The absolute path shall contain at least one instance of consecutive ""/"" characters.",,,"[""def constraint1(absolute_path: str) -> bool:\n    \""\""\""\n    The absolute path shall have at least 10 characters\n    \""\""\""\n    return len(absolute_path) >= 10"", ""def constraint2(absolute_path: str) -> bool:\n    \""\""\""\n    The absolute path shall start with the root directory \""/\"".\n    \""\""\""\n    return absolute_path.startswith(\""/\"")"", ""def constraint3(absolute_path: str) -> bool:\n    \""\""\""\n    The absolute path shall not contain any spaces.\n    \""\""\""\n    return \"" \"" not in absolute_path"", ""def constraint4(absolute_path: str) -> bool:\n    \""\""\""\n    The absolute path shall not end with \""/\"".\n    \""\""\""\n    return not absolute_path.endswith(\""/\"")"", ""def constraint5(absolute_path: str) -> bool:\n    \""\""\""\n    The absolute path shall not contain consecutive \""/\"" characters.\n    \""\""\""\n    return \""//\"" not in absolute_path""]"

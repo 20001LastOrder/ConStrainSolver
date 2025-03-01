@@ -1,37 +1,35 @@
 import ast
 import json
 import re
-from typing import Optional
+from typing import Callable
 
 from langchain_core.output_parsers import PydanticOutputParser
-from langchain_core.output_parsers.json import TBaseModel
-from langchain_core.outputs import Generation
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
-from typing_extensions import override
+from loguru import logger
 
-code_block_string_array_pattern = re.compile(r"```[^\[]*((\[\s*(\"[^\"]+\",\s*)+\"[^\"]+\"\s*])|(\[\s*('[^']+',\s*)+'[^']+'\s*]))[^`]*```", re.DOTALL)
+code_block_string_array_pattern = re.compile(
+    r"```[^\[]*((\[\s?(\"[^\"]+\",\s?)+\"[^\"]+\"\s?])|(\[\s?('[^']+',\s?)+'[^']+'\s?]))[^`]*```",  # noqa: E501
+    re.DOTALL,
+)
 
-string_array_pattern = re.compile(r"(\[\s*(\"[^\"]+\",\s*)+\"[^\"]+\"\s*])|(\[\s*('[^']+',\s*)+'[^']+'\s*])", re.DOTALL)
-
-json_pattern = re.compile(r"```(json)?\s*(\{[^`]*)", re.DOTALL)
+string_array_pattern = re.compile(
+    r"(\[\s?(\"[^\"]+\",\s?)+\"[^\"]+\"\s?])|(\[\s?('[^']+',\s?)+'[^']+'\s?])",
+    re.DOTALL,
+)
 
 
 class JSONPydanticOutputParser(PydanticOutputParser):
-    @override
-    def parse_result(
-        self, result: list[Generation], *, partial: bool = False
-    ) -> Optional[TBaseModel]:
-        try:
-            return super().parse_result(result, partial=partial)
-        except Exception as e:
-            match = json_pattern.search(result[0].text)
+    def parse(self, output: str):
+        json_pattern = re.compile(r"```(json)?\n(.*?)\n```", re.DOTALL)
+        match = json_pattern.search(output)
 
-            if match:
-                json_object = json.loads(match.group(2))
-                return self._parse_obj(json_object)
-            else:
-                raise ValueError("No JSON found in the output.")
+        if match:
+            json_object = json.loads(match.group(2))
+            return self._parse_obj(json_object)
+        else:
+            raise ValueError("No JSON found in the output.")
+
 
 class StringArrayOutputParser:
     def parse(self, output: str):
@@ -49,7 +47,8 @@ class StringArrayOutputParser:
 
         lists = [ast.literal_eval(m) for m in matches]
 
-        # if more than one result, use heuristic method to take the longest list as the correct one
+        # if more than one result, use heuristic method to take the longest list as the
+        #  correct one
         return max(lists, key=len)
 
     def get_format_instructions(self):
@@ -70,3 +69,21 @@ def get_llm(args):
         return ChatOllama(
             model=args.llm, max_new_tokens=500, temperature=args.temperature
         )
+
+
+def source_code_to_function(source_code: str) -> Callable:
+    """
+    Extracts the function definition from the source code.
+
+    Args:
+        source_code (str): The source code of the program.
+
+    Returns:
+        Callable: The callable function object
+    """
+    namespace = {}
+    exec(source_code, namespace)
+    for key, obj in namespace.items():
+        if callable(obj):
+            return obj
+    return None
