@@ -163,3 +163,4 @@ cython_debug/
 
 \solvers
 constraints.smt2
+outputs

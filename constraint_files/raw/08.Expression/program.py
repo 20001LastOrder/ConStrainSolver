@@ -34,11 +34,12 @@ def constraint3(expression: str) -> bool:
     """
     Except for the minus sign (-), every operator (+, *, /) shall have a number before and after it.
     """
-    for i in range(1, len(expression) - 1):
-        if (
-            expression[i] in "+*/"
-            and not expression[i - 1].isdigit()
-            and not expression[i + 1].isdigit()
+    for i in range(len(expression)):
+        if expression[i] in "+*/" and (
+            i == 0
+            or not expression[i - 1].isdigit()
+            or i == len(expression) - 1
+            or not expression[i + 1].isdigit()
         ):
             return False
     return True

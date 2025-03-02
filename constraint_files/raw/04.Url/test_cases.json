@@ -1,0 +1,50 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "http://example.com",
+            "https://example.com",
+            "http://localhost:8080",
+            "https://api.example.org/v1/data",
+            "http://192.168.1.1"
+        ],
+        "false_inputs": [
+            "ftp://example.com",
+            "www.example.com",
+            "example.com",
+            "htp://example.com",
+            "httpss://example.com"
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "https://example.com",
+            "http://example.com/path/to/resource",
+            "https://api.example.org/v1/data?query=value",
+            "http://localhost:8080/search?q=test+query",
+            "https://example-site.com/documents/my-document.pdf"
+        ],
+        "false_inputs": [
+            "https://example.com/path with spaces",
+            "http://example.com/search?q=hello world",
+            "https://api.site.org/user profile",
+            "http://localhost:8080/ space at beginning",
+            "https://example.com/path/to/my document.pdf"
+        ]
+    },
+    "constraint3": {
+        "true_inputs": [
+            "https://example.com",
+            "http://localhost.local",
+            "file:///C:/Users/name/document.pdf",
+            "ftp://server.net/files",
+            "https://192.168.1.1"
+        ],
+        "false_inputs": [
+            "http://localhost",
+            "https://intranet",
+            "http://127/0/0/1",
+            "file:///usr/local/bin/script",
+            "https://my-internal-server/api"
+        ]
+    }
+}

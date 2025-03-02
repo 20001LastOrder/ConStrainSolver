@@ -1,0 +1,82 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "ATCG",
+            "AAAA",
+            "GCTA",
+            "ATCGATCG",
+            "GGGCCCAAATTT"
+        ],
+        "false_inputs": [
+            "ATCGX",
+            "atcg",
+            "AT CG",
+            "ATCG-ATCG",
+            "ATCG12345"
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "ATCGATCGAT",
+            "GGGGGGGGGGGGGG",
+            "ATCGATCGATCGATCG",
+            "ATCGATCGATCGATCGATCGATCGAT",
+            "AAAAAAAAAA"
+        ],
+        "false_inputs": [
+            "ATCGATCGA",
+            "ATCG",
+            "A",
+            "ATCGATC",
+            ""
+        ]
+    },
+    "constraint3": {
+        "true_inputs": [
+            "ATC",
+            "ATCGAT",
+            "ATCGATCGA",
+            "ATCGATCGATCG",
+            ""
+        ],
+        "false_inputs": [
+            "A",
+            "AT",
+            "ATCG",
+            "ATCGA",
+            "ATCGATC"
+        ]
+    },
+    "constraint4": {
+        "true_inputs": [
+            "ATG",
+            "ATGCCC",
+            "ATGAATGCC",
+            "ATGGGGGGG",
+            "ATGTTTAAACCC"
+        ],
+        "false_inputs": [
+            "A",
+            "AT",
+            "AATG",
+            "CATG",
+            "GGGAAA"
+        ]
+    },
+    "constraint5": {
+        "true_inputs": [
+            "ATGTAA",
+            "GCCCCTAG",
+            "AAATGA",
+            "ATGCCCGAATAA",
+            "CCCGATGA"
+        ],
+        "false_inputs": [
+            "ATGTA",
+            "ATGTATG",
+            "ATGT",
+            "TAATAGT",
+            "TGATAGA"
+        ]
+    }
+}

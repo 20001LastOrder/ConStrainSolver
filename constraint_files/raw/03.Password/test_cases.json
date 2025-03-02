@@ -1,0 +1,82 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "pass",
+            "password",
+            "1234",
+            "a_b_c_d",
+            "!@#$"
+        ],
+        "false_inputs": [
+            "",
+            "a",
+            "ab",
+            "abc",
+            "   "
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "hello!$$",
+            "pass#!!word",
+            "$ecret",
+            "my#pass!",
+            "a$b"
+        ],
+        "false_inputs": [
+            "password",
+            "123456",
+            "abc@def",
+            "no%special&chars",
+            "   "
+        ]
+    },
+    "constraint3": {
+        "true_inputs": [
+            "Password",
+            "helloWorld",
+            "testING",
+            "A123",
+            "ab!C"
+        ],
+        "false_inputs": [
+            "password",
+            "all lowercase",
+            "123456",
+            "no_upper_case",
+            "!@#$%^"
+        ]
+    },
+    "constraint4": {
+        "true_inputs": [
+            "password",
+            "Password123",
+            "TESTing",
+            "a123",
+            "AB!c"
+        ],
+        "false_inputs": [
+            "PASSWORD",
+            "123456",
+            "ALL CAPS",
+            "!@#$%^",
+            "12 34"
+        ]
+    },
+    "constraint5": {
+        "true_inputs": [
+            "password1",
+            "Pass123",
+            "4testing",
+            "a1b2c3",
+            "test!5"
+        ],
+        "false_inputs": [
+            "password",
+            "NoNumbers",
+            "all_text",
+            "!@#$%^",
+            "Test Test"
+        ]
+    }
+}
