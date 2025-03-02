@@ -1,0 +1,6 @@
+constraint0,level,step
+"(=> (str.contains s ""@"")(exists ((i Int)) (and (> i (str.indexof s ""@"")) (< i (str.len s)) (str.contains (str.substr s i (- (str.len s) i)) "".""))))))",0,0
+"(=> (str.contains s ""@"")(str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) "".""))",1,1
+"(=> (str.contains s ""@"")(str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) "".""))",1,2
+"(=> (str.contains s ""@"")(str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) "".""))",1,3
+"(=> (str.contains s ""@"")(str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) "".""))",1,4

@@ -1,0 +1,1 @@
+{"name": "Password", "mask": false, "nl_constraints": ["The password shall not contain any upper case characters.", "The password shall not contain any lower case characters."]}

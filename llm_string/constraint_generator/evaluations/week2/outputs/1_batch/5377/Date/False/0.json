@@ -1,0 +1,1 @@
+{"name": "Date", "mask": false, "nl_constraints": ["The date shall contain either no hyphens, one hyphen or more than two hyphens."]}

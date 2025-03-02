@@ -1,0 +1,6 @@
+constraint0,level,step
+(and (>= s 1) (<= s 12)),0,0
+"(let ((month (str.to.int (str.substr s (str.indexof s ""-"") (str.indexof s ""-"" (str.indexof s ""-"") + 1))))) (and (>= month 1) (<= month 12)))",0,1
+"(and (>= (str.to.int (str.substr s (str.indexof s ""-"" 0) (str.indexof s ""-"" 1))) 1) (<= (str.to.int (str.substr s (str.indexof s ""-"" 0) (str.indexof s ""-"" 1))) 12))",0,2
+"(let ((month (str.to.int (str.substr s (+ (str.indexof s ""-"") 1) (- (str.indexof s ""-"" (str.indexof s ""-"") 1) (str.indexof s ""-"") 1))))) (and (>= month 1) (<= month 12)))",0,3
+,0,4

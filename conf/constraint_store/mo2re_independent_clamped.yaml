@@ -1,0 +1,2 @@
+_target_: llm_string.constraints.ConstraintStore
+file_path: constraint_files/independent_constraints_clamped.csv

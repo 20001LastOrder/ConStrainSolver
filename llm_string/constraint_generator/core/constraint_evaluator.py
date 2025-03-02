@@ -1,6 +1,10 @@
-import keyword
+from z3 import Solver, Z3Exception
 
-from z3 import *
+from llm_string.constraint_generator.core.helpers.solver_helpers import \
+    create_solver_with_smt_lib2_constraint, \
+    create_solver_with_smt_lib2_constraints, \
+    create_solver_with_z3py_constraint, \
+    create_solver_with_z3py_constraints
 
 from llm_string.models import Constraint, Constraints
 
@@ -8,120 +12,10 @@ from llm_string.logging.logging_overrides import getLogger
 
 logger = getLogger()
 
+
 class ConstraintEvaluator:
-    def __init__(self, constraint_type: str, constraint: Constraint | Constraints, skip_validation=False):
-        logger.debug("Creating a new constraint evaluator with type '{0}' and constraint '{1}'.", constraint_type, constraint)
-
-        self.solver = Solver()
-
-        self.constraint_type = constraint_type
-        self.constraint = constraint
-
-        if skip_validation:
-            return
-
-        for variable in constraint.variables:
-            if constraint_type == "smt-lib2":
-                expression = f"(declare-const {variable} String)"
-                try:
-                    logger.info("Declaring variable \"{0}\" with expression \"{1}\".", variable, expression)
-                    self.solver.from_string(expression)
-                except Z3Exception as ex:
-                    logger.error("Variable declaration failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("variable declaration failed", expression, ex)
-
-                logger.info("Variable declared successfully: \"{0}\".", expression)
-
-            elif constraint_type == "z3py":
-                expression = f"{variable} = String('{variable}')"
-                logger.info("Declaring variable {0} with expression \"{1}\".", variable, expression)
-
-                if not variable.isidentifier():
-                    logger.error("Variable declaration failed: the variable name {0} is not a valid Python identifier.", variable)
-                    raise ValueError("variable declaration failed", f"'{variable}'",
-                                     f"The variable name '{variable}' is not a valid Python identifier.")
-
-                if keyword.iskeyword(variable):
-                    logger.error("Variable declaration failed: the variable name {0} is a Python keyword.", variable)
-                    raise ValueError("variable declaration failed", f"'{variable}'",
-                                     f"The variable name '{variable}' is a Python keyword.")
-
-                if variable in globals():
-                    logger.error("Variable declaration failed: the variable name {0} is already defined in the global scope.", variable)
-                    raise ValueError("variable declaration failed", f"'{variable}'",
-                                     f"The variable name '{variable}' is already defined in the global scope. You are allowed to come up with a different name for the variable.")
-
-                try:
-                    exec(expression)
-                except Exception as ex:
-                    logger.error("Variable declaration failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("variable declaration failed", expression, ex)
-
-                logger.info("Variable declared successfully: \"{0}\".", expression)
-
-
-        if isinstance(constraint, Constraint):
-            if constraint_type == "smt-lib2":
-                expression = f"(assert {constraint.constraint})"
-                logger.info("Asserting constraint \"{0}\".", expression)
-                try:
-                    self.solver.from_string(expression)
-                except Z3Exception as ex:
-                    logger.error("Constraint assertion failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("constraint assertion failed", expression, ex)
-
-                logger.info("Constraint asserted successfully: \"{0}\".", expression)
-            elif constraint_type == "z3py":
-                expression = f"self.solver.add({constraint.constraint})"
-                logger.info("Asserting constraint \"{0}\".", expression)
-                try:
-                    exec(expression)
-                except SyntaxError as err:
-                    if "was never closed" in err.msg:
-                        exec(expression + ")")
-                    else:
-                        raise ValueError("constraint assertion failed", expression, err)
-                except Exception as ex:
-                    logger.error("Constraint assertion failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("constraint assertion failed", expression, ex)
-
-                logger.info("Constraint asserted successfully: \"{0}\".", expression)
-        elif isinstance(constraint, Constraints):
-            for c in constraint.constraint:
-                if constraint_type == "smt-lib2":
-                    expression = f"(assert {c})"
-                    logger.info("Asserting constraint \"{0}\".", expression)
-                    try:
-                        self.solver.from_string(expression)
-                    except Z3Exception as ex:
-                        logger.error("Constraint assertion failed: \"{0}\": {1}", expression, str(ex))
-                        raise ValueError("constraint assertion failed", expression, ex)
-
-                    logger.info("Constraint asserted successfully: \"{0}\".", expression)
-                elif constraint_type == "z3py":
-                    expression = f"self.solver.add({c})"
-                    logger.info("Asserting constraint \"{0}\".", expression)
-                    try:
-                        exec(expression)
-                    except SyntaxError as err:
-                        if "was never closed" in err.msg:
-                            exec(expression + ")")
-                        else:
-                            raise ValueError("constraint assertion failed", expression, err)
-                    except Exception as ex:
-                        logger.error("Constraint assertion failed: \"{0}\": {1}", expression, str(ex))
-                        raise ValueError("constraint assertion failed", expression, ex)
-
-                    logger.info("Constraint asserted successfully: \"{0}\".", expression)
-
-        if isinstance(constraint, Constraint):
-            logger.info(f"Checking if the constraint is satisfiable.")
-            if self.solver.check() == "unsat":
-                logger.error("Constraint is unsatisfiable: \"{0}\".", self.solver.sexpr())
-                raise ValueError("constraint is unsatisfiable", self.solver.sexpr())
-
-            logger.info("Constraint is satisfiable: \"{0}\".", self.solver.sexpr())
-
+    constraint: Constraint | Constraints = None
+    solver: Solver = None
 
     def evaluate(self, *args) -> bool:
         """
@@ -134,54 +28,32 @@ class ConstraintEvaluator:
         logger.debug("Evaluating [{0}] with constraint \"{1}\".", str(args), self.constraint)
 
         if len(args) != len(self.constraint.variables):
-            logger.error("Expected {0} arguments, but got {1}.", len(self.constraint.variables), len(args))
             raise IndexError(f"Expected {len(self.constraint.variables)} arguments, but got {len(args)}.")
 
         base_expression = self.solver.sexpr()
 
-        if self.constraint_type == "smt-lib2":
-            for variable, value in zip(self.constraint.variables, args):
-                expression = f'(assert (= {variable} "{value}"))'
-                logger.info("Assigning value \"{0}\" to variable \"{1}\" with expression \"{2}\".", value, variable, expression)
-                try:
-                    self.solver.from_string(expression)
-                except Z3Exception as ex:
-                    logger.error("Variable assignment failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("variable assignment failed", expression, ex)
+        for variable, value in zip(self.constraint.variables, args):
+            expression = f'(assert (= {variable} "{value}"))'
+            logger.info("Assigning value \"{0}\" to variable \"{1}\" with expression \"{2}\".", value, variable, expression)
 
-                logger.info("Variable assigned successfully: \"{0}\".", expression)
+            try:
+                self.solver.from_string(expression)
+            except Z3Exception as ex:
+                logger.error("Variable assignment failed: \"{0}\": {1}", expression, str(ex))
+                raise ValueError("variable assignment failed", expression, ex)
 
-        if self.constraint_type == "z3py":
-            for variable, value in zip(self.constraint.variables, args):
-                expression = f"{variable} = String('{variable}')"
-                logger.info("Declaring variable \"{0}\" with expression \"{1}\".", variable, expression)
-                try:
-                    exec(expression)
-                except Exception as ex:
-                    logger.error("Variable declaration failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("variable declaration failed", expression, ex)
-
-                logger.info("Variable declared successfully: \"{0}\".", expression)
-
-                expression = f"self.solver.add({variable} == '{value}')"
-                logger.info("Assigning value \"{0}\" to variable \"{1}\" with expression \"{2}\".", value, variable, expression)
-                try:
-                    exec(expression)
-                except Exception as ex:
-                    logger.error("Variable assignment failed: \"{0}\": {1}", expression, str(ex))
-                    raise ValueError("variable assignment failed", expression, ex)
-
-                logger.info("Variable assigned successfully: \"{0}\".", expression)
+            logger.info("Variable assigned successfully: \"{0}\".", expression)
 
 
         logger.info("Checking if the constraint is satisfied.")
-        is_sat = str(self.solver.check()) == "sat"
+        is_sat = self.solver.check().r == 1
         logger.info("Constraint is satisfied: {0}.", is_sat)
 
         self.solver.reset()
         self.solver.from_string(base_expression)
 
         return is_sat
+
 
     def safe_evaluate(self, *args) -> bool:
         """
@@ -194,3 +66,43 @@ class ConstraintEvaluator:
         except Exception as ex:
             logger.error("Error evaluating constraint: {0}", str(ex))
             return False
+
+
+    @staticmethod
+    def create_evaluator_with_single_constraint(constraint_type: str, constraint: Constraint) -> "ConstraintEvaluator":
+        logger.debug("Creating a new constraint evaluator with type '{0}' and constraint '{1}'.", constraint_type, constraint)
+
+        constraint_evaluator = ConstraintEvaluator()
+        constraint_evaluator.constraint = constraint
+
+        if constraint_type == "smt-lib2":
+            constraint_evaluator.solver = create_solver_with_smt_lib2_constraint(constraint)
+
+        elif constraint_type == "z3py":
+            constraint_evaluator.solver = create_solver_with_z3py_constraint(constraint)
+
+        else:
+            raise ValueError(f"Unknown constraint type: {constraint_type}")
+
+        return constraint_evaluator
+
+
+    @staticmethod
+    def create_evaluator_with_multiple_constraints(constraint_type: str, constraints: Constraints) -> tuple["ConstraintEvaluator", list[tuple[int, Exception]]]:
+        logger.debug("Creating a new constraint evaluator with type '{0}' and constraint '{1}'.", constraint_type, constraints)
+
+        constraint_evaluator = ConstraintEvaluator()
+        constraint_evaluator.constraint = constraints
+
+        if constraint_type == "smt-lib2":
+            solver, error_list = create_solver_with_smt_lib2_constraints(constraints)
+
+        elif constraint_type == "z3py":
+            solver, error_list = create_solver_with_z3py_constraints(constraints)
+
+        else:
+            raise ValueError(f"Unknown constraint type: {constraint_type}")
+
+        constraint_evaluator.solver = solver
+
+        return constraint_evaluator, error_list

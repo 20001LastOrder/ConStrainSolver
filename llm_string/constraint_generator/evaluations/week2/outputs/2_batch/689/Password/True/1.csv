@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[A-Z]""))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[a-z]""))))",1,0
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[A-Z]""))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[a-z]""))))",0,1
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.range (str.to.re ""A"") (str.to.re ""Z"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.range (str.to.re ""a"") (str.to.re ""z"")))))",0,2
+(exists ((c String)) (and (str.contains s c) (forall ((i Int)) (=> (and (>= i 0) (< i (str.len c))) (isUpper (str.at c i)))))),(exists ((c String)) (and (str.contains s c) (forall ((i Int)) (=> (and (>= i 0) (< i (str.len c))) (isLower (str.at c i))))),0,3
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (str.to.re ""[A-Z]"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (str.to.re ""[a-z]"")))))",1,4
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (str.to.re ""[A-Z]"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (str.to.re ""[a-z]"")))))",0,5
+"(str.contains s (str.to.re ""[A-Z]""))","(str.contains s (str.to.re ""[a-z]""))",0,6
+(exists ((c String)) (and (str.contains s c) (>= (str.to.utf8 c) 65) (<= (str.to.utf8 c) 90))),(exists ((c String)) (and (str.contains s c) (>= (str.to.utf8 c) 97) (<= (str.to.utf8 c) 122))),0,7
+"(exists ((c String)) (and (str.contains s c) (or (and (>= (str.to.int c) (str.to.int ""A"")) (<= (str.to.int c) (str.to.int ""Z""))))))","(exists ((c String)) (and (str.contains s c) (or (and (>= (str.to.int c) (str.to.int ""a"")) (<= (str.to.int c) (str.to.int ""z"")))))",0,8
+"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (str.to.re ""[A-Z]"")))))","(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (str.to.re ""[a-z]"")))))",1,9

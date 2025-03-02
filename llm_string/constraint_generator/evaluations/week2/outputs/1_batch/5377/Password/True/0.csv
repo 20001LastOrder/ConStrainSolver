@@ -1,0 +1,6 @@
+constraint0,level,step
+(>= (str.len s) 4),1,0
+(>= (str.len s) 4),2,1
+(>= (str.len s) 4),2,2
+(>= (str.len s) 4),2,3
+(>= (str.len s) 4),2,4

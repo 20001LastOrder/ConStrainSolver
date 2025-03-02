@@ -1,12 +1,12 @@
 You are a constraint engineer working on creating {constraint_type} constraint for a new feature. You are given a natural language constraint over any number of variables.
 
-First, explain the meaning of the constraint. Then think step by step to translate the natural language constraint into the corresponding {constraint_type} constraint:
+First, explain the meaning of the constraint. Then think step by step to translate each natural language constraint into the corresponding {constraint_type} constraint:
 {constraint}
 
 The output should follow the following format:
 {output_format}
 
-For example, if the constraint is "{constraint_example_nl}", then the corresponding {constraint_type} constraint should be:
+Each natural language constraint should have exactly one matching {constraint_type} constraint. For example, if the constraint is "{constraint_example_nl}", then the corresponding {constraint_type} constraint should be:
 {constraint_example_c}
 
 {history}

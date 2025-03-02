@@ -1,0 +1,11 @@
+constraint0,constraint1,level,step
+"(and (not (= (str.indexof s ""-"") -1)) (not (= (str.indexof s ""-"" (str.indexof s ""-"") + 1) -1)))","(let ((year (str.substr s 0 (str.indexof s ""-"")))) (and (>= (str.to.int year) 0) (<= (str.to.int year) 2025)))",0,0
+"(= (str.count s ""-"") 2)","(let ((first-hyphen (str.indexof s ""-""))) (and (>= (str.to.int (str.substr s 0 first-hyphen)) 0) (<= (str.to.int (str.substr s 0 first-hyphen)) 2025)))",0,1
+"(= (str.count s ""-"") 2)","(let ((before-hyphen (str.substr s 0 (str.indexof s ""-"")))) (and (>= (str.to.int before-hyphen) 0) (<= (str.to.int before-hyphen) 2025)))",0,2
+"(= (str.count s ""-"") 2)","(let ((pos (str.indexof s ""-""))) (and (>= (str.to.int (str.substr s 0 pos)) 0) (<= (str.to.int (str.substr s 0 pos)) 2025)))",0,3
+"(= (str.count s ""-"") 2)","(let ((before-hyphen (str.substr s 0 (str.indexof s ""-"")))) (and (>= (str.to.int before-hyphen) 0) (<= (str.to.int before-hyphen) 2025)))",0,4
+"(= (str.count s ""-"") 2)","(let ((pos (str.indexof s ""-""))) (and (not (= pos -1)) (<= (str.to.int (str.substr s 0 pos)) 2025) (>= (str.to.int (str.substr s 0 pos)) 0)))",0,5
+"(= (str.count s ""-"") 2)","(let ((num_before_hyphen (str.to.int (str.substring s 0 (str.indexof s ""-""))))) (and (>= num_before_hyphen 0) (<= num_before_hyphen 2025)))",0,6
+"(= (str.count s ""-"") 2)","(let ((pos (str.indexof s ""-""))) (and (>= (str.to.int (str.substr s 0 pos)) 0) (<= (str.to.int (str.substr s 0 pos)) 2025)))",0,7
+"(= (str.count s ""-"") 2)","(let ((prefix (str.substr s 0 (str.indexof s ""-"")))) (and (>= (str.to.int prefix) 0) (<= (str.to.int prefix) 2025)))",0,8
+"(= (str.count s ""-"") 2)","(let ((num (str.to.int (str.substr s 0 (str.indexof s ""-""))))) (and (>= num 0) (<= num 2025)))",0,9
