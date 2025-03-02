@@ -1,4 +1,6 @@
+import os
 import subprocess
+import tempfile
 
 from z3 import Solver, sat, unknown, unsat
 
@@ -28,19 +30,21 @@ class CVC5Solver(BaseStringSolver):
         cons_str = cons_str.replace("str.to.int", "str.to_int")
         cons_str = cons_str.replace("re.complement", "re.comp")
 
-        with open("constraints.smt2", "w") as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".smt2", delete=False) as f:
             f.write(cons_str)
+            temp_file_name = f.name
 
         result = subprocess.run(
             [
                 "solvers/cvc5-Win64-x86_64-static/bin/cvc5.exe",
-                "constraints.smt2",
+                temp_file_name,
                 "--tlimit=5000",
             ],
             capture_output=True,
             text=True,
         )
         output = result.stdout.strip()
+        os.remove(temp_file_name)
 
         # parse outcome
         sat_res = output.split("\n")[0]
@@ -51,7 +55,7 @@ class CVC5Solver(BaseStringSolver):
             string_val_line = output.split("\n")[2]
             assert string_val_line.startswith('(define-fun s () String "')
 
-            str_val = string_val_line[len('(define-fun s () String "'):-2]
+            str_val = string_val_line[len('(define-fun s () String "') : -2]
 
             start_index = output.find('(define-fun s () String "') + len(
                 '(define-fun s () String "'

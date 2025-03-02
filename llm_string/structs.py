@@ -65,7 +65,7 @@ class SolutionStore(BaseModel):
         unsat_count_proposals = []
         sat_proposals = []
         for solution in self.solutions:
-            if solution.value != "":
+            if solution.value != "" and solution.status != "unsat":
                 sat_proposals.append(solution)
             else:
                 unsat_count_proposals.append(solution)
@@ -76,4 +76,13 @@ class SolutionStore(BaseModel):
             return min(sat_proposals, key=lambda x: len(x.failed_constraints))
 
     def get_counter_examples(self) -> list[ValidatorFeedback]:
-        return [solution for solution in self.solutions if solution.status == "unsat"]
+        counter_examples = [
+            solution for solution in self.solutions if solution.status == "unsat"
+        ]
+
+        results = []
+        for example in counter_examples:
+            logger.info(example.value)
+            if example.value != "":
+                results.append(example)
+        return results

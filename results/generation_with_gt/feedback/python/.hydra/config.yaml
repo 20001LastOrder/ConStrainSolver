@@ -1,0 +1,22 @@
+constraint_store:
+  _target_: llm_string.constraints.ConstraintStore
+  file_path: constraint_files/constraints.csv
+  sample_ids:
+  - Name
+  - Email
+  - Password
+  - Url
+  - Date
+  - IBAN
+string_solver:
+  llm:
+    _target_: langchain_openai.ChatOpenAI
+    model: gpt-4o-mini
+    temperature: 0.7
+  validator:
+    _target_: llm_string.string_validator.PythonStringValidator
+  _target_: llm_string.string_solvers.llm_solver_with_feedback.LLMSolverWithFeedback
+  use_variable_name: true
+  name: llm_with_feedback
+output_folder: outputs/${string_solver.name}/feedbback_no_unsat_voting_new_prompt/
+num_processes: 8

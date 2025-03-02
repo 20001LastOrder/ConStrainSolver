@@ -3,7 +3,8 @@ from langchain_core.language_models import BaseChatModel
 from llm_string.base import Result
 from llm_string.prompts.llm_prompt import get_prompt
 from llm_string.string_solvers.base import BaseStringSolver
-from llm_string.string_solvers.utils import generation_with_retry
+from llm_string.string_solvers.utils import (generation_with_retry,
+                                             value_to_status)
 from llm_string.structs import ConstraintProblem
 from llm_string.utils import JSONPydanticOutputParser
 
@@ -27,12 +28,11 @@ class LLMSolver(BaseStringSolver):
             name = "x"
 
         result = generation_with_retry(
-            chain, {"name": name, "constraints": constraints}
+            chain, {"name": name, "constraints": constraints}, self.parser
         )
 
-        if result.lower() != "unsat":
-            problem.status = "sat"
-            problem.value = result
-        else:
-            problem.status = "unsat"
+        result, status = value_to_status(result)
+        problem.status = status
+        problem.value = result
+
         return problem

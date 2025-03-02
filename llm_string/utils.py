@@ -21,11 +21,13 @@ string_array_pattern = re.compile(
 
 class JSONPydanticOutputParser(PydanticOutputParser):
     def parse(self, output: str):
+        logger.info(output)
         json_pattern = re.compile(r"```(json)?\n(.*?)\n```", re.DOTALL)
-        match = json_pattern.search(output)
+        matches = json_pattern.findall(output)
 
-        if match:
-            json_object = json.loads(match.group(2))
+        if len(matches) > 0:
+            match = matches[-1][1]
+            json_object = json.loads(match)
             return self._parse_obj(json_object)
         else:
             raise ValueError("No JSON found in the output.")
