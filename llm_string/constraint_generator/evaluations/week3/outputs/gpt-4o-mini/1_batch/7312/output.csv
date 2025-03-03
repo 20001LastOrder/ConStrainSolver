@@ -1,0 +1,248 @@
+name,mask,nl_constraint,function
+Name,True,"The name shall only contain letters a-z, letters A-Z and space characters.","def this_function(s: str) -> bool:
+    ''' Check if the name shall only contain letters a-z, letters A-Z and space characters.'''
+    # Define a regular expression pattern that matches only letters and spaces
+    pattern = r'^[a-zA-Z\s]+$'
+    
+    # Use re.match to check if the entire string matches the pattern
+    return bool(re.match(pattern, s))"
+Name,True,The name shall contain at least one space character.,"def this_function(s: str) -> bool: 
+    ''' Check if the name contains at least one space character. '''
+    return ' ' in s"
+Name,True,The name shall not end with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the name shall not end with a space character. '''
+    return not s.endswith(' ')"
+Name,True,The name shall not start with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if the name does not start with a space character.'''
+    return not s.startswith(' ')"
+Name,False,"The name shall not contain letters a-z, letters A-Z and spaces.","def this_function(s: str) -> bool:
+    ''' Check if the name does not contain letters a-z, letters A-Z, and spaces. '''
+    # Check if any character in the string is a letter or a space
+    for char in s:
+        if char.isalpha() or char.isspace():
+            return False
+    return True"
+Name,False,The name shall contain no space character.,"def this_function(s: str) -> bool: 
+    ''' Check if the name shall contain no space character.'''
+    return ' ' not in s"
+Name,False,The name shall end with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if the name ends with a space character.'''
+    return s.endswith(' ')"
+Name,False,The name shall start  with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the string starts with a space character. '''
+    return s.startswith(' ')"
+Email,True,The email shall not contain a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if the email shall not contain a space character.'''
+    return ' ' not in s"
+Email,True,The email shall not start with a @ character.,"def this_function(s: str) -> bool:
+    ''' Check if the email does not start with a @ character.'''
+    return not s.startswith('@')"
+Email,True,The email shall have exactly one @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if the email has exactly one @ character.'''
+    return s.count('@') == 1"
+Email,True,"If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.","def this_function(s: str) -> bool:
+    ''' Check if the email contains a @ character, and if so, 
+        it shall include a dot character (.) after the @ character 
+        but before the end of the string. '''
+    
+    # Check if there is an '@' in the string
+    at_index = s.find('@')
+    
+    if at_index == -1:
+        # No '@' character found
+        return False
+    
+    # Check if there is a '.' after the '@' and before the end of the string
+    return '.' in s[at_index + 1:]"
+Email,False,The email shall contain a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the email contains a space character. Returns True if it does, False otherwise. '''
+    return ' ' in s"
+Email,False,The email shall start with a @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if the email does not start with a @ character and contains at least one @ character.'''
+    return s.startswith('@') == False and '@' in s"
+Email,False,The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool:
+    ''' Check if the email has either no @ characters or more than one @ character. '''
+    at_count = s.count('@')
+    return at_count == 0 or at_count > 1"
+Email,False,"If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.","def this_function(s: str) -> bool:
+    ''' Check if the email contains a @ character, 
+        then the email shall not include any dot characters (.) 
+        after the @ character and before the end. '''
+    
+    # Check if '@' is present in the string
+    at_index = s.find('@')
+    if at_index == -1:
+        return False  # No '@' character found, return False
+    
+    # Check if there are any '.' characters after the '@'
+    if '.' in s[at_index + 1:]:
+        return False  # There is a '.' after '@', return False
+    
+    return True  # Conditions are met, return True"
+Password,True,The password shall be at least 4 characters long.,"def this_function(s: str) -> bool: 
+    ''' Check if the password is at least 4 characters long. '''
+    return len(s) >= 4"
+Password,True,"The password shall contain one of the following characters: !, #, $.","def this_function(s: str) -> bool:
+    ''' Check if the password contains one of the following characters: !, #, $. '''
+    return any(char in s for char in ['!', '#', '$'])"
+Password,True,The password shall contain at least one upper case characters.,"def this_function(s: str) -> bool:
+    ''' Check if the password contains at least one uppercase character. '''
+    for char in s:
+        if char.isupper():
+            return True
+    return False"
+Password,True,The password shall contain at least one lower case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password contains at least one lowercase character. '''
+    return any(char.islower() for char in s)"
+Password,False,The password shall contain less than 4 characters.,"def this_function(s: str) -> bool: 
+    '''Check if the password contains less than 4 characters.'''
+    return len(s) < 4"
+Password,False,"The password shall not contain any of the following characters: !, #, $.","def this_function(s: str) -> bool: 
+    ''' Check if the password does not contain any of the following characters: !, #, $.'''
+    # Define the characters to check for
+    forbidden_characters = {'!', '#', '$'}
+    
+    # Check if any forbidden character is in the string
+    for char in forbidden_characters:
+        if char in s:
+            return False  # Return False if any forbidden character is found
+            
+    return True  # Return True if no forbidden characters are found"
+Password,False,The password shall not contain any upper case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall not contain any upper case characters.'''
+    # Check if there are any uppercase characters in the string
+    return not any(char.isupper() for char in s)"
+Password,False,The password shall not contain any lower case characters.,"def this_function(s: str) -> bool:
+    ''' Check if the password shall not contain any lower case characters. '''
+    # Return True if there are no lowercase characters in the string, otherwise return False
+    return not any(c.islower() for c in s)"
+Date,True,The date shall contain two hyphens.,"def this_function(s: str) -> bool:
+    ''' Check if the date contains exactly two hyphens. '''
+    return s.count('-') == 2"
+Date,True,"If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool:
+    ''' Check if if there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025. '''
+    
+    # Find the index of the first hyphen
+    hyphen_index = s.find('-')
+    
+    # If no hyphen is found, return False
+    if hyphen_index == -1:
+        return False
+    
+    # Extract the part before the hyphen
+    part_before_hyphen = s[:hyphen_index]
+    
+    # Check if the part before the hyphen is a number
+    if part_before_hyphen.isdigit():
+        number = int(part_before_hyphen)
+        # Check if the number is between 0 and 2025
+        return 0 <= number <= 2025
+    
+    # If it's not a number, return False
+    return False"
+Date,True,"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool: 
+    ''' Check if there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12. '''
+    
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least three parts (which means at least two hyphens)
+    if len(parts) < 3:
+        return False
+    
+    # Extract the part between the first and second hyphen
+    number_part = parts[1]
+    
+    # Check if this part is a number and is between 1 and 12
+    try:
+        number = int(number_part)
+        return 1 <= number <= 12
+    except ValueError:
+        return False"
+Date,True,"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool: 
+    ''' Check if there are at least two hyphens, 
+        and the part after the second hyphen is a number between 1 and 31. '''
+    
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+    
+    # Get the part after the second hyphen
+    after_second_hyphen = parts[2].strip()
+    
+    # Check if it's a number and within the range 1 to 31
+    if after_second_hyphen.isdigit():
+        number = int(after_second_hyphen)
+        return 1 <= number <= 31
+    
+    return False"
+Date,False,"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    ''' Check if the date contains either no hyphens, one hyphen, or more than two hyphens. '''
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+Date,False,"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.","def this_function(s: str) -> bool:
+    ''' Check if If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.'''
+    
+    # Check if there is at least one hyphen in the string
+    if '-' in s:
+        # Split the string at the first hyphen
+        before_hyphen = s.split('-', 1)[0]
+        
+        # Try to convert the part before the hyphen to an integer
+        try:
+            number = int(before_hyphen)
+            # Check if the number is smaller than 0 or larger than 2025
+            return number < 0 or number > 2025
+        except ValueError:
+            # If conversion fails, it means the part before the hyphen is not a valid integer
+            return False
+    else:
+        # If there is no hyphen, we return False as per the requirement
+        return False"
+Date,False,"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.","def this_function(s: str) -> bool: 
+    ''' Check if the date has at least two hyphens, 
+        and the part after the first hyphen but before the second hyphen 
+        shall be a number smaller than 1 or a number larger than 12. '''
+    
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens (which means at least three parts)
+    if len(parts) < 3:
+        return False
+    
+    # Extract the part after the first hyphen but before the second hyphen
+    middle_part = parts[1]
+    
+    # Check if middle_part is a number
+    try:
+        number = int(middle_part)
+    except ValueError:
+        return False
+    
+    # Check if the number is smaller than 1 or larger than 12
+    return number < 1 or number > 12"
+Date,False,"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","def this_function(s: str) -> bool:
+    ''' Check if the date has at least two hyphens, and the part after the second hyphen shall be a number smaller than 1 or larger than 31. '''
+    
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+    
+    # Get the part after the second hyphen
+    part_after_second_hyphen = parts[2]
+    
+    # Check if it is a number
+    try:
+        number = int(part_after_second_hyphen)
+    except ValueError:
+        return False
+    
+    # Check if the number is smaller than 1 or larger than 31
+    return number < 1 or number > 31"

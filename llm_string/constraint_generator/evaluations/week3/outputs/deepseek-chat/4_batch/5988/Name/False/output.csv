@@ -1,0 +1,20 @@
+constraint,function
+"The name shall not contain letters a-z, letters A-Z and spaces.","def this_function(s: str) -> bool:
+    ''' Check if The name shall not contain letters a-z, letters A-Z and spaces.'''
+    # Check if the string contains any lowercase or uppercase letters or spaces
+    for char in s:
+        if char.isalpha() or char == ' ':
+            return False
+    return True"
+The name shall contain no space character.,"def this_function(s: str) -> bool:
+    ''' Check if The name shall contain no space character.'''
+    # Check if the string contains any space character
+    return ' ' not in s"
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if The name shall end with a space character.'''
+    # Check if the string ends with a space character
+    return s.endswith(' ')"
+The name shall start  with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if The name shall start with a space character.'''
+    # Check if the string starts with a space character
+    return s.startswith(' ')"

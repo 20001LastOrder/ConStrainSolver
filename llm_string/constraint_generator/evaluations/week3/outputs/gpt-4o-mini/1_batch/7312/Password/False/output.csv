@@ -1,0 +1,23 @@
+constraint,function
+The password shall contain less than 4 characters.,"def this_function(s: str) -> bool: 
+    '''Check if the password contains less than 4 characters.'''
+    return len(s) < 4"
+"The password shall not contain any of the following characters: !, #, $.","def this_function(s: str) -> bool: 
+    ''' Check if the password does not contain any of the following characters: !, #, $.'''
+    # Define the characters to check for
+    forbidden_characters = {'!', '#', '$'}
+    
+    # Check if any forbidden character is in the string
+    for char in forbidden_characters:
+        if char in s:
+            return False  # Return False if any forbidden character is found
+            
+    return True  # Return True if no forbidden characters are found"
+The password shall not contain any upper case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall not contain any upper case characters.'''
+    # Check if there are any uppercase characters in the string
+    return not any(char.isupper() for char in s)"
+The password shall not contain any lower case characters.,"def this_function(s: str) -> bool:
+    ''' Check if the password shall not contain any lower case characters. '''
+    # Return True if there are no lowercase characters in the string, otherwise return False
+    return not any(c.islower() for c in s)"

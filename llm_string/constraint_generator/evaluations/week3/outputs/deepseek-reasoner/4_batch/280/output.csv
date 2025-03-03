@@ -1,0 +1,77 @@
+name,mask,nl_constraint,function
+Name,True,"The name shall only contain letters a-z, letters A-Z and space characters.","def this_function(s: str) -> bool: 
+    ''' Check if The name shall only contain letters a-z, letters A-Z and space characters.'''
+    return bool(re.fullmatch(r'[A-Za-z ]*', s))"
+Name,True,The name shall contain at least one space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall contain at least one space character.'''
+    return ' ' in s"
+Name,True,The name shall not end with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall not end with a space character.'''
+    return not s.endswith(' ')"
+Name,True,The name shall not start with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall not start with a space character.'''
+    return not s.startswith(' ')"
+Name,False,"The name shall not contain letters a-z, letters A-Z and spaces.",
+Name,False,The name shall contain no space character.,
+Name,False,The name shall end with a space character.,
+Name,False,The name shall start  with a space character.,
+Email,True,The email shall not contain a space character.,
+Email,True,The email shall not start with a @ character.,
+Email,True,The email shall have exactly one @ character.,
+Email,True,"If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.",
+Email,False,The email shall contain a space character.,"def this_function(s: str) -> bool:
+    ''' Check if The email shall contain a space character.'''
+    return ' ' in s"
+Email,False,The email shall start with a @ character.,"def this_function(s: str) -> bool:
+    ''' Check if The email shall start with a @ character.'''
+    return s.startswith('@')"
+Email,False,The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool:
+    ''' Check if The email shall have either no @ characters or more than one @ character.'''
+    count = s.count('@')
+    return count == 0 or count > 1"
+Email,False,"If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.","def this_function(s: str) -> bool:
+    ''' Check if If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.'''
+    if '@' in s:
+        after_at = s.split('@', 1)[1]
+        return '.' not in after_at
+    return True"
+Password,True,The password shall be at least 4 characters long.,
+Password,True,"The password shall contain one of the following characters: !, #, $.",
+Password,True,The password shall contain at least one upper case characters.,
+Password,True,The password shall contain at least one lower case characters.,
+Password,False,The password shall contain less than 4 characters.,
+Password,False,"The password shall not contain any of the following characters: !, #, $.",
+Password,False,The password shall not contain any upper case characters.,
+Password,False,The password shall not contain any lower case characters.,
+Date,True,The date shall contain two hyphens.,"def this_function(s: str) -> bool:
+    return s.count('-') == 2"
+Date,True,"If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool:
+    if '-' not in s:
+        return True
+    first_part = s.split('-', 1)[0]
+    if not first_part.isdigit():
+        return False
+    year = int(first_part)
+    return 0 <= year <= 2025"
+Date,True,"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool:
+    if s.count('-') < 2:
+        return True
+    parts = s.split('-', 2)
+    month_part = parts[1]
+    if not month_part.isdigit():
+        return False
+    month = int(month_part)
+    return 1 <= month <= 12"
+Date,True,"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool:
+    if s.count('-') < 2:
+        return True
+    parts = s.split('-', 2)
+    day_part = parts[2]
+    if not day_part.isdigit():
+        return False
+    day = int(day_part)
+    return 1 <= day <= 31"
+Date,False,"The date shall contain either no hyphens, one hyphen or more than two hyphens.",
+Date,False,"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.",
+Date,False,"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.",
+Date,False,"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.",

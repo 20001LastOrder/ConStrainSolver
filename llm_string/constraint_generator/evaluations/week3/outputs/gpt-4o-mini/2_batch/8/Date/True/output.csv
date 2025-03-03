@@ -1,0 +1,50 @@
+constraint,function
+The date shall contain two hyphens.,"def this_function(s: str) -> bool: 
+    ''' Check if the date contains exactly two hyphens.'''
+    return s.count('-') == 2"
+"If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool: 
+    ''' Check if there is at least one hyphen and the part before the first hyphen is a number between 0 and 2025.'''
+    if '-' in s:
+        # Split the string at the first hyphen
+        first_part = s.split('-')[0]
+        # Check if the first part is a number and within the specified range
+        if first_part.isdigit():
+            number = int(first_part)
+            return 0 <= number <= 2025
+    return False"
+"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool: 
+    ''' Check if there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.'''
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+    
+    # The part after the first hyphen and before the second hyphen
+    month_part = parts[1]
+    
+    # Check if it's a number between 1 and 12
+    if month_part.isdigit():
+        month = int(month_part)
+        return 1 <= month <= 12
+    
+    return False"
+"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool: 
+    ''' Check if there are at least two hyphens, The part after the second hyphen shall be a number between 1 and 31.'''
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+    
+    # The part after the second hyphen
+    day_part = parts[2]
+    
+    # Check if it's a number between 1 and 31
+    if day_part.isdigit():
+        day = int(day_part)
+        return 1 <= day <= 31
+    
+    return False"

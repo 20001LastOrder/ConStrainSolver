@@ -1,4 +1,4 @@
-﻿Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation
+﻿Name,Content,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation,Functions
 Name,"Capitalization, Specific characters, ","The name shall only contain letters a-z, letters A-Z and space characters.
 
 The name shall contain at least one space character.
@@ -35,7 +35,7 @@ In the name, there shall be some characters following a space character which ar
 
 (assert (not (str.in.re (str.at s 0) (re.range ""A"" ""Z""))))
 
-(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) )))"
+(assert (str.in.re s  (re.++ (re.* re.allchar) (str.to.re "" "") (re.inter (re.complement (re.range ""A"" ""Z"")) re.allchar ) (re.* re.allchar) )))","[""def constraint1(name: str) -> bool:\n    \""\""\""\n    The name shall only contain letters a-z, letters A-Z and space characters.\n    \""\""\""\n    return all(c.isalpha() or c.isspace() for c in name)"", ""def constraint2(name: str) -> bool:\n    \""\""\""\n    The name shall contain at least one space character.\n    \""\""\""\n    return any(c.isspace() for c in name)"", ""def constraint3(name: str) -> bool:\n    \""\""\""\n    The name shall not end with a space character.\n    \""\""\""\n    return not name.endswith(\"" \"")"", ""def constraint4(name: str) -> bool:\n    \""\""\""\n    The name shall not start with a space character.\n    \""\""\""\n    return not name.startswith(\"" \"")""]"
 Email," not email.contains("" "")
 
 // email must contain some characters (anything is allowed except @), a @, some characters, a dot, and some characters
@@ -71,7 +71,7 @@ If the email contains a @ character, then the email shall not include any dot ch
 
 (assert (not (and (str.contains s ""@"") (not (str.in.re s  (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar)))))))
 
-(assert (not (str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) ""."")))"
+(assert (not (str.contains (str.substr s (str.indexof s ""@"" 0) (str.len s)) ""."")))","[""def constraint1(email: str) -> bool:\n    \""\""\""\n    The email shall not contain a space character.\n    \""\""\""\n    return \"" \"" not in email"", ""def constraint2(email: str) -> bool:\n    \""\""\""\n    The email shall not start with a @ character.\n    \""\""\""\n    return not email.startswith(\""@\"")"", ""def constraint3(email: str) -> bool:\n    \""\""\""\n    The email shall have exactly one @ character.\n    \""\""\""\n    return email.count(\""@\"") == 1"", ""def constraint4(email: str) -> bool:\n    \""\""\""\n    If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.\n    \""\""\""\n    if \""@\"" in email:\n        return \"".\"" in email.split(\""@\"", 1)[1]\n    return False""]"
 Password,"// password must be at least four characters long
 password.length() > 3
 // password must contain a special character out of !#$
@@ -103,14 +103,14 @@ The password shall not contain any lower case characters.","(assert (>= (str.len
 
 (assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""A"" ""Z"") (re.* re.allchar)))))
 
-(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar)))))"
+(assert (not (str.in.re s  (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar)))))","[""def constraint1(password: str) -> bool:\n    \""\""\""\n    The password shall be at least 4 characters long.\n    \""\""\""\n    return len(password) >= 4"", ""def constraint2(password: str) -> bool:\n    \""\""\""\n    The password shall contain one of the following characters: !, #, $.\n    \""\""\""\n    return any(char in password for char in \""!#$\"")"", ""def constraint3(password: str) -> bool:\n    \""\""\""\n    The password shall contain at least one upper case characters.\n    \""\""\""\n    return any(char.isupper() for char in password)"", ""def constraint4(password: str) -> bool:\n    \""\""\""\n    The password shall contain at least one lower case characters.\n    \""\""\""\n    return any(char.islower() for char in password)""]"
 Date,,"The date shall contain two hyphens.
 
-The date shall have a number between 0 and 2025 before the first hyphen.
+If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.
 
-The date shall have a number between 1 and 12 after the first hyphen but before the second hyphen.
+If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.
 
-The date shall have a number between 1 and 31 after the second hyphen.","The date shall contain either no hyphens, one hyphen or more than two hyphens.
+If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","The date shall contain either no hyphens, one hyphen or more than two hyphens.
 
 If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.
 
@@ -128,4 +128,4 @@ If the date has at least two hyphens, the part after the second hyphen shall be 
 
 (assert (let ((start2 (+ (str.indexof s ""-"" 0) 1)) (end2 (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (not (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12))))))
 
-(assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))"
+(assert (let ((start3 (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))","[""def constraint1(date: str) -> bool:\n    \""\""\""\n    The date shall contain two hyphens.\n    \""\""\""\n    return date.count(\""-\"") == 2"", ""def constraint2(date: str) -> bool:\n    \""\""\""\n    If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.\n    \""\""\""\n    if \""-\"" in date:\n        part = date.split(\""-\"")[0]\n        return part.isdigit() and 0 <= int(part) <= 2025\n    return True"", ""def constraint3(date: str) -> bool:\n    \""\""\""\n    If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.\n    \""\""\""\n    if date.count(\""-\"") >= 2:\n        part = date.split(\""-\"")[1]\n        return part.isdigit() and 1 <= int(part) <= 12\n    return True"", ""def constraint4(date: str) -> bool:\n    \""\""\""\n    If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.\n    \""\""\""\n    if date.count(\""-\"") >= 2:\n        part = date.split(\""-\"", 2)[2]\n        return part.isdigit() and 1 <= int(part) <= 31\n    return True""]"

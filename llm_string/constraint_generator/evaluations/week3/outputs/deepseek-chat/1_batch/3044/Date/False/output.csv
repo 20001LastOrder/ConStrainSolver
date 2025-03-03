@@ -1,0 +1,73 @@
+constraint,function
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    ''' 
+    Check if the date shall contain either no hyphens, one hyphen, or more than two hyphens.
+    
+    Args:
+    s (str): The input string to check.
+    
+    Returns:
+    bool: True if the string meets the criteria, False otherwise.
+    '''
+    # Count the number of hyphens in the string
+    hyphen_count = s.count('-')
+    
+    # Check if the hyphen count is 0, 1, or more than 2
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.","def this_function(s: str) -> bool:
+    # Check if the string contains at least one hyphen
+    if '-' in s:
+        # Split the string at the first hyphen
+        part_before_hyphen = s.split('-', 1)[0]
+        
+        # Check if the part before the hyphen is a number
+        if part_before_hyphen.isdigit():
+            number = int(part_before_hyphen)
+            # Check if the number is smaller than 0 or larger than 2025
+            return number < 0 or number > 2025
+        else:
+            # If it's not a number, return False
+            return False
+    else:
+        # If there's no hyphen, return True (since the condition is about dates with hyphens)
+        return True"
+"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.","def this_function(s: str) -> bool:
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return True  # If there are fewer than two hyphens, the condition is trivially satisfied
+    
+    # Extract the part between the first and second hyphen
+    middle_part = parts[1]
+    
+    # Check if the middle part is a number
+    if not middle_part.isdigit():
+        return False  # If it's not a number, the condition is not satisfied
+    
+    # Convert the middle part to an integer
+    num = int(middle_part)
+    
+    # Check if the number is smaller than 1 or larger than 12
+    return num < 1 or num > 12"
+"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","def this_function(s: str) -> bool:
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) >= 3:
+        # Get the part after the second hyphen
+        third_part = parts[2]
+        
+        # Check if the third part is a number
+        if third_part.isdigit():
+            num = int(third_part)
+            # Check if the number is smaller than 1 or larger than 31
+            return num < 1 or num > 31
+        else:
+            # If the third part is not a number, return False
+            return False
+    else:
+        # If there are less than two hyphens, return True (condition is not applicable)
+        return True"
