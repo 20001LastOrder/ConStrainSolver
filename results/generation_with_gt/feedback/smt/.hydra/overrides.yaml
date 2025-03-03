@@ -1,0 +1,5 @@
+- string_solver=llm_solver_with_feedback
+- constraint_store=mo2re
+- string_solver/validator=ground_truth_smt
+- string_solver/llm=gpt-4o-mini
+- output_folder=outputs/${string_solver.name}/no_unsat_voting_smt/

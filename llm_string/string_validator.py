@@ -4,7 +4,8 @@ from loguru import logger
 from pydantic import BaseModel
 
 from llm_string.string_solvers import Z3Solver
-from llm_string.string_solvers.base import ConstraintProblem
+from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
+from llm_string.string_solvers.formal_solvers import CVC5Solver
 from llm_string.structs import ValidatorFeedback
 
 
@@ -19,7 +20,7 @@ class BaseValidator(BaseModel, ABC):
 
 class StringValidator(BaseValidator):
     timeout: int = 10000
-    solver: Z3Solver = Z3Solver(solver_name="z3", timeout=timeout)
+    solver: BaseStringSolver = CVC5Solver(solver_name="z3", timeout=timeout)
 
     def validate(
         self,
@@ -37,19 +38,29 @@ class StringValidator(BaseValidator):
         Returns:
             ValidatorFeedback: The validator output
         """
-        status = problem.status
+        initial_status = problem.status
         constraints = problem.smt_constraints
         solution = problem.value
 
-        if status == "sat":
+        if initial_status == "sat":
             constraints = ['(assert (= s "' + solution + '"))'] + constraints
-
 
         problem = ConstraintProblem(smt_constraints=constraints, name="validate")
         problem = self.solver.solve(problem)
 
+        if problem.status == "unknown":
+            return ValidatorFeedback(status="unknown", message="")
+
+        if problem.status != initial_status:
+            status = "unsat"
+        else:
+            status = "sat"
+
+        logger.info(
+            f"The input problem status is {initial_status} and the validation status is {status}"
+        )
         # TODO: add unsat core
-        return ValidatorFeedback(status=problem.status, message="")
+        return ValidatorFeedback(value=solution, status=status, message="")
 
 
 class PythonStringValidator(BaseValidator):

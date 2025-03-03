@@ -1,0 +1,34 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "aba",
+            "noon",
+            "racecar",
+            "123321",
+            "a man a plan a canal panama"
+        ],
+        "false_inputs": [
+            "",
+            "a",
+            "bb",
+            "1",
+            "xy"
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "racecar",
+            "level",
+            "deed",
+            "mom",
+            "110020011"
+        ],
+        "false_inputs": [
+            "hello",
+            "world",
+            "python",
+            "algorithm",
+            "test"
+        ]
+    }
+}

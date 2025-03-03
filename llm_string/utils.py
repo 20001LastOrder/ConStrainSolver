@@ -23,14 +23,16 @@ class JSONPydanticOutputParser(PydanticOutputParser):
     def parse_result(
         self, result: list, *, partial: bool = False
     ):
+        logger.info(result[0].text)
         try:
             return super().parse_result(result, partial=partial)
         except Exception:
             json_pattern = re.compile(r"```(json)?\n(.*?)\n```", re.DOTALL)
-            match = json_pattern.search(result[0].text)
+            matches = json_pattern.findall(result[0].text)
 
-            if match:
-                json_object = json.loads(match.group(2))
+            if len(matches) > 0:
+                match = matches[-1][1]
+                json_object = json.loads(match)
                 return self._parse_obj(json_object)
             else:
                 raise ValueError("No JSON found in the output.")

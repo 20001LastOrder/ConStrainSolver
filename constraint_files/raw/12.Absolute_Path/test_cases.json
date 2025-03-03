@@ -1,0 +1,66 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "/home/user",
+            "/usr/local/bin",
+            "/etc/config.ini",
+            "/var/log/app.log",
+            "/root/documents/file.txt"
+        ],
+        "false_inputs": [
+            "C:\\Windows",
+            "home/user",
+            "D:/projects/app",
+            "relative/path",
+            "\\server\\share\\file.txt"
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "/home/user",
+            "/usr/local/bin",
+            "/etc/config.ini",
+            "/var/log/app.log",
+            "/root/documents/file.txt"
+        ],
+        "false_inputs": [
+            "/home/user documents",
+            "/usr/local/bin/ python",
+            "/etc/config file.ini",
+            "/var/log/app log",
+            "/root/documents/file name.txt"
+        ]
+    },
+    "constraint3": {
+        "true_inputs": [
+            "/home/user",
+            "/usr/local/bin",
+            "/etc/config.ini",
+            "/var/log/app.log",
+            "/root/documents/file.txt"
+        ],
+        "false_inputs": [
+            "/home/user/",
+            "/usr/local/bin/",
+            "/etc/",
+            "/var/log/",
+            "/root/documents/"
+        ]
+    },
+    "constraint4": {
+        "true_inputs": [
+            "/home/user",
+            "/usr/local/bin",
+            "/etc/config.ini",
+            "/var/log/app.log",
+            "/root/documents/file.txt"
+        ],
+        "false_inputs": [
+            "/home//user",
+            "/usr//local/bin",
+            "/etc//config.ini",
+            "/var//log/app.log",
+            "/root//documents/file.txt"
+        ]
+    }
+}

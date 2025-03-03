@@ -1,0 +1,98 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "John Smith",
+            "Mary Jane Watson",
+            "James T Kirk",
+            "UPPER CASE NAME",
+            "a b c"
+        ],
+        "false_inputs": [
+            "John123",
+            "Mary-Jane Watson",
+            "James T. Kirk",
+            "User@email.com",
+            "Name with $pecial chars"
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "John Smith",
+            "Mary Jane Watson",
+            "James T Kirk",
+            "First Middle Last",
+            "A B C"
+        ],
+        "false_inputs": [
+            "John",
+            "MaryJane",
+            "James",
+            "SingleName",
+            "NoSpaceHere"
+        ]
+    },
+    "constraints3": {
+        "true_inputs": [
+            "John Smith",
+            "Mary Jane Watson",
+            "James T Kirk",
+            "Single",
+            "A"
+        ],
+        "false_inputs": [
+            "John Smith ",
+            "Mary Jane Watson  ",
+            "James T Kirk ",
+            "Single ",
+            "A "
+        ]
+    },
+    "constraint4": {
+        "true_inputs": [
+            "John Smith",
+            "Mary Jane Watson",
+            "James T Kirk ",
+            "Single",
+            "A"
+        ],
+        "false_inputs": [
+            " John Smith",
+            " Mary Jane Watson",
+            "  James T Kirk",
+            " Single",
+            "  A"
+        ]
+    },
+    "constraint5": {
+        "true_inputs": [
+            "John Smith",
+            "Mary Jane Watson",
+            "James T Kirk",
+            "Abc Def",
+            "Z lastname"
+        ],
+        "false_inputs": [
+            "john Smith",
+            "mary Jane Watson",
+            "james T Kirk",
+            "abc Def",
+            "z lastname"
+        ]
+    },
+    "constraint6": {
+        "true_inputs": [
+            "John Smith",
+            "Mary Jane Watson",
+            "James T Kirk",
+            "Abc Def",
+            "Z Lastname"
+        ],
+        "false_inputs": [
+            "John smith",
+            "Mary Jane watson",
+            "James t Kirk",
+            "Abc def",
+            "Z lastname"
+        ]
+    }
+}

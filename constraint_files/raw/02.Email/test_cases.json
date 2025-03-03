@@ -1,0 +1,98 @@
+{
+    "constraint1": {
+        "true_inputs": [
+            "john.doe@example.com",
+            "user123@gmail.com",
+            "first.last@company-name.co.uk",
+            "email_address@domain.org",
+            "test+label@example.com"
+        ],
+        "false_inputs": [
+            "john doe@example.com",
+            "user 123@gmail.com",
+            "first last@company.com",
+            "email address@domain.org",
+            "test label@example.com"
+        ]
+    },
+    "constraint2": {
+        "true_inputs": [
+            "john.doe@example.com",
+            "123@example.com",
+            "_user@domain.com",
+            ".user@domain.com",
+            "-user@domain.com"
+        ],
+        "false_inputs": [
+            "@example.com",
+            "@user.domain.com",
+            "@test.org",
+            "@email@address.co.uk",
+            "@@doubleatsign.com"
+        ]
+    },
+    "constraint3": {
+        "true_inputs": [
+            "john.doe@example.com",
+            "123@example.com",
+            "user+test@domain.com",
+            "user.name@domain.co.uk",
+            "a@b.c"
+        ],
+        "false_inputs": [
+            "johndoeexample.com",
+            "john@doe@example.com",
+            "test@@example.com",
+            "user@domain@test.com",
+            ""
+        ]
+    },
+    "constraint4": {
+        "true_inputs": [
+            "user@example.com",
+            "first.last@domain.org",
+            "test@sub.domain.co.uk",
+            "a@b.c",
+            "very.long.email.address@some.long.domain.name.com"
+        ],
+        "false_inputs": [
+            "user@examplecom",
+            "first.last@domainorg",
+            "testsub.domain.co.u@k",
+            "a@bc",
+            "very.long.email.address@somelongdomainnamecom"
+        ]
+    },
+    "constraint5": {
+        "true_inputs": [
+            "user@example.com",
+            "first.last@domain.org",
+            "email.with.dots@domain",
+            "no.dots.at.all@domain",
+            "dots.in.the.middle.not.end@example.com"
+        ],
+        "false_inputs": [
+            "user@example.com.",
+            "first.last@domain.",
+            "email@domain.org.",
+            "just.a.dot.",
+            "multiple.dots.at.end@domain.."
+        ]
+    },
+    "constraint6": {
+        "true_inputs": [
+            "user@example.com",
+            "john.doe@company.org",
+            "admin@organization.net",
+            "director@business.com",
+            "staff.member@workplace.io"
+        ],
+        "false_inputs": [
+            "manager@company.com",
+            "john.manager@example.org",
+            "team.manager@business.net",
+            "sales.manager@corporation.io",
+            "user@manager.com"
+        ]
+    }
+}

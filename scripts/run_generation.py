@@ -1,3 +1,4 @@
+import os
 from itertools import product
 from multiprocessing import Pool
 
@@ -5,6 +6,7 @@ import dotenv
 import hydra
 import pandas as pd
 from hydra.utils import instantiate
+from loguru import logger
 from omegaconf import DictConfig
 from tqdm import tqdm
 
@@ -16,6 +18,14 @@ dotenv.load_dotenv()
 
 def solve_one_problem(args) -> ConstraintProblem:
     config, problem, idx = args
+    logger.remove()
+    logger.add(
+        os.path.join(config.output_folder, "log.txt"),
+        level="INFO",
+        colorize=False,
+        backtrace=True,
+        diagnose=True,
+    )
 
     solver = instantiate(config.string_solver)
     problem = solver.solve(problem)
