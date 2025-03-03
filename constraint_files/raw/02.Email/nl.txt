@@ -8,4 +8,4 @@
 
 5. The final character of the email shall not be a dot character (.).
 
-6. The email shall not contain the word "manager"
+6. The email shall not contain the word "manager".

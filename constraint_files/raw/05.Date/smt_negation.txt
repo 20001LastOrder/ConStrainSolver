@@ -1,7 +1,7 @@
 (assert (not (and (str.in.re s (re.++ (re.* re.allchar) (str.to.re "-") (re.* re.allchar) (str.to.re "-") (re.* re.allchar))) (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re "-") (re.* re.allchar) (str.to.re "-") (re.* re.allchar) (str.to.re "-") (re.* re.allchar)))) )))
 
-(assert (let ((part1 (str.substr s 0 (str.indexof s "-" 0)))) (not (and (>= (str.to.int part1) 0) (<= (str.to.int part1) 2025)))))
+(assert (not (let ((part1 (str.substr s 0 (str.indexof s "-" 0)))) (and (>= (str.to.int part1) 0) (<= (str.to.int part1) 2025)))))
 
-(assert (let ((start2 (+ (str.indexof s "-" 0) 1)) (end2 (str.indexof s "-" (+ (str.indexof s "-" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (not (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12))))))
+(assert (not (let ((start2 (+ (str.indexof s "-" 0) 1)) (end2 (str.indexof s "-" (+ (str.indexof s "-" 0) 1)))) (let ((part2 (str.substr s start2 (- end2 start2)))) (and (>= (str.to.int part2) 1) (<= (str.to.int part2) 12))))))
 
-(assert (let ((start3 (+ (str.indexof s "-" (+ (str.indexof s "-" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (not (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))
+(assert (not (let ((start3 (+ (str.indexof s "-" (+ (str.indexof s "-" 0) 1)) 1))) (let ((part3 (str.substr s start3 (- (str.len s) start3)))) (and (>= (str.to.int part3) 1) (<= (str.to.int part3) 31))))))

@@ -1,6 +1,6 @@
 1. The date shall contain two hyphens.
 
-2. If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.
+2. If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.
 
 3. If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.
 

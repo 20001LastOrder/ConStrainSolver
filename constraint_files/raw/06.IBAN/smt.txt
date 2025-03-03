@@ -1,5 +1,5 @@
 (assert (= (str.len s) 22))
 
-(assert (= (str.substr s 0 4) "1210"))
+(assert (str.prefixof "1210" s))
 
-(assert (= (str.substr s 4 2) "00"))
+(assert (and (>= (str.len s) 6) (and (= (str.at s 4) "0") (= (str.at s 5) "0"))))
