@@ -11,14 +11,14 @@ By default, variable names in the prompt sent ot the LLM are replaced with a gen
 
 * Run an LLM:
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=mo2re string_solver/validator=ground_truth_python
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=mo2re string_solver/validator=ground_truth_python +string_solver.with_explanation=True
 ```
 
 * Validate the generated LLM outputs
     * Note: this (1) reads the generated .csv file, (2) validates it line by line and (3) generates a new file which is a copy of the .csv file, extended with a validation column checking whetherthe generated strings actually satify the constraints
     * Note that the file it will read to find the llm outputs is computed from the `output_path`, `llm` and `use_variable_name` arguments, s for the `llm` approach.
 ```bash
-python -m scripts.run_evaluation input_path=outputs/llm_with_validation/2025-02-28_14-03-36/gpt-4o-mini.csv
+python -m scripts.run_evaluation input_path=outputs/llm_with_validation/2025-02-28_15-52-28/gpt-4o-mini.csv
 ```
 
 * Run an SMT solver:

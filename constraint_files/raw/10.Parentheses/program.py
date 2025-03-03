@@ -1,18 +1,25 @@
 def constraint1(parentheses: str) -> bool:
     """
+    A parentheses string shall be at least 10 characters long
+    """
+    return len(parentheses) >= 10
+
+
+def constraint2(parentheses: str) -> bool:
+    """
     A parentheses string shall only contains "(" and ")" charaters.
     """
     return all(char in "()" for char in parentheses)
 
 
-def constraint2(parentheses: str) -> bool:
+def constraint3(parentheses: str) -> bool:
     """
     The total number of "(" characters shall be equal to the total number of ")" characters in a parentheses string.
     """
     return parentheses.count("(") == parentheses.count(")")
 
 
-def constraint3(parentheses: str) -> bool:
+def constraint4(parentheses: str) -> bool:
     """
     When scanning from left to right on the parentheses string, at no point shall the count of ")" characters exceed the count of "(" characters.
     """
@@ -28,13 +35,17 @@ def constraint3(parentheses: str) -> bool:
 
 
 if __name__ == "__main__":
-    parentheses = input("Enter the parentheses string: ")
+    constraints = [constraint1, constraint2, constraint3, constraint4]
 
-    if (
-        constraint1(parentheses)
-        and constraint2(parentheses)
-        and constraint3(parentheses)
-    ):
-        print("The parentheses string is valid.")
-    else:
-        print("The parentheses string is invalid.")
+    while True:
+        parentheses = input("Enter the parentheses: ")
+        result = True
+        for i, constraint in enumerate(constraints):
+            evaluation_result = constraint(parentheses)
+            print(f"Constraint {i + 1}: {evaluation_result}")
+            result = result and evaluation_result
+
+        if result:
+            print("The parentheses is valid.")
+        else:
+            print("The parentheses is invalid.")

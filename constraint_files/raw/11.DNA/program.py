@@ -34,15 +34,16 @@ def constraint5(dna: str) -> bool:
 
 
 if __name__ == "__main__":
-    dna = input("Enter the DNA sequence: ")
+    constraints = [constraint1, constraint2, constraint3, constraint4, constraint5]
+    while True:
+        dna = input("Enter the dna: ")
+        result = True
+        for i, constraint in enumerate(constraints):
+            evaluation_result = constraint(dna)
+            print(f"Constraint {i + 1}: {evaluation_result}")
+            result = result and evaluation_result
 
-    if (
-        constraint1(dna)
-        and constraint2(dna)
-        and constraint3(dna)
-        and constraint4(dna)
-        and constraint5(dna)
-    ):
-        print("The DNA sequence is valid.")
-    else:
-        print("The DNA sequence is invalid.")
+        if result:
+            print("The dna is valid.")
+        else:
+            print("The dna is invalid.")

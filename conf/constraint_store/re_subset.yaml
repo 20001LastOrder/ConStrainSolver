@@ -1,5 +1,9 @@
 _target_: llm_string.constraints.ConstraintStore
 file_path: constraint_files/constraints.csv
 sample_ids: 
-  - "Date"
-  - "IBAN"
+  - "ISBN"
+  - "Expression"
+  - "Palindrome"
+  - "Parentheses"
+  - "DNA"
+  - "Absolute_Path"

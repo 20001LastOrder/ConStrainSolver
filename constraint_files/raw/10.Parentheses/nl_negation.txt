@@ -1,4 +1,4 @@
-1. A parentheses string shall be at most 10 characters long
+1. A parentheses string shall be fewer than 10 characters long
 
 1. There exists at least one character in a parentheses string that is neither "(" nor ")".
 

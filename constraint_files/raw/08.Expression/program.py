@@ -57,14 +57,17 @@ def constraint4(expression: str) -> bool:
 
 
 if __name__ == "__main__":
-    expression = input("Enter the arithmetic expression: ")
+    constraints = [constraint1, constraint2, constraint3, constraint4]
 
-    if (
-        constraint1(expression)
-        and constraint2(expression)
-        and constraint3(expression)
-        and constraint4(expression)
-    ):
-        print("The expression is valid.")
-    else:
-        print("The expression is invalid.")
+    while True:
+        expression = input("Enter the expression: ")
+        result = True
+        for i, constraint in enumerate(constraints):
+            evaluation_result = constraint(expression)
+            print(f"Constraint {i + 1}: {evaluation_result}")
+            result = result and evaluation_result
+
+        if result:
+            print("The expression is valid.")
+        else:
+            print("The expression is invalid.")

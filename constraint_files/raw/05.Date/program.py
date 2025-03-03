@@ -36,14 +36,16 @@ def constraint4(date: str) -> bool:
 
 
 if __name__ == "__main__":
-    date = input("Enter the date: ")
+    constraints = [constraint1, constraint2, constraint3, constraint4]
+    while True:
+        date = input("Enter the date: ")
+        result = True
+        for i, constraint in enumerate(constraints):
+            evaluation_result = constraint(date)
+            print(f"Constraint {i + 1}: {evaluation_result}")
+            result = result and evaluation_result
 
-    if (
-        constraint1(date)
-        and constraint2(date)
-        and constraint3(date)
-        and constraint4(date)
-    ):
-        print("The date is valid.")
-    else:
-        print("The date is invalid.")
+        if result:
+            print("The date is valid.")
+        else:
+            print("The date is invalid.")

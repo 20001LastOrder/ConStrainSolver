@@ -43,16 +43,24 @@ def constraint6(isbn: str) -> bool:
 
 
 if __name__ == "__main__":
-    isbn = input("Enter the ISBN: ")
+    constraints = [constraint1, constraint2, constraint3, constraint4, constraint5, constraint6]
 
-    if (
-        constraint1(isbn)
-        and constraint2(isbn)
-        and constraint3(isbn)
-        and constraint4(isbn)
-        and constraint5(isbn)
-        and constraint6(isbn)
-    ):
-        print("The ISBN is valid.")
-    else:
-        print("The ISBN is invalid.")
+    while True:
+        isbn = input("Enter the ISBN: ")
+        result = True
+        for i, constraint in enumerate(constraints):
+            evaluation_result = constraint(isbn)
+            print(f"Constraint {i + 1}: {evaluation_result}")
+            result = result and evaluation_result
+
+        if (
+            constraint1(isbn)
+            and constraint2(isbn)
+            and constraint3(isbn)
+            and constraint4(isbn)
+            and constraint5(isbn)
+            and constraint6(isbn)
+        ):
+            print("The ISBN is valid.")
+        else:
+            print("The ISBN is invalid.")

@@ -82,7 +82,7 @@ class ConstraintStore:
                 f"Number of constraints in the dataset ({len(self.df.loc[name, 'SMT-LIB2'])})"  # noqa: E501
                 f"does not match the number of truth masks ({len(truth_masks)})"
             )
-
+            return []
         results = []
         for i, mask in enumerate(truth_masks):
             if mask:
