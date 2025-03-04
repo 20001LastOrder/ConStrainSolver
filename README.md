@@ -13,6 +13,25 @@ By default, variable names in the prompt sent ot the LLM are replaced with a gen
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=mo2re string_solver/validator=ground_truth_python +string_solver.with_explanation=True
 ```
+* With single LLM"
+```bash
+python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full string_solver/llm=deepseek-v3 output_folder="outputs/${string_solver.name}/llm_solver/deepseek-v3"
+```
+
+* With validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/${string_solver.name}/gpt-4o-mini"
+```
+
+* with feedback:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=deepseek-v3 output_folder="outputs/${string_solver.name}/deepseek-v3"
+```
+
+* with explanation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/llm_solver_with_explanation/gpt-4o-mini" +string_solver.with_explanation=True
+```
 
 * Validate the generated LLM outputs
     * Note: this (1) reads the generated .csv file, (2) validates it line by line and (3) generates a new file which is a copy of the .csv file, extended with a validation column checking whetherthe generated strings actually satify the constraints

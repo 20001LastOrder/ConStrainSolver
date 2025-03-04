@@ -22,7 +22,9 @@ def generation_with_retry(
             logger.info(f"Error in output {result.content}")
             continue
 
-    raise ValueError("Failed to generate output after multiple retries.")
+    logger.error("Max retries reached.")
+    value = '{"value": "UNSAT"}'
+    return parser.parse(value).value
 
 
 def value_to_status(value: str) -> tuple[str, Literal["sat", "unsat", "unknown"]]:

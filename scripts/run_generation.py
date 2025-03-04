@@ -82,7 +82,10 @@ def main(cfg: DictConfig):
     results = []
 
     if hasattr(string_solver, "llm"):
-        save_path = f"{cfg.output_folder}/{string_solver.llm.model}.csv"
+        name = string_solver.llm.model
+        if "/" in name:
+            name = name.split("/")[-1]
+        save_path = f"{cfg.output_folder}/{name}.csv"
     else:
         save_path = f"{cfg.output_folder}/{string_solver.solver_name}.csv"
 

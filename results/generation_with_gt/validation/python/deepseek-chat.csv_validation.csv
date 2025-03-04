@@ -3,19 +3,19 @@ sat,John Doe,Name,"(True, True, True, True, True, True)",1.0
 sat,John doe,Name,"(True, True, True, True, True, False)",1.0
 sat,john Doe,Name,"(True, True, True, True, False, True)",1.0
 sat,john doe,Name,"(True, True, True, True, False, False)",1.0
-sat, Alice Smith,Name,"(True, True, True, False, True, True)",0.0
-sat, Name example,Name,"(True, True, True, False, True, False)",0.0
+sat, A B,Name,"(True, True, True, False, True, True)",0.0
+sat, Alice,Name,"(True, True, True, False, True, False)",0.0
 sat, A B,Name,"(True, True, True, False, False, True)",1.0
 sat, john doe,Name,"(True, True, True, False, False, False)",1.0
 sat,John Doe ,Name,"(True, True, False, True, True, True)",1.0
 sat,John doe ,Name,"(True, True, False, True, True, False)",1.0
-sat,john Doe ,Name,"(True, True, False, True, False, True)",1.0
+sat,j A ,Name,"(True, True, False, True, False, True)",1.0
 sat,john doe ,Name,"(True, True, False, True, False, False)",1.0
 unsat,,Name,"(True, True, False, False, True, True)",-1.0
-sat, Aa ,Name,"(True, True, False, False, True, False)",0.0
+sat, A a ,Name,"(True, True, False, False, True, False)",0.0
 sat, A ,Name,"(True, True, False, False, False, True)",1.0
 sat, a ,Name,"(True, True, False, False, False, False)",1.0
-sat,JohnDoe,Name,"(True, False, True, True, True, True)",1.0
+sat,John,Name,"(True, False, True, True, True, True)",1.0
 unsat,,Name,"(True, False, True, True, True, False)",-1.0
 sat,johnDoe,Name,"(True, False, True, True, False, True)",1.0
 unsat,,Name,"(True, False, True, True, False, False)",-1.0
@@ -31,25 +31,25 @@ unsat,,Name,"(True, False, False, False, True, True)",-1.0
 unsat,,Name,"(True, False, False, False, True, False)",-1.0
 unsat,,Name,"(True, False, False, False, False, True)",-1.0
 unsat,,Name,"(True, False, False, False, False, False)",-1.0
-unsat,,Name,"(False, True, True, True, True, True)",-1.0
-unsat,,Name,"(False, True, True, True, True, False)",-1.0
-sat,123 456,Name,"(False, True, True, True, False, True)",0.0
-unsat,,Name,"(False, True, True, True, False, False)",-1.0
-unsat,,Name,"(False, True, True, False, True, True)",-1.0
-unsat,,Name,"(False, True, True, False, True, False)",-1.0
-unsat,,Name,"(False, True, True, False, False, True)",-1.0
-unsat,,Name,"(False, True, True, False, False, False)",-1.0
-unsat,,Name,"(False, True, False, True, True, True)",-1.0
-unsat,,Name,"(False, True, False, True, True, False)",-1.0
-unsat,,Name,"(False, True, False, True, False, True)",-1.0
-unsat,,Name,"(False, True, False, True, False, False)",-1.0
+sat,J D!,Name,"(False, True, True, True, True, True)",1.0
+sat,John doe-1,Name,"(False, True, True, True, True, False)",1.0
+sat,john Doe!,Name,"(False, True, True, True, False, True)",1.0
+sat,j o!,Name,"(False, True, True, True, False, False)",1.0
+sat, A B!,Name,"(False, True, True, False, True, True)",0.0
+sat, John doe!,Name,"(False, True, True, False, True, False)",0.0
+sat, John!Doe,Name,"(False, True, True, False, False, True)",1.0
+sat, a!,Name,"(False, True, True, False, False, False)",1.0
+sat,A B1 ,Name,"(False, True, False, True, True, True)",1.0
+sat,John d! ,Name,"(False, True, False, True, True, False)",1.0
+sat,john D! ,Name,"(False, True, False, True, False, True)",1.0
+sat,john doe! ,Name,"(False, True, False, True, False, False)",1.0
 unsat,,Name,"(False, True, False, False, True, True)",-1.0
-unsat,,Name,"(False, True, False, False, True, False)",-1.0
-unsat,,Name,"(False, True, False, False, False, True)",-1.0
-unsat,,Name,"(False, True, False, False, False, False)",-1.0
-unsat,,Name,"(False, False, True, True, True, True)",-1.0
+sat, John doe! ,Name,"(False, True, False, False, True, False)",0.0
+sat, ! John ,Name,"(False, True, False, False, False, True)",0.0
+sat, a ! ,Name,"(False, True, False, False, False, False)",1.0
+sat,John1,Name,"(False, False, True, True, True, True)",1.0
 unsat,,Name,"(False, False, True, True, True, False)",-1.0
-sat,123!@#,Name,"(False, False, True, True, False, True)",1.0
+sat,john_doe!,Name,"(False, False, True, True, False, True)",1.0
 unsat,,Name,"(False, False, True, True, False, False)",-1.0
 unsat,,Name,"(False, False, True, False, True, True)",-1.0
 unsat,,Name,"(False, False, True, False, True, False)",-1.0
@@ -63,131 +63,279 @@ unsat,,Name,"(False, False, False, False, True, True)",-1.0
 unsat,,Name,"(False, False, False, False, True, False)",-1.0
 unsat,,Name,"(False, False, False, False, False, True)",-1.0
 unsat,,Name,"(False, False, False, False, False, False)",-1.0
-sat,john.doe@example.com,Email,"(True, True, True, True, True, True)",1.0
+sat,test@example.com,Email,"(True, True, True, True, True, True)",1.0
 sat,john.manager@example.com,Email,"(True, True, True, True, True, False)",1.0
-sat,user@example.,Email,"(True, True, True, True, False, True)",1.0
+sat,test@example.com.,Email,"(True, True, True, True, False, True)",1.0
 sat,manager@example.com.,Email,"(True, True, True, True, False, False)",1.0
-sat,test@examplecom,Email,"(True, True, True, False, True, True)",1.0
-sat,manager123@examplecom,Email,"(True, True, True, False, True, False)",1.0
-sat,john.doe@example.,Email,"(True, True, True, False, False, True)",0.0
-sat,manager123@example.,Email,"(True, True, True, False, False, False)",0.0
+sat,john.doe@example,Email,"(True, True, True, False, True, True)",1.0
+sat,manager@examplecom,Email,"(True, True, True, False, True, False)",1.0
+sat,test@examplecom.,Email,"(True, True, True, False, False, True)",0.0
+sat,manager@example.,Email,"(True, True, True, False, False, False)",0.0
 sat,user@@domain.com,Email,"(True, True, False, True, True, True)",1.0
 sat,manager@@example.com,Email,"(True, True, False, True, True, False)",1.0
-sat,user@@domain..,Email,"(True, True, False, True, False, True)",1.0
-sat,manager@@example.com.,Email,"(True, True, False, True, False, False)",1.0
-sat,testexamplecom,Email,"(True, True, False, False, True, True)",1.0
-sat,manager@@example,Email,"(True, True, False, False, True, False)",1.0
-sat,example@@domain.,Email,"(True, True, False, False, False, True)",0.0
-unsat,,Email,"(True, True, False, False, False, False)",-1.0
+sat,example@@domain.,Email,"(True, True, False, True, False, True)",1.0
+sat,manager@example@manager.,Email,"(True, True, False, True, False, False)",1.0
+sat,test@@examplecom,Email,"(True, True, False, False, True, True)",1.0
+sat,managertestemail,Email,"(True, True, False, False, True, False)",1.0
+sat,exampleemail.,Email,"(True, True, False, False, False, True)",1.0
+sat,manager.,Email,"(True, True, False, False, False, False)",1.0
 sat,@example.com,Email,"(True, False, True, True, True, True)",1.0
-sat,@manager.example,Email,"(True, False, True, True, True, False)",1.0
-unsat,,Email,"(True, False, True, True, False, True)",-1.0
-sat,@manager.,Email,"(True, False, True, True, False, False)",1.0
+sat,@manager.com,Email,"(True, False, True, True, True, False)",1.0
+sat,@example.,Email,"(True, False, True, True, False, True)",1.0
+sat,@manager..,Email,"(True, False, True, True, False, False)",1.0
 sat,@example,Email,"(True, False, True, False, True, True)",1.0
-sat,@managertest,Email,"(True, False, True, False, True, False)",1.0
-unsat,,Email,"(True, False, True, False, False, True)",-1.0
-sat,@managerexample.,Email,"(True, False, True, False, False, False)",0.0
-sat,@@.com,Email,"(True, False, False, True, True, True)",1.0
+sat,@manager,Email,"(True, False, True, False, True, False)",1.0
+sat,@example.,Email,"(True, False, True, False, False, True)",0.0
+sat,@manager.,Email,"(True, False, True, False, False, False)",0.0
+sat,@@example.com,Email,"(True, False, False, True, True, True)",1.0
 sat,@manager@example.com,Email,"(True, False, False, True, True, False)",1.0
 sat,@@example.com.,Email,"(True, False, False, True, False, True)",1.0
-sat,@manager@example.com.,Email,"(True, False, False, True, False, False)",1.0
-sat,@@examplecom,Email,"(True, False, False, False, True, True)",1.0
+sat,@@manager.example.,Email,"(True, False, False, True, False, False)",1.0
+sat,@@example,Email,"(True, False, False, False, True, True)",1.0
 sat,@manager@example,Email,"(True, False, False, False, True, False)",1.0
-sat,@.,Email,"(True, False, False, False, False, True)",0.0
-sat,@manager@.,Email,"(True, False, False, False, False, False)",0.0
+sat,@@example.,Email,"(True, False, False, False, False, True)",0.0
+sat,@manager@example.,Email,"(True, False, False, False, False, False)",0.0
 sat,john doe@example.com,Email,"(False, True, True, True, True, True)",1.0
-sat,manager test@example.com,Email,"(False, True, True, True, True, False)",1.0
-unsat,,Email,"(False, True, True, True, False, True)",-1.0
+sat,john manager@example.com,Email,"(False, True, True, True, True, False)",1.0
+sat,user name@example.com.,Email,"(False, True, True, True, False, True)",1.0
 sat,manager user@example.com.,Email,"(False, True, True, True, False, False)",1.0
 sat,john doe@example,Email,"(False, True, True, False, True, True)",1.0
-sat,manager @examplecom,Email,"(False, True, True, False, True, False)",1.0
-sat,user name@domain.,Email,"(False, True, True, False, False, True)",0.0
+sat,manager @example,Email,"(False, True, True, False, True, False)",1.0
+sat,john doe@example.,Email,"(False, True, True, False, False, True)",0.0
 sat,manager @example.,Email,"(False, True, True, False, False, False)",0.0
-sat,user name@domain@example.com,Email,"(False, True, False, True, True, True)",1.0
-sat,manager john.doe@example@domain.com,Email,"(False, True, False, True, True, False)",1.0
-sat,user name@@example.com.,Email,"(False, True, False, True, False, True)",1.0
-sat,manager @example@.com.,Email,"(False, True, False, True, False, False)",1.0
-sat,user name example.com,Email,"(False, True, False, False, True, True)",1.0
-sat,m manager,Email,"(False, True, False, False, True, False)",1.0
+sat,john doe@example@domain.com,Email,"(False, True, False, True, True, True)",1.0
+sat,manager user@@example.com,Email,"(False, True, False, True, True, False)",1.0
+sat,user name@domain@example.com.,Email,"(False, True, False, True, False, True)",1.0
+sat,manager @example.com@domain.,Email,"(False, True, False, True, False, False)",1.0
+sat,test user,Email,"(False, True, False, False, True, True)",1.0
+sat,manager test,Email,"(False, True, False, False, True, False)",1.0
 sat,user name.,Email,"(False, True, False, False, False, True)",1.0
 sat,manager .,Email,"(False, True, False, False, False, False)",1.0
-sat,@ example.com,Email,"(False, False, True, True, True, True)",1.0
+sat,@ user.examplecom,Email,"(False, False, True, True, True, True)",1.0
 sat,@ manager.com,Email,"(False, False, True, True, True, False)",1.0
-sat,@ user.example.,Email,"(False, False, True, True, False, True)",1.0
-unsat,,Email,"(False, False, True, True, False, False)",-1.0
-sat,@user name,Email,"(False, False, True, False, True, True)",1.0
-sat,@ manager,Email,"(False, False, True, False, True, False)",1.0
+sat,@ example.com..,Email,"(False, False, True, True, False, True)",1.0
+sat,@ manager.,Email,"(False, False, True, True, False, False)",1.0
+sat,@ user@example,Email,"(False, False, True, False, True, True)",0.0
+sat,@manager example,Email,"(False, False, True, False, True, False)",1.0
 sat,@ user.,Email,"(False, False, True, False, False, True)",0.0
-sat,@manager .,Email,"(False, False, True, False, False, False)",0.0
+sat,@ manager.,Email,"(False, False, True, False, False, False)",0.0
 sat,@ @.com,Email,"(False, False, False, True, True, True)",1.0
-sat,@manager @example.com,Email,"(False, False, False, True, True, False)",1.0
-sat,@ user@example.,Email,"(False, False, False, True, False, True)",1.0
-sat,@ manager@example.,Email,"(False, False, False, True, False, False)",1.0
-sat,@ @example,Email,"(False, False, False, False, True, True)",1.0
+sat,@ manager@example.com,Email,"(False, False, False, True, True, False)",1.0
+unsat,,Email,"(False, False, False, True, False, True)",-1.0
+sat,@manager. @.,Email,"(False, False, False, True, False, False)",1.0
+sat,@user @examplecom,Email,"(False, False, False, False, True, True)",1.0
 sat,@ manager@example,Email,"(False, False, False, False, True, False)",1.0
-sat,@user @example.,Email,"(False, False, False, False, False, True)",0.0
-sat,@manager @example.,Email,"(False, False, False, False, False, False)",0.0
-sat,Ab1!23,Password,"(True, True, True, True, True)",1.0
-sat,Aa!b,Password,"(True, True, True, True, False)",1.0
+sat,@ @example.,Email,"(False, False, False, False, False, True)",0.0
+sat,@ manager@.,Email,"(False, False, False, False, False, False)",0.0
+sat,P@ssw0rd!,Password,"(True, True, True, True, True)",1.0
+sat,Pass$,Password,"(True, True, True, True, False)",1.0
 sat,A1$B,Password,"(True, True, True, False, True)",1.0
-sat,PASS$WORD,Password,"(True, True, True, False, False)",1.0
-sat,pass1$,Password,"(True, True, False, True, True)",1.0
+sat,PASS$,Password,"(True, True, True, False, False)",1.0
+sat,pass1!,Password,"(True, True, False, True, True)",1.0
 sat,pass$word,Password,"(True, True, False, True, False)",1.0
 sat,123!,Password,"(True, True, False, False, True)",1.0
-sat,!#$!,Password,"(True, True, False, False, False)",1.0
-sat,Ab1c,Password,"(True, False, True, True, True)",1.0
+sat,!!!!,Password,"(True, True, False, False, False)",1.0
+sat,Pass123,Password,"(True, False, True, True, True)",1.0
 sat,Pass,Password,"(True, False, True, True, False)",1.0
-sat,A1B2,Password,"(True, False, True, False, True)",1.0
+sat,PASS123,Password,"(True, False, True, False, True)",1.0
 sat,ABCD,Password,"(True, False, True, False, False)",1.0
 sat,pass123,Password,"(True, False, False, True, True)",1.0
 sat,apple,Password,"(True, False, False, True, False)",1.0
 sat,1234,Password,"(True, False, False, False, True)",1.0
-sat,@@@@,Password,"(True, False, False, False, False)",1.0
+unsat,,Password,"(True, False, False, False, False)",-1.0
 unsat,,Password,"(False, True, True, True, True)",-1.0
 sat,A!b,Password,"(False, True, True, True, False)",1.0
-sat,A!1,Password,"(False, True, True, False, True)",1.0
+sat,A1!,Password,"(False, True, True, False, True)",1.0
 sat,A!,Password,"(False, True, True, False, False)",1.0
 sat,a1!,Password,"(False, True, False, True, True)",1.0
 sat,a!,Password,"(False, True, False, True, False)",1.0
 sat,1!,Password,"(False, True, False, False, True)",1.0
-sat,!,Password,"(False, True, False, False, False)",1.0
+sat,!#$,Password,"(False, True, False, False, False)",1.0
 unsat,,Password,"(False, False, True, True, True)",-1.0
 sat,aB,Password,"(False, False, True, True, False)",1.0
 sat,A1,Password,"(False, False, True, False, True)",1.0
-sat,ABC,Password,"(False, False, True, False, False)",1.0
+sat,A,Password,"(False, False, True, False, False)",1.0
 sat,a1,Password,"(False, False, False, True, True)",1.0
 sat,abc,Password,"(False, False, False, True, False)",1.0
 sat,1,Password,"(False, False, False, False, True)",1.0
-sat,@%^,Password,"(False, False, False, False, False)",1.0
-sat,https://example.com,Url,"(True, True, True)",1.0
+sat,@,Password,"(False, False, False, False, False)",1.0
+sat,https://www.example.com,Url,"(True, True, True)",1.0
 sat,http://localhost,Url,"(True, True, False)",1.0
-sat,https://example .com,Url,"(True, False, True)",1.0
-sat,http://localhost%20test,Url,"(True, False, False)",0.0
-sat,www.example.com,Url,"(False, True, True)",1.0
+unsat,,Url,"(True, False, True)",-1.0
+unsat,,Url,"(True, False, False)",-1.0
+sat,example.com,Url,"(False, True, True)",1.0
 unsat,,Url,"(False, True, False)",-1.0
-sat,example .com,Url,"(False, False, True)",1.0
-sat,file://my folder/my file,Url,"(False, False, False)",1.0
+sat,www.example .com,Url,"(False, False, True)",1.0
+sat,example com,Url,"(False, False, False)",1.0
 sat,2023-10-15,Date,"(True, True, True, True)",1.0
-sat,2023-12-0,Date,"(True, True, True, False)",1.0
-sat,2023-0-15,Date,"(True, True, False, True)",1.0
+sat,2023-10-32,Date,"(True, True, True, False)",1.0
+sat,2023-13-15,Date,"(True, True, False, True)",1.0
 sat,2023-13-32,Date,"(True, True, False, False)",1.0
-sat,2026-5-15,Date,"(True, False, True, True)",1.0
-sat,2026-5-32,Date,"(True, False, True, False)",1.0
-sat,2026-13-15,Date,"(True, False, False, True)",1.0
-unsat,,Date,"(True, False, False, False)",-1.0
-sat,2023-12-25,Date,"(False, True, True, True)",0.0
+sat,Year-12-25,Date,"(True, False, True, True)",1.0
+sat,Year-5-32,Date,"(True, False, True, False)",1.0
+sat,Year2026-13-15,Date,"(True, False, False, True)",1.0
+sat,Year-Month-Day,Date,"(True, False, False, False)",1.0
+sat,2023-10-25,Date,"(False, True, True, True)",0.0
 sat,2023-10-32,Date,"(False, True, True, False)",0.0
-sat,2023-0-15,Date,"(False, True, False, True)",0.0
+sat,2023-13-25-extra,Date,"(False, True, False, True)",0.0
 sat,2023-13-32,Date,"(False, True, False, False)",0.0
-sat,2026-10,Date,"(False, False, True, True)",1.0
+sat,October-10-25,Date,"(False, False, True, True)",0.0
 sat,2026-10-32-extra,Date,"(False, False, True, False)",1.0
-sat,2026-13-15,Date,"(False, False, False, True)",0.0
-sat,2026-13-32,Date,"(False, False, False, False)",0.0
-sat,1210001234567890123456,IBAN,"(True, True, True)",1.0
+sat,ABC-13-25,Date,"(False, False, False, True)",0.0
+sat,3000-13-32-extra,Date,"(False, False, False, False)",1.0
+sat,121000DE00123456789012,IBAN,"(True, True, True)",1.0
 sat,1210123456789012345678,IBAN,"(True, True, False)",1.0
-sat,DE00000000000000000000,IBAN,"(True, False, True)",1.0
-sat,DE12123456789012345678,IBAN,"(True, False, False)",1.0
-sat,12100000000000000000,IBAN,"(False, True, True)",1.0
-sat,121012345678901234567890,IBAN,"(False, True, False)",1.0
-sat,DE0000123456789012,IBAN,"(False, False, True)",1.0
-sat,NL91ABNA0417164300,IBAN,"(False, False, False)",1.0
+sat,DE89001234567890123456,IBAN,"(True, False, True)",1.0
+sat,DE89370400440532013000,IBAN,"(True, False, False)",1.0
+sat,1210001234567890,IBAN,"(False, True, True)",1.0
+sat,1210123456,IBAN,"(False, True, False)",1.0
+sat,BE68001234567890,IBAN,"(False, False, True)",1.0
+sat,DE893704004053201300,IBAN,"(False, False, False)",1.0
+sat,0-306-40615-X,ISBN,"(True, True, True, True, True, True)",1.0
+sat,1-234-567-89-X,ISBN,"(True, True, True, True, True, False)",1.0
+sat,12--345-67895,ISBN,"(True, True, True, True, False, True)",1.0
+sat,1-23--456-789X,ISBN,"(True, True, True, True, False, False)",1.0
+sat,-123-456-789X,ISBN,"(True, True, True, False, True, True)",1.0
+sat,-1-2-3-4-56789X,ISBN,"(True, True, True, False, True, False)",1.0
+sat,-123--456789X,ISBN,"(True, True, True, False, False, True)",1.0
+sat,-123--4567-X,ISBN,"(True, True, True, False, False, False)",0.0
+sat,978-3-16-148410-X,ISBN,"(True, True, False, True, True, True)",0.0
+sat,1-2-3-4-5-6-7-8-9-10-X,ISBN,"(True, True, False, True, True, False)",1.0
+sat,978--0-306-40615-X,ISBN,"(True, True, False, True, False, True)",0.0
+sat,1-23--45-6-7X,ISBN,"(True, True, False, True, False, False)",1.0
+sat,-123-456-789X0,ISBN,"(True, True, False, False, True, True)",1.0
+sat,-1-2-3-4-5-6-7-8-9-10-X,ISBN,"(True, True, False, False, True, False)",1.0
+sat,---123456X,ISBN,"(True, True, False, False, False, True)",1.0
+sat,----123X,ISBN,"(True, True, False, False, False, False)",1.0
+sat,123-456-789X-,ISBN,"(True, False, True, True, True, True)",1.0
+sat,1-2-3-4-5-6-7-8-9-0-,ISBN,"(True, False, True, True, True, False)",1.0
+sat,123--456789X-,ISBN,"(True, False, True, True, False, True)",1.0
+sat,1-23--4567-89X-,ISBN,"(True, False, True, True, False, False)",1.0
+sat,-123456789X-,ISBN,"(True, False, True, False, True, True)",1.0
+sat,-1-2-3-4-5-6-7-8-9-X-,ISBN,"(True, False, True, False, True, False)",1.0
+sat,-123456789X--,ISBN,"(True, False, True, False, False, True)",1.0
+sat,-1234567890-----,ISBN,"(True, False, True, False, False, False)",1.0
+unsat,,ISBN,"(True, False, False, True, True, True)",-1.0
+sat,978-3-16-148410-0-,ISBN,"(True, False, False, True, True, False)",1.0
+sat,978--123456789-,ISBN,"(True, False, False, True, False, True)",1.0
+unsat,,ISBN,"(True, False, False, True, False, False)",-1.0
+sat,-123456789-,ISBN,"(True, False, False, False, True, True)",1.0
+sat,-123-456-789-01-,ISBN,"(True, False, False, False, True, False)",1.0
+sat,--123456789-,ISBN,"(True, False, False, False, False, True)",1.0
+sat,--123-X--,ISBN,"(True, False, False, False, False, False)",1.0
+sat,12-3@5-6789X,ISBN,"(False, True, True, True, True, True)",1.0
+sat,A-123-456-789-X,ISBN,"(False, True, True, True, True, False)",0.0
+sat,A--1234567X,ISBN,"(False, True, True, True, False, True)",0.0
+sat,A--B--C--D--E--F--G--H--I--X,ISBN,"(False, True, True, True, False, False)",1.0
+sat,-A1-234-5678X,ISBN,"(False, True, True, False, True, True)",1.0
+sat,-A-1-2-3-4-5-6-7-8X,ISBN,"(False, True, True, False, True, False)",1.0
+sat,--a1234567X,ISBN,"(False, True, True, False, False, True)",0.0
+sat,-----@1234X,ISBN,"(False, True, True, False, False, False)",0.0
+sat,A1-23-456-789X,ISBN,"(False, True, False, True, True, True)",1.0
+unsat,,ISBN,"(False, True, False, True, True, False)",-1.0
+sat,A--123456789X,ISBN,"(False, True, False, True, False, True)",1.0
+sat,A--@--5,ISBN,"(False, True, False, True, False, False)",1.0
+sat,-@123-456-75,ISBN,"(False, True, False, False, True, True)",1.0
+sat,-a-1-2-3-4-5-6-7-8-9-X,ISBN,"(False, True, False, False, True, False)",1.0
+sat,--@123456X,ISBN,"(False, True, False, False, False, True)",1.0
+sat,----A1234X,ISBN,"(False, True, False, False, False, False)",1.0
+sat,1-23-456789@,ISBN,"(False, False, True, True, True, True)",1.0
+sat,1-23-456-789-@,ISBN,"(False, False, True, True, True, False)",1.0
+sat,12--3456789A,ISBN,"(False, False, True, True, False, True)",1.0
+sat,12--345-678-9A,ISBN,"(False, False, True, True, False, False)",1.0
+sat,-A1-234-5678!,ISBN,"(False, False, True, False, True, True)",1.0
+sat,-A-B-C-D-E-F-G-H-I-J,ISBN,"(False, False, True, False, True, False)",1.0
+sat,--1234567!,ISBN,"(False, False, True, False, False, True)",0.0
+sat,---@123456789-,ISBN,"(False, False, True, False, False, False)",1.0
+sat,123-45-6789A!,ISBN,"(False, False, False, True, True, True)",1.0
+sat,978-0-306-40615-!,ISBN,"(False, False, False, True, True, False)",1.0
+sat,1--A23456789!,ISBN,"(False, False, False, True, False, True)",1.0
+sat,A--B--C--D!,ISBN,"(False, False, False, True, False, False)",1.0
+sat,-978@123-4#,ISBN,"(False, False, False, False, True, True)",1.0
+sat,-a-b-c-d-e,ISBN,"(False, False, False, False, True, False)",1.0
+sat,--A1234567B,ISBN,"(False, False, False, False, False, True)",1.0
+sat,-A--B--C--D!,ISBN,"(False, False, False, False, False, False)",1.0
+sat,5 + 3 * -2 / 4,Expression,"(True, True, True, True)",0.0
+sat,+5*3,Expression,"(True, True, True, False)",0.0
+sat,-5*,Expression,"(True, True, False, True)",1.0
+sat,+5-3,Expression,"(True, True, False, False)",1.0
+sat,3+-5,Expression,"(True, False, True, True)",0.0
+sat,+-5,Expression,"(True, False, True, False)",0.0
+sat,-5+*3,Expression,"(True, False, False, True)",1.0
+sat,++5,Expression,"(True, False, False, False)",1.0
+sat,(5 + 3) * 2 - 7,Expression,"(False, True, True, True)",0.0
+sat,+5@-3,Expression,"(False, True, True, False)",0.0
+sat,a+2*3,Expression,"(False, True, False, True)",1.0
+sat,*(/5,Expression,"(False, True, False, False)",1.0
+sat,5+-3*(x/2),Expression,"(False, False, True, True)",0.0
+sat,+(1+-2),Expression,"(False, False, True, False)",0.0
+sat,1++a,Expression,"(False, False, False, True)",1.0
+sat,+* 5-3,Expression,"(False, False, False, False)",1.0
+sat,madam,Palindrome,"(True, True)",1.0
+unsat,,Palindrome,"(True, False)",-1.0
+sat,aa,Palindrome,"(False, True)",1.0
+sat,ab,Palindrome,"(False, False)",1.0
+sat,((()))()(),Parentheses,"(True, True, True, True)",1.0
+sat,()())()()(,Parentheses,"(True, True, True, False)",1.0
+sat,(((((((((),Parentheses,"(True, True, False, True)",1.0
+sat,(()))())()),Parentheses,"(True, True, False, False)",1.0
+sat,(a(b)c)d(e),Parentheses,"(True, False, True, True)",1.0
+sat,(a))((b))(,Parentheses,"(True, False, True, False)",1.0
+sat,(a((())()),Parentheses,"(True, False, False, True)",1.0
+sat,a(()))(())),Parentheses,"(True, False, False, False)",1.0
+sat,(()),Parentheses,"(False, True, True, True)",1.0
+sat,))((,Parentheses,"(False, True, True, False)",1.0
+sat,((),Parentheses,"(False, True, False, True)",1.0
+sat,)(),Parentheses,"(False, True, False, False)",1.0
+sat,(a),Parentheses,"(False, False, True, True)",1.0
+sat,)a(,Parentheses,"(False, False, True, False)",1.0
+sat,(()a,Parentheses,"(False, False, False, True)",1.0
+sat,)a,Parentheses,"(False, False, False, False)",1.0
+sat,ATGCCTGCCTAA,DNA,"(True, True, True, True, True)",1.0
+sat,ATGCCTAGCGTA,DNA,"(True, True, True, True, False)",1.0
+sat,CGATACGCTTAA,DNA,"(True, True, True, False, True)",1.0
+sat,CGTACGTACGCT,DNA,"(True, True, True, False, False)",1.0
+sat,ATGCCTGGTAA,DNA,"(True, True, False, True, True)",1.0
+sat,ATGCCTGATA,DNA,"(True, True, False, True, False)",1.0
+sat,CGATGCATTAA,DNA,"(True, True, False, False, True)",1.0
+sat,CAGTACGTACGCT,DNA,"(True, True, False, False, False)",1.0
+sat,ATGTAA,DNA,"(True, False, True, True, True)",1.0
+sat,ATGCAT,DNA,"(True, False, True, True, False)",1.0
+sat,CTATAA,DNA,"(True, False, True, False, True)",1.0
+sat,CAGCCT,DNA,"(True, False, True, False, False)",1.0
+sat,ATGCTAA,DNA,"(True, False, False, True, True)",1.0
+sat,ATGCA,DNA,"(True, False, False, True, False)",1.0
+sat,CGTAA,DNA,"(True, False, False, False, True)",1.0
+sat,CAGCT,DNA,"(True, False, False, False, False)",1.0
+sat,ATGNNNNNNTAA,DNA,"(False, True, True, True, True)",1.0
+sat,ATGNNNCCCTTT,DNA,"(False, True, True, True, False)",1.0
+sat,CGTNACGTATAA,DNA,"(False, True, True, False, True)",1.0
+sat,CGTACGTACGTN,DNA,"(False, True, True, False, False)",1.0
+sat,ATGNACGTACTAA,DNA,"(False, True, False, True, True)",1.0
+sat,ATGCTNCGTA,DNA,"(False, True, False, True, False)",1.0
+sat,TACNNNNNNNTAA,DNA,"(False, True, False, False, True)",1.0
+sat,CGTACGTACGN,DNA,"(False, True, False, False, False)",1.0
+sat,ATGXTTTGA,DNA,"(False, False, True, True, True)",1.0
+sat,ATGXAA,DNA,"(False, False, True, True, False)",1.0
+sat,XCTTAA,DNA,"(False, False, True, False, True)",1.0
+sat,AXT,DNA,"(False, False, True, False, False)",1.0
+sat,ATGXTAA,DNA,"(False, False, False, True, True)",1.0
+sat,ATGNC,DNA,"(False, False, False, True, False)",1.0
+sat,CXTAA,DNA,"(False, False, False, False, True)",1.0
+sat,AXCTG,DNA,"(False, False, False, False, False)",1.0
+sat,/home/user/documents,Absolute_Path,"(True, True, True, True)",1.0
+sat,/usr//bin,Absolute_Path,"(True, True, True, False)",1.0
+sat,/home/,Absolute_Path,"(True, True, False, True)",1.0
+sat,/usr//bin/,Absolute_Path,"(True, True, False, False)",1.0
+sat,/home/user/my documents,Absolute_Path,"(True, False, True, True)",1.0
+sat,/home/user /documents//file.txt,Absolute_Path,"(True, False, True, False)",1.0
+sat,/my folder/,Absolute_Path,"(True, False, False, True)",1.0
+sat,/home/user /documents//,Absolute_Path,"(True, False, False, False)",1.0
+unsat,,Absolute_Path,"(False, True, True, True)",-1.0
+unsat,,Absolute_Path,"(False, True, True, False)",-1.0
+unsat,,Absolute_Path,"(False, True, False, True)",-1.0
+sat,home//,Absolute_Path,"(False, True, False, False)",1.0
+sat,home/user/my documents,Absolute_Path,"(False, False, True, True)",1.0
+sat,home/user//Documents My Files,Absolute_Path,"(False, False, True, False)",1.0
+sat,C:/My Documents/,Absolute_Path,"(False, False, False, True)",1.0
+sat,home/user /folder//,Absolute_Path,"(False, False, False, False)",1.0
