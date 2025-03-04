@@ -1,0 +1,68 @@
+constraint,function
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    ''' Check if the date contains either no hyphens, one hyphen, or more than two hyphens. '''
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.","def this_function(s: str) -> bool:
+    ''' Check if If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.'''
+    
+    # Check if there is at least one hyphen in the string
+    if '-' in s:
+        # Split the string at the first hyphen
+        before_hyphen = s.split('-', 1)[0]
+        
+        # Try to convert the part before the hyphen to an integer
+        try:
+            number = int(before_hyphen)
+            # Check if the number is smaller than 0 or larger than 2025
+            return number < 0 or number > 2025
+        except ValueError:
+            # If conversion fails, it means the part before the hyphen is not a valid integer
+            return False
+    else:
+        # If there is no hyphen, we return False as per the requirement
+        return False"
+"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.","def this_function(s: str) -> bool: 
+    ''' Check if the date has at least two hyphens, 
+        and the part after the first hyphen but before the second hyphen 
+        shall be a number smaller than 1 or a number larger than 12. '''
+    
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens (which means at least three parts)
+    if len(parts) < 3:
+        return False
+    
+    # Extract the part after the first hyphen but before the second hyphen
+    middle_part = parts[1]
+    
+    # Check if middle_part is a number
+    try:
+        number = int(middle_part)
+    except ValueError:
+        return False
+    
+    # Check if the number is smaller than 1 or larger than 12
+    return number < 1 or number > 12"
+"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","def this_function(s: str) -> bool:
+    ''' Check if the date has at least two hyphens, and the part after the second hyphen shall be a number smaller than 1 or larger than 31. '''
+    
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+    
+    # Get the part after the second hyphen
+    part_after_second_hyphen = parts[2]
+    
+    # Check if it is a number
+    try:
+        number = int(part_after_second_hyphen)
+    except ValueError:
+        return False
+    
+    # Check if the number is smaller than 1 or larger than 31
+    return number < 1 or number > 31"

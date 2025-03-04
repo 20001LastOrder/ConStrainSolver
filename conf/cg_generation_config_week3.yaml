@@ -1,0 +1,9 @@
+defaults:
+  - constraint_store: mo2re_independent_clamped
+  - _self_
+
+num_processes: 12
+output_folder: llm_string/constraint_generator/evaluations/week3/outputs/
+model_name: gpt-4o-mini
+max_retries_per_attempt: 2
+batch_size: 4

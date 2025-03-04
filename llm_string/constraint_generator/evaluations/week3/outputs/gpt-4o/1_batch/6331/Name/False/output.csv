@@ -1,0 +1,20 @@
+constraint,function
+"The name shall not contain letters a-z, letters A-Z and spaces.","def this_function(s: str) -> bool:
+    '''Check if the name does not contain letters a-z, letters A-Z, and spaces.'''
+    # Regular expression to match any letter or space
+    pattern = r'[a-zA-Z ]'
+    
+    # Search for the pattern in the string
+    if re.search(pattern, s):
+        return False  # Contains forbidden characters
+    else:
+        return True   # Does not contain forbidden characters"
+The name shall contain no space character.,"def this_function(s: str) -> bool:
+    ''' Check if the name contains no space character. '''
+    return ' ' not in s"
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the given string ends with a space character. '''
+    return s.endswith(' ')"
+The name shall start  with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the name starts with a space character. '''
+    return s.startswith(' ')"

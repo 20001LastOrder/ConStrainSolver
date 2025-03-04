@@ -1,0 +1,55 @@
+constraint,function
+The date shall contain two hyphens.,"def this_function(s: str) -> bool:
+    ''' Check if the date string contains exactly two hyphens. '''
+    return s.count('-') == 2"
+"If there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool:
+    ''' Check if there are at least one hyphen, the part before the first hyphen shall be a number between 0 and 2025.'''
+    # Check if there is at least one hyphen in the string
+    if '-' in s:
+        # Split the string at the first hyphen
+        part_before_hyphen = s.split('-', 1)[0]
+        
+        # Check if the part before the first hyphen is a number
+        if part_before_hyphen.isdigit():
+            # Convert the part to an integer
+            number = int(part_before_hyphen)
+            
+            # Check if the number is between 0 and 2025
+            if 0 <= number <= 2025:
+                return True
+    
+    # Return False if any of the conditions are not met
+    return False"
+"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool:
+    # Split the string using hyphens as the separator
+    parts = s.split('-')
+    
+    # Check if there are at least two hyphens
+    if len(parts) >= 3:
+        # Extract the part between the first and second hyphen
+        part_between_hyphens = parts[1]
+        
+        # Check if this part is a digit and within the range 1 to 12
+        if part_between_hyphens.isdigit():
+            number = int(part_between_hyphens)
+            if 1 <= number <= 12:
+                return True
+    
+    # Return False if conditions are not met
+    return False"
+"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool:
+    # Split the string by hyphens
+    parts = s.split('-')
+    
+    # Check if there are at least three parts
+    if len(parts) < 3:
+        return False
+    
+    # Try to convert the third part to an integer
+    try:
+        number = int(parts[2])
+    except ValueError:
+        return False
+    
+    # Check if the number is between 1 and 31
+    return 1 <= number <= 31"

@@ -1,7 +1,7 @@
-1. A parentheses string shall be fewer than 10 characters long
+1. The parentheses string shall be at most 9 characters long.
 
-1. There exists at least one character in a parentheses string that is neither "(" nor ")".
+2. The parentheses string shall contain at least one character that is neither ( nor ).
 
-2. The total number of "(" characters shall not equal to the total number of ")" characters in a parentheses string.
+3. The parenthesis string shall not contain an equal number of ( characters and ) characters.
 
-3.  There exists at least one position in a parentheses string such that, when scanning from left to right up to that point, the count of ")" characters exceeds the count of "(" characters.
+3.  There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.

@@ -1,11 +1,11 @@
-1. There exists at least one character in the ISBN that is not a digit (0–9), not the letter "X", and not a hyphen.
+1. The ISBN shall contain at least one character that is neither a number (0–9), nor the letter X, nor a hyphen.
 
-2. The last character of the ISBN is neither a digit (0-9) nor the letter "X".
+2. The last character of the ISBN shall be neither a number (0-9), nor the letter X.
 
-3. When hyphens are excluded, the ISBN contains fewer or more than 10 characters.
+3. Without counting hyphens, the ISBN shall contain less than or more than 10 characters.
 
-4. A hyphen shall be at the beginning of the ISBN.
+4. The ISBN shall start with a hyphen.
 
-5. There are at least two hyphens that occur consecutively in the ISBN.
+5. The ISBN shall contain two consecutive hyphens.
 
-6. The ISBN contains more than 3 hyphens.
+6. The ISBN shall contain more than 3 hyphens.

@@ -1,0 +1,39 @@
+constraint,function
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool: 
+    ''' Check if the date contains either no hyphens, one hyphen, or more than two hyphens.'''
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.","def this_function(s: str) -> bool: 
+    ''' Check if if the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.'''
+    if '-' in s:
+        first_part = s.split('-')[0]
+        try:
+            first_number = int(first_part)
+            return first_number < 0 or first_number > 2025
+        except ValueError:
+            return False
+    return True  # If there are no hyphens, this function's condition is not applicable."
+"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.","def this_function(s: str) -> bool: 
+    ''' Check if if the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.'''
+    if s.count('-') >= 2:
+        parts = s.split('-')
+        if len(parts) > 2:
+            second_part = parts[1]
+            try:
+                second_number = int(second_part)
+                return second_number < 1 or second_number > 12
+            except ValueError:
+                return False
+    return True  # If there are less than two hyphens, this function's condition is not applicable."
+"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","def this_function(s: str) -> bool: 
+    ''' Check if if the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.'''
+    if s.count('-') >= 2:
+        parts = s.split('-')
+        if len(parts) > 2:
+            third_part = parts[2]
+            try:
+                third_number = int(third_part)
+                return third_number < 1 or third_number > 31
+            except ValueError:
+                return False
+    return True  # If there are less than two hyphens, this function's condition is not applicable."

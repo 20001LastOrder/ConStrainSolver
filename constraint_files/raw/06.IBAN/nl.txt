@@ -1,5 +1,5 @@
 1. The length of the bank number shall be 22.
 
-2. The first 4 numbers of the bank number shall be: 1210 (CA).
+2. The bank number shall start with 1210.
 
-3. The next 2 numbers after the first 4 numbers shall be 00.
+3. The bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.

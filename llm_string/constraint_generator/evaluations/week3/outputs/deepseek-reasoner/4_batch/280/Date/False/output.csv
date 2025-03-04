@@ -1,0 +1,5 @@
+constraint,function
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.",
+"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.",
+"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.",
+"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.",

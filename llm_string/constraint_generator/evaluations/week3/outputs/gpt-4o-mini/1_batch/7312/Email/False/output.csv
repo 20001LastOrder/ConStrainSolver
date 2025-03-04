@@ -1,0 +1,26 @@
+constraint,function
+The email shall contain a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the email contains a space character. Returns True if it does, False otherwise. '''
+    return ' ' in s"
+The email shall start with a @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if the email does not start with a @ character and contains at least one @ character.'''
+    return s.startswith('@') == False and '@' in s"
+The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool:
+    ''' Check if the email has either no @ characters or more than one @ character. '''
+    at_count = s.count('@')
+    return at_count == 0 or at_count > 1"
+"If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.","def this_function(s: str) -> bool:
+    ''' Check if the email contains a @ character, 
+        then the email shall not include any dot characters (.) 
+        after the @ character and before the end. '''
+    
+    # Check if '@' is present in the string
+    at_index = s.find('@')
+    if at_index == -1:
+        return False  # No '@' character found, return False
+    
+    # Check if there are any '.' characters after the '@'
+    if '.' in s[at_index + 1:]:
+        return False  # There is a '.' after '@', return False
+    
+    return True  # Conditions are met, return True"

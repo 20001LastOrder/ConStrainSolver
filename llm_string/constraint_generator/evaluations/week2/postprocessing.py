@@ -55,5 +55,3 @@ def postprocess(run_folder_path: str, constraint_store: ConstraintStore):
 
     df = pd.DataFrame(results, columns=base_columns)
     df.to_csv(output_file_path, index=False)
-
-# postprocess("D:\\2024-2025\\Research\\core\\ConstrainSolver\\llm_string\\constraint_generator\\evaluations\\week2\\outputs\\1_batch\\5273\\", ConstraintStore("D:\\2024-2025\\Research\\core\\ConstrainSolver\\constraint_files\\independent_constraints_clamped.csv"))

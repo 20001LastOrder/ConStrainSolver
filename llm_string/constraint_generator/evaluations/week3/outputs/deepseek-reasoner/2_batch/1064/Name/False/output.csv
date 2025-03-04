@@ -1,0 +1,9 @@
+constraint,function
+"The name shall not contain letters a-z, letters A-Z and spaces.",
+The name shall contain no space character.,
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the name shall end with a space character.'''
+    return s.endswith(' ')"
+The name shall start  with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the name shall start with a space character.'''
+    return s.startswith(' ')"

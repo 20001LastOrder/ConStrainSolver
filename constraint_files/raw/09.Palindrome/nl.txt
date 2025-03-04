@@ -1,3 +1,3 @@
-1. A palindrome shall be at least 3 characters long
+1. The palindrome shall be at least 3 characters long.
 
-2. A palindrome shall be identical to its reverse
+2. The palindrome shall be identical to its reverse.

@@ -1,7 +1,7 @@
-1. An arithmetic expression shall only contain digits (0-9) and arithmetic operators (+, -, *, /).
+1. The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).
 
-2. The arithmetic operators (+, -, *, /) in an arithmetic expression shall not appear consecutively.
+2. The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.
 
-3. Except for the minus sign (-), every operator (+, *, /) shall have a number before and after it.
+3. Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.
 
-4. An expression shall not start with operators +, *, /.
+4. The arithmetic expression shall not start with operators from the set {+, *, /}.

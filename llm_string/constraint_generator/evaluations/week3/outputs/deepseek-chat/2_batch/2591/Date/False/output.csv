@@ -1,0 +1,38 @@
+constraint,function
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    '''Check if the date shall contain either no hyphens, one hyphen, or more than two hyphens.'''
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+"If the date has at least one hyphen, the part before the first hyphen shall be either a number smaller than 0 or a number larger than 2025.","def this_function(s: str) -> bool:
+    '''Check if, when the date has at least one hyphen, the part before the first hyphen is either a number smaller than 0 or a number larger than 2025.'''
+    if '-' in s:
+        part_before_hyphen = s.split('-')[0]
+        if part_before_hyphen.isdigit():
+            number = int(part_before_hyphen)
+            return number < 0 or number > 2025
+        else:
+            return False  # If the part before the hyphen is not a number, return False
+    else:
+        return True  # If there are no hyphens, the condition is trivially satisfied"
+"If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.","def this_function(s: str) -> bool:
+    ''' Check if If the date has at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number smaller than 1 or a number larger than 12.'''
+    parts = s.split('-')
+    if len(parts) < 3:
+        return False  # Not enough hyphens
+    
+    try:
+        num = int(parts[1])
+        return num < 1 or num > 12
+    except ValueError:
+        return False  # The part between hyphens is not a number"
+"If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.","def this_function(s: str) -> bool:
+    ''' Check if If the date has at least two hyphens, the part after the second hyphen shall be a number smaller than 1 or larger than 31.'''
+    parts = s.split('-')
+    if len(parts) < 3:
+        return False  # Not enough hyphens
+    
+    try:
+        num = int(parts[2])
+        return num < 1 or num > 31
+    except ValueError:
+        return False  # The part after the second hyphen is not a number"

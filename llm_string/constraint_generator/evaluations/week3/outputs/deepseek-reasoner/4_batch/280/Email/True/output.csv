@@ -1,0 +1,5 @@
+constraint,function
+The email shall not contain a space character.,
+The email shall not start with a @ character.,
+The email shall have exactly one @ character.,
+"If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.",
