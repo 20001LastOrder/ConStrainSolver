@@ -4,6 +4,6 @@
 
 3. The length of The DNA sequence shall be a multiple of three.
 
-4. The DNA sequence shall starts with ATG.
+4. The DNA sequence shall start with ATG.
 
 5. The DNA sequence shall end with either TAA, or TAG, or TGA.

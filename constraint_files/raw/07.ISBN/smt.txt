@@ -1,0 +1,11 @@
+(assert (str.in.re s (re.* (re.union (re.range "0" "9") (str.to.re "X") (str.to.re "-") ))))
+
+(assert (or (str.in.re (str.at s (- (str.len s) 1)) (re.range "0" "9")) (= (str.at s (- (str.len s) 1)) "X")))
+
+(assert (= (str.len (str.replace_all s "-" "")) 10))
+
+(assert (not (str.prefixof "-" s)))
+
+(assert (not (str.contains s "--")))
+
+(assert (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re "-") (re.* re.allchar) (str.to.re "-") (re.* re.allchar) (str.to.re "-") (re.* re.allchar) (str.to.re "-") (re.* re.allchar)))))

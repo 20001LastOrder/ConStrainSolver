@@ -4,7 +4,7 @@
 
 (assert (not (str.suffixof " " s)))
 
-(assert (not (= (str.at s 0) " ")))
+(assert (not (str.prefixof " " s)))
 
 (assert (str.in.re (str.at s 0) (re.range "A" "Z")))
 

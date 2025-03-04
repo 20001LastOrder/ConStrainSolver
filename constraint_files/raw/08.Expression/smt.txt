@@ -1,0 +1,26 @@
+(assert (str.in.re s (re.* (re.union (re.range "0" "9") (str.to.re "+") (str.to.re "-") (str.to.re "*") (str.to.re "/")))))
+
+(assert (not (str.in.re s (re.++ (re.* re.allchar) (re.union (str.to.re "+") (str.to.re "-") (str.to.re "*") (str.to.re "/")) (re.union (str.to.re "+") (str.to.re "-") (str.to.re "*") (str.to.re "/")) (re.* re.allchar)))))
+
+(assert (not 
+(or 
+(str.suffixof "+" s)
+(str.suffixof "*" s)
+(str.suffixof "/" s)
+(str.prefixof "+" s)
+(str.prefixof "*" s)
+(str.prefixof "/" s)
+(str.in.re s (re.++
+(re.* re.allchar)
+(re.union (str.to.re "+") (str.to.re "*") (str.to.re "/"))
+(re.inter (re.complement (re.range "0" "9")) re.allchar )
+(re.* re.allchar)
+))
+(str.in.re s (re.++
+(re.* re.allchar)
+(re.inter (re.complement (re.range "0" "9")) re.allchar )
+(re.union (str.to.re "+") (str.to.re "*") (str.to.re "/"))
+(re.* re.allchar)
+)))))
+
+(assert (not (or (str.prefixof "+" s) (str.prefixof "*" s) (str.prefixof "/" s))))

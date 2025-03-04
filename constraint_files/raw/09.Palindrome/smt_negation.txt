@@ -1,0 +1,3 @@
+(assert (not (>= (str.len s) 3)))
+
+(assert (not (forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (= (str.at s i) (str.at s (- (- (str.len s) 1) i)))))))

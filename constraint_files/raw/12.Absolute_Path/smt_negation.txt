@@ -1,0 +1,7 @@
+(assert (not (str.prefixof "/" s)))
+
+(assert (str.contains s " "))
+
+(assert (str.suffixof "/" s))
+
+(assert (str.contains s "//"))
