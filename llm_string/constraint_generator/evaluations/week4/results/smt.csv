@@ -1,9 +1,9 @@
 generator_mode,model_name,processed_index,generation_success,formal_verification_success,validation_success
-batch,gpt-4o,104,78,65,75
-batch,gpt-4o-mini,104,41,36,38
-batch,deepseek-chat,104,78,70,81
+batch,gpt-4o,104,89,65,75
+batch,gpt-4o-mini,104,43,36,38
+batch,deepseek-chat,104,83,70,81
 batch,Meta-Llama-3.1-8B-Instruct-Turbo-128K,104,2,2,2
-independent,gpt-4o,104,83,70,78
-independent,gpt-4o-mini,104,60,46,51
-independent,deepseek-chat,104,78,71,82
+independent,gpt-4o,104,90,70,78
+independent,gpt-4o-mini,104,65,46,51
+independent,deepseek-chat,104,89,71,82
 independent,Meta-Llama-3.1-8B-Instruct-Turbo-128K,104,18,12,13

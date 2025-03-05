@@ -161,15 +161,21 @@ def calculate_smt_results(cfg: DictConfig, constraint_store: ConstraintStore):
 
                     ground_truth_negation = name_ground_truth_negation[index_in_name_constraints]
 
+                    solver = Solver()
+
+                    try:
+                        solver.from_string('(declare-const s String)')
+                        solver.from_string(f'(assert {result})')
+                    except Exception:
+                        continue
+
+                    generation_success += 1
+
                     if not result in smt_ignore:
                         solver = Solver()
 
-                        try:
-                            solver.from_string('(declare-const s String)')
-                            solver.from_string(f'(assert {result})')
-                        except Exception as e:
-                            continue
-
+                        solver.from_string('(declare-const s String)')
+                        solver.from_string(f'(assert {result})')
                         solver.from_string(ground_truth_negation)
 
                         try:
@@ -211,8 +217,6 @@ def calculate_smt_results(cfg: DictConfig, constraint_store: ConstraintStore):
 
                             if sat == -1:
                                 formal_verification_success += 1
-
-                        generation_success += 1
 
                     for numbered_name in os.listdir(test_cases_root_path):
                         if name in numbered_name:
