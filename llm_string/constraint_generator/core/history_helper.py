@@ -25,5 +25,5 @@ def format_history(history: list[(Constraint, Exception)]) -> str:
 def format_exception(constraint: str, ex: Exception) -> str:
     exception_string = str(ex)
 
-    pattern = r"line 1 column (\d+):"
-    return re.sub(pattern, lambda m: f"near \\\"{constraint[max(int(m.group(1)) - 13, 0):min(int(m.group(1)) - 2, len(constraint) - 1)]}\\\":", exception_string)
+    pattern = r"\"line 1 column (\d+):"
+    return re.sub(pattern, lambda m: f"near \"{constraint[max(int(m.group(1)) - 35, 0):min(int(m.group(1)) - 20, len(constraint) - 1)]}\":", exception_string)

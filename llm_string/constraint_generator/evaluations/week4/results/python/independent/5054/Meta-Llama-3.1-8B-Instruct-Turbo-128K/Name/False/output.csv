@@ -1,0 +1,90 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","def this_function(s: str) -> bool:
+    """"""
+    Check if the name shall contain at least one character that is neither 
+    a letter (a-z, A-Z), nor a letter, nor a space.
+
+    Args:
+        s (str): The string to check.
+
+    Returns:
+        bool: True if the string contains a non-letter, non-space character, False otherwise.
+    """"""
+    return any(char not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ' for char in s)"
+The name shall contain no space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string shall contain no space character.
+
+    Args:
+    s (str): Input string to be checked.
+
+    Returns:
+    bool: True if the string contains no space character, False otherwise.
+    """"""
+    return ' ' not in s"
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The name shall end with a space character.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string ends with a space character, False otherwise.
+    """"""
+    return s.endswith(' ')"
+The name shall start with a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string starts with a space character.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string starts with a space character, False otherwise.
+    """"""
+    if not isinstance(s, str):
+        raise TypeError(""Input must be a string."")
+    
+    return s.startswith(' ')"
+The first character in the name shall not be capitalized.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The first character in the name shall not be capitalized.
+    
+    Args:
+    s (str): The input string
+    
+    Returns:
+    bool: True if the first character is not capitalized, False otherwise
+    """"""
+    if s:
+        # Return True if the first character is not uppercase, False otherwise
+        return s[0].islower()
+    else:
+        # If the string is empty, raise a ValueError
+        raise ValueError(""Input string should not be empty"")"
+"In the name, there shall be some characters following a space character which are not capitalized.","def this_function(s: str) -> bool:
+    """"""
+    Check if In the name, there shall be some characters following a space character which are not capitalized.
+
+    Args:
+        s (str): The input string
+
+    Returns:
+        bool: True if there are non-capitalized characters following a space, False otherwise
+    """"""
+    # Split the string into two parts at the space character
+    parts = s.split(' ')
+
+    # Check if all parts are not empty
+    if not all(parts):
+        return False
+
+    # Check if any of the parts have at least one non-capitalized character
+    for part in parts:
+        # Check if the part has at least one non-capitalized character
+        if any(not char.isupper() for char in part):
+            return True
+
+    # If no non-capitalized characters were found, return False
+    return False"

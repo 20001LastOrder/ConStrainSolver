@@ -1,0 +1,62 @@
+constraint,result
+"The name shall only contain letters a-z, letters A-Z and space characters.","def this_function(s: str) -> bool:
+    """"""
+    Check if the string contains only letters (a-z, A-Z) and space characters.
+    
+    Args:
+        s (str): The input string to be checked.
+    
+    Returns:
+        bool: True if the string contains only letters and space characters, False otherwise.
+    """"""
+    return s.replace(' ', '').isalpha()"
+The name shall contain at least one space character.,"def this_function(s: str) -> bool:
+    """"""Check if the name contains at least one space character.""""""
+    return ' ' in s"
+The name shall not end with a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the given string does not end with a space character.
+
+    Args:
+    s (str): The input string to be checked.
+
+    Returns:
+    bool: True if the string does not end with a space, False otherwise.
+    """"""
+    return s.rstrip() == s"
+The name shall not start with a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the name shall not start with a space character.
+
+    Args:
+        s (str): The name to be checked.
+
+    Returns:
+        bool: True if the name does not start with a space, False otherwise.
+    """"""
+    return not s.startswith(' ')"
+The first character in the name shall be capitalized.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the first character in the string is capitalized.
+
+    Args:
+        s (str): The input string.
+
+    Returns:
+        bool: True if the first character is capitalized, False otherwise.
+    """"""
+    return s and s[0].isupper()"
+Any character in the name following a space character shall be capitalized.,"def this_function(s: str) -> bool:
+    """"""
+    Check if any character in the string following a space character is capitalized.
+
+    Args:
+        s (str): The input string.
+
+    Returns:
+        bool: True if any character following a space is capitalized, False otherwise.
+    """"""
+    for i in range(len(s)):
+        if s[i] == ' ' and i != len(s) - 1 and s[i+1].isupper():
+            return True
+    return False"

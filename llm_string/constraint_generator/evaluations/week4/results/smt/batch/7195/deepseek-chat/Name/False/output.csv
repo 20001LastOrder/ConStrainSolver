@@ -1,0 +1,7 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (not (or (and (>= (str.to_code (str.at s i)) 97) (<= (str.to_code (str.at s i)) 122)) (and (>= (str.to_code (str.at s i)) 65) (<= (str.to_code (str.at s i)) 90)) (= (str.at s i) "" ""))))"
+The name shall contain no space character.,"(not (str.contains s "" ""))"
+The name shall end with a space character.,"(= (str.at s (- (str.len s) 1)) "" "")"
+The name shall start with a space character.,"(= (str.at s 0) "" "")"
+The first character in the name shall not be capitalized.,(not (and (>= (str.to_code (str.at s 0)) 65) (<= (str.to_code (str.at s 0)) 90)))
+"In the name, there shall be some characters following a space character which are not capitalized.","(exists ((i Int)) (and (>= i 0) (< i (- (str.len s) 1)) (= (str.at s i) "" "") (not (and (>= (str.to_code (str.at s (+ i 1))) 65) (<= (str.to_code (str.at s (+ i 1))) 90))))"

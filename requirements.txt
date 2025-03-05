@@ -3,6 +3,7 @@ tqdm
 pydantic
 numpy
 matplotlib
+tabulate
 pandas==2.2.3
 langchain==0.3.2
 langchain-core==0.3.37

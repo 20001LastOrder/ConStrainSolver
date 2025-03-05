@@ -1,0 +1,94 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    """"""
+    Check if The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).
+
+    Args:
+        s (str): Arithmetic expression as a string.
+
+    Returns:
+        bool: True if the expression contains a non-number, non-operator character, False otherwise.
+    """"""
+    # Define a pattern that matches any character that is not a number (0-9) or an arithmetic operator (+, -, *, /)
+    pattern = r""[^0-9\+\-\*\/\.]""
+    
+    # Use regular expression search to find the first occurrence of a non-number, non-operator character
+    match = re.search(pattern, s)
+    
+    # If a match is found, return True; otherwise, return False
+    return match is not None"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    """"""
+    Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /).
+    
+    Args:
+        s (str): The arithmetic expression to check.
+    
+    Returns:
+        bool: True if the arithmetic expression contains consecutive arithmetic operators, False otherwise.
+    """"""
+    # Regular expression pattern to match one or more consecutive arithmetic operators
+    pattern = r""[+-*/]+""  # Matches one or more of +, -, *, /
+    return re.search(pattern, s) is not None"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    """"""
+    Check if the arithmetic expression shall contain an operator from the set {+, *, /} that 
+    either does not have a number immediately before it or does not have a number immediately after it.
+
+    Args:
+        s (str): The arithmetic expression as a string.
+
+    Returns:
+        bool: True if the expression contains an invalid operator placement, False otherwise.
+    """"""
+
+    # Define the set of allowed operators
+    operators = {'+', '*', '/'}
+
+    # Initialize a flag to track if an invalid operator placement is found
+    invalid_placement = False
+
+    # Iterate over the characters in the string
+    for i in range(len(s)):
+        # Check if the current character is an operand (a digit)
+        if s[i].isdigit():
+            # If it is, check the previous character in the string
+            if i > 0 and s[i-1] in operators:
+                # If the previous character is an operator, set the flag to True
+                invalid_placement = True
+                break
+            # If it is, check the next character in the string
+            if i < len(s) - 1 and s[i+1] in operators:
+                # If the next character is an operator, set the flag to True
+                invalid_placement = True
+                break
+
+    # Return the flag
+    return invalid_placement"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    """"""
+    Check if the arithmetic expression starts with one of the operators 
+    in the set {+, *, /, -}. Note that this_function should handle the situation 
+    when the number is negative.
+
+    Args:
+    s (str): The arithmetic expression.
+
+    Returns:
+    bool: True if the expression starts with a valid operator or is a negative 
+          number, False otherwise.
+    """"""
+    # Check if the expression starts with one of the operators
+    if s and s[0] in {'+', '-', '*', '/'}:
+        # Check if the expression starts with a negative number
+        if s and s[0] == '-' and (len(s) == 1 or s[1] in {'+', '-', '*', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}):
+            return True
+        return True
+    return False
+
+# Example use cases:
+print(this_function(""+5""))  # Returns: True
+print(this_function(""-5""))  # Returns: True
+print(this_function(""*5""))  # Returns: True
+print(this_function(""/5""))  # Returns: True
+print(this_function(""5""))   # Returns: False"

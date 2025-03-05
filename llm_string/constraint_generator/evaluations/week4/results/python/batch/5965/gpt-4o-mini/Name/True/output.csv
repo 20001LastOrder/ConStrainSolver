@@ -1,0 +1,20 @@
+constraint,result
+"The name shall only contain letters a-z, letters A-Z and space characters.","def this_function(s: str) -> bool: 
+    ''' Check if The name shall only contain letters a-z, letters A-Z and space characters.'''
+    return all(c.isalpha() or c.isspace() for c in s)"
+The name shall contain at least one space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall contain at least one space character.'''
+    return ' ' in s"
+The name shall not end with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall not end with a space character.'''
+    return not s.endswith(' ')"
+The name shall not start with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall not start with a space character.'''
+    return not s.startswith(' ')"
+The first character in the name shall be capitalized.,"def this_function(s: str) -> bool: 
+    ''' Check if The first character in the name shall be capitalized.'''
+    return s and s[0].isupper()"
+Any character in the name following a space character shall be capitalized.,"def this_function(s: str) -> bool: 
+    ''' Check if Any character in the name following a space character shall be capitalized.'''
+    words = s.split()
+    return all(word[0].isupper() for word in words if word)  # Check first character of each word"

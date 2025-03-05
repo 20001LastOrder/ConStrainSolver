@@ -1,0 +1,4 @@
+constraint,result
+"The url shall not start with http://, nor with https://.",
+The url shall contain at least one space.,
+The url shall not contain any dot character (.).,

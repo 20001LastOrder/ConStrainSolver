@@ -1,0 +1,6 @@
+constraint,result
+The password shall be at least 4 characters long.,(>= (str.len s) 4)
+"The password shall contain one of the following characters: !, #, $.","(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))"
+The password shall contain at least one upper case characters.,"(exists ((c String)) (and (str.contains s c) (str.in.re c (re.+ (re.range ""A"" ""Z"")))))"
+The password shall contain at least one lower case characters.,"(str.contains s (str.to.re ""[a-z]""))"
+The password shall contain at least one number.,"(or (str.contains s ""0"") (str.contains s ""1"") (str.contains s ""2"") (str.contains s ""3"") (str.contains s ""4"") (str.contains s ""5"") (str.contains s ""6"") (str.contains s ""7"") (str.contains s ""8"") (str.contains s ""9""))"

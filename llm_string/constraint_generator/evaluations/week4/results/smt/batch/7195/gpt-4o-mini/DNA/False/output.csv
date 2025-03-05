@@ -1,0 +1,6 @@
+constraint,result
+"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","(exists ((c String)) (and (not (= c ""A"")) (not (= c ""T"")) (not (= c ""C"")) (not (= c ""G"")) (str.contains s c)))"
+The length of the DNA sequence shall be at most 9.,(<= (str.len s) 9)
+The length of the DNA sequence shall not a multiple of three.,(not (= (mod (str.len s) 3) 0))
+The DNA sequence shall not start with ATG.,"(not (str.startsWith s ""ATG""))"
+"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","(not (or (str.endsWith s ""TAA"") (str.endsWith s ""TAG"") (str.endsWith s ""TGA"")))"

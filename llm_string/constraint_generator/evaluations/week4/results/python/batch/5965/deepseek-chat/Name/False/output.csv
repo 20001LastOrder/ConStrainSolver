@@ -1,0 +1,28 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","def this_function(s: str) -> bool:
+    ''' Check if The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.'''
+    # Use a regular expression to find any character that is not a letter or a space
+    return bool(re.search(r'[^a-zA-Z\s]', s))"
+The name shall contain no space character.,"def this_function(s: str) -> bool:
+    ''' Check if The name shall contain no space character.'''
+    # Check if there are any space characters in the string
+    return ' ' not in s"
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if The name shall end with a space character.'''
+    # Check if the last character is a space
+    return s.endswith(' ')"
+The name shall start with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if The name shall start with a space character.'''
+    # Check if the first character is a space
+    return s.startswith(' ')"
+The first character in the name shall not be capitalized.,"def this_function(s: str) -> bool:
+    ''' Check if The first character in the name shall not be capitalized.'''
+    # Check if the first character is not uppercase
+    return s and not s[0].isupper()"
+"In the name, there shall be some characters following a space character which are not capitalized.","def this_function(s: str) -> bool:
+    ''' Check if In the name, there shall be some characters following a space character which are not capitalized.'''
+    # Iterate through the string and check if any character following a space is not capitalized
+    for i in range(len(s) - 1):
+        if s[i] == ' ' and not s[i+1].isupper():
+            return True
+    return False"

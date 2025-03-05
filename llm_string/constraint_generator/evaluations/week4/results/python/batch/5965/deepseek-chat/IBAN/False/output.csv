@@ -1,0 +1,15 @@
+constraint,result
+The length of the bank account shall not be 22.,"def this_function(s: str) -> bool:
+    ''' Check if The length of the bank account shall not be 22.'''
+    return len(s) != 22"
+The bank number shall not start with 1210.,"def this_function(s: str) -> bool:
+    ''' Check if The bank number shall not start with 1210.'''
+    return not s.startswith(""1210"")"
+"The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.
+","def this_function(s: str) -> bool:
+    ''' Check if The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.'''
+    if len(s) < 6:
+        return True
+    else:
+        # Check if the fifth or sixth character is not '0'
+        return s[4] != '0' or s[5] != '0'"

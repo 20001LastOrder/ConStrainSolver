@@ -1,0 +1,62 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /). '''
+    
+    # Define valid characters
+    valid_characters = set('0123456789+-*/')
+    
+    # Check each character in the string
+    for char in s:
+        if char not in valid_characters:
+            return True  # Found a character that is neither a number nor an operator
+    
+    return False  # All characters are valid"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /). '''
+    
+    # Define the set of arithmetic operators
+    operators = set('+-*/')
+    
+    # Initialize a variable to keep track of the last character
+    last_char = ''
+    
+    # Iterate through each character in the string
+    for char in s:
+        # Check if the current character is an operator
+        if char in operators:
+            # If the last character was also an operator, return True
+            if last_char in operators:
+                return True
+            # Update the last character to the current one
+            last_char = char
+        else:
+            # If the current character is not an operator, reset last_char
+            last_char = ''
+    
+    # If no consecutive operators were found, return False
+    return False"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains an operator from the set {+, *, /} 
+        that either does not have a number immediately before it or does not have a number 
+        immediately after it. '''
+    
+    operators = {'+', '*', '/'}
+    
+    # Iterate through the string
+    for i in range(len(s)):
+        if s[i] in operators:
+            # Check if there's a number before the operator
+            has_number_before = (i > 0 and s[i-1].isdigit())
+            # Check if there's a number after the operator
+            has_number_after = (i < len(s) - 1 and s[i+1].isdigit())
+            
+            # If either condition is not met, return True
+            if not has_number_before or not has_number_after:
+                return True
+    
+    # If no such operator is found, return False
+    return False"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool: 
+    ''' Check if the arithmetic expression starts with one of the operators in the set {+, *, /}. '''
+    # Check if the string is not empty and the first character is one of the specified operators
+    return bool(s) and s[0] in {'+', '*', '/'}"

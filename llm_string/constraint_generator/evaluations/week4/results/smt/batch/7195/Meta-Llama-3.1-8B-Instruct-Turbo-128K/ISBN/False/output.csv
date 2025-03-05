@@ -1,0 +1,7 @@
+constraint,result
+"The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.",
+"The last character of the ISBN shall be neither a number (0-9), nor the letter X.",
+"Without counting hyphens, the ISBN shall contain less than or more than 10 characters.",
+The ISBN shall start with a hyphen.,
+The ISBN shall contain two consecutive hyphens.,
+The ISBN shall contain more than 3 hyphens.,

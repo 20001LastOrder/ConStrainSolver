@@ -1,0 +1,13 @@
+constraint,result
+"The absolute path shall start with the root directory ""/"".","def this_function(s: str) -> bool:
+    ''' Check if the absolute path starts with the root directory ""/"".'''
+    return s.startswith('/')"
+The absolute path shall not contain any spaces.,"def this_function(s: str) -> bool:
+    ''' Check if the absolute path contains any spaces.'''
+    return ' ' not in s"
+"The absolute path shall not end with ""/"".","def this_function(s: str) -> bool:
+    '''Check if the absolute path does not end with ""/"".'''
+    return not s.endswith('/')"
+"The absolute path shall not contain consecutive ""/"" characters.","def this_function(s: str) -> bool:
+    ''' Check if the absolute path does not contain consecutive ""/"" characters.'''
+    return '//' not in s"

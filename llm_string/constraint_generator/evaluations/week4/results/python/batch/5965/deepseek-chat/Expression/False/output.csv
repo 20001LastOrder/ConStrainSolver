@@ -1,0 +1,17 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).'''
+    # Use a regular expression to find any character that is not a digit or an arithmetic operator
+    return bool(re.search(r'[^0-9+\-*/]', s))"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /).'''
+    # Use a regular expression to find consecutive operators
+    return bool(re.search(r'[+\-*/]{2,}', s))"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.'''
+    # Use a regular expression to find operators that are not surrounded by numbers
+    return bool(re.search(r'(?<!\d)[+*/]|[+*/](?!\d)', s))"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression starts with one of the operators in the set {+, *, /}.'''
+    # Use a regular expression to check if the string starts with an operator
+    return bool(re.match(r'^[+*/]', s))"

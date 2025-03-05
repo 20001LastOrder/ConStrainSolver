@@ -1,0 +1,9 @@
+constraint,result
+The palindrome shall be at most 2 characters long.,"def this_function(s: str) -> bool:
+    ''' Check if the palindrome shall be at most 2 characters long. '''
+    # A palindrome of at most 2 characters can be either 1 character or 2 identical characters
+    return len(s) <= 2 and s == s[::-1]"
+The palindrome shall not be identical to its reverse.,"def this_function(s: str) -> bool:
+    ''' Check if the palindrome shall not be identical to its reverse. '''
+    # A string is not identical to its reverse if it is not a palindrome
+    return s != s[::-1]"

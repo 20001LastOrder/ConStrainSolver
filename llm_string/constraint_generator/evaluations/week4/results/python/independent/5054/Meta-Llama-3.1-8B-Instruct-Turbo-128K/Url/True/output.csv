@@ -1,0 +1,29 @@
+constraint,result
+The url shall start with either http:// or https://.,"def this_function(s: str) -> bool:
+    ''' Check if a url starts with either http:// or https://''
+    :param s: The input URL to be checked.
+    :return: True if the string starts with http:// or https://, False otherwise.
+    '''
+    return s.startswith((""http://"", ""https://""))"
+The url shall not contain any spaces.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the URL shall not contain any spaces.
+
+    Args:
+    s (str): The URL to be checked.
+
+    Returns:
+    bool: True if the URL does not contain any spaces, False otherwise.
+    """"""
+    return ' ' not in s"
+The url shall contain at least one dot character (.).,"def this_function(s: str) -> bool:
+    """"""
+    Check if the url shall contain at least one dot character (.).
+
+    Args:
+        s (str): The URL to be checked.
+
+    Returns:
+        bool: True if the URL contains at least one dot character, False otherwise.
+    """"""
+    return '.' in s"

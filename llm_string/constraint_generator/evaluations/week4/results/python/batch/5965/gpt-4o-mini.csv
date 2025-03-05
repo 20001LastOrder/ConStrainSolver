@@ -1,0 +1,388 @@
+name,mask,constraint,result
+Absolute_Path,True,"The absolute path shall start with the root directory ""/"".","def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall start with the root directory ""/"".'''
+    return s.startswith('/')"
+Absolute_Path,True,The absolute path shall not contain any spaces.,"def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall not contain any spaces.'''
+    return ' ' not in s"
+Absolute_Path,True,"The absolute path shall not end with ""/"".","def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall not end with ""/"".'''
+    return not s.endswith('/')"
+Absolute_Path,True,"The absolute path shall not contain consecutive ""/"" characters.","def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall not contain consecutive ""/"" characters.'''
+    return '//' not in s"
+Absolute_Path,False,"The absolute path shall not start with the root directory ""/"".","def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall not start with the root directory ""/"".'''
+    return not s.startswith('/')"
+Absolute_Path,False,The absolute path shall contain at least one space.,"def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall contain at least one space.'''
+    return ' ' in s"
+Absolute_Path,False,"The absolute path shall end with ""/"".","def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall end with ""/"".'''
+    return s.endswith('/')"
+Absolute_Path,False,"The absolute path shall contain consecutive ""/"" characters.","def this_function(s: str) -> bool: 
+    ''' Check if The absolute path shall contain consecutive ""/"" characters.'''
+    return '//' in s"
+Date,True,The date shall contain two hyphens.,"def this_function(s: str) -> bool: 
+    ''' Check if the date contains exactly two hyphens.'''
+    return s.count('-') == 2"
+Date,True,"If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool: 
+    ''' Check if the part before the first hyphen is a number between 0 and 2025.'''
+    if '-' in s:
+        year_part = s.split('-')[0]
+        return year_part.isdigit() and 0 <= int(year_part) <= 2025
+    return False"
+Date,True,"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool: 
+    ''' Check if the part after the first hyphen but before the second hyphen is a number between 1 and 12.'''
+    parts = s.split('-')
+    if len(parts) >= 3:
+        month_part = parts[1]
+        return month_part.isdigit() and 1 <= int(month_part) <= 12
+    return False"
+Date,True,"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool: 
+    ''' Check if the part after the second hyphen is a number between 1 and 31.'''
+    parts = s.split('-')
+    if len(parts) == 3:
+        day_part = parts[2]
+        return day_part.isdigit() and 1 <= int(day_part) <= 31
+    return False"
+Date,False,"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool: 
+    ''' Check if the date shall contain either no hyphens, one hyphen or more than two hyphens.'''
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+Date,False,There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.,"def this_function(s: str) -> bool: 
+    ''' Check if there must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.'''
+    if '-' not in s:
+        return False
+    part_before_hyphen = s.split('-')[0]
+    return not (part_before_hyphen.isdigit() and 0 <= int(part_before_hyphen) <= 2025)"
+Date,False,There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.,"def this_function(s: str) -> bool: 
+    ''' Check if there must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.'''
+    parts = s.split('-')
+    if len(parts) < 3:
+        return False
+    part_after_first_hyphen = parts[1]
+    return not (part_after_first_hyphen.isdigit() and 1 <= int(part_after_first_hyphen) <= 12)"
+Date,False,There must be at least two hyphens an d the part after the second hyphen shall not be a number between 1 and 31.,"def this_function(s: str) -> bool: 
+    ''' Check if there must be at least two hyphens and the part after the second hyphen shall not be a number between 1 and 31.'''
+    parts = s.split('-')
+    if len(parts) < 3:
+        return False
+    part_after_second_hyphen = parts[2]
+    return not (part_after_second_hyphen.isdigit() and 1 <= int(part_after_second_hyphen) <= 31)"
+DNA,True,"The DNA sequence shall only contain letters A, T, C and G.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence shall only contain letters A, T, C, and G.'''
+    return all(char in 'ATCG' for char in s)"
+DNA,True,The length of The DNA sequence shall be at least 10.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence shall be at least 10.'''
+    return len(s) >= 10"
+DNA,True,The length of The DNA sequence shall be a multiple of three.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence shall be a multiple of three.'''
+    return len(s) % 3 == 0"
+DNA,True,The DNA sequence shall start with ATG.,"def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence shall start with ATG.'''
+    return s.startswith('ATG')"
+DNA,True,"The DNA sequence shall end with either TAA, or TAG, or TGA.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence shall end with either TAA, TAG, or TGA.'''
+    return s.endswith(('TAA', 'TAG', 'TGA'))"
+DNA,False,"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence contains at least one letter that is neither A, nor T, nor C, nor G.'''
+    return any(base not in 'ATCG' for base in s)"
+DNA,False,The length of the DNA sequence shall be at most 9.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence is at most 9.'''
+    return len(s) <= 9"
+DNA,False,The length of the DNA sequence shall not a multiple of three.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence is not a multiple of three.'''
+    return len(s) % 3 != 0"
+DNA,False,The DNA sequence shall not start with ATG.,"def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence does not start with ATG.'''
+    return not s.startswith('ATG')"
+DNA,False,"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence does not end with TAA, TAG, or TGA.'''
+    return not (s.endswith('TAA') or s.endswith('TAG') or s.endswith('TGA'))"
+Email,True,The email shall not contain a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall not contain a space character.'''
+    return ' ' not in s"
+Email,True,The email shall not start with a @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall not start with a @ character.'''
+    return not s.startswith('@')"
+Email,True,The email shall have exactly one @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall have exactly one @ character.'''
+    return s.count('@') == 1"
+Email,True,The email shall include a dot character (.) after the @ character but before the end.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall include a dot character (.) after the @ character but before the end.'''
+    at_index = s.find('@')
+    return '.' in s[at_index:] and at_index < len(s) - 1"
+Email,True,The final character of the email shall not be a dot character (.).,"def this_function(s: str) -> bool: 
+    ''' Check if The final character of the email shall not be a dot character (.).'''
+    return not s.endswith('.')"
+Email,True,"The email shall not contain the word ""manager"".","def this_function(s: str) -> bool: 
+    ''' Check if The email shall not contain the word ""manager"".'''
+    return 'manager' not in s.lower()"
+Email,False,The email shall contain a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall contain a space character.'''
+    return ' ' in s"
+Email,False,The email shall start with a @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall start with a @ character.'''
+    return s.startswith('@')"
+Email,False,The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if The email shall have either no @ characters or more than one @ character.'''
+    return s.count('@') != 1"
+Email,False,If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.,"def this_function(s: str) -> bool: 
+    ''' Check if If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.'''
+    if '@' in s:
+        at_index = s.index('@')
+        return '.' not in s[at_index:]
+    return True  # If there's no '@', this condition is trivially satisfied"
+Email,False,The final character of the email shall be a dot character (.).,"def this_function(s: str) -> bool: 
+    ''' Check if The final character of the email shall be a dot character (.).'''
+    return s.endswith('.')"
+Email,False,"The email shall contain the word ""manager"".","def this_function(s: str) -> bool: 
+    ''' Check if The email shall contain the word ""manager"".'''
+    return 'manager' in s"
+Expression,True,"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).'''
+    return bool(re.fullmatch(r'[0-9+\-*/ ]+', s))"
+Expression,True,"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.'''
+    return not bool(re.search(r'[+\-*/]{2,}', s))"
+Expression,True,"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    ''' Check if except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.'''
+    # This regex checks for operators that are not preceded or followed by a digit
+    return not bool(re.search(r'(?<!\d)[+\*/](?!\d)', s))"
+Expression,True,"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression shall not start with operators from the set {+, *, /}.'''
+    return not s.startswith(('+', '*', '/'))"
+Expression,False,"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).'''
+    # Define a regex pattern for valid characters (numbers and operators)
+    valid_pattern = r'^[0-9+\-*/]*$'
+    # Check if the string matches the valid pattern
+    if re.match(valid_pattern, s):
+        return False  # All characters are valid
+    return True  # Contains at least one invalid character"
+Expression,False,"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /).'''
+    # Define a regex pattern for consecutive operators
+    consecutive_operators_pattern = r'[+\-*/]{2,}'
+    # Check if the string contains consecutive operators
+    return bool(re.search(consecutive_operators_pattern, s))"
+Expression,False,"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.'''
+    # Define a regex pattern for operators without numbers before or after
+    invalid_operator_pattern = r'(?<![0-9])[+\-*/]|[+\-*/](?![0-9])'
+    # Check if the string contains such invalid operators
+    return bool(re.search(invalid_operator_pattern, s))"
+Expression,False,"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression starts with one of the operators in the set {+, *, /}.'''
+    # Check if the first character is one of the specified operators
+    return s.startswith(('+', '*', '/'))"
+IBAN,True,The length of the bank number shall be 22.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the bank number shall be 22.'''
+    return len(s) == 22"
+IBAN,True,The bank number shall start with 1210.,"def this_function(s: str) -> bool: 
+    ''' Check if the bank number shall start with 1210.'''
+    return s.startswith(""1210"")"
+IBAN,True,"The bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.","def this_function(s: str) -> bool: 
+    ''' Check if the bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.'''
+    return len(s) >= 6 and s[4] == '0' and s[5] == '0'"
+IBAN,False,The length of the bank account shall not be 22.,"def this_function(s: str) -> bool:
+    ''' Check if the length of the bank account shall not be 22.'''
+    return len(s) != 22"
+IBAN,False,The bank number shall not start with 1210.,"def this_function(s: str) -> bool:
+    ''' Check if the bank number shall not start with 1210.'''
+    return not s.startswith(""1210"")"
+IBAN,False,"The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.
+","def this_function(s: str) -> bool:
+    ''' Check if the bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.'''
+    if len(s) < 6:
+        return True
+    if len(s) >= 6:
+        return s[4] != '0' or s[5] != '0'
+    return False  # This line is technically unreachable due to the previous checks."
+ISBN,True,"The ISBN shall only contain numbers (0-9), the letter X, or hyphens.","def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall only contain numbers (0-9), the letter X, or hyphens.'''
+    valid_characters = set(""0123456789-X"")
+    return all(char in valid_characters for char in s)"
+ISBN,True,The last character of the ISBN shall either be a number (0-9) or the letter X.,"def this_function(s: str) -> bool: 
+    ''' Check if The last character of the ISBN shall either be a number (0-9) or the letter X.'''
+    if len(s) == 0:
+        return False
+    return s[-1] in ""0123456789X"""
+ISBN,True,"The ISBN shall contain exactly 10 characters, excluding hyphens.","def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall contain exactly 10 characters, excluding hyphens.'''
+    stripped_s = s.replace(""-"", """")
+    return len(stripped_s) == 10"
+ISBN,True,The ISBN shall not start with a hyphen.,"def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall not start with a hyphen.'''
+    return not s.startswith(""-"")"
+ISBN,True,Hyphens shall not occur consecutively in the ISBN.,"def this_function(s: str) -> bool: 
+    ''' Check if Hyphens shall not occur consecutively in the ISBN.'''
+    return ""--"" not in s"
+ISBN,True,The ISBN shall contain at most 3 hyphens.,"def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall contain at most 3 hyphens.'''
+    return s.count(""-"") <= 3"
+ISBN,False,"The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.","def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.'''
+    return any(c not in '0123456789X-' for c in s)"
+ISBN,False,"The last character of the ISBN shall be neither a number (0-9), nor the letter X.","def this_function(s: str) -> bool: 
+    ''' Check if The last character of the ISBN shall be neither a number (0-9), nor the letter X.'''
+    return len(s) > 0 and s[-1] not in '0123456789X'"
+ISBN,False,"Without counting hyphens, the ISBN shall contain less than or more than 10 characters.","def this_function(s: str) -> bool: 
+    ''' Check if Without counting hyphens, the ISBN shall contain less than or more than 10 characters.'''
+    count_without_hyphens = len(s.replace('-', ''))
+    return count_without_hyphens != 10"
+ISBN,False,The ISBN shall start with a hyphen.,"def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall start with a hyphen.'''
+    return s.startswith('-')"
+ISBN,False,The ISBN shall contain two consecutive hyphens.,"def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall contain two consecutive hyphens.'''
+    return '--' in s"
+ISBN,False,The ISBN shall contain more than 3 hyphens.,"def this_function(s: str) -> bool: 
+    ''' Check if The ISBN shall contain more than 3 hyphens.'''
+    return s.count('-') > 3"
+Name,True,"The name shall only contain letters a-z, letters A-Z and space characters.","def this_function(s: str) -> bool: 
+    ''' Check if The name shall only contain letters a-z, letters A-Z and space characters.'''
+    return all(c.isalpha() or c.isspace() for c in s)"
+Name,True,The name shall contain at least one space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall contain at least one space character.'''
+    return ' ' in s"
+Name,True,The name shall not end with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall not end with a space character.'''
+    return not s.endswith(' ')"
+Name,True,The name shall not start with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall not start with a space character.'''
+    return not s.startswith(' ')"
+Name,True,The first character in the name shall be capitalized.,"def this_function(s: str) -> bool: 
+    ''' Check if The first character in the name shall be capitalized.'''
+    return s and s[0].isupper()"
+Name,True,Any character in the name following a space character shall be capitalized.,"def this_function(s: str) -> bool: 
+    ''' Check if Any character in the name following a space character shall be capitalized.'''
+    words = s.split()
+    return all(word[0].isupper() for word in words if word)  # Check first character of each word"
+Name,False,"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","def this_function(s: str) -> bool: 
+    ''' Check if The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.'''
+    return any(not (c.isalpha() or c.isspace()) for c in s)"
+Name,False,The name shall contain no space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall contain no space character.'''
+    return ' ' not in s"
+Name,False,The name shall end with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall end with a space character.'''
+    return s.endswith(' ')"
+Name,False,The name shall start with a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if The name shall start with a space character.'''
+    return s.startswith(' ')"
+Name,False,The first character in the name shall not be capitalized.,"def this_function(s: str) -> bool: 
+    ''' Check if The first character in the name shall not be capitalized.'''
+    return len(s) > 0 and not s[0].isupper()"
+Name,False,"In the name, there shall be some characters following a space character which are not capitalized.","def this_function(s: str) -> bool: 
+    ''' Check if In the name, there shall be some characters following a space character which are not capitalized.'''
+    parts = s.split(' ')
+    for part in parts:
+        if part and not part[0].isupper():
+            return True
+    return False"
+Palindrome,True,The palindrome shall be at least 3 characters long.,"def this_function(s: str) -> bool: 
+    ''' Check if the palindrome shall be at least 3 characters long.'''
+    return len(s) >= 3"
+Palindrome,True,The palindrome shall be identical to its reverse.,"def this_function(s: str) -> bool: 
+    ''' Check if the palindrome shall be identical to its reverse.'''
+    return s == s[::-1]"
+Palindrome,False,The palindrome shall be at most 2 characters long.,"def this_function(s: str) -> bool:
+    ''' Check if the palindrome shall be at most 2 characters long. '''
+    # A palindrome of at most 2 characters can be either 1 character or 2 identical characters
+    return len(s) <= 2 and s == s[::-1]"
+Palindrome,False,The palindrome shall not be identical to its reverse.,"def this_function(s: str) -> bool:
+    ''' Check if the palindrome shall not be identical to its reverse. '''
+    # A string is not identical to its reverse if it is not a palindrome
+    return s != s[::-1]"
+Parentheses,True,The parentheses string shall be at least 10 characters long.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall be at least 10 characters long.'''
+    return len(s) >= 10"
+Parentheses,True,The parentheses string shall only contains ( and ) characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall only contain ( and ) characters.'''
+    return all(char in '()' for char in s)"
+Parentheses,True,The parenthesis string shall contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall contain an equal number of ( characters and ) characters.'''
+    return s.count('(') == s.count(')')"
+Parentheses,True,"When scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.","def this_function(s: str) -> bool: 
+    ''' Check if when scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.'''
+    balance = 0
+    for char in s:
+        if char == '(':
+            balance += 1
+        elif char == ')':
+            balance -= 1
+        if balance < 0:
+            return False
+    return True"
+Parentheses,False,The parentheses string shall be at most 9 characters long.,"def this_function(s: str) -> bool:
+    ''' Check if the parentheses string shall be at most 9 characters long.'''
+    return len(s) <= 9"
+Parentheses,False,The parentheses string shall contain at least one character that is neither ( nor ).,"def this_function(s: str) -> bool:
+    ''' Check if the parentheses string shall contain at least one character that is neither ( nor ).'''
+    return any(char not in '()' for char in s)"
+Parentheses,False,The parenthesis string shall not contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool:
+    ''' Check if the parentheses string shall not contain an equal number of ( characters and ) characters.'''
+    return s.count('(') != s.count(')')"
+Parentheses,False,"There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.","def this_function(s: str) -> bool:
+    ''' Check if there shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.'''
+    count_open = 0
+    count_close = 0
+    for char in s:
+        if char == '(':
+            count_open += 1
+        elif char == ')':
+            count_close += 1
+        if count_close > count_open:
+            return True
+    return False"
+Password,True,The password shall be at least 4 characters long.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall be at least 4 characters long.'''
+    return len(s) >= 4"
+Password,True,"The password shall contain one of the following characters: !, #, $.","def this_function(s: str) -> bool: 
+    ''' Check if the password shall contain one of the following characters: !, #, $.'''
+    return any(char in s for char in ['!', '#', '$'])"
+Password,True,The password shall contain at least one upper case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall contain at least one upper case character.'''
+    return any(char.isupper() for char in s)"
+Password,True,The password shall contain at least one lower case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall contain at least one lower case character.'''
+    return any(char.islower() for char in s)"
+Password,True,The password shall contain at least one number.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall contain at least one number.'''
+    return any(char.isdigit() for char in s)"
+Password,False,The password shall contain less than 4 characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall contain less than 4 characters.'''
+    return len(s) < 4"
+Password,False,"The password shall not contain any of the following characters: !, #, $.","def this_function(s: str) -> bool: 
+    ''' Check if the password shall not contain any of the following characters: !, #, $.'''
+    forbidden_characters = {'!', '#', '$'}
+    return not any(char in forbidden_characters for char in s)"
+Password,False,The password shall not contain any upper case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall not contain any upper case characters.'''
+    return not any(char.isupper() for char in s)"
+Password,False,The password shall not contain any lower case characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall not contain any lower case characters.'''
+    return not any(char.islower() for char in s)"
+Password,False,The password shall not contain any numbers.,"def this_function(s: str) -> bool: 
+    ''' Check if the password shall not contain any numbers.'''
+    return not any(char.isdigit() for char in s)"
+Url,True,The url shall start with either http:// or https://.,"def this_function(s: str) -> bool: 
+    ''' Check if the url shall start with either http:// or https://.'''
+    return s.startswith('http://') or s.startswith('https://')"
+Url,True,The url shall not contain any spaces.,"def this_function(s: str) -> bool: 
+    ''' Check if the url shall not contain any spaces.'''
+    return ' ' not in s"
+Url,True,The url shall contain at least one dot character (.).,"def this_function(s: str) -> bool: 
+    ''' Check if the url shall contain at least one dot character (.).'''
+    return '.' in s"
+Url,False,"The url shall not start with http://, nor with https://.","def this_function(s: str) -> bool: 
+    ''' Check if the URL shall not start with http://, nor with https://.'''
+    return not (s.startswith(""http://"") or s.startswith(""https://""))"
+Url,False,The url shall contain at least one space.,"def this_function(s: str) -> bool: 
+    ''' Check if the URL shall contain at least one space.'''
+    return ' ' in s"
+Url,False,The url shall not contain any dot character (.).,"def this_function(s: str) -> bool: 
+    ''' Check if the URL shall not contain any dot character (.).'''
+    return '.' not in s"

@@ -1,0 +1,8 @@
+constraint,result
+The palindrome shall be at most 2 characters long.,"def this_function(s: str) -> bool:
+    ''' Check if the palindrome is at most 2 characters long.'''
+    # Check if the string is a palindrome and its length is at most 2
+    return s == s[::-1] and len(s) <= 2"
+The palindrome shall not be identical to its reverse.,"def this_function(s: str) -> bool:
+    '''Check if the string is a palindrome.'''
+    return s == s[::-1]"

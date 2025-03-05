@@ -1,0 +1,47 @@
+constraint,result
+The length of the bank account shall not be 22.,"def this_function(s: str) -> bool:
+    """"""Check if The length of the bank account shall not be 22.""""""
+    return len(s) != 22"
+The bank number shall not start with 1210.,"def this_function(s: str) -> bool:
+    """"""Check if The bank number shall not start with 1210.""""""
+    return not s.startswith('1210')"
+"The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.
+","def this_function(s: str) -> bool:
+    """"""Check if The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.""""""
+    if len(s) < 6:
+        return True
+    else:
+        return s[4] != '0' or s[5] != '0'
+
+# Test cases
+def test_this_function():
+    """"""Test this_function""""""
+    s = '1234'  # expected length 4
+    assert this_function(s) == True
+    s = '12345678901234567890'  # expected length 22
+    assert this_function(s) == False
+
+def test_this_function():
+    """"""Test this_function""""""
+    s = '1234'  # expected not to start with '1210'
+    assert this_function(s) == True
+    s = '1210'  # expected to start with '1210'
+    assert this_function(s) == False
+
+def test_this_function():
+    """"""Test this_function""""""
+    s = '123'  # expected to have less than 6 characters
+    assert this_function(s) == True
+    s = '12345'  # expected fifth character to not be '0'
+    assert this_function(s) == True
+    s = '123450'  # expected sixth character to not be '0'
+    assert this_function(s) == True
+    s = '123404'  # expected fifth character to not be '0'
+    assert this_function(s) == True
+    s = '1234500'  # expected sixth character to be '0'
+    assert this_function(s) == False
+
+if __name__ == ""__main__"":
+    test_this_function()
+    test_this_function()
+    test_this_function()"

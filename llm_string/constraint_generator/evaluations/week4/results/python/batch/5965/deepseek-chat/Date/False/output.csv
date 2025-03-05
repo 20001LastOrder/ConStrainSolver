@@ -1,0 +1,35 @@
+constraint,result
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    ''' Check if The date shall contain either no hyphens, one hyphen or more than two hyphens.'''
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.,"def this_function(s: str) -> bool:
+    ''' Check if There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.'''
+    if '-' not in s:
+        return False
+    part_before_hyphen = s.split('-')[0]
+    try:
+        year = int(part_before_hyphen)
+        return not (0 <= year <= 2025)
+    except ValueError:
+        return True"
+There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.,"def this_function(s: str) -> bool:
+    ''' Check if There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.'''
+    if s.count('-') < 2:
+        return False
+    parts = s.split('-')
+    try:
+        month = int(parts[1])
+        return not (1 <= month <= 12)
+    except ValueError:
+        return True"
+There must be at least two hyphens an d the part after the second hyphen shall not be a number between 1 and 31.,"def this_function(s: str) -> bool:
+    ''' Check if There must be at least two hyphens and the part after the second hyphen shall not be a number between 1 and 31.'''
+    if s.count('-') < 2:
+        return False
+    parts = s.split('-')
+    try:
+        day = int(parts[2])
+        return not (1 <= day <= 31)
+    except ValueError:
+        return True"

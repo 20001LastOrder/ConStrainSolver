@@ -1,0 +1,6 @@
+constraint,result
+"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.",
+The length of the DNA sequence shall be at most 9.,
+The length of the DNA sequence shall not a multiple of three.,
+The DNA sequence shall not start with ATG.,
+"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.",

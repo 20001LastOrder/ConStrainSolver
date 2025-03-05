@@ -1,0 +1,5 @@
+constraint,result
+The parentheses string shall be at most 9 characters long.,(<= (str.len s) 9)
+The parentheses string shall contain at least one character that is neither ( nor ).,
+The parenthesis string shall not contain an equal number of ( characters and ) characters.,(not (=(str indexing s 0 (str.len s)) (str indexing s (-1) 0)))
+"There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.",

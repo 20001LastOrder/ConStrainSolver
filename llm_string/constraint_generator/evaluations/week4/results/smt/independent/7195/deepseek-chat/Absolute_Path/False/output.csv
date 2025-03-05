@@ -1,0 +1,5 @@
+constraint,result
+"The absolute path shall not start with the root directory ""/"".","(not (= (str.at s 0) ""/""))"
+The absolute path shall contain at least one space.,"(str.contains s "" "")"
+"The absolute path shall end with ""/"".","(str.suffixof ""/"" s)"
+"The absolute path shall contain consecutive ""/"" characters.","(str.in.re s (re.++ (re.* re.allchar) (str.to.re ""//"") (re.* re.allchar)))"

@@ -1,0 +1,48 @@
+constraint,result
+The parentheses string shall be at least 10 characters long.,"def this_function(s: str) -> bool:
+    '''Check if the parentheses string shall be at least 10 characters long.'''
+    return len(s) >= 10"
+The parentheses string shall only contains ( and ) characters.,"def this_function(s: str) -> bool:
+    ''' Check if the parentheses string shall only contains ( and ) characters.'''
+    for char in s:
+        if char not in '()':
+            return False
+    return True"
+The parenthesis string shall contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool:
+    ''' 
+    Check if the parenthesis string contains an equal number of '(' and ')' characters.
+    
+    Args:
+    s (str): The input string to be checked.
+    
+    Returns:
+    bool: True if the number of '(' and ')' characters are equal, False otherwise.
+    '''
+    count = 0
+    
+    for char in s:
+        if char == '(':
+            count += 1
+        elif char == ')':
+            count -= 1
+    
+    return count == 0"
+"When scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.","def this_function(s: str) -> bool:
+    ''' 
+    Check if when scanning from left to right on the parentheses string, 
+    at no point shall the count of ')' characters exceed the count of '(' characters.
+    '''
+    balance = 0  # Tracks the difference between '(' and ')'
+    
+    for char in s:
+        if char == '(':
+            balance += 1
+        elif char == ')':
+            balance -= 1
+        
+        # If balance goes negative, it means ')' exceeds '(' at some point
+        if balance < 0:
+            return False
+    
+    # If balance is non-negative throughout, the condition is satisfied
+    return True"

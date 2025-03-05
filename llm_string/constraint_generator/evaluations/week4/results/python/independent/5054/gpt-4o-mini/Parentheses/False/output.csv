@@ -1,0 +1,35 @@
+constraint,result
+The parentheses string shall be at most 9 characters long.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall be at most 9 characters long.'''
+    return len(s) <= 9"
+The parentheses string shall contain at least one character that is neither ( nor ).,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string contains at least one character that is neither ( nor ).'''
+    for char in s:
+        if char != '(' and char != ')':
+            return True
+    return False"
+The parenthesis string shall not contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the parenthesis string shall not contain an equal number of ( characters and ) characters.'''
+    count_open = s.count('(')
+    count_close = s.count(')')
+    
+    return count_open != count_close"
+"There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.","def this_function(s: str) -> bool:
+    ''' Check if there exists at least one position in a parentheses string such that,
+        when scanning from left to right up to that position, the count of ) characters
+        exceeds the count of ( characters. '''
+    
+    open_count = 0
+    close_count = 0
+    
+    for char in s:
+        if char == '(':
+            open_count += 1
+        elif char == ')':
+            close_count += 1
+        
+        # Check if the count of ')' exceeds the count of '('
+        if close_count > open_count:
+            return True
+    
+    return False"

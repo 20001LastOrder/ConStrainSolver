@@ -1,0 +1,83 @@
+constraint,result
+The email shall contain a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string contains a space character.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string contains a space character, False otherwise.
+    """"""
+    return ' ' in s"
+The email shall start with a @ character.,"def this_function(s: str) -> bool:
+    '''Check if the input string is an email that starts with a @ character.'''
+    return s.startswith('@')"
+The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the email shall have either no @ characters or more than one @ character.
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email has either no @ characters or more than one @ character, False otherwise.
+    """"""
+    return s.count('@') <= 0 or s.count('@') > 1"
+If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.
+
+    Args:
+        s (str): The input email to be checked.
+
+    Returns:
+        bool: True if the email is valid, False otherwise.
+    """"""
+
+    # Check if the string contains a @ character
+    if '@' not in s:
+        return False  # Return False if @ is not found
+
+    # Split the email at the @ character
+    email_parts = s.split('@')
+
+    # Check if there are more than one @ character
+    if len(email_parts) > 2:
+        return False  # Return False if there are more than one @
+
+    # Check if there are any DOTs after the @ character
+    for char in s[s.index('@') + 1:]:
+        if char == '.':
+            return False  # Return False if a DOT is found
+
+    return True  # If all checks pass, return True"
+The final character of the email shall be a dot character (.).,"def this_function(s: str) -> bool:
+    """"""
+    Check if the final character of the email shall be a dot character (.) or a letter and then a dot character.
+
+    Args:
+        s (str): The input email address.
+
+    Returns:
+        bool: True if the email address ends with a dot or a letter and then a dot, False otherwise.
+    """"""
+    # Remove leading and trailing whitespaces
+    s = s.strip()
+    
+    # Check if the input string is a valid email (matches @ and contains at least one dot)
+    if '@' not in s or '.' not in s:
+        return False  # Invalid email
+    
+    # Check the last character for a dot
+    if s.endswith('.'):
+        return True
+    
+    # Check if the last character is a letter and the second to last character is a dot
+    if len(s) > 1 and s[-2].isalpha() and s[-1] == '.':
+        return True
+    
+    return False"
+"The email shall contain the word ""manager"".","def this_function(s: str) -> bool:
+    """"""Check if The email shall contain the word ""manager"".""""""
+    return ""manager"" in s.lower()"

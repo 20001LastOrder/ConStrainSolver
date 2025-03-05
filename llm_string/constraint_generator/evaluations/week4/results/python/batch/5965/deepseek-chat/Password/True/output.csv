@@ -1,0 +1,17 @@
+constraint,result
+The password shall be at least 4 characters long.,"def this_function(s: str) -> bool:
+    ''' Check if The password shall be at least 4 characters long.'''
+    return len(s) >= 4"
+"The password shall contain one of the following characters: !, #, $.","def this_function(s: str) -> bool:
+    ''' Check if The password shall contain one of the following characters: !, #, $.'''
+    special_chars = {'!', '#', '$'}
+    return any(char in special_chars for char in s)"
+The password shall contain at least one upper case characters.,"def this_function(s: str) -> bool:
+    ''' Check if The password shall contain at least one upper case characters.'''
+    return any(char.isupper() for char in s)"
+The password shall contain at least one lower case characters.,"def this_function(s: str) -> bool:
+    ''' Check if The password shall contain at least one lower case characters.'''
+    return any(char.islower() for char in s)"
+The password shall contain at least one number.,"def this_function(s: str) -> bool:
+    ''' Check if The password shall contain at least one number.'''
+    return any(char.isdigit() for char in s)"

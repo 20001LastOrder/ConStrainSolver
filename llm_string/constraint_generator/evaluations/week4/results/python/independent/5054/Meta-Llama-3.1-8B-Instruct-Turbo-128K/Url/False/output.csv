@@ -1,0 +1,40 @@
+constraint,result
+"The url shall not start with http://, nor with https://.","def this_function(s: str) -> bool:
+    """"""
+    Check if the URL does not start with http:// or https://.
+
+    Args:
+    s (str): The URL to check.
+
+    Returns:
+    bool: True if the URL does not start with http:// or https://, False otherwise.
+    """"""
+    return not (s.startswith('http://') or s.startswith('https://'))"
+The url shall contain at least one space.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The url shall contain at least one space.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string contains at least one space, False otherwise.
+    """"""
+    return ' ' in s"
+The url shall not contain any dot character (.).,"def this_function(s: str) -> bool:
+    """"""
+    Check if the given string represents a URL that shall not contain any dot character (.).
+    
+    Args:
+    s (str): The URL to be checked.
+    
+    Returns:
+    bool: True if the URL does not contain a dot character, False otherwise.
+    """"""
+    
+    # Check if the input is a string
+    if not isinstance(s, str):
+        raise TypeError(""The input should be a string."")
+    
+    # Check if the string contains a dot character
+    return '.' not in s"

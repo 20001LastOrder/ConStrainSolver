@@ -1,0 +1,67 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","def this_function(s: str) -> bool:
+    """"""
+    Check if The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.
+
+    Parameters:
+    s (str): The name to check.
+
+    Returns:
+    bool: True if the name contains at least one invalid character, False otherwise.
+    """"""
+    return bool(re.search(r'[^a-zA-Z\s]', s))"
+The name shall contain no space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The name shall contain no space character.
+
+    Parameters:
+    s (str): The name to check.
+
+    Returns:
+    bool: True if the name contains no space character, False otherwise.
+    """"""
+    return ' ' not in s"
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The name shall end with a space character.
+
+    Parameters:
+    s (str): The name to check.
+
+    Returns:
+    bool: True if the name ends with a space character, False otherwise.
+    """"""
+    return s.endswith(' ')"
+The name shall start with a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The name shall start with a space character.
+
+    Parameters:
+    s (str): The name to check.
+
+    Returns:
+    bool: True if the name starts with a space character, False otherwise.
+    """"""
+    return s.startswith(' ')"
+The first character in the name shall not be capitalized.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The first character in the name shall not be capitalized.
+
+    Parameters:
+    s (str): The name to check.
+
+    Returns:
+    bool: True if the first character is not capitalized, False otherwise.
+    """"""
+    return s and not s[0].isupper()"
+"In the name, there shall be some characters following a space character which are not capitalized.","def this_function(s: str) -> bool:
+    """"""
+    Check if In the name, there shall be some characters following a space character which are not capitalized.
+
+    Parameters:
+    s (str): The name to check.
+
+    Returns:
+    bool: True if there are characters following a space that are not capitalized, False otherwise.
+    """"""
+    return any(not char.isupper() and s[i+1] == ' ' for i, char in enumerate(s) if s[i] == ' ')"

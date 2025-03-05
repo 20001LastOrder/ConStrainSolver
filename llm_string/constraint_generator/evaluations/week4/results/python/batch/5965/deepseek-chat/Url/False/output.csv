@@ -1,0 +1,10 @@
+constraint,result
+"The url shall not start with http://, nor with https://.","def this_function(s: str) -> bool:
+    ''' Check if The url shall not start with http://, nor with https://.'''
+    return not (s.startswith(""http://"") or s.startswith(""https://""))"
+The url shall contain at least one space.,"def this_function(s: str) -> bool:
+    ''' Check if The url shall contain at least one space.'''
+    return ' ' in s"
+The url shall not contain any dot character (.).,"def this_function(s: str) -> bool:
+    ''' Check if The url shall not contain any dot character (.).'''
+    return '.' not in s"

@@ -1,0 +1,95 @@
+constraint,result
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    """"""
+    Check if The date shall contain either no hyphens, one hyphen or more than two hyphens.
+
+    Args:
+        s (str): The input string containing dates.
+
+    Returns:
+        bool: True if the date contains either no hyphens, one hyphen or more than two hyphens; False otherwise.
+    """"""
+    hyphen_count = s.count('-')
+    return hyphen_count == 0 or hyphen_count == 1 or hyphen_count > 2"
+There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string contains at least one hyphen and the part before the hyphen
+    is not a number between 0 and 2025.
+
+    Args:
+    s (str): The input string.
+
+    Returns:
+    bool: False if input is empty or doesn't contain a hyphen. Otherwise, True if the
+          part before the hyphen is not a number between 0 and 2025.
+    """"""
+
+    # Check if input string is not empty
+    if not s:
+        return False
+
+    # Split the string by hyphen
+    parts = s.split('-')
+
+    # Check if the string contains at least one hyphen
+    if len(parts) < 2:
+        return False
+
+    # Check if all parts (except the last one) are not empty
+    for part in parts[:-1]:
+        if not part:
+            return False
+
+    # Check if the part before the hyphen is not a number between 0 and 2025
+    if int(parts[0]) <= 0 or int(parts[0]) > 2025:
+        return True
+
+    return False"
+There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.,"def this_function(s: str) -> bool:
+    """"""
+    Check if There must be at least two hyphens and the part after the first hyphen 
+    but before the second hyphen shall not be a number between 1 and 12.
+
+    Parameters:
+    s (str): The input string.
+
+    Returns:
+    bool: True if the string meets the conditions, False otherwise.
+    """"""
+    split_str = s.split('-')
+    
+    # We need at least two hyphens, so the split should result in at least three parts.
+    if len(split_str) < 3:
+        return False
+    
+    # The part after the first hyphen but before the second hyphen should not be a number between 1 and 12.
+    if 1 <= int(split_str[1]) <= 12:
+        return False
+    
+    # We have not returned False yet, so the string meets the conditions.
+    return True"
+There must be at least two hyphens an d the part after the second hyphen shall not be a number between 1 and 31.,"def this_function(s: str) -> bool:
+    """"""
+    Check if There must be at least two hyphens and the part after the second hyphen 
+    shall not be a number between 1 and 31.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string satisfies the condition, False otherwise.
+    """"""
+
+    # Split the string by hyphen
+    parts = s.split('-')
+
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+
+    # Check if the part after the second hyphen is not a number between 1 and 31
+    if parts[2].isdigit() and (1 <= int(parts[2]) <= 31):
+        return False
+
+    # If all conditions are met, return True
+    return True"

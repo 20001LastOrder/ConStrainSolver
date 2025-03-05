@@ -1,0 +1,39 @@
+constraint,result
+The email shall not contain a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the email shall not contain a space character.'''
+    return ' ' not in s"
+The email shall not start with a @ character.,"def this_function(s: str) -> bool:
+    ''' Check if the email shall not start with a @ character.'''
+    return not s.startswith('@')"
+The email shall have exactly one @ character.,"def this_function(s: str) -> bool:
+    ''' Check if the email shall have exactly one @ character.'''
+    return s.count('@') == 1"
+The email shall include a dot character (.) after the @ character but before the end.,"def this_function(s: str) -> bool:
+    ''' 
+    Check if the email includes a dot character (.) after the @ character but before the end.
+    
+    Args:
+    s (str): The email address to check.
+    
+    Returns:
+    bool: True if the condition is met, False otherwise.
+    '''
+    at_index = s.find('@')
+    
+    # If '@' is not found or it's the last character, return False
+    if at_index == -1 or at_index == len(s) - 1:
+        return False
+    
+    # Check if there is a '.' after '@' and before the end
+    dot_index = s.find('.', at_index + 1)
+    
+    # If '.' is found and it's not the last character, return True
+    return dot_index != -1 and dot_index < len(s) - 1"
+The final character of the email shall not be a dot character (.).,"def this_function(s: str) -> bool:
+    ''' Check if the final character of the email shall not be a dot character (.).'''
+    if not s:  # Check if the string is empty
+        return False  # An empty string doesn't have a final character, so return False
+    return s[-1] != '.'  # Return True if the last character is not a dot, otherwise False"
+"The email shall not contain the word ""manager"".","def this_function(s: str) -> bool:
+    ''' Check if The email shall not contain the word ""manager"".'''
+    return ""manager"" not in s.lower()"

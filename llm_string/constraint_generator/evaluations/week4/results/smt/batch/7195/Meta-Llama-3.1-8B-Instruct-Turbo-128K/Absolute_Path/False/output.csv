@@ -1,0 +1,5 @@
+constraint,result
+"The absolute path shall not start with the root directory ""/"".",
+The absolute path shall contain at least one space.,
+"The absolute path shall end with ""/"".",
+"The absolute path shall contain consecutive ""/"" characters.",

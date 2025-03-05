@@ -1,0 +1,43 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' 
+    Check if the arithmetic expression contains at least one character 
+    that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).
+    '''
+    for char in s:
+        if not char.isdigit() and char not in '+-*/':
+            return True
+    return False"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /). '''
+    operators = set('+-*/')
+    previous_char = ''
+    
+    for char in s:
+        if char in operators:
+            if previous_char in operators:
+                return True
+            previous_char = char
+        else:
+            previous_char = ''
+    
+    return False"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    operators = {'+', '*', '/'}
+    length = len(s)
+    
+    for i, char in enumerate(s):
+        if char in operators:
+            # Check if there's no number immediately before the operator
+            if i == 0 or not s[i-1].isdigit():
+                return True
+            # Check if there's no number immediately after the operator
+            if i == length - 1 or not s[i+1].isdigit():
+                return True
+    
+    return False"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression starts with one of the operators in the set {+, *, /}.'''
+    if not s:
+        return False
+    return s[0] in {'+', '*', '/'}"

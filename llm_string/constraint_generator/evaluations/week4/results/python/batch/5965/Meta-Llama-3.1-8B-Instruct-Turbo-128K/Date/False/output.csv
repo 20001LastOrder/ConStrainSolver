@@ -1,0 +1,67 @@
+constraint,result
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","def this_function(s: str) -> bool:
+    """"""
+    Check if The date shall contain either no hyphens, one hyphen or more than two hyphens.
+    
+    Args:
+    s (str): The input date string.
+    
+    Returns:
+    bool: True if the date string contains either no hyphens, one hyphen or more than two hyphens, False otherwise.
+    """"""
+    return s.count('-') in [0, 1, re.search('-[^-]*-[^-]*', s).count('-')]"
+There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.,"def this_function(s: str) -> bool:
+    """"""
+    Check if There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.
+    
+    Args:
+    s (str): The input date string.
+    
+    Returns:
+    bool: True if the date string contains at least one hyphen and the part before the hyphen is not a number between 0 and 2025, False otherwise.
+    """"""
+    hyphen_match = re.search('-', s)
+    if hyphen_match:
+        part_before_hyphen = s[:hyphen_match.start()]
+        part_before_hyphen = re.sub('-', '', part_before_hyphen)
+        if part_before_hyphen.isdigit() and 0 <= int(part_before_hyphen) <= 2025:
+            return False
+    return True"
+There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.,"def this_function(s: str) -> bool:
+    """"""
+    Check if There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.
+    
+    Args:
+    s (str): The input date string.
+    
+    Returns:
+    bool: True if the date string contains at least two hyphens and the part after the first hyphen but before the second hyphen is not a number between 1 and 12, False otherwise.
+    """"""
+    hyphen_matches = re.findall('-', s)
+    if len(hyphen_matches) >= 2:
+        first_hyphen_index = s.index(hyphen_matches[2-2])
+        second_hyphen_index = s.index(hyphen_matches[2-1])
+        part_between_hyphens = s[first_hyphen_index + 1:second_hyphen_index]
+        part_between_hyphens = re.sub('-', '', part_between_hyphens)
+        if part_between_hyphens.isdigit() and 1 <= int(part_between_hyphens) <= 12:
+            return False
+    return True"
+There must be at least two hyphens an d the part after the second hyphen shall not be a number between 1 and 31.,"def this_function(s: str) -> bool:
+    """"""
+    Check if There must be at least two hyphens and the part after the second hyphen shall not be a number between 1 and 31.
+    
+    Args:
+    s (str): The input date string.
+    
+    Returns:
+    bool: True if the date string contains at least two hyphens and the part after the second hyphen is not a number between 1 and 31, False otherwise.
+    """"""
+    hyphen_matches = re.findall('-', s)
+    if len(hyphen_matches) >= 2:
+        first_hyphen_index = s.index(hyphen_matches[2-2])
+        second_hyphen_index = s.index(hyphen_matches[2-1])
+        part_after_second_hyphen = s[second_hyphen_index + 1:]
+        part_after_second_hyphen = re.sub('-', '', part_after_second_hyphen)
+        if part_after_second_hyphen.isdigit() and 1 <= int(part_after_second_hyphen) <= 31:
+            return False
+    return True"

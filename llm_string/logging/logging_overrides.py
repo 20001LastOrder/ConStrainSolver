@@ -2,7 +2,9 @@ import sys
 
 from loguru import logger
 
-logger.add("../../llm.log", level="DEBUG")
+logger.remove()
+logger.add(sys.stderr, level="INFO")
+logger.add("llm.log", level="DEBUG")
 
 def getLogger():
     return logger

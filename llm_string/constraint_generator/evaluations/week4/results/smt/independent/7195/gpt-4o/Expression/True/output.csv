@@ -1,0 +1,5 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","(str.in.re s (re.* (re.union (re.range ""0"" ""9"") (str.to.re ""+"") (str.to.re ""-"") (str.to.re ""*"") (str.to.re ""/""))))"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","(assert (forall ((i Int)) (=> (and (>= i 0) (< i (- (str.len s) 1))) (not (or (and (or (= (str.at s i) ""+"") (= (str.at s i) ""-"") (= (str.at s i) ""*"") (= (str.at s i) ""/"")) (or (= (str.at s (+ i 1)) ""+"") (= (str.at s (+ i 1)) ""-"") (= (str.at s (+ i 1)) ""*"") (= (str.at s (+ i 1)) ""/"")))))))"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","(str.in.re s (re.* (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.union (str.to.re ""+"") (str.to.re ""*"") (str.to.re ""/"")) (re.range ""0"" ""9"") (re.* re.allchar))))"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","(not (or (= (str.at s 0) ""+"") (= (str.at s 0) ""*"") (= (str.at s 0) ""/"")))"

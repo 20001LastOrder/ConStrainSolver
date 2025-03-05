@@ -1,0 +1,43 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","def this_function(s: str) -> bool:
+    ''' 
+    Check if the name contains at least one character that is neither a letter a-z, 
+    nor a letter A-Z, nor a space.
+    '''
+    # Regular expression to match any character that is not a letter or space
+    pattern = r'[^a-zA-Z ]'
+    
+    # Search for the pattern in the string
+    return bool(re.search(pattern, s))"
+The name shall contain no space character.,"def this_function(s: str) -> bool:
+    ''' Check if the name contains no space character. '''
+    return ' ' not in s"
+The name shall end with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the string ends with a space character. '''
+    return s.endswith(' ')"
+The name shall start with a space character.,"def this_function(s: str) -> bool:
+    ''' Check if the string starts with a space character. '''
+    return s.startswith(' ')"
+The first character in the name shall not be capitalized.,"def this_function(s: str) -> bool:
+    ''' Check if the first character in the string is not capitalized. '''
+    if not s:  # Check if the string is empty
+        return False
+    return s[0] != s[0].upper()"
+"In the name, there shall be some characters following a space character which are not capitalized.","def this_function(s: str) -> bool:
+    """"""
+    Check if in the name, there are some characters following a space character
+    which are not capitalized.
+    
+    Args:
+    s (str): The input string to check.
+    
+    Returns:
+    bool: True if there is at least one lowercase character following a space,
+          False otherwise.
+    """"""
+    # Iterate through the string, checking each character
+    for i in range(1, len(s)):
+        # Check if the current character is lowercase and the previous character is a space
+        if s[i].islower() and s[i-1] == ' ':
+            return True
+    return False"

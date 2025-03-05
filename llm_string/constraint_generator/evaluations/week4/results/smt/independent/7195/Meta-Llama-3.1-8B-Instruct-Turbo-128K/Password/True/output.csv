@@ -1,0 +1,6 @@
+constraint,result
+The password shall be at least 4 characters long.,
+"The password shall contain one of the following characters: !, #, $.",
+The password shall contain at least one upper case characters.,
+The password shall contain at least one lower case characters.,"(>= (str.count s (regpat ""[a-z]"")) 1)"
+The password shall contain at least one number.,(not (= 0 (count (filter (lambda ((k Int)) (and (>= 48 k) (<= k 57))) s))))

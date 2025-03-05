@@ -1,0 +1,21 @@
+constraint,result
+The parentheses string shall be at least 10 characters long.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall be at least 10 characters long.'''
+    return len(s) >= 10"
+The parentheses string shall only contains ( and ) characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall only contain ( and ) characters.'''
+    return all(char in '()' for char in s)"
+The parenthesis string shall contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool: 
+    ''' Check if the parentheses string shall contain an equal number of ( characters and ) characters.'''
+    return s.count('(') == s.count(')')"
+"When scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.","def this_function(s: str) -> bool: 
+    ''' Check if when scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.'''
+    balance = 0
+    for char in s:
+        if char == '(':
+            balance += 1
+        elif char == ')':
+            balance -= 1
+        if balance < 0:
+            return False
+    return True"

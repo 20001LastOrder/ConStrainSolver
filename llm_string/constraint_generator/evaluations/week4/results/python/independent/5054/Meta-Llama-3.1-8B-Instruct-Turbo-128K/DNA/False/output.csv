@@ -1,0 +1,69 @@
+constraint,result
+"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","def this_function(s: str) -> bool:
+    """"""
+    Check if the DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.
+
+    Args:
+        s (str): The DNA sequence to be checked.
+
+    Returns:
+        bool: True if the sequence contains at least one invalid letter, False otherwise.
+    """"""
+    # Define the valid letters
+    valid_letters = set('ATCG')
+    
+    # Iterate over each character in the sequence
+    for letter in s:
+        # If the letter is not in the valid letters, return True
+        if letter.upper() not in valid_letters:
+            return True
+    
+    # If no invalid letters were found, return False
+    return False"
+The length of the DNA sequence shall be at most 9.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The length of the DNA sequence shall be at most 9.
+
+    Args:
+        s (str): A DNA sequence as a string of 'A', 'C', 'G', 'T' characters.
+
+    Returns:
+        bool: True if the length of the DNA sequence is at most 9, False otherwise.
+    """"""
+    return len(s) <= 9"
+The length of the DNA sequence shall not a multiple of three.,"def this_function(s: str) -> bool:
+    """"""
+    Checks if the length of the DNA sequence shall not be a multiple of three.
+
+    Args:
+    s (str): The DNA sequence.
+
+    Returns:
+    bool: True if the length of the DNA sequence is not a multiple of three, False otherwise.
+    """"""
+    return len(s) % 3 != 0"
+The DNA sequence shall not start with ATG.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the DNA sequence should not start with ATG.
+
+    Args:
+    s (str): The DNA sequence.
+
+    Returns:
+    bool: True if the sequence does not start with ATG, False otherwise.
+    """"""
+    return not s.startswith('ATG')"
+"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","def this_function(s: str) -> bool:
+    """"""
+    Check if The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.
+
+    Args:
+    s (str): The DNA sequence
+
+    Returns:
+    bool: True if the sequence ends with TAA, TAG, or TGA; False otherwise
+    """"""
+    taa = s.endswith('TAA')
+    tag = s.endswith('TAG')
+    tga = s.endswith('TGA')
+    return taa or tag or tga"

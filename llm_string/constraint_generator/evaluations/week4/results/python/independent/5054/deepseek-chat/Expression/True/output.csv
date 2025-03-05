@@ -1,0 +1,60 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    # Define a regular expression pattern that matches only numbers and arithmetic operators
+    pattern = r'^[0-9+\-*/ ]+$'
+    
+    # Use the fullmatch method to check if the entire string matches the pattern
+    if re.fullmatch(pattern, s):
+        return True
+    else:
+        return False"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    # Define the set of arithmetic operators
+    operators = {'+', '-', '*', '/'}
+    
+    # Iterate through the string
+    for i in range(len(s) - 1):
+        # Check if both current and next characters are operators
+        if s[i] in operators and s[i+1] in operators:
+            return False
+    
+    # If no consecutive operators found, return True
+    return True"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    # Iterate through each character in the string
+    for i, char in enumerate(s):
+        if char in {'+', '*', '/'}:
+            # Check if the character before and after the operator is a digit
+            if i == 0 or i == len(s) - 1:
+                return False  # Operator at the start or end
+            if not (s[i-1].isdigit() and s[i+1].isdigit()):
+                return False  # No digit before or after the operator
+        elif char == '-':
+            # Handle the minus sign carefully
+            if i == 0:
+                # If it's the first character, it's a unary minus (valid)
+                continue
+            elif s[i-1] in {'+', '-', '*', '/'}:
+                # If the previous character is an operator, it's a unary minus (valid)
+                continue
+            elif not s[i+1].isdigit():
+                # If it's a binary minus, the next character must be a digit
+                return False
+    return True"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' 
+    Check if the arithmetic expression does not start with operators from the set {+, *, /}.
+    
+    Args:
+    s (str): The arithmetic expression to check.
+    
+    Returns:
+    bool: True if the expression does not start with +, *, or /; False otherwise.
+    '''
+    # Remove any leading whitespace
+    s = s.lstrip()
+    
+    # Check if the first character is one of the forbidden operators
+    if s and s[0] in {'+', '*', '/'}:
+        return False
+    return True"

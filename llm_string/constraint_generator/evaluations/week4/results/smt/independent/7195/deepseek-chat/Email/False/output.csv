@@ -1,0 +1,7 @@
+constraint,result
+The email shall contain a space character.,"(str.contains s "" "")"
+The email shall start with a @ character.,"(= (str.at s 0) ""@"")"
+The email shall have either no @ characters or more than one @ character.,"(or (not (str.contains s ""@"")) (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar))))"
+If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.,"(=> (str.contains s ""@"") (not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (- (str.len s) (+ (str.indexof s ""@"") 1))) ""."")))"
+The final character of the email shall be a dot character (.).,"(= (str.at s (- (str.len s) 1)) ""."")"
+"The email shall contain the word ""manager"".","(str.contains s ""manager"")"

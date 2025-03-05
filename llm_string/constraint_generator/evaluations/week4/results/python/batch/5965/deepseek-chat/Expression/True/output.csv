@@ -1,0 +1,17 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    '''Check if the arithmetic expression contains only numbers (0-9) and arithmetic operators (+, -, *, /).'''
+    # Use a regular expression to match only valid characters
+    return bool(re.fullmatch(r'[\d+\-*/ ]+', s))"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    '''Check if the arithmetic operators (+, -, *, /) in the arithmetic expression do not appear consecutively.'''
+    # Use a regular expression to check for consecutive operators
+    return not bool(re.search(r'[+\-*/]{2,}', s))"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    '''Check if, except for the minus sign (-), every operator (+, *, /) in the arithmetic expression has a number before and after it.'''
+    # Use a regular expression to ensure operators (except '-') are surrounded by numbers
+    return not bool(re.search(r'(?<!\d)[+*/]|[+*/](?!\d)', s))"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool:
+    '''Check if the arithmetic expression does not start with operators from the set {+, *, /}.'''
+    # Use a regular expression to check if the string starts with an invalid operator
+    return not bool(re.match(r'^[+*/]', s))"

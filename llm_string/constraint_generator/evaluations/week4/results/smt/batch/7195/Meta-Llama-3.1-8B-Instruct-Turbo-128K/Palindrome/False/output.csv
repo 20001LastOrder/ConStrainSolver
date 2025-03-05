@@ -1,0 +1,3 @@
+constraint,result
+The palindrome shall be at most 2 characters long.,
+The palindrome shall not be identical to its reverse.,

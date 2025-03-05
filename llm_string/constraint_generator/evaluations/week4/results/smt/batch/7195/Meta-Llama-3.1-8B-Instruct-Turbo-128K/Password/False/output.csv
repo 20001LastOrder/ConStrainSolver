@@ -1,0 +1,6 @@
+constraint,result
+The password shall contain less than 4 characters.,(or (not (< 4 (str.len s))) (str.empty s))
+"The password shall not contain any of the following characters: !, #, $.","(forall ((x String)) (implies (str.member x ""!#$"") (not (str.member x s))))"
+The password shall not contain any upper case characters.,(forall ((x String)) (implies (str.uppercase char) (not (str.member x s))))
+The password shall not contain any lower case characters.,(forall ((x String)) (implies (str.lowercase char) (not (str.member x s))))
+The password shall not contain any numbers.,(forall ((x Char)) (implies (digit numeral x) (not (str.member x s))))

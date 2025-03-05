@@ -1,0 +1,7 @@
+constraint,result
+"The ISBN shall only contain numbers (0-9), the letter X, or hyphens.","(forall ((c Char)) (=> (str.contains s (str.to.re (str.++ (str.from.int 0) (str.from.int 1) (str.from.int 2) (str.from.int 3) (str.from.int 4) (str.from.int 5) (str.from.int 6) (str.from.int 7) (str.from.int 8) (str.from.int 9) ""X"" ""-""))) (or (and (not (str.contains s ""-"")) (not (str.contains s ""X"")))))"
+The last character of the ISBN shall either be a number (0-9) or the letter X.,"(or (and (= (str.at s (- (str.len s) 1)) ""X"") (str.contains s (str.to.re (str.++ (str.from.int 0) (str.from.int 1) (str.from.int 2) (str.from.int 3) (str.from.int 4) (str.from.int 5) (str.from.int 6) (str.from.int 7) (str.from.int 8) (str.from.int 9)))))"
+"The ISBN shall contain exactly 10 characters, excluding hyphens.","(= (str.len (str.replace s ""-"" """")) 10)"
+The ISBN shall not start with a hyphen.,"(not (= (str.at s 0) ""-""))"
+Hyphens shall not occur consecutively in the ISBN.,"(not (str.contains s ""--""))"
+The ISBN shall contain at most 3 hyphens.,"(<= (str.count s ""-"") 3)"

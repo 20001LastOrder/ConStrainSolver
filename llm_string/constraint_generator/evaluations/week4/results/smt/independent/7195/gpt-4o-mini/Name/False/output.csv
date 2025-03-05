@@ -1,0 +1,7 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","(exists ((c String)) (and (str.contains s c) (or (not (str.in.re c (str.to.re ""[a-zA-Z]""))) (not (= c "" "")))))"
+The name shall contain no space character.,"(not (str.contains s "" ""))"
+The name shall end with a space character.,"(= (str.at s (- (str.len s) 1)) "" "")"
+The name shall start with a space character.,"(= (str.at s 0) "" "")"
+The first character in the name shall not be capitalized.,"(not (str.in.re (str.at s 0) (re.union (str.to.re ""A"") (str.to.re ""B"") (str.to.re ""C"") (str.to.re ""D"") (str.to.re ""E"") (str.to.re ""F"") (str.to.re ""G"") (str.to.re ""H"") (str.to.re ""I"") (str.to.re ""J"") (str.to.re ""K"") (str.to.re ""L"") (str.to.re ""M"") (str.to.re ""N"") (str.to.re ""O"") (str.to.re ""P"") (str.to.re ""Q"") (str.to.re ""R"") (str.to.re ""S"") (str.to.re ""T"") (str.to.re ""U"") (str.to.re ""V"") (str.to.re ""W"") (str.to.re ""X"") (str.to.re ""Y"") (str.to.re ""Z""))))"
+"In the name, there shall be some characters following a space character which are not capitalized.","(let ((space-index (str.indexof s "" ""))) (and (not (= space-index -1)) (exists ((c String)) (and (not (str.is.upper c)) (str.contains (str.substr s (+ space-index 1) (str.len s)) c))))) )"

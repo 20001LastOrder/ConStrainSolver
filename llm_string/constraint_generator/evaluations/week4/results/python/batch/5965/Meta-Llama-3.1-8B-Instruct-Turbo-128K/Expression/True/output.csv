@@ -1,0 +1,53 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    """"""
+    Check if The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).
+    
+    Args:
+        s (str): The arithmetic expression to be checked.
+    
+    Returns:
+        bool: True if the expression only contains numbers and operators, False otherwise.
+    """"""
+    # Define a regular expression pattern that matches any character that's not a digit or a valid operator
+    pattern = r'[^0-9\+\-\*\/\.]'
+    return not re.search(pattern, s)"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    """"""
+    Check if The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.
+    
+    Args:
+        s (str): The arithmetic expression to be checked.
+    
+    Returns:
+        bool: True if the operators do not appear consecutively, False otherwise.
+    """"""
+    # Define a regular expression pattern that matches any substring containing consecutive operators
+    pattern = r'[+\-\*\/]{2}'
+    return not re.search(pattern, s)"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    """"""
+    Check if Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.
+    
+    Args:
+        s (str): The arithmetic expression to be checked.
+    
+    Returns:
+        bool: True if the operators have numbers before and after them, False otherwise.
+    """"""
+    # Define a regular expression pattern that matches any operator that does not have numbers before and after it
+    pattern = r'(?<=[\+\*\//])(?!\d)|(?!\d)(?=[\+\*\//])'
+    return not re.search(pattern, s)"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool:
+    """"""
+    Check if The arithmetic expression shall not start with operators from the set {+, *, /}.
+    
+    Args:
+        s (str): The arithmetic expression to be checked.
+    
+    Returns:
+        bool: True if the expression does not start with an operator, False otherwise.
+    """"""
+    # Define a regular expression pattern that matches any string that starts with an operator
+    pattern = r'^(?:[\+\*\//])'
+    return not re.match(pattern, s)"

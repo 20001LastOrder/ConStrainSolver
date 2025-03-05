@@ -1,0 +1,13 @@
+constraint,result
+The parentheses string shall be at most 9 characters long.,"def this_function(s: str) -> bool:
+    ''' Check if The parentheses string shall be at most 9 characters long.'''
+    return len(s) <= 9"
+The parentheses string shall contain at least one character that is neither ( nor ).,"def this_function(s: str) -> bool: 
+    ''' Check if The parentheses string shall contain at least one character that is neither ( nor ).'''
+    return any(c not in '()' for c in s)"
+The parenthesis string shall not contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool: 
+    ''' Check if The parenthesis string shall not contain an equal number of ( characters and ) characters.'''
+    return s.count('(') != s.count(')')"
+"There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.","def this_function(s: str) -> bool: 
+    ''' Check if There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.'''
+    return any(s[:i].count(')') > s[:i].count('(') for i in range(len(s)))"

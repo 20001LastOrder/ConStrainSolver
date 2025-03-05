@@ -1,0 +1,6 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.","(assert (forall ((s String)) (and (str.contains s ""A"") (str.contains s ""T"") (str.contains s ""C"") (str.contains s ""G""))))"
+The length of The DNA sequence shall be at least 10.,(assert (>= (str.len s) 10))
+The length of The DNA sequence shall be a multiple of three.,(assert (= (mod (str.len s) 3) 0))
+The DNA sequence shall start with ATG.,"(assert (= (str.substr s 0 3) ""ATG""))"
+"The DNA sequence shall end with either TAA, or TAG, or TGA.","(assert (or (= (str.substr s (- (str.len s) 3) 3) ""TAA"") (= (str.substr s (- (str.len s) 3) 3) ""TAG"") (= (str.substr s (- (str.len s) 3) 3) ""TGA"")))"
