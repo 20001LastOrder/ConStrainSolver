@@ -1,0 +1,10 @@
+(assert (not (>= (str.len s) 10)))
+
+(assert (not (str.in.re s (re.* (re.union (str.to.re "(") (str.to.re ")"))))))
+
+(assert (not (= (- (str.len s) (str.len (str.replace_all s "(" "")))
+           (- (str.len s) (str.len (str.replace_all s ")" ""))))))
+
+(assert (not (forall ((i Int))
+(=> (and (>= i 0) (< i (str.len s))) (<= (str.len (str.replace_all (str.substr s 0 i) "(" ""))
+(str.len (str.replace_all (str.substr s 0 i) ")" "")))))))

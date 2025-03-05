@@ -1,0 +1,9 @@
+(assert (str.in.re s (re.* (re.union (str.to.re "A") (str.to.re "T") (str.to.re "C") (str.to.re "G")))))
+
+(assert (>= (str.len s) 10))
+
+(assert (= (mod (str.len s) 3) 0))
+
+(assert (str.prefixof "ATG" s))
+
+(assert (or (str.suffixof "TAA" s) (str.suffixof "TAG" s) (str.suffixof "TGA" s)))
