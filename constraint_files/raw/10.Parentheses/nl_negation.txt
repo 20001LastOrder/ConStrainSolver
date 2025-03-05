@@ -4,4 +4,4 @@
 
 3. The parenthesis string shall not contain an equal number of ( characters and ) characters.
 
-3.  There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.
+4. There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.
