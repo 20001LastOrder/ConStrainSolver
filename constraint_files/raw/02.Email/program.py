@@ -37,7 +37,7 @@ def constraint5(email: str) -> bool:
 
 def constraint6(email: str) -> bool:
     """
-    The email shall not contain the word “manager
+    The email shall not contain the word "manager"
     """
     return "manager" not in email
 

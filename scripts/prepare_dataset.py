@@ -13,7 +13,7 @@ def get_folders(directory):
 
 
 def extract_function_blocks(file_path: str) -> list[str]:
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         source = file.read()
 
     # Parse the source code into an AST.
@@ -37,19 +37,23 @@ def process_one_sample(path: str, folder_name: str) -> dict:
 
     full_path = os.path.join(path, folder_name)
     # read nl content
-    with open(os.path.join(full_path, "nl.txt"), "r") as file:
+    with open(os.path.join(full_path, "nl.txt"), "r", encoding="utf-8") as file:
         result["NL description"] = file.read()
 
     # read nl negation
-    with open(os.path.join(full_path, "nl_negation.txt"), "r") as file:
+    with open(
+        os.path.join(full_path, "nl_negation.txt"), "r", encoding="utf-8"
+    ) as file:
         result["NL negation"] = file.read()
 
     # read smt
-    with open(os.path.join(full_path, "smt.txt"), "r") as file:
+    with open(os.path.join(full_path, "smt.txt"), "r", encoding="utf-8") as file:
         result["SMT-LIB2"] = file.read()
 
     # read smt negation
-    with open(os.path.join(full_path, "smt_negation.txt"), "r") as file:
+    with open(
+        os.path.join(full_path, "smt_negation.txt"), "r", encoding="utf-8"
+    ) as file:
         result["SMT-LIB2 negation"] = file.read()
 
     # read functions

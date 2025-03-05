@@ -1,4 +1,4 @@
-1. The ISBN shall contain at least one character that is neither a number (0–9), nor the letter X, nor a hyphen.
+1. The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.
 
 2. The last character of the ISBN shall be neither a number (0-9), nor the letter X.
 

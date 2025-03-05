@@ -1,6 +1,6 @@
 def constraint1(isbn: str) -> bool:
     """
-    The ISBN shall include digits (0–9) , the letter "X", or hyphens.
+    The ISBN shall include digits (0-9) , the letter "X", or hyphens.
     """
     return all(char.isdigit() or char in "X-" for char in isbn)
 

@@ -80,7 +80,7 @@ sample_id,Name,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation,Functions
 
 (assert (= (str.at s (- (str.len s) 1)) "".""))
 
-(assert (str.contains s ""manager""))","[""def constraint1(email: str) -> bool:\n    \""\""\""\n    The email shall not contain a space character.\n    \""\""\""\n    return \"" \"" not in email"", ""def constraint2(email: str) -> bool:\n    \""\""\""\n    The email shall not start with a @ character.\n    \""\""\""\n    return not email.startswith(\""@\"")"", ""def constraint3(email: str) -> bool:\n    \""\""\""\n    The email shall have exactly one @ character.\n    \""\""\""\n    return email.count(\""@\"") == 1"", ""def constraint4(email: str) -> bool:\n    \""\""\""\n    If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.\n    \""\""\""\n    if \""@\"" in email:\n        return \"".\"" in email.split(\""@\"", 1)[1]\n    return False"", ""def constraint5(email: str) -> bool:\n    \""\""\""\n    The final character of the email shall not be a dot character (.).\n    \""\""\""\n    return not email.endswith(\"".\"")"", ""def constraint6(email: str) -> bool:\n    \""\""\""\n    The email shall not contain the word \u00e2\u20ac\u0153manager\n    \""\""\""\n    return \""manager\"" not in email""]"
+(assert (str.contains s ""manager""))","[""def constraint1(email: str) -> bool:\n    \""\""\""\n    The email shall not contain a space character.\n    \""\""\""\n    return \"" \"" not in email"", ""def constraint2(email: str) -> bool:\n    \""\""\""\n    The email shall not start with a @ character.\n    \""\""\""\n    return not email.startswith(\""@\"")"", ""def constraint3(email: str) -> bool:\n    \""\""\""\n    The email shall have exactly one @ character.\n    \""\""\""\n    return email.count(\""@\"") == 1"", ""def constraint4(email: str) -> bool:\n    \""\""\""\n    If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end.\n    \""\""\""\n    if \""@\"" in email:\n        return \"".\"" in email.split(\""@\"", 1)[1]\n    return False"", ""def constraint5(email: str) -> bool:\n    \""\""\""\n    The final character of the email shall not be a dot character (.).\n    \""\""\""\n    return not email.endswith(\"".\"")"", ""def constraint6(email: str) -> bool:\n    \""\""\""\n    The email shall not contain the word \""manager\""\n    \""\""\""\n    return \""manager\"" not in email""]"
 03,Password,"1. The password shall be at least 4 characters long.
 
 2. The password shall contain one of the following characters: !, #, $.
@@ -174,7 +174,7 @@ sample_id,Name,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation,Functions
 (assert (not (str.prefixof ""1210"" s)))
 
 (assert (not (and (>= (str.len s) 6) (and (= (str.at s 4) ""0"") (= (str.at s 5) ""0"")))))","[""def constraint1(iban: str) -> bool:\n    \""\""\""\n    The length of the bank number shall be 22.\n    \""\""\""\n    return len(iban) == 22"", ""def constraint2(iban: str) -> bool:\n    \""\""\""\n    The first 4 numbers of the bank number shall be: 1210 (CA).\n    \""\""\""\n    return iban.startswith(\""1210\"")"", ""def constraint3(iban: str) -> bool:\n    \""\""\""\n    The next 2 numbers after the first 4 numbers shall be 00.\n    \""\""\""\n    if len(iban) >= 6:\n        return iban[4:6] == \""00\""\n    return False""]"
-07,ISBN,"1. The ISBN shall only contain numbers (0â€“9), the letter X, or hyphens.
+07,ISBN,"1. The ISBN shall only contain numbers (0-9), the letter X, or hyphens.
 
 2. The last character of the ISBN shall either be a number (0-9) or the letter X.
 
@@ -184,7 +184,7 @@ sample_id,Name,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation,Functions
 
 5. Hyphens shall not occur consecutively in the ISBN.
 
-6. The ISBN shall contain at most 3 hyphens.","1. The ISBN shall contain at least one character that is neither a number (0â€“9), nor the letter X, nor a hyphen.
+6. The ISBN shall contain at most 3 hyphens.","1. The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.
 
 2. The last character of the ISBN shall be neither a number (0-9), nor the letter X.
 
@@ -194,16 +194,16 @@ sample_id,Name,NL description,NL negation,SMT-LIB2,SMT-LIB2 negation,Functions
 
 5. The ISBN shall contain two consecutive hyphens.
 
-6. The ISBN shall contain more than 3 hyphens.",,,"[""def constraint1(isbn: str) -> bool:\n    \""\""\""\n    The ISBN shall include digits (0\u00e2\u20ac\u201c9) , the letter \""X\"", or hyphens.\n    \""\""\""\n    return all(char.isdigit() or char in \""X-\"" for char in isbn)"", ""def constraint2(isbn: str) -> bool:\n    \""\""\""\n    The last character of the ISBN shall either be digits (0-9) or the letter \""X\"".\n    \""\""\""\n    if len(isbn) == 0:\n        return False\n    return isbn[-1].isdigit() or isbn[-1] == \""X\"""", ""def constraint3(isbn: str) -> bool:\n    \""\""\""\n    The ISBN shall contain exactly 10 characters excluding hyphens.\n    \""\""\""\n    return len(isbn.replace(\""-\"", \""\"")) == 10"", ""def constraint4(isbn: str) -> bool:\n    \""\""\""\n    Hyphens shall not be at the beginning of the ISBN.\n    \""\""\""\n    return not isbn.startswith(\""-\"")"", ""def constraint5(isbn: str) -> bool:\n    \""\""\""\n    Hyphens shall not occur consecutively in the ISBN.\n    \""\""\""\n    return \""--\"" not in isbn"", ""def constraint6(isbn: str) -> bool:\n    \""\""\""\n    An ISBN shall contain at most 3 hyphens\n    \""\""\""\n    return isbn.count(\""-\"") <= 3""]"
+6. The ISBN shall contain more than 3 hyphens.",,,"[""def constraint1(isbn: str) -> bool:\n    \""\""\""\n    The ISBN shall include digits (0-9) , the letter \""X\"", or hyphens.\n    \""\""\""\n    return all(char.isdigit() or char in \""X-\"" for char in isbn)"", ""def constraint2(isbn: str) -> bool:\n    \""\""\""\n    The last character of the ISBN shall either be digits (0-9) or the letter \""X\"".\n    \""\""\""\n    if len(isbn) == 0:\n        return False\n    return isbn[-1].isdigit() or isbn[-1] == \""X\"""", ""def constraint3(isbn: str) -> bool:\n    \""\""\""\n    The ISBN shall contain exactly 10 characters excluding hyphens.\n    \""\""\""\n    return len(isbn.replace(\""-\"", \""\"")) == 10"", ""def constraint4(isbn: str) -> bool:\n    \""\""\""\n    Hyphens shall not be at the beginning of the ISBN.\n    \""\""\""\n    return not isbn.startswith(\""-\"")"", ""def constraint5(isbn: str) -> bool:\n    \""\""\""\n    Hyphens shall not occur consecutively in the ISBN.\n    \""\""\""\n    return \""--\"" not in isbn"", ""def constraint6(isbn: str) -> bool:\n    \""\""\""\n    An ISBN shall contain at most 3 hyphens\n    \""\""\""\n    return isbn.count(\""-\"") <= 3""]"
 08,Expression,"1. The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).
 
 2. The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.
 
 3. Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.
 
-4. The arithmetic expression shall not start with operators from the set {+, *, /}.","1. The arithmetic expression shall contain at least one character that is neither a number (0â€“9), nor an arithmetic operator (+, -, *, /).
+4. The arithmetic expression shall not start with operators from the set {+, *, /}.","1. The arithmetic expression shall contain at least one character that is neither a number (0–9), nor an arithmetic operator (+, -, *, /).
 
-2. The arithmetic expression shall contain consecutive arithmetic operators (+, â€“, *, /).
+2. The arithmetic expression shall contain consecutive arithmetic operators (+, –, *, /).
 
 3. The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.
 
