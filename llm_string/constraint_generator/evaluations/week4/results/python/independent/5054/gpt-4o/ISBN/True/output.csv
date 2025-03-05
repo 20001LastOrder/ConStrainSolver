@@ -1,0 +1,37 @@
+constraint,result
+"The ISBN shall only contain numbers (0-9), the letter X, or hyphens.","def this_function(s: str) -> bool:
+    ''' Check if the ISBN contains only numbers (0-9), the letter X, or hyphens. '''
+    # Define a regular expression pattern that matches only valid characters for an ISBN
+    pattern = r'^[0-9X\-]+$'
+    
+    # Use the fullmatch method to check if the entire string matches the pattern
+    return bool(re.fullmatch(pattern, s))"
+The last character of the ISBN shall either be a number (0-9) or the letter X.,"def this_function(s: str) -> bool:
+    ''' Check if the last character of the ISBN is either a number (0-9) or the letter X. '''
+    if not s:
+        return False  # Return False if the string is empty
+    last_char = s[-1]
+    return last_char.isdigit() or last_char.upper() == 'X'"
+"The ISBN shall contain exactly 10 characters, excluding hyphens.","def this_function(s: str) -> bool:
+    ''' Check if the ISBN contains exactly 10 characters, excluding hyphens. '''
+    # Remove hyphens from the string
+    cleaned_s = s.replace('-', '')
+    
+    # Check if the cleaned string has exactly 10 characters
+    return len(cleaned_s) == 10"
+The ISBN shall not start with a hyphen.,"def this_function(s: str) -> bool:
+    ''' Check if the ISBN does not start with a hyphen. '''
+    return not s.startswith('-')"
+Hyphens shall not occur consecutively in the ISBN.,"def this_function(s: str) -> bool:
+    ''' Check if hyphens do not occur consecutively in the string. '''
+    # Iterate through the string, checking each character and the next one
+    for i in range(len(s) - 1):
+        # If a hyphen is found and the next character is also a hyphen, return False
+        if s[i] == '-' and s[i + 1] == '-':
+            return False
+    # If no consecutive hyphens are found, return True
+    return True"
+The ISBN shall contain at most 3 hyphens.,"def this_function(s: str) -> bool:
+    ''' Check if the ISBN contains at most 3 hyphens. '''
+    hyphen_count = s.count('-')
+    return hyphen_count <= 3"

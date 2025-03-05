@@ -1,0 +1,52 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).'''
+    # Define a regular expression pattern that matches numbers and arithmetic operators
+    pattern = r'^[0-9+\-*/\s]+$'
+    
+    # Use re.fullmatch to check if the entire string matches the pattern
+    return bool(re.fullmatch(pattern, s))"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    ''' 
+    Check if the arithmetic operators (+, -, *, /) in the arithmetic expression 
+    do not appear consecutively. Returns True if no consecutive operators are found, 
+    otherwise returns False.
+    '''
+    operators = set('+-*/')
+    previous_char = ''
+    
+    for char in s:
+        if char in operators:
+            if previous_char in operators:
+                return False
+            previous_char = char
+        else:
+            previous_char = ''
+    
+    return True"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    # Define the operators we are interested in
+    operators = {'+', '*', '/'}
+    
+    # Iterate through the string
+    for i, char in enumerate(s):
+        if char in operators:
+            # Check if there is a number before the operator
+            if i == 0 or not s[i-1].isdigit():
+                return False
+            # Check if there is a number after the operator
+            if i == len(s) - 1 or not s[i+1].isdigit():
+                return False
+    
+    # If all operators are correctly placed, return True
+    return True"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression does not start with operators from the set {+, *, /}.'''
+    if not s:
+        return False  # An empty string is considered invalid in this context.
+    
+    # Check if the first character is one of the forbidden operators
+    if s[0] in {'+', '*', '/'}:
+        return False
+    
+    return True"

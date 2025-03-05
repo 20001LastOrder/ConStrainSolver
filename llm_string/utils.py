@@ -23,7 +23,7 @@ class JSONPydanticOutputParser(PydanticOutputParser):
     def parse_result(
         self, result: list, *, partial: bool = False
     ):
-        logger.info(result[0].text)
+        logger.debug(result[0].text)
         try:
             return super().parse_result(result, partial=partial)
         except Exception:

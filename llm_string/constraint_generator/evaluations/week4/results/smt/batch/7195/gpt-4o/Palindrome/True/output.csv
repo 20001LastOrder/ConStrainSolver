@@ -1,0 +1,3 @@
+constraint,result
+The palindrome shall be at least 3 characters long.,(>= (str.len s) 3)
+The palindrome shall be identical to its reverse.,(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (= (str.at s i) (str.at s (- (str.len s) i 1)))))

@@ -1,0 +1,37 @@
+constraint,result
+The email shall contain a space character.,"def this_function(s: str) -> bool: 
+    ''' Check if the email contains a space character.'''
+    return ' ' in s"
+The email shall start with a @ character.,"def this_function(s: str) -> bool: 
+    ''' Check if the email does not start with an '@' character and contains one.'''
+    return s.startswith('@') == False and '@' in s"
+The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool:
+    ''' Check if the email has either no @ characters or more than one @ character. '''
+    at_count = s.count('@')
+    return at_count == 0 or at_count > 1"
+If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.,"def this_function(s: str) -> bool:
+    ''' Check if the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end. '''
+    
+    # Check if there is an '@' character in the string
+    if '@' not in s:
+        return False
+    
+    # Find the position of the '@' character
+    at_index = s.index('@')
+    
+    # Check the substring after the '@' character
+    after_at = s[at_index + 1:]
+    
+    # Ensure there are no '.' characters in the substring after the '@'
+    if '.' in after_at:
+        return False
+    
+    # If both conditions are satisfied, return True
+    return True"
+The final character of the email shall be a dot character (.).,"def this_function(s: str) -> bool: 
+    ''' Check if the final character of the email is a dot character (.).'''
+    # Check if the string is not empty and the last character is a dot
+    return len(s) > 0 and s[-1] == '.'"
+"The email shall contain the word ""manager"".","def this_function(s: str) -> bool: 
+    ''' Check if the email contains the word ""manager"".'''
+    return ""manager"" in s.lower()"

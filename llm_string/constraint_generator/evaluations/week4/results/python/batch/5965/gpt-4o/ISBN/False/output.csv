@@ -1,0 +1,25 @@
+constraint,result
+"The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.","def this_function(s: str) -> bool:
+    ''' Check if The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.'''
+    for char in s:
+        if not (char.isdigit() or char == 'X' or char == '-'):
+            return True
+    return False"
+"The last character of the ISBN shall be neither a number (0-9), nor the letter X.","def this_function(s: str) -> bool:
+    ''' Check if The last character of the ISBN shall be neither a number (0-9), nor the letter X.'''
+    if s and not (s[-1].isdigit() or s[-1] == 'X'):
+        return True
+    return False"
+"Without counting hyphens, the ISBN shall contain less than or more than 10 characters.","def this_function(s: str) -> bool:
+    ''' Check if Without counting hyphens, the ISBN shall contain less than or more than 10 characters.'''
+    count = sum(1 for char in s if char != '-')
+    return count != 10"
+The ISBN shall start with a hyphen.,"def this_function(s: str) -> bool:
+    ''' Check if The ISBN shall start with a hyphen.'''
+    return s.startswith('-')"
+The ISBN shall contain two consecutive hyphens.,"def this_function(s: str) -> bool:
+    ''' Check if The ISBN shall contain two consecutive hyphens.'''
+    return '--' in s"
+The ISBN shall contain more than 3 hyphens.,"def this_function(s: str) -> bool:
+    ''' Check if The ISBN shall contain more than 3 hyphens.'''
+    return s.count('-') > 3"

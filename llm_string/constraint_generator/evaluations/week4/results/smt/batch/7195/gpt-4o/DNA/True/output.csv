@@ -1,0 +1,6 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.","(str.in.re s (re.* (re.union (str.to.re ""A"") (str.to.re ""T"") (str.to.re ""C"") (str.to.re ""G""))))"
+The length of The DNA sequence shall be at least 10.,(>= (str.len s) 10)
+The length of The DNA sequence shall be a multiple of three.,(= 0 (mod (str.len s) 3))
+The DNA sequence shall start with ATG.,"(str.prefixof ""ATG"" s)"
+"The DNA sequence shall end with either TAA, or TAG, or TGA.","(or (str.suffixof ""TAA"" s) (str.suffixof ""TAG"" s) (str.suffixof ""TGA"" s))"

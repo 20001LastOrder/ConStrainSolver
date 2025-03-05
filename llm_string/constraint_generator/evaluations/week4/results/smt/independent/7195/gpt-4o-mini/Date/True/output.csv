@@ -1,0 +1,5 @@
+constraint,result
+The date shall contain two hyphens.,"(= (str.len (str.replace s ""-"" """")) (+ (str.len s) -2))"
+"If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.","(=> (str.contains s ""-"") (and (<= 0 (str.to.int (str.substr s 0 (str.indexof s ""-"")))) (<= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 2025)))"
+"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.",
+"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.",

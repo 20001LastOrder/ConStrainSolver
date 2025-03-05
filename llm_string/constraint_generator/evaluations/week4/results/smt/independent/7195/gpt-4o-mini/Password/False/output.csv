@@ -1,0 +1,6 @@
+constraint,result
+The password shall contain less than 4 characters.,(< (str.len s) 4)
+"The password shall not contain any of the following characters: !, #, $.",
+The password shall not contain any upper case characters.,"(forall ((c String)) (=> (str.contains s c) (not (or (str.equals c ""A"") (str.equals c ""B"") (str.equals c ""C"") (str.equals c ""D"") (str.equals c ""E"") (str.equals c ""F"") (str.equals c ""G"") (str.equals c ""H"") (str.equals c ""I"") (str.equals c ""J"") (str.equals c ""K"") (str.equals c ""L"") (str.equals c ""M"") (str.equals c ""N"") (str.equals c ""O"") (str.equals c ""P"") (str.equals c ""Q"") (str.equals c ""R"") (str.equals c ""S"") (str.equals c ""T"") (str.equals c ""U"") (str.equals c ""V"") (str.equals c ""W"") (str.equals c ""X"") (str.equals c ""Y"") (str.equals c ""Z"")))))"
+The password shall not contain any lower case characters.,"(forall ((c String)) (=> (str.contains s c) (not (str.in.re c (str.to.re ""[a-z]"")))))"
+The password shall not contain any numbers.,

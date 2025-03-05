@@ -1,4 +1,5 @@
 from langchain_deepseek import ChatDeepSeek
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 
 from llm_string.constraint_generator.core.python.prompt import get_template, get_functions, CallableExtension
@@ -10,10 +11,12 @@ logger = getLogger()
 
 class BatchPythonGeneratorAgent:
     def __init__(self, model_name='gpt-4o-mini', temperature=0.5):
-        if model_name in ["gpt-4o-mini", "gpt-4o"]:
+        if model_name == "gpt-4o-mini" or model_name == "gpt-4o":
             self.model = ChatOpenAI(model_name=model_name, temperature=temperature)
-        elif model_name in ["deepseek-chat", "deepseek-reasoner"]:
+        elif model_name == "deepseek-chat":
             self.model = ChatDeepSeek(model_name=model_name, temperature=temperature)
+        elif model_name == "llama3.1-8b-instruct-q4_0":
+            self.model = ChatOllama(model=model_name, temperature=temperature)
 
 
     def get_evaluator(
@@ -29,13 +32,19 @@ class BatchPythonGeneratorAgent:
         prompt = get_template(constraint_text)
 
         for i in range(max_retries_per_attempt + 1):
-            logger.debug("Attempt {0} invoking model with prompt: {1}", i + 1, prompt)
+            logger.info("constraint={0}, attempt {1} invoking model.", str(constraint_text), i + 1)
+            logger.debug("Attempt invoking model with prompt: {0}", prompt)
             try:
                 response = self.model.invoke(prompt)
 
                 logger.debug("Received response from model: {0}", response.content)
 
-                return get_functions(response.content)
+                functions = get_functions(response.content)
+
+                if len(functions) != len(constraint_text):
+                    raise ValueError("Number of functions does not match number of constraints")
+
+                return functions
             except Exception as e:
                 logger.error("Error invoking model: {0}", e)
 

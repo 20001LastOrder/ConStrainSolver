@@ -1,0 +1,25 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).'''
+    # Define a regex pattern for valid characters (numbers and operators)
+    valid_pattern = r'^[0-9+\-*/]*$'
+    # Check if the string matches the valid pattern
+    if re.match(valid_pattern, s):
+        return False  # All characters are valid
+    return True  # Contains at least one invalid character"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /).'''
+    # Define a regex pattern for consecutive operators
+    consecutive_operators_pattern = r'[+\-*/]{2,}'
+    # Check if the string contains consecutive operators
+    return bool(re.search(consecutive_operators_pattern, s))"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.'''
+    # Define a regex pattern for operators without numbers before or after
+    invalid_operator_pattern = r'(?<![0-9])[+\-*/]|[+\-*/](?![0-9])'
+    # Check if the string contains such invalid operators
+    return bool(re.search(invalid_operator_pattern, s))"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression starts with one of the operators in the set {+, *, /}.'''
+    # Check if the first character is one of the specified operators
+    return s.startswith(('+', '*', '/'))"

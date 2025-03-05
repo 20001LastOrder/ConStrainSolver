@@ -1,4 +1,6 @@
 from func_timeout import FunctionTimedOut
+from langchain_deepseek import ChatDeepSeek
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 
 from llm_string.constraint_generator.core.history_helper import format_history
@@ -30,7 +32,14 @@ class BatchConstraintGeneratorAgent:
 
         prompt_template = get_prompt_template(constraint_type, parser, independent=False)
 
-        self.chain = prompt_template | ChatOpenAI(model_name=model_name, temperature=temperature) | parser
+        if model_name == "gpt-4o-mini" or model_name == "gpt-4o":
+            model = ChatOpenAI(model_name=model_name, temperature=temperature)
+        elif model_name == "deepseek-chat":
+            model = ChatDeepSeek(model_name=model_name, temperature=temperature)
+        elif model_name == "llama3.1-8b-instruct-q4_0":
+            model = ChatOllama(model=model_name, temperature=temperature)
+
+        self.chain = prompt_template | model | parser
         self.constraint_type = constraint_type
         self.model_name = model_name
         self.temperature = temperature
@@ -53,7 +62,7 @@ class BatchConstraintGeneratorAgent:
             constraint_text: list[str],
             use_examples=False,
             use_judge=False,
-            max_steps=10,
+            max_steps=1,
             max_retries_per_attempt=0,
             naive=True
     ) -> tuple[ConstraintEvaluator, int, int]:
@@ -187,6 +196,8 @@ class BatchConstraintGeneratorAgent:
             try:
                 constraints = self._invoke_chain(nl_constraint_to_generate, history)
 
+                constraints = _postprocess_constraints(constraints)
+
                 constraint_generated = _merge_constraints(constraint_generated, constraints)
             except Exception as e:
                 logger.error("Error invoking chain: {0}", str(e))
@@ -305,3 +316,38 @@ def _merge_constraints(old_constraints: Constraints, new_constraints: Constraint
 
 def _parse_error_list(error_list: list[tuple[int, Exception]], constraint: list[str]) -> list[tuple[str, Exception]]:
     return [(constraint[i] if i >= 0 else "constraint satisfiability", error) for i, error in error_list]
+
+
+def _postprocess_constraints(constraints: Constraints) -> Constraints:
+    for i in range(len(constraints.constraint)):
+        # a common issue is that the LLM would append a punctuation mark to the end of the constraint
+        if not constraints.constraint[i].endswith(")"):
+            constraints.constraint[i] = constraints.constraint[i][:-1]
+
+        # another common issue is to already wrap the answer in an assert statement
+        if constraints.constraint[i].startswith("(assert "):
+            constraints.constraint[i] = constraints.constraint[i][8:-1]
+        
+        constraints.constraint[i] = constraints.constraint[i].replace("str.to.re", "str.to_re")
+        constraints.constraint[i] = constraints.constraint[i].replace("str.in.re", "str.in_re")
+        constraints.constraint[i] = constraints.constraint[i].replace("str.to.int", "str.to_int")
+        constraints.constraint[i] = constraints.constraint[i].replace("re.complement", "re.comp")
+
+    return constraints
+
+def postprocess_constraint(constraint: str) -> str:
+    if not isinstance(constraint, str):
+        return constraint
+
+    if not constraint.endswith(")"):
+        constraint = constraint[:-1]
+
+    if constraint.startswith("(assert "):
+        constraint = constraint[8:-1]
+
+    constraint = constraint.replace("str.to.re", "str.to_re")
+    constraint = constraint.replace("str.in.re", "str.in_re")
+    constraint = constraint.replace("str.to.int", "str.to_int")
+    constraint = constraint.replace("re.complement", "re.comp")
+
+    return constraint

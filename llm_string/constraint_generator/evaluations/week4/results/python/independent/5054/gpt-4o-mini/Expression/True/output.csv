@@ -1,0 +1,73 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic expression contains only numbers (0-9) and arithmetic operators (+, -, *, /). '''
+    # Define a regular expression pattern that matches valid characters
+    pattern = r'^[0-9+\-*/\s]+$'
+    
+    # Use re.match to check if the entire string matches the pattern
+    return bool(re.match(pattern, s))"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    ''' Check if the arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.'''
+    
+    # Define the set of arithmetic operators
+    operators = set('+-*/')
+    
+    # Initialize a variable to keep track of the last character
+    last_char = ''
+    
+    for char in s:
+        # Check if the current character is an operator
+        if char in operators:
+            # If the last character was also an operator, return False
+            if last_char in operators:
+                return False
+            # Update last_char to the current operator
+            last_char = char
+        else:
+            # If the current character is not an operator, reset last_char
+            last_char = ''
+    
+    # If no consecutive operators were found, return True
+    return True"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    ''' Check if except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.'''
+    
+    # Define a regex pattern to match valid numbers (including decimals)
+    number_pattern = r'(\d+(\.\d+)?)'
+    
+    # Define the operators we want to check
+    operators = ['+', '*', '/']
+    
+    # Split the expression by spaces to handle multi-character operators and numbers
+    tokens = re.split(r'(\s+)', s)  # Split by whitespace but keep the whitespace in the result
+    
+    # Remove whitespace tokens
+    tokens = [token for token in tokens if token.strip()]
+    
+    # Iterate through the tokens
+    for i in range(len(tokens)):
+        token = tokens[i]
+        
+        # Check if the token is an operator
+        if token in operators:
+            # Check if there is a valid number before and after the operator
+            if (i == 0 or not re.match(number_pattern, tokens[i - 1])) or (i == len(tokens) - 1 or not re.match(number_pattern, tokens[i + 1])):
+                return False
+            
+        # Special case for minus sign: it can be at the start or after another operator
+        if token == '-' and (i == 0 or tokens[i - 1] in operators):
+            continue
+    
+    return True"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool: 
+    ''' Check if the arithmetic expression shall not start with operators from the set {+, *, /}.'''
+    
+    # Check if the string is empty
+    if not s:
+        return False
+    
+    # Define the set of operators
+    operators = {'+', '*', '/'}
+    
+    # Check if the first character is in the set of operators
+    return s[0] not in operators"

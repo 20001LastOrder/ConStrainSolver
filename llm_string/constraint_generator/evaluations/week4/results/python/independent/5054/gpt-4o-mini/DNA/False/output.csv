@@ -1,0 +1,20 @@
+constraint,result
+"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence contains at least one letter that is neither A, nor T, nor C, nor G.'''
+    for char in s:
+        if char not in {'A', 'T', 'C', 'G'}:
+            return True
+    return False"
+The length of the DNA sequence shall be at most 9.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence shall be at most 9.'''
+    return len(s) <= 9"
+The length of the DNA sequence shall not a multiple of three.,"def this_function(s: str) -> bool:
+    ''' Check if the length of the DNA sequence is not a multiple of three. '''
+    return len(s) % 3 != 0"
+The DNA sequence shall not start with ATG.,"def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence does not start with ATG.'''
+    return not s.startswith(""ATG"")"
+"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence does not end with TAA, TAG, or TGA. '''
+    # Check if the string ends with any of the specified codons
+    return not (s.endswith(""TAA"") or s.endswith(""TAG"") or s.endswith(""TGA""))"

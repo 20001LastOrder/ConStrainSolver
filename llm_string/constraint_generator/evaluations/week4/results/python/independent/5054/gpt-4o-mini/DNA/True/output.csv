@@ -1,0 +1,17 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.","def this_function(s: str) -> bool: 
+    ''' Check if the DNA sequence contains only letters A, T, C, and G.'''
+    valid_nucleotides = {'A', 'T', 'C', 'G'}
+    return all(char in valid_nucleotides for char in s)"
+The length of The DNA sequence shall be at least 10.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence is at least 10.'''
+    return len(s) >= 10"
+The length of The DNA sequence shall be a multiple of three.,"def this_function(s: str) -> bool: 
+    ''' Check if the length of the DNA sequence is a multiple of three.'''
+    return len(s) % 3 == 0"
+The DNA sequence shall start with ATG.,"def this_function(s: str) -> bool:
+    ''' Check if the DNA sequence starts with ATG. '''
+    return s.startswith(""ATG"")"
+"The DNA sequence shall end with either TAA, or TAG, or TGA.","def this_function(s: str) -> bool:
+    ''' Check if the DNA sequence ends with either TAA, TAG, or TGA. '''
+    return s.endswith(('TAA', 'TAG', 'TGA'))"

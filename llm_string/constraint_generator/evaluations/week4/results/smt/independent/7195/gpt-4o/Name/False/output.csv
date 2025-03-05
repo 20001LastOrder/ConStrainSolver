@@ -1,0 +1,7 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","(not (str.in.re s (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" "")))))"
+The name shall contain no space character.,"(not (str.contains s "" ""))"
+The name shall end with a space character.,"(= (str.at s (- (str.len s) 1)) "" "")"
+The name shall start with a space character.,"(= (str.at s 0) "" "")"
+The first character in the name shall not be capitalized.,"(not (or (= (str.at s 0) ""A"") (= (str.at s 0) ""B"") (= (str.at s 0) ""C"") (= (str.at s 0) ""D"") (= (str.at s 0) ""E"") (= (str.at s 0) ""F"") (= (str.at s 0) ""G"") (= (str.at s 0) ""H"") (= (str.at s 0) ""I"") (= (str.at s 0) ""J"") (= (str.at s 0) ""K"") (= (str.at s 0) ""L"") (= (str.at s 0) ""M"") (= (str.at s 0) ""N"") (= (str.at s 0) ""O"") (= (str.at s 0) ""P"") (= (str.at s 0) ""Q"") (= (str.at s 0) ""R"") (= (str.at s 0) ""S"") (= (str.at s 0) ""T"") (= (str.at s 0) ""U"") (= (str.at s 0) ""V"") (= (str.at s 0) ""W"") (= (str.at s 0) ""X"") (= (str.at s 0) ""Y"") (= (str.at s 0) ""Z"")))"
+"In the name, there shall be some characters following a space character which are not capitalized.","(str.in.re s (re.++ (re.* re.allchar) (str.to.re "" "") (re.range ""a"" ""z"") (re.* re.allchar)))"

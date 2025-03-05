@@ -1,0 +1,4 @@
+constraint,result
+"The url shall not start with http://, nor with https://.","(and (not (str.prefixof ""http://"" s)) (not (str.prefixof ""https://"" s)))"
+The url shall contain at least one space.,"(str.contains s "" "")"
+The url shall not contain any dot character (.).,"(not (str.contains s "".""))"

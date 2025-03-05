@@ -1,0 +1,5 @@
+generator_mode,model_name,processed_index,generation_success,formal_verification_success,validation_success
+batch,gpt-4o,104,78,65,75
+batch,gpt-4o-mini,104,41,36,38
+independent,gpt-4o,104,83,70,78
+independent,gpt-4o-mini,104,60,46,51
