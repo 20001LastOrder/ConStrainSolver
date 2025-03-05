@@ -1,7 +1,9 @@
 import os
+import re
 import subprocess
 import tempfile
 
+from loguru import logger
 from z3 import Solver, sat, unknown, unsat
 
 from llm_string.string_solvers.base import BaseStringSolver
@@ -12,7 +14,14 @@ class CVC5Solver(BaseStringSolver):
     name: str = "cvc5"
     solver_name: str = "csv5"
 
-    def solve(self, string_problem: ConstraintProblem) -> ConstraintProblem:
+    def extract_unsat_core(self, output: str) -> list[str]:
+        pattern = r"^(c\d+)$"
+        logger.info(output)
+        return re.findall(pattern, output, flags=re.MULTILINE)
+
+    def solve(
+        self, string_problem: ConstraintProblem, produce_unsat_core: bool = False
+    ) -> ConstraintProblem:
         problem = ["(declare-const s String)"] + string_problem.smt_constraints
 
         problem = [
@@ -23,6 +32,8 @@ class CVC5Solver(BaseStringSolver):
         ] + problem
 
         problem = problem + ["(check-sat)", "(get-model)"]
+        if produce_unsat_core:
+            problem = problem + ["(get-unsat-core)"]
         cons_str = "\n".join(problem)
 
         cons_str = cons_str.replace("str.to.re", "str.to_re")
@@ -30,7 +41,9 @@ class CVC5Solver(BaseStringSolver):
         cons_str = cons_str.replace("str.to.int", "str.to_int")
         cons_str = cons_str.replace("re.complement", "re.comp")
 
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".smt2", delete=False) as f:
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".smt2", delete=False, encoding="utf-8"
+        ) as f:
             f.write(cons_str)
             temp_file_name = f.name
 
@@ -50,6 +63,7 @@ class CVC5Solver(BaseStringSolver):
         sat_res = output.split("\n")[0]
 
         # parse the value of s
+        unsat_core = []
         if sat_res == "sat":
             # Extract the value of s from the output
             string_val_line = output.split("\n")[2]
@@ -62,16 +76,20 @@ class CVC5Solver(BaseStringSolver):
             )
             end_index = output.find('")', start_index)
             str_val = output[start_index:end_index]
-        else:
+        elif sat_res == "unsat":
             str_val = None
-
-        if sat_res == "":
+            if produce_unsat_core:
+                unsat_core = self.extract_unsat_core(output)
+        else:
             sat_res = "unknown"
+            str_val = None
 
         string_problem.status = sat_res
         string_problem.value = str_val
 
-        return string_problem
+        return (
+            string_problem if not produce_unsat_core else (string_problem, unsat_core)
+        )
 
 
 class Z3Solver(BaseStringSolver):

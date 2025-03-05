@@ -1,9 +1,9 @@
+import re
 from abc import ABC, abstractmethod
 
 from loguru import logger
 from pydantic import BaseModel
 
-from llm_string.string_solvers import Z3Solver
 from llm_string.string_solvers.base import BaseStringSolver, ConstraintProblem
 from llm_string.string_solvers.formal_solvers import CVC5Solver
 from llm_string.structs import ValidatorFeedback
@@ -20,11 +20,25 @@ class BaseValidator(BaseModel, ABC):
 
 class StringValidator(BaseValidator):
     timeout: int = 10000
+    produce_failed_constraints: bool = False
     solver: BaseStringSolver = CVC5Solver(solver_name="z3", timeout=timeout)
+
+    def get_failed_constraints(self, original_problem: ConstraintProblem) -> list[str]:
+        solution = original_problem.value
+        failed_constraints = []
+
+        for i, constraint in enumerate(original_problem.smt_constraints):
+            constraints = ['(assert (= s "' + solution + '"))', constraint]
+            problem = ConstraintProblem(smt_constraints=constraints, name="validate")
+            problem = self.solver.solve(problem)
+            if problem.status == "unsat":
+                failed_constraints.append(original_problem.nl_constraints[i])
+
+        return failed_constraints
 
     def validate(
         self,
-        problem: ConstraintProblem,
+        original_problem: ConstraintProblem,
     ) -> ValidatorFeedback:
         """
         Validate the solution of constraints if the status is SAT
@@ -38,18 +52,28 @@ class StringValidator(BaseValidator):
         Returns:
             ValidatorFeedback: The validator output
         """
-        initial_status = problem.status
-        constraints = problem.smt_constraints
-        solution = problem.value
+        initial_status = original_problem.status
+        constraints = original_problem.smt_constraints
+        solution = original_problem.value
 
         if initial_status == "sat":
             constraints = ['(assert (= s "' + solution + '"))'] + constraints
 
         problem = ConstraintProblem(smt_constraints=constraints, name="validate")
+
+        failed_constraints = []
         problem = self.solver.solve(problem)
 
         if problem.status == "unknown":
             return ValidatorFeedback(status="unknown", message="")
+
+        failed_constraints = []
+        if (
+            problem.status == "unsat"
+            and initial_status == "sat"
+            and self.produce_failed_constraints
+        ):
+            failed_constraints = self.get_failed_constraints(original_problem)
 
         if problem.status != initial_status:
             status = "unsat"
@@ -59,8 +83,9 @@ class StringValidator(BaseValidator):
         logger.info(
             f"The input problem status is {initial_status} and the validation status is {status}"
         )
-        # TODO: add unsat core
-        return ValidatorFeedback(value=solution, status=status, message="")
+        return ValidatorFeedback(
+            value=solution, status=status, failed_constraints=failed_constraints
+        )
 
 
 class PythonStringValidator(BaseValidator):

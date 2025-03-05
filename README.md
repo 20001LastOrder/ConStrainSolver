@@ -1,36 +1,62 @@
 # llm-string-constraints
 
-## Run LLM Experiments
+## Run LLM String Generation
+### Run single LLM calls
+* Available options:
+    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+
 ```bash
-python -m scripts.run_generation --approach={llm,smt} --file_path=<path_to_the_constraint_file> --output_path=<path_to_save_results> --llm=<llm_name> [--use_variable_name] --smt_solver={z3}
+python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full output_folder="outputs/llm/<llm>" string_solver/llm=<llm>
 ```
 
-By default, variable names in the prompt sent ot the LLM are replaced with a generic name "x" to avoid any bias introduced by the variable name. If you want to use the variable name in the prompt, you can set the flag `--use_variable_name`.
+### Run LLM with validation
+* Available options:
+    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * <validator>: ground_truth_python, ground_truth_smt, hybrid (special case)
 
-### Suggested workflow
-
-* Run an LLM:
+Run python or smt
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=mo2re string_solver/validator=ground_truth_python +string_solver.with_explanation=True
-```
-* With single LLM"
-```bash
-python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full string_solver/llm=deepseek-v3 output_folder="outputs/${string_solver.name}/llm_solver/deepseek-v3"
+python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> output_folder="outputs/${string_solver.name}/<validator>/<llm>"
 ```
 
-* With validation:
+Run the hybrid approach
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/${string_solver.name}/gpt-4o-mini"
+python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/<validator>/<llm>"
 ```
 
-* with feedback:
+### Run LLM with feedback
+* Available options:
+    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * <validator>: ground_truth_python, ground_truth_smt, hybrid (special case)
+
+Run python or smt
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=deepseek-v3 output_folder="outputs/${string_solver.name}/deepseek-v3"
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> output_folder="outputs/${string_solver.name}/<validator>/<llm>"
 ```
 
-* with explanation:
+Run the hybrid approach
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/llm_solver_with_explanation/gpt-4o-mini" +string_solver.with_explanation=True
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/hybrid/<llm>"
+```
+
+### Run LLM with explanation
+* Available options:
+    * <llm>: gpt-4o-mini_v, gpt-4o_v, deepseek-v3_v, llama3.1-8b_v
+    * Each validator takes slightly different arguments
+
+Run python validator
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/python/<llm>" +string_solver.with_explanation=True
+```
+
+Run smt validator
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/smt/<llm>" +string_solver.with_explanation=True +string_solver/validator.produce_failed_constraints=True
+```
+
+Run hybrid validator
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/llm_solver_with_explanation/hybrid/<llm>" +string_solver.with_explanation=True
 ```
 
 * Validate the generated LLM outputs

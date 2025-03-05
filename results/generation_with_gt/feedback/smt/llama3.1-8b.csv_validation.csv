@@ -1,0 +1,341 @@
+status,result,name,truth_masks,valid?
+sat,John Smith,Name,"(True, True, True, True, True, True)",1.0
+sat,John Doe,Name,"(True, True, True, True, True, False)",0.0
+sat,John Smith,Name,"(True, True, True, True, False, True)",0.0
+sat,john smith,Name,"(True, True, True, True, False, False)",1.0
+unsat,,Name,"(True, True, True, False, True, True)",-1.0
+unsat,,Name,"(True, True, True, False, True, False)",-1.0
+sat, john doe,Name,"(True, True, True, False, False, True)",0.0
+sat, x yz abc def,Name,"(True, True, True, False, False, False)",1.0
+sat,J ohn  SmitH ,Name,"(True, True, False, True, True, True)",0.0
+sat,John Smith,Name,"(True, True, False, True, True, False)",0.0
+sat,hello WorLd ,Name,"(True, True, False, True, False, True)",1.0
+sat,hello chill ,Name,"(True, True, False, True, False, False)",1.0
+unsat,,Name,"(True, True, False, False, True, True)",-1.0
+unsat,,Name,"(True, True, False, False, True, False)",-1.0
+sat," space Character Space, Space Another Space",Name,"(True, True, False, False, False, True)",0.0
+sat, a mister ,Name,"(True, True, False, False, False, False)",1.0
+sat,A,Name,"(True, False, True, True, True, True)",1.0
+unsat,,Name,"(True, False, True, True, True, False)",-1.0
+sat,test,Name,"(True, False, True, True, False, True)",1.0
+unsat,,Name,"(True, False, True, True, False, False)",-1.0
+unsat,,Name,"(True, False, True, False, True, True)",-1.0
+unsat,,Name,"(True, False, True, False, True, False)",-1.0
+unsat,,Name,"(True, False, True, False, False, True)",-1.0
+unsat,,Name,"(True, False, True, False, False, False)",-1.0
+unsat,,Name,"(True, False, False, True, True, True)",-1.0
+unsat,,Name,"(True, False, False, True, True, False)",-1.0
+unsat,,Name,"(True, False, False, True, False, True)",-1.0
+unsat,,Name,"(True, False, False, True, False, False)",-1.0
+unsat,,Name,"(True, False, False, False, True, True)",-1.0
+unsat,,Name,"(True, False, False, False, True, False)",-1.0
+unsat,,Name,"(True, False, False, False, False, True)",-1.0
+unsat,,Name,"(True, False, False, False, False, False)",-1.0
+sat,John's Smith,Name,"(False, True, True, True, True, True)",1.0
+sat,John doe 123,Name,"(False, True, True, True, True, False)",1.0
+sat,Anna Reeves,Name,"(False, True, True, True, False, True)",0.0
+sat,a abc def!,Name,"(False, True, True, True, False, False)",1.0
+unsat,,Name,"(False, True, True, False, True, True)",-1.0
+unsat,,Name,"(False, True, True, False, True, False)",-1.0
+sat,  John Smith Jr.!,Name,"(False, True, True, False, False, True)",0.0
+sat, . a b,Name,"(False, True, True, False, False, False)",1.0
+sat,John Smith ,Name,"(False, True, False, True, True, True)",0.0
+sat,John Smith ,Name,"(False, True, False, True, True, False)",0.0
+sat,a a ! A,Name,"(False, True, False, True, False, True)",0.0
+sat,a2 b John variant ,Name,"(False, True, False, True, False, False)",1.0
+unsat,,Name,"(False, True, False, False, True, True)",-1.0
+unsat,,Name,"(False, True, False, False, True, False)",-1.0
+unsat,,Name,"(False, True, False, False, False, True)",-1.0
+sat, espaço a ! ,Name,"(False, True, False, False, False, False)",1.0
+sat,McLaren,Name,"(False, False, True, True, True, True)",0.0
+unsat,,Name,"(False, False, True, True, True, False)",-1.0
+sat,hello123,Name,"(False, False, True, True, False, True)",1.0
+unsat,,Name,"(False, False, True, True, False, False)",-1.0
+unsat,,Name,"(False, False, True, False, True, True)",-1.0
+unsat,,Name,"(False, False, True, False, True, False)",-1.0
+unsat,,Name,"(False, False, True, False, False, True)",-1.0
+unsat,,Name,"(False, False, True, False, False, False)",-1.0
+unsat,,Name,"(False, False, False, True, True, True)",-1.0
+unsat,,Name,"(False, False, False, True, True, False)",-1.0
+unsat,,Name,"(False, False, False, True, False, True)",-1.0
+unsat,,Name,"(False, False, False, True, False, False)",-1.0
+unsat,,Name,"(False, False, False, False, True, True)",-1.0
+unsat,,Name,"(False, False, False, False, True, False)",-1.0
+unsat,,Name,"(False, False, False, False, False, True)",-1.0
+unsat,,Name,"(False, False, False, False, False, False)",-1.0
+sat,john.doe@example.com,Email,"(True, True, True, True, True, True)",1.0
+sat,john.manager@example.com,Email,"(True, True, True, True, True, False)",1.0
+sat,test@example.com.,Email,"(True, True, True, True, False, True)",1.0
+sat,example@manager.,Email,"(True, True, True, True, False, False)",1.0
+sat,testuser@company,Email,"(True, True, True, False, True, True)",1.0
+sat,john.manager@company,Email,"(True, True, True, False, True, False)",1.0
+unsat,,Email,"(True, True, True, False, False, True)",-1.0
+unsat,,Email,"(True, True, True, False, False, False)",-1.0
+sat,john.doe@example.com,Email,"(True, True, False, True, True, True)",0.0
+sat,john.manager@example.com,Email,"(True, True, False, True, True, False)",0.0
+sat,john.doe@example.com@subdomain.,Email,"(True, True, False, True, False, True)",1.0
+sat,manager@subdomain.com.,Email,"(True, True, False, True, False, False)",0.0
+sat,test@email.test,Email,"(True, True, False, False, True, True)",0.0
+sat,john.manager@company@domain,Email,"(True, True, False, False, True, False)",1.0
+sat,user@domain.,Email,"(True, True, False, False, False, True)",0.0
+sat,manager@company.com.,Email,"(True, True, False, False, False, False)",0.0
+sat,johndoe@example123.com,Email,"(True, False, True, True, True, True)",0.0
+sat,john.doe@company.manager.com,Email,"(True, False, True, True, True, False)",0.0
+sat,test@example.com,Email,"(True, False, True, True, False, True)",0.0
+sat,john.manager@company.com.,Email,"(True, False, True, True, False, False)",0.0
+sat,@example,Email,"(True, False, True, False, True, True)",1.0
+sat,manager@company.com,Email,"(True, False, True, False, True, False)",0.0
+unsat,,Email,"(True, False, True, False, False, True)",-1.0
+unsat,,Email,"(True, False, True, False, False, False)",-1.0
+sat,@example@Test@example.com,Email,"(True, False, False, True, True, True)",1.0
+sat,@user@controllers.manager@register,Email,"(True, False, False, True, True, False)",1.0
+sat,email@domain.name.,Email,"(True, False, False, True, False, True)",0.0
+sat,local@domain.abc@manager@domain.com.,Email,"(True, False, False, True, False, False)",0.0
+sat,user1@example.net,Email,"(True, False, False, False, True, True)",0.0
+sat,manager@company.com,Email,"(True, False, False, False, True, False)",0.0
+unsat,,Email,"(True, False, False, False, False, True)",-1.0
+unsat,,Email,"(True, False, False, False, False, False)",-1.0
+sat,WJ Smith johnroe@smorganisation.International,Email,"(False, True, True, True, True, True)",1.0
+sat,john DOE mail manager manager@great_worker dot.is.great,Email,"(False, True, True, True, True, False)",1.0
+sat,j.g. main @example.com.,Email,"(False, True, True, True, False, True)",1.0
+sat,Alice Green manager@localpart.domain.part.,Email,"(False, True, True, True, False, False)",1.0
+sat,utilising @user,Email,"(False, True, True, False, True, True)",1.0
+sat,My manager email@company,Email,"(False, True, True, False, True, False)",1.0
+unsat,,Email,"(False, True, True, False, False, True)",-1.0
+unsat,,Email,"(False, True, True, False, False, False)",-1.0
+sat,john. doej email@different.office.test@examplebusiness.co ,Email,"(False, True, False, True, True, True)",1.0
+sat,john.manager@company.name.com,Email,"(False, True, False, True, True, False)",0.0
+sat,subject.info-test.site.,Email,"(False, True, False, True, False, True)",0.0
+unsat,,Email,"(False, True, False, True, False, False)",-1.0
+sat,john doe@example.com,Email,"(False, True, False, False, True, True)",0.0
+sat,firstname lastname x manager test ok,Email,"(False, True, False, False, True, False)",1.0
+sat,test.user@example.com.,Email,"(False, True, False, False, False, True)",0.0
+sat,Main manager Warehouse.basic@manager example.com/,Email,"(False, True, False, False, False, False)",0.0
+sat,john.doe@example.com ,Email,"(False, False, True, True, True, True)",0.0
+sat,admin.manager@company.com,Email,"(False, False, True, True, True, False)",0.0
+sat,test 123@subdomain.example.,Email,"(False, False, True, True, False, True)",0.0
+sat,some.manager@company.com. ,Email,"(False, False, True, True, False, False)",0.0
+sat,@example user1,Email,"(False, False, True, False, True, True)",1.0
+sat,jane supervisor manager @local,Email,"(False, False, True, False, True, False)",0.0
+unsat,,Email,"(False, False, True, False, False, True)",-1.0
+unsat,,Email,"(False, False, True, False, False, False)",-1.0
+sat,abc def@good.esp.com,Email,"(False, False, False, True, True, True)",0.0
+sat,61990 manager اداره1-4@company.com,Email,"(False, False, False, True, True, False)",0.0
+sat,test@domain@subdomain.com. space,Email,"(False, False, False, True, False, True)",0.0
+sat,test.manager@domain.com demonstration email,Email,"(False, False, False, True, False, False)",0.0
+sat,@@ user@example,Email,"(False, False, False, False, True, True)",1.0
+sat,@manager manager@manager,Email,"(False, False, False, False, True, False)",1.0
+unsat,,Email,"(False, False, False, False, False, True)",-1.0
+unsat,,Email,"(False, False, False, False, False, False)",-1.0
+sat,!A0#a,Password,"(True, True, True, True, True)",1.0
+sat,Ab!cfE,Password,"(True, True, True, True, False)",1.0
+sat,ABCD!1,Password,"(True, True, True, False, True)",1.0
+sat,AAAA#,Password,"(True, True, True, False, False)",1.0
+sat,#a1b,Password,"(True, True, False, True, True)",1.0
+sat,a!b$c,Password,"(True, True, False, True, False)",1.0
+sat,$5123,Password,"(True, True, False, False, True)",1.0
+unsat,,Password,"(True, True, False, False, False)",-1.0
+sat,Aa1b,Password,"(True, False, True, True, True)",1.0
+sat,Abcd,Password,"(True, False, True, True, False)",1.0
+sat,ABCD1,Password,"(True, False, True, False, True)",1.0
+sat,ABCD,Password,"(True, False, True, False, False)",1.0
+sat,a1b2c4,Password,"(True, False, False, True, True)",1.0
+sat,abcd,Password,"(True, False, False, True, False)",1.0
+sat,1234,Password,"(True, False, False, False, True)",1.0
+unsat,,Password,"(True, False, False, False, False)",-1.0
+unsat,,Password,"(False, True, True, True, True)",-1.0
+sat,A#b,Password,"(False, True, True, True, False)",1.0
+sat,A1$,Password,"(False, True, True, False, True)",1.0
+sat,!A,Password,"(False, True, True, False, False)",1.0
+sat,a1$,Password,"(False, True, False, True, True)",1.0
+sat,a!,Password,"(False, True, False, True, False)",1.0
+sat,12$,Password,"(False, True, False, False, True)",1.0
+sat,!!!,Password,"(False, True, False, False, False)",1.0
+sat,A1b,Password,"(False, False, True, True, True)",1.0
+sat,Ab,Password,"(False, False, True, True, False)",1.0
+sat,A1,Password,"(False, False, True, False, True)",1.0
+sat,A,Password,"(False, False, True, False, False)",1.0
+sat,a1,Password,"(False, False, False, True, True)",1.0
+sat,ab,Password,"(False, False, False, True, False)",1.0
+sat,72,Password,"(False, False, False, False, True)",1.0
+sat, ,Password,"(False, False, False, False, False)",1.0
+sat,https://example.com,Url,"(True, True, True)",1.0
+sat,http://example,Url,"(True, True, False)",1.0
+sat,https://example with space.com/path,Url,"(True, False, True)",1.0
+sat,http:// test example,Url,"(True, False, False)",1.0
+sat,example.com,Url,"(False, True, True)",1.0
+sat,example,Url,"(False, True, False)",1.0
+sat,example file.txt,Url,"(False, False, True)",1.0
+sat,example domain ftp,Url,"(False, False, False)",1.0
+sat,2024-12-25,Date,"(True, True, True, True)",1.0
+sat,2025-12-32,Date,"(True, True, True, False)",1.0
+sat,20-AB-1,Date,"(True, True, False, True)",1.0
+sat,2025-20-40,Date,"(True, True, False, False)",1.0
+sat,Christmas-E-01,Date,"(True, False, True, True)",0.0
+sat,2346-12-32,Date,"(True, False, True, False)",1.0
+sat,AD 2024-February-28,Date,"(True, False, False, True)",1.0
+sat,Non-existent-year-next-ab,Date,"(True, False, False, False)",0.0
+unsat,,Date,"(False, True, True, True)",-1.0
+unsat,,Date,"(False, True, True, False)",-1.0
+unsat,,Date,"(False, True, False, True)",-1.0
+unsat,,Date,"(False, True, False, False)",-1.0
+sat,Jan-01,Date,"(False, False, True, True)",1.0
+sat,2023-06-2026,Date,"(False, False, True, False)",0.0
+sat,1875,Date,"(False, False, False, True)",0.0
+sat,2024-Ary-30,Date,"(False, False, False, False)",0.0
+sat,12100012345678901234,IBAN,"(True, True, True)",0.0
+sat,1210XXXXX01XXXXXXX123457,IBAN,"(True, True, False)",0.0
+sat,123456000123456789012,IBAN,"(True, False, True)",0.0
+sat,123450000000000000000,IBAN,"(True, False, False)",0.0
+sat,NL12100002,IBAN,"(False, True, True)",0.0
+sat,1210X,IBAN,"(False, True, False)",1.0
+sat,12340012345678,IBAN,"(False, False, True)",1.0
+sat,DE12345678,IBAN,"(False, False, False)",1.0
+sat,123456789X,ISBN,"(True, True, True, True, True, True)",1.0
+sat,978-3-16-148410-0X,ISBN,"(True, True, True, True, True, False)",0.0
+sat,123-456-789-X9,ISBN,"(True, True, True, True, False, True)",0.0
+sat,123-456-78-9,ISBN,"(True, True, True, True, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(True, True, True, False, True, True)",0.0
+sat,-=====-----123,ISBN,"(True, True, True, False, True, False)",0.0
+unsat,,ISBN,"(True, True, True, False, False, True)",-1.0
+sat,----123X45,ISBN,"(True, True, True, False, False, False)",0.0
+sat,978-1-234-56789X,ISBN,"(True, True, False, True, True, True)",1.0
+sat,1-2-3-4-5-6-7-X,ISBN,"(True, True, False, True, True, False)",1.0
+sat,123-XX-456,ISBN,"(True, True, False, True, False, True)",0.0
+sat,1234567890-XX----012-XXX,ISBN,"(True, True, False, True, False, False)",1.0
+sat,-1234567890-X,ISBN,"(True, True, False, False, True, True)",1.0
+sat,10-123-45607-X,ISBN,"(True, True, False, False, True, False)",0.0
+unsat,,ISBN,"(True, True, False, False, False, True)",-1.0
+sat,---1-2-3-4-5-6-7-8-9-0-X,ISBN,"(True, True, False, False, False, False)",1.0
+sat,012345-6X8-7,ISBN,"(True, False, True, True, True, True)",0.0
+sat,1-3-5-7-9-,ISBN,"(True, False, True, True, True, False)",0.0
+sat,123456789X,ISBN,"(True, False, True, True, False, True)",0.0
+sat,1234567890--,ISBN,"(True, False, True, True, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(True, False, True, False, True, True)",0.0
+unsat,,ISBN,"(True, False, True, False, True, False)",-1.0
+sat,---XXX--XX,ISBN,"(True, False, True, False, False, True)",0.0
+sat,-1-2--3-4-XX-5-6-7-8-9-,ISBN,"(True, False, True, False, False, False)",0.0
+sat,1234576-8X,ISBN,"(True, False, False, True, True, True)",0.0
+sat,1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-1234567890-123456789,ISBN,"(True, False, False, True, True, False)",0.0
+unsat,,ISBN,"(True, False, False, True, False, True)",-1.0
+sat,123-45--678-90X,ISBN,"(True, False, False, True, False, False)",0.0
+sat,123456789X-,ISBN,"(True, False, False, False, True, True)",0.0
+sat,--1-X-3-1-5-7--,ISBN,"(True, False, False, False, True, False)",0.0
+sat,1-2-3-4X,ISBN,"(True, False, False, False, False, True)",0.0
+unsat,,ISBN,"(True, False, False, False, False, False)",-1.0
+sat,1234-5678-9AX,ISBN,"(False, True, True, True, True, True)",0.0
+sat,1234567-89-X,ISBN,"(False, True, True, True, True, False)",0.0
+sat,978-0-306-45841-X-X,ISBN,"(False, True, True, True, False, True)",0.0
+sat,XXXX-1234--XX-X,ISBN,"(False, True, True, True, False, False)",0.0
+sat,-A1234-567B9,ISBN,"(False, True, True, False, True, True)",1.0
+sat,978-1-234-567-89X,ISBN,"(False, True, True, False, True, False)",0.0
+sat,1-2-3-4-5X,ISBN,"(False, True, True, False, False, True)",0.0
+unsat,,ISBN,"(False, True, True, False, False, False)",-1.0
+sat,1234567890A-,ISBN,"(False, True, False, True, True, True)",0.0
+sat,-53764-021-848-9938-X,ISBN,"(False, True, False, True, True, False)",0.0
+sat,998-88-0--22X,ISBN,"(False, True, False, True, False, True)",0.0
+sat,abc---X,ISBN,"(False, True, False, True, False, False)",0.0
+sat,978-3-16-148410-0X,ISBN,"(False, True, False, False, True, True)",0.0
+sat,-A-9-5-7-3-X-2-1-8-6-4,ISBN,"(False, True, False, False, True, False)",1.0
+unsat,,ISBN,"(False, True, False, False, False, True)",-1.0
+sat,123-4567-X--8,ISBN,"(False, True, False, False, False, False)",0.0
+sat,123-456-789A,ISBN,"(False, False, True, True, True, True)",1.0
+sat,12345678A-,ISBN,"(False, False, True, True, True, False)",0.0
+sat,123-123-4567-  X,ISBN,"(False, False, True, True, False, True)",0.0
+sat,a-XXX--a-XX---,ISBN,"(False, False, True, True, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(False, False, True, False, True, True)",0.0
+sat,-1-2-3-4-5-6-7-8-9-!,ISBN,"(False, False, True, False, True, False)",1.0
+unsat,,ISBN,"(False, False, True, False, False, True)",-1.0
+sat,- - -a - - -b,ISBN,"(False, False, True, False, False, False)",0.0
+sat,1234567890A-,ISBN,"(False, False, False, True, True, True)",1.0
+sat,978-3-16-148410-0-1,ISBN,"(False, False, False, True, True, False)",0.0
+sat,421-AB-123-45-6,ISBN,"(False, False, False, True, False, True)",0.0
+sat,123-98-45-678X--,ISBN,"(False, False, False, True, False, False)",0.0
+sat,-,ISBN,"(False, False, False, False, True, True)",0.0
+sat,13-978-3-16-148410-0X,ISBN,"(False, False, False, False, True, False)",0.0
+sat,---G-4rR-,ISBN,"(False, False, False, False, False, True)",0.0
+unsat,,ISBN,"(False, False, False, False, False, False)",-1.0
+sat,5*7-3,Expression,"(True, True, True, True)",1.0
+unsat,,Expression,"(True, True, True, False)",-1.0
+sat,2*5+8,Expression,"(True, True, False, True)",0.0
+sat,/ 3 +,Expression,"(True, True, False, False)",0.0
+sat,3+4*2-1,Expression,"(True, False, True, True)",0.0
+unsat,,Expression,"(True, False, True, False)",-1.0
+sat,123+*5,Expression,"(True, False, False, True)",1.0
+sat,/+*,Expression,"(True, False, False, False)",1.0
+sat,1 + 2 * 3,Expression,"(False, True, True, True)",0.0
+unsat,,Expression,"(False, True, True, False)",-1.0
+sat,A * 2 + x,Expression,"(False, True, False, True)",1.0
+sat,+.5*.,Expression,"(False, True, False, False)",1.0
+sat,1+a*2,Expression,"(False, False, True, True)",0.0
+unsat,,Expression,"(False, False, True, False)",-1.0
+sat,abc++1,Expression,"(False, False, False, True)",1.0
+sat,+a++*,Expression,"(False, False, False, False)",1.0
+unsat,,Palindrome,"(True, True)",-1.0
+sat,abca,Palindrome,"(True, False)",1.0
+sat,abba,Palindrome,"(False, True)",0.0
+sat,ab,Palindrome,"(False, False)",1.0
+sat,A ( ( ( ( ( ( (,Parentheses,"(True, True, True, True)",0.0
+unsat,,Parentheses,"(True, True, True, False)",-1.0
+sat,AAPPPPPPPPP(((((,Parentheses,"(True, True, False, True)",0.0
+sat,(((()((),Parentheses,"(True, True, False, False)",0.0
+unsat,,Parentheses,"(True, False, True, True)",-1.0
+sat,((())][(())],Parentheses,"(True, False, True, False)",0.0
+sat,((()))()()(az),Parentheses,"(True, False, False, True)",0.0
+sat,)((hello) world((exists),Parentheses,"(True, False, False, False)",1.0
+unsat,,Parentheses,"(False, True, True, True)",-1.0
+sat,(((()))(())(((()))),Parentheses,"(False, True, True, False)",0.0
+unsat,,Parentheses,"(False, True, False, True)",-1.0
+sat,((())),Parentheses,"(False, True, False, False)",0.0
+unsat,,Parentheses,"(False, False, True, True)",-1.0
+sat,(())()a,Parentheses,"(False, False, True, False)",0.0
+sat,(())xab,Parentheses,"(False, False, False, True)",0.0
+sat,((()))(()),Parentheses,"(False, False, False, False)",0.0
+sat,ATGATGATGATGATGATGTAA,DNA,"(True, True, True, True, True)",1.0
+sat,ATGGCGGGCG,DNA,"(True, True, True, True, False)",0.0
+sat,ATCGATCGATCGTAA,DNA,"(True, True, True, False, True)",1.0
+sat,ATCGATCGATCG,DNA,"(True, True, True, False, False)",1.0
+sat,ATGCGTAACGTATAA,DNA,"(True, True, False, True, True)",0.0
+sat,ATGAAAAGAC,DNA,"(True, True, False, True, False)",1.0
+sat,ATCGATCGTAA,DNA,"(True, True, False, False, True)",1.0
+sat,CATCGATCG,DNA,"(True, True, False, False, False)",0.0
+sat,ATG TAA,DNA,"(True, False, True, True, True)",0.0
+sat,ATGGCTAGC,DNA,"(True, False, True, True, False)",1.0
+unsat,,DNA,"(True, False, True, False, True)",-1.0
+sat,ACG,DNA,"(True, False, True, False, False)",1.0
+sat,ATGCTAA,DNA,"(True, False, False, True, True)",1.0
+sat,ATGCG,DNA,"(True, False, False, True, False)",1.0
+sat,GTACTGA,DNA,"(True, False, False, False, True)",1.0
+sat,ATCGATC,DNA,"(True, False, False, False, False)",1.0
+sat,ATGKMTAGATGKMTAGATGKMTAG,DNA,"(False, True, True, True, True)",1.0
+sat,ATKNTKGGAAT,DNA,"(False, True, True, True, False)",0.0
+sat,GGGCAAGCAAGCAAGCAAGCAATAA,DNA,"(False, True, True, False, True)",0.0
+sat,GCTAGCTAGC,DNA,"(False, True, True, False, False)",0.0
+sat,ATGKTAGTAA,DNA,"(False, True, False, True, True)",1.0
+sat,ATGTTCAVAR,DNA,"(False, True, False, True, False)",1.0
+sat,ATCTGGATCAA,DNA,"(False, True, False, False, True)",0.0
+sat,ATCGATCGACU,DNA,"(False, True, False, False, False)",1.0
+sat,ATGNNNTAA,DNA,"(False, False, True, True, True)",1.0
+sat,ATGNNNNNN,DNA,"(False, False, True, True, False)",1.0
+sat,ATCGTAA,DNA,"(False, False, True, False, True)",0.0
+sat,KAG,DNA,"(False, False, True, False, False)",1.0
+sat,ATGKTAA,DNA,"(False, False, False, True, True)",1.0
+sat,ATGK,DNA,"(False, False, False, True, False)",1.0
+sat,ATKYTAA,DNA,"(False, False, False, False, True)",1.0
+sat,ACGU,DNA,"(False, False, False, False, False)",1.0
+sat,/Documents/MyFile.txt,Absolute_Path,"(True, True, True, True)",1.0
+sat,/home//user//Documents,Absolute_Path,"(True, True, True, False)",1.0
+sat,/home/user/documents/,Absolute_Path,"(True, True, False, True)",1.0
+sat,/var/www/html//incoming/,Absolute_Path,"(True, True, False, False)",1.0
+sat,/home/user/Documents folder/file.txt,Absolute_Path,"(True, False, True, True)",1.0
+sat,/home//Documents ,Absolute_Path,"(True, False, True, False)",1.0
+sat,/home/ path/,Absolute_Path,"(True, False, False, True)",1.0
+sat,/ home// user/ /,Absolute_Path,"(True, False, False, False)",1.0
+sat,usr/local/bin,Absolute_Path,"(False, True, True, True)",1.0
+sat,usr/home/test/appUser/Downloads,Absolute_Path,"(False, True, True, False)",0.0
+sat,Documents/new_folder/,Absolute_Path,"(False, True, False, True)",1.0
+sat,libs//libs/,Absolute_Path,"(False, True, False, False)",1.0
+sat,My path/Home/user/ projects ,Absolute_Path,"(False, False, True, True)",1.0
+sat,Documents/My Pictures/storage files/client folder金融网 site.client.xls,Absolute_Path,"(False, False, True, False)",0.0
+sat,/home/user/path with space/utilities/,Absolute_Path,"(False, False, False, True)",0.0
+sat,/path/with spaces//dir1/dir2/=,Absolute_Path,"(False, False, False, False)",0.0
