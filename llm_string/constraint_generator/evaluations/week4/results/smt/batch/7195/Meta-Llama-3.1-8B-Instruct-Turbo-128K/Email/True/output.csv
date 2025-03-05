@@ -1,0 +1,7 @@
+constraint,result
+The email shall not contain a space character.,
+The email shall not start with a @ character.,
+The email shall have exactly one @ character.,
+The email shall include a dot character (.) after the @ character but before the end.,
+The final character of the email shall not be a dot character (.).,
+"The email shall not contain the word ""manager"".",

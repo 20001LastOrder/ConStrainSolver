@@ -1,0 +1,7 @@
+constraint,result
+"The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.","(not (forall ((i Int)) (and (<= 0 i (str.len s)) (not (or (str.in.re s (str.to.re ""0-9"")) (= (str.at s i) ""X"") (= (str.at s i) ""-"")))))))"
+"The last character of the ISBN shall be neither a number (0-9), nor the letter X.",
+"Without counting hyphens, the ISBN shall contain less than or more than 10 characters.",(not (= (str.len s) 10))
+The ISBN shall start with a hyphen.,"(str.prefix s ""-"")"
+The ISBN shall contain two consecutive hyphens.,"(str.in.re s (re.++ (re.* re.allchar) (str.to.re ""-"" (str.to.re ""-"")) (re.* re.allchar)))"
+The ISBN shall contain more than 3 hyphens.,

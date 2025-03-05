@@ -1,0 +1,6 @@
+constraint,result
+The password shall be at least 4 characters long.,
+"The password shall contain one of the following characters: !, #, $.",
+The password shall contain at least one upper case characters.,
+The password shall contain at least one lower case characters.,
+The password shall contain at least one number.,

@@ -1,0 +1,5 @@
+constraint,result
+"The date shall contain either no hyphens, one hyphen or more than two hyphens.","(or (= (str.indexof s ""-"" 0) (- 1)) (= (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) (- 1)) (> (str.indexof s ""-"" (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1)) (- 1)))"
+There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.,"(and (str.contains s ""-"") (let ((prefix (str.substr s 0 (str.indexof s ""-"" 0)))) (or (not (str.is_digit prefix)) (or (< (str.to_int prefix) 0) (> (str.to_int prefix) 2025))))"
+There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.,
+There must be at least two hyphens an d the part after the second hyphen shall not be a number between 1 and 31.,

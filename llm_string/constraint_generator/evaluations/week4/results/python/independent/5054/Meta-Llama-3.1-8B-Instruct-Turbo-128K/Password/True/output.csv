@@ -1,0 +1,52 @@
+constraint,result
+The password shall be at least 4 characters long.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The password shall be at least 4 characters long.
+
+    Args:
+    s (str): The password to check.
+
+    Returns:
+    bool: True if the password is at least 4 characters long, False otherwise.
+    """"""
+    return len(s) >= 4"
+"The password shall contain one of the following characters: !, #, $.","def this_function(s: str) -> bool:
+    """"""
+    Check if the password contains one of the following characters: !, #, $.
+    
+    Args:
+        s (str): The password to be checked.
+
+    Returns:
+        bool: True if the password contains one of the aforementioned characters, False otherwise.
+    """"""
+    special_chars = ['!', '#', '$', '.']
+    for char in special_chars:
+        if char in s:
+            return True
+    return False"
+The password shall contain at least one upper case characters.,"def this_function(s: str) -> bool:
+    ''' Check if The password contains at least one upper case character.'''
+    return any(c.isupper() for c in s)"
+The password shall contain at least one lower case characters.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the password contains at least one lowercase character.
+
+    Args:
+        s (str): The password to be checked.
+
+    Returns:
+        bool: True if the password contains at least one lowercase character, False otherwise.
+    """"""
+    return any(c.islower() for c in s)"
+The password shall contain at least one number.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the password contains at least one number.
+
+    Args:
+    s (str): The password to be checked.
+
+    Returns:
+    bool: True if the password contains at least one number, False otherwise.
+    """"""
+    return any(char.isdigit() for char in s)"

@@ -1,0 +1,56 @@
+constraint,result
+"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","def this_function(s: str) -> bool:
+    """"""
+    Check if the DNA sequence contains at least one letter that is neither A, C, nor G.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence contains at least one non-ACG letter, False otherwise.
+    """"""
+    return any(base not in 'ACG' for base in s)"
+The length of the DNA sequence shall be at most 9.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the length of the DNA sequence is at most 9.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence's length is at most 9, False otherwise.
+    """"""
+    return len(s) <= 9"
+The length of the DNA sequence shall not a multiple of three.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the length of the DNA sequence is not a multiple of three.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence's length is not a multiple of three, False otherwise.
+    """"""
+    return len(s) % 3 != 0"
+The DNA sequence shall not start with ATG.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the DNA sequence does not start with 'ATG'.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence does not start with 'ATG', False otherwise.
+    """"""
+    return s != 'ATG'"
+"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","def this_function(s: str) -> bool:
+    """"""
+    Check if the DNA sequence does not end with 'TAA', 'TAG', or 'TGA'.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence does not end with 'TAA', 'TAG', or 'TGA', False otherwise.
+    """"""
+    return s not in ['TAA', 'TAG', 'TGA']"

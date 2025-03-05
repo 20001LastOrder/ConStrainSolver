@@ -1,0 +1,23 @@
+constraint,result
+The palindrome shall be at least 3 characters long.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string is at least 3 characters long.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string is at least 3 characters long, False otherwise.
+    """"""
+    return len(s) >= 3"
+The palindrome shall be identical to its reverse.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string is identical to its reverse.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string is a palindrome, False otherwise.
+    """"""
+    return s == s[::-1]"

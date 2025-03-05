@@ -28,7 +28,7 @@ def calculate_python_results(cfg: DictConfig, constraint_store: ConstraintStore)
                 if not model_name_file.endswith(".csv"):
                     continue
 
-                model_name = model_name_file.split(".")[0]
+                model_name = model_name_file[:-4]
 
                 df = pd.read_csv(f"{run_path}/{model_name_file}", header=0)
 
@@ -124,7 +124,7 @@ def calculate_smt_results(cfg: DictConfig, constraint_store: ConstraintStore):
                 if not model_name_file.endswith(".csv"):
                     continue
 
-                model_name = model_name_file.split(".")[0]
+                model_name = model_name_file[:-4]
 
                 smt_csv_index = (smt_csv["model_name"] == model_name) & (smt_csv["generator_mode"] == generator_mode)
 

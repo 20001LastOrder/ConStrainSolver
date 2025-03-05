@@ -1,0 +1,60 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.","def this_function(s: str) -> bool:
+    """"""
+    Check if The DNA sequence shall only contain letters A, T, C and G.
+
+    Args:
+        s (str): The DNA sequence as a string.
+
+    Returns:
+        bool: True if the DNA sequence only contains A, T, C, and G, False otherwise.
+    """"""
+    # Define the valid DNA letters
+    valid_letters = set('ATCG')
+    
+    # Check if all characters in the string are in the set of valid letters
+    return set(s).issubset(valid_letters)"
+The length of The DNA sequence shall be at least 10.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the length of the DNA sequence is at least 10.
+
+    Args:
+        s (str): The DNA sequence to check.
+
+    Returns:
+        bool: True if the length of the DNA sequence is at least 10, False otherwise.
+    """"""
+    return len(s) >= 10"
+The length of The DNA sequence shall be a multiple of three.,"def this_function(s: str) -> bool:
+    '''
+    Check if The length of The DNA sequence shall be a multiple of three (ATCG).
+
+    Args:
+        s (str): The DNA sequence.
+
+    Returns:
+        bool: True if the length of the DNA sequence is a multiple of 3, False otherwise.
+    '''
+    return len(s) % 3 == 0"
+The DNA sequence shall start with ATG.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The DNA sequence shall start with ATG.
+
+    Args:
+    s (str): The input DNA sequence.
+
+    Returns:
+    bool: True if the DNA sequence starts with 'ATG', False otherwise.
+    """"""
+    return s.startswith('ATG')"
+"The DNA sequence shall end with either TAA, or TAG, or TGA.","def this_function(s: str) -> bool:
+    """"""
+    Check if the DNA sequence shall end with either TAA, or TAG, or TGA.
+
+    Args:
+        s (str): The DNA sequence as a string.
+
+    Returns:
+        bool: True if the DNA sequence ends with TAA, TAG, or TGA, False otherwise.
+    """"""
+    return s.endswith('TAA') or s.endswith('TAG') or s.endswith('TGA')"

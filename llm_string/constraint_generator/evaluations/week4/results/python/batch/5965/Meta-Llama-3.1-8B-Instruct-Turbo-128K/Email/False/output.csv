@@ -1,0 +1,70 @@
+constraint,result
+The email shall contain a space character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The email shall contain a space character.
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email contains a space character, False otherwise.
+    """"""
+    return ' ' in s"
+The email shall start with a @ character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The email shall start with a @ character.
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email starts with a @ character, False otherwise.
+    """"""
+    return s.startswith('@')"
+The email shall have either no @ characters or more than one @ character.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The email shall have either no @ characters or more than one @ character.
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email meets the condition, False otherwise.
+    """"""
+    return s.count('@') == 0 or s.count('@') > 1"
+If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.,"def this_function(s: str) -> bool:
+    """"""
+    Check if If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email meets the condition, False otherwise.
+    """"""
+    if '@' not in s:
+        return True  # or False, depending on your requirements
+    idx = s.index('@')
+    return '.' not in s[idx + 1:]"
+The final character of the email shall be a dot character (.).,"def this_function(s: str) -> bool:
+    """"""
+    Check if The final character of the email shall be a dot character (.).
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email ends with a dot character, False otherwise.
+    """"""
+    return s.endswith('.')"
+"The email shall contain the word ""manager"".","def this_function(s: str) -> bool:
+    """"""
+    Check if The email shall contain the word ""manager"".
+
+    Args:
+        s (str): The email to check.
+
+    Returns:
+        bool: True if the email contains the word ""manager"", False otherwise.
+    """"""
+    return 'manager' in s.lower()"

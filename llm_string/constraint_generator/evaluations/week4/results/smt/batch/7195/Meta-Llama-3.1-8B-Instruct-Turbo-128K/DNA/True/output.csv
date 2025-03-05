@@ -1,0 +1,6 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.",
+The length of The DNA sequence shall be at least 10.,
+The length of The DNA sequence shall be a multiple of three.,
+The DNA sequence shall start with ATG.,
+"The DNA sequence shall end with either TAA, or TAG, or TGA.",

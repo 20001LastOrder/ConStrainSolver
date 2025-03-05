@@ -1,0 +1,83 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    """"""
+    Check if an arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).
+
+    Args:
+        s (str): The arithmetic expression.
+
+    Returns:
+        bool: True if the expression is valid, False otherwise.
+    """"""
+    # Define a pattern of valid numbers and operators
+    pattern = r""^[0-9+*/.-]+$""
+    
+    # Use regular expression to check if the input string matches the pattern
+    return bool(re.match(pattern, s))"
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","def this_function(s: str) -> bool:
+    """"""
+    Check if The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.
+    
+    Args:
+        s (str): The arithmetic expression as a string.
+    
+    Returns:
+        bool: True if the arithmetic operators do not appear consecutively, False otherwise.
+    """"""
+
+    # Initialize a flag to track if the previous character was an operator
+    prev_was_operator = False
+    
+    # Iterate over each character in the string
+    for i, char in enumerate(s):
+        # Check if the character is a valid operator
+        if char in '+-*/':
+            # If the previous character was also an operator, return False
+            if prev_was_operator:
+                return False
+            # Update the flag to indicate that the current character is an operator
+            prev_was_operator = True
+        else:
+            # If the character is not an operator, reset the flag
+            prev_was_operator = False
+    
+    # If we've reached this point, the operators do not appear consecutively, so return True
+    return True"
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","def this_function(s: str) -> bool:
+    """"""
+    Check if Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.
+
+    Args:
+    s (str): The arithmetic expression to be checked.
+
+    Returns:
+    bool: True if the expression is valid, False otherwise.
+    """"""
+    operators = ""+-*/""
+    
+    for i in range(len(s)):
+        # Check if the current character is an operator
+        if s[i] in operators:
+            # Check if the current operator is not at the start or end of the string
+            if i == 0 or i == len(s) - 1:
+                return False
+            # Check if the preceding and following characters are digits
+            if not s[i - 1].isdigit() or not s[i + 1].isdigit():
+                return False
+                
+    return True"
+"The arithmetic expression shall not start with operators from the set {+, *, /}.","def this_function(s: str) -> bool:
+    """"""
+    Check if an arithmetic expression shall not start with operators from the set {+, *, /}.
+
+    Args:
+        s (str): The arithmetic expression as a string.
+
+    Returns:
+        bool: True if the expression does not start with an operator from the set {+, *, /}, False otherwise.
+    """"""
+    # Define the set of operators to check against
+    operators = '+-*/'
+
+    # Check if the expression starts with any of the operators
+    return not any(s.startswith(op) for op in operators)"

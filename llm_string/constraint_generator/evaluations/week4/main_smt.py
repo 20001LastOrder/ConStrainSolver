@@ -89,7 +89,7 @@ def main(cfg: DictConfig):
 
     model_name_mask_comb = list(product(cfg.model_names, constraint_store.get_constraint_names(), [True, False]))
 
-    run_id = int(random() * 1000000)
+    run_id = int(random() * 10000)
 
     run_path = f"{cfg.output_folder}{cfg.generator_type}/{cfg.generator_mode}/{run_id}/"
 

@@ -1,0 +1,5 @@
+constraint,result
+The parentheses string shall be at least 10 characters long.,
+The parentheses string shall only contains ( and ) characters.,"(= (str.in.re s (re.++ (str.to.re ""("" ) (re.* re.allchar) (str.to.re "")"") (re.* re.allchar)))"
+The parenthesis string shall contain an equal number of ( characters and ) characters.,
+"When scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.",

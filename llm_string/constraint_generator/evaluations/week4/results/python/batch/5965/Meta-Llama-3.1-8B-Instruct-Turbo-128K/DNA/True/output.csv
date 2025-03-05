@@ -1,0 +1,57 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.","def this_function(s: str) -> bool:
+    """"""
+    Check if The DNA sequence shall only contain letters A, T, C and G.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence only contains A, T, C, and G, False otherwise.
+    """"""
+    return set(s).issubset('ATCG')"
+The length of The DNA sequence shall be at least 10.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The length of The DNA sequence shall be at least 10.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence length is at least 10, False otherwise.
+    """"""
+    return len(s) >= 10"
+The length of The DNA sequence shall be a multiple of three.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The length of The DNA sequence shall be a multiple of three.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence length is a multiple of three, False otherwise.
+    """"""
+    return len(s) % 3 == 0"
+The DNA sequence shall start with ATG.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The DNA sequence shall start with ATG.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence starts with ATG, False otherwise.
+    """"""
+    return s.startswith('ATG')"
+"The DNA sequence shall end with either TAA, or TAG, or TGA.","def this_function(s: str) -> bool:
+    """"""
+    Check if The DNA sequence shall end with either TAA, or TAG, or TGA.
+
+    Args:
+    s (str): The DNA sequence to check.
+
+    Returns:
+    bool: True if the sequence ends with TAA, TAG, or TGA, False otherwise.
+    """"""
+    ending_options = ['TAA', 'TAG', 'TGA']
+    return s.endswith(tuple(ending_options))"

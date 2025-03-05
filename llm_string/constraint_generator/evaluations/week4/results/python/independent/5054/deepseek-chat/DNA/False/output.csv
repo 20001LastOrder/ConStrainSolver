@@ -1,0 +1,43 @@
+constraint,result
+"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","def this_function(s: str) -> bool:
+    ''' Check if the DNA sequence contains at least one letter that is neither A, nor T, nor C, nor G.'''
+    # Define the set of valid DNA nucleotides
+    valid_nucleotides = {'A', 'T', 'C', 'G'}
+    
+    # Iterate through each character in the string
+    for char in s:
+        # If a character is not in the set of valid nucleotides, return True
+        if char not in valid_nucleotides:
+            return True
+    
+    # If all characters are valid, return False
+    return False"
+The length of the DNA sequence shall be at most 9.,"def this_function(s: str) -> bool:
+    ''' Check if the length of the DNA sequence is at most 9.'''
+    return len(s) <= 9"
+The length of the DNA sequence shall not a multiple of three.,"def this_function(s: str) -> bool:
+    '''Check if the length of the DNA sequence is not a multiple of three.'''
+    return len(s) % 3 != 0"
+The DNA sequence shall not start with ATG.,"def this_function(s: str) -> bool:
+    ''' Check if the DNA sequence shall not start with ATG.'''
+    return not s.startswith(""ATG"")"
+"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","def this_function(s: str) -> bool:
+    ''' 
+    Check if the DNA sequence does not end with TAA, TAG, or TGA.
+    
+    Args:
+    s (str): The DNA sequence to check.
+    
+    Returns:
+    bool: True if the sequence does not end with TAA, TAG, or TGA; False otherwise.
+    '''
+    # Define the stop codons
+    stop_codons = ['TAA', 'TAG', 'TGA']
+    
+    # Check if the sequence ends with any of the stop codons
+    for codon in stop_codons:
+        if s.endswith(codon):
+            return False
+    
+    # If none of the stop codons are found at the end, return True
+    return True"

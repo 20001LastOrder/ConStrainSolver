@@ -1,0 +1,5 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (not (or (str.is_digit (str.at s i)) (str.contains ""+-*/"" (str.at s i))))))"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","(exists ((i Int)) (and (>= i 0) (< i (- (str.len s) 1)) (str.contains ""+-*/"" (str.at s i)) (str.contains ""+-*/"" (str.at s (+ i 1)))))"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (str.contains ""+*/"" (str.at s i)) (or (or (= i 0) (not (str.is_digit (str.at s (- i 1))))) (or (= i (- (str.len s) 1)) (not (str.is_digit (str.at s (+ i 1))))))))"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","(str.contains ""+*/"" (str.at s 0))"

@@ -1,0 +1,43 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' 
+    Check if the arithmetic expression contains at least one character 
+    that is neither a number (0-9) nor an arithmetic operator (+, -, *, /).
+    '''
+    for char in s:
+        if not (char.isdigit() or char in {'+', '-', '*', '/'}):
+            return True
+    return False"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' 
+    Check if the arithmetic expression contains consecutive arithmetic operators (+, -, *, /).
+    
+    Args:
+    s (str): The arithmetic expression to check.
+    
+    Returns:
+    bool: True if the expression contains consecutive arithmetic operators, False otherwise.
+    '''
+    operators = {'+', '-', '*', '/'}
+    
+    for i in range(len(s) - 1):
+        if s[i] in operators and s[i+1] in operators:
+            return True
+    return False"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    operators = {'+', '*', '/'}
+    for i, char in enumerate(s):
+        if char in operators:
+            # Check if the character before the operator is a digit
+            before_is_digit = i > 0 and s[i-1].isdigit()
+            # Check if the character after the operator is a digit
+            after_is_digit = i < len(s) - 1 and s[i+1].isdigit()
+            
+            # If either before or after is not a digit, return True
+            if not before_is_digit or not after_is_digit:
+                return True
+    return False"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    '''Check if the arithmetic expression starts with one of the operators in the set {+, *, /}.'''
+    # Check if the string is not empty and the first character is one of the operators
+    return len(s) > 0 and s[0] in {'+', '*', '/'}"

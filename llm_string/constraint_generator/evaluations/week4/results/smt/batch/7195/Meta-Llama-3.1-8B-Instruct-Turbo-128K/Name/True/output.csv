@@ -1,0 +1,7 @@
+constraint,result
+"The name shall only contain letters a-z, letters A-Z and space characters.",
+The name shall contain at least one space character.,
+The name shall not end with a space character.,
+The name shall not start with a space character.,
+The first character in the name shall be capitalized.,
+Any character in the name following a space character shall be capitalized.,

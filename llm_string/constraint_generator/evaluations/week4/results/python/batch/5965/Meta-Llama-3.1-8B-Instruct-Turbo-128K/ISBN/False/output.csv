@@ -1,0 +1,84 @@
+constraint,result
+"The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.","def this_function(s: str) -> bool:
+    """"""
+    Check if The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the ISBN contains at least one invalid character, False otherwise.
+    """"""
+    if not isinstance(s, str):
+        raise TypeError(""Input must be a string."")
+    if not s:
+        return True  # An empty string contains no valid characters, so it's technically valid.
+    for char in s:
+        if not (char.isdigit() or char in ['X', '-']):
+            return True
+    return False  # If no invalid characters are found, return False."
+"The last character of the ISBN shall be neither a number (0-9), nor the letter X.","def this_function(s: str) -> bool:
+    """"""
+    Check if The last character of the ISBN shall be neither a number (0-9), nor the letter X.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the last character is invalid, False otherwise.
+    """"""
+    if not isinstance(s, str) or not s:
+        raise TypeError(""Input must be a non-empty string."")
+    return not (s[-1].isdigit() or s[-1].upper() == 'X')"
+"Without counting hyphens, the ISBN shall contain less than or more than 10 characters.","def this_function(s: str) -> bool:
+    """"""
+    Check if Without counting hyphens, the ISBN shall contain less than or more than 10 characters.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the ISBN contains less than or more than 10 characters excluding hyphens, False otherwise.
+    """"""
+    if not isinstance(s, str) or not s:
+        raise TypeError(""Input must be a non-empty string."")
+    return len(s.replace('-', '')) < 10 or len(s.replace('-', '')) > 10"
+The ISBN shall start with a hyphen.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The ISBN shall start with a hyphen.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the ISBN starts with a hyphen, False otherwise.
+    """"""
+    if not isinstance(s, str) or not s:
+        raise TypeError(""Input must be a non-empty string."")
+    return s.startswith('-')"
+The ISBN shall contain two consecutive hyphens.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The ISBN shall contain two consecutive hyphens.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the ISBN contains two consecutive hyphens, False otherwise.
+    """"""
+    if not isinstance(s, str) or not s:
+        raise TypeError(""Input must be a non-empty string."")
+    return '--' in s"
+The ISBN shall contain more than 3 hyphens.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The ISBN shall contain more than 3 hyphens.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the ISBN contains more than 3 hyphens, False otherwise.
+    """"""
+    if not isinstance(s, str) or not s:
+        raise TypeError(""Input must be a non-empty string."")
+    return s.count('-') > 3"

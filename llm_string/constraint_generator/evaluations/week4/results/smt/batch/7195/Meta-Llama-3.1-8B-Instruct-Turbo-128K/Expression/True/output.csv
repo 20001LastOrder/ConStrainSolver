@@ -1,0 +1,5 @@
+constraint,result
+"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).",
+"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.",
+"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.",
+"The arithmetic expression shall not start with operators from the set {+, *, /}.",

@@ -2,7 +2,7 @@ import re
 from typing import Callable
 
 
-re_parse_function = re.compile(r"(def function\d+\(s: str\) -> bool:(?:(?!(`{3}|\n{2}|(def function))).)*)", re.DOTALL)
+re_parse_function = re.compile(r"(def function\d+\(s: str\) -> bool:(?:(?!(`{3}|\n{3}|(def function))).)*)", re.DOTALL)
 re_function_signature = re.compile(r"function\d+")
 
 

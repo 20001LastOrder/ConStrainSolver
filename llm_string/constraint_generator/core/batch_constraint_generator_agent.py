@@ -1,7 +1,7 @@
 from func_timeout import FunctionTimedOut
 from langchain_deepseek import ChatDeepSeek
-from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
+from langchain_together import ChatTogether
 
 from llm_string.constraint_generator.core.history_helper import format_history
 from llm_string.string_generator.core.judge_agent import JudgeAgent
@@ -36,8 +36,8 @@ class BatchConstraintGeneratorAgent:
             model = ChatOpenAI(model_name=model_name, temperature=temperature)
         elif model_name == "deepseek-chat":
             model = ChatDeepSeek(model_name=model_name, temperature=temperature)
-        elif model_name == "llama3.1-8b-instruct-q4_0":
-            model = ChatOllama(model=model_name, temperature=temperature)
+        elif model_name == "Meta-Llama-3.1-8B-Instruct-Turbo-128K":
+            model = ChatTogether(model_name=f"meta-llama/{model_name}", temperature=temperature)
 
         self.chain = prompt_template | model | parser
         self.constraint_type = constraint_type
@@ -150,7 +150,10 @@ class BatchConstraintGeneratorAgent:
                     raise ValueError(f"Constraint lengths do not match. Expected: {len(self._nl_constraints)}, got: {len(constraints.constraint)}")
             except Exception as e:
                 logger.error("Error invoking chain: {0}", str(e))
-                attempt += 1
+
+                if not "Expecting value: line" in str(e):
+                    attempt += 1
+
                 continue
 
             logger.info("Received constraints from the LLM: {0}", str(constraints))

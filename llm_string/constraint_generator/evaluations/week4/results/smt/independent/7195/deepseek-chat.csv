@@ -1,0 +1,106 @@
+name,mask,constraint,result
+Absolute_Path,True,"The absolute path shall start with the root directory ""/"".","(= (str.at s 0) ""/"")"
+Absolute_Path,True,The absolute path shall not contain any spaces.,"(not (str.contains s "" ""))"
+Absolute_Path,True,"The absolute path shall not end with ""/"".","(not (= (str.at s (- (str.len s) 1)) ""/""))"
+Absolute_Path,True,"The absolute path shall not contain consecutive ""/"" characters.","(not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""//"") (re.* re.allchar))))"
+Absolute_Path,False,"The absolute path shall not start with the root directory ""/"".","(not (= (str.at s 0) ""/""))"
+Absolute_Path,False,The absolute path shall contain at least one space.,"(str.contains s "" "")"
+Absolute_Path,False,"The absolute path shall end with ""/"".","(str.suffixof ""/"" s)"
+Absolute_Path,False,"The absolute path shall contain consecutive ""/"" characters.","(str.in.re s (re.++ (re.* re.allchar) (str.to.re ""//"") (re.* re.allchar)))"
+Date,True,The date shall contain two hyphens.,"(= (str.len (str.replace_all s ""-"" """")) (- (str.len s) 2))"
+Date,True,"If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.","(=> (s.contains s ""-"") (and (>= (s.to.int (s.subs s 0 (s.indexof s ""-"" 0))) 0) (<= (s.to.int (s.subs s 0 (s.indexof s ""-"" 0))) 2025)))"
+Date,True,"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","(let ((first_hyphen (str.indexof s ""-"" 0)) (let ((second_hyphen (str.indexof s ""-"" (+ first_hyphen 1)))) (=> (and (>= first_hyphen 0) (>= second_hyphen 0)) (let ((substring (str.substr s (+ first_hyphen 1) (- second_hyphen first_hyphen 1)))) (and (str.in.re substring (re.++ (re.range ""0"" ""9"") (re.* (re.range ""0"" ""9"")))) (let ((num (str.to.int substring))) (and (>= num 1) (<= num 12))))))"
+Date,True,"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","(=> (and (>= (str.indexof s ""-"" 0) 0) (>= (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 0)) (let ((second_hyphen_pos (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)))) (let ((after_second_hyphen (str.substr s (+ second_hyphen_pos 1) (- (str.len s) (+ second_hyphen_pos 1))))) (and (str.in_re after_second_hyphen (re.++ (re.range ""0"" ""9"") (re.* (re.range ""0"" ""9"")))) (<= 1 (str.to_int after_second_hyphen)) (<= (str.to_int after_second_hyphen) 31))))"
+Date,False,"The date shall contain either no hyphens, one hyphen or more than two hyphens.","(or (= (str.indexof s ""-"" 0) (- 1)) (= (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) (- 1)) (> (str.indexof s ""-"" (+ (str.indexof s ""-"" (+ (str.indexof s ""-"" 0) 1)) 1)) (- 1)))"
+Date,False,There must be at least one hyphen and the part before the hyphen shall not be a number between 0 and 2025.,"(and (str.contains s ""-"") (let ((prefix (str.substr s 0 (str.indexof s ""-"" 0)))) (or (not (str.is_digit prefix)) (or (< (str.to_int prefix) 0) (> (str.to_int prefix) 2025))))"
+Date,False,There must be at least two hyphens and the part after the first hyphen but before the second hyphen shall not be a number between 1 and 12.,
+Date,False,There must be at least two hyphens an d the part after the second hyphen shall not be a number between 1 and 31.,
+DNA,True,"The DNA sequence shall only contain letters A, T, C and G.","(str.in.re s (re.++ (re.* (re.union (str.to.re ""A"") (str.to.re ""T"") (str.to.re ""C"") (str.to.re ""G"")))))"
+DNA,True,The length of The DNA sequence shall be at least 10.,(>= (str.len s) 10)
+DNA,True,The length of The DNA sequence shall be a multiple of three.,(= (mod (str.len s) 3) 0)
+DNA,True,The DNA sequence shall start with ATG.,"(= (str.substr s 0 3) ""ATG"")"
+DNA,True,"The DNA sequence shall end with either TAA, or TAG, or TGA.","(or (= (str.substr s (- (str.len s) 3) 3) ""TAA"") (= (str.substr s (- (str.len s) 3) 3) ""TAG"") (= (str.substr s (- (str.len s) 3) 3) ""TGA""))"
+DNA,False,"The DNA sequence shall contain at least one letter that is neither A, nor T, nor C, nor G.","(assert (str.in_re s (re.++ (re.* (re.union (str.to_re ""A"") (str.to_re ""T"") (str.to_re ""C"") (str.to_re ""G""))) (re.union (re.comp (re.union (str.to_re ""A"") (str.to_re ""T"") (str.to_re ""C"") (str.to_re ""G""))) re.allchar) (re.* re.allchar))))"
+DNA,False,The length of the DNA sequence shall be at most 9.,(<= (str.len s) 9)
+DNA,False,The length of the DNA sequence shall not a multiple of three.,(not (= (mod (str.len s) 3) 0))
+DNA,False,The DNA sequence shall not start with ATG.,"(not (str.prefixof ""ATG"" s))"
+DNA,False,"The DNA sequence shall not end with TAA, nor with TAG, nor with TGA.","(and (not (str.suffixof ""TAA"" s)) (not (str.suffixof ""TAG"" s)) (not (str.suffixof ""TGA"" s)))"
+Email,True,The email shall not contain a space character.,"(not (str.contains s "" ""))"
+Email,True,The email shall not start with a @ character.,"(not (= (str.at s 0) ""@""))"
+Email,True,The email shall have exactly one @ character.,"(and (str.contains s ""@"") (not (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar)))))"
+Email,True,The email shall include a dot character (.) after the @ character but before the end.,"(let ((at_pos (str.indexof s ""@"" 0))) (and (>= at_pos 0) (str.contains (str.substr s (+ at_pos 1) (- (str.len s) (+ at_pos 1))) ""."")))"
+Email,True,The final character of the email shall not be a dot character (.).,"(not (= (str.at s (- (str.len s) 1)) "".""))"
+Email,True,"The email shall not contain the word ""manager"".","(not (str.contains s ""manager""))"
+Email,False,The email shall contain a space character.,"(str.contains s "" "")"
+Email,False,The email shall start with a @ character.,"(= (str.at s 0) ""@"")"
+Email,False,The email shall have either no @ characters or more than one @ character.,"(or (not (str.contains s ""@"")) (str.in.re s (re.++ (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar) (str.to.re ""@"") (re.* re.allchar))))"
+Email,False,If the email contains a @ character and there shall not include any dot characters (.) after the @ character and before the end.,"(=> (str.contains s ""@"") (not (str.contains (str.substr s (+ (str.indexof s ""@"") 1) (- (str.len s) (+ (str.indexof s ""@"") 1))) ""."")))"
+Email,False,The final character of the email shall be a dot character (.).,"(= (str.at s (- (str.len s) 1)) ""."")"
+Email,False,"The email shall contain the word ""manager"".","(str.contains s ""manager"")"
+Expression,True,"The arithmetic expression shall only contain numbers (0-9) and arithmetic operators (+, -, *, /).","(str.in.re s (re.+ (re.union (re.range ""0"" ""9"") (str.to.re ""+"") (str.to.re ""-"") (str.to.re ""*"") (str.to.re ""/""))))"
+Expression,True,"The arithmetic operators (+, -, *, /) in the arithmetic expression shall not appear consecutively.","(forall ((i Int)) (=> (and (>= i 0) (< i (- (seq.len s) 1))) (not (and (or (= (seq.nth s i) ""+"") (= (seq.nth s i) ""-"") (= (seq.nth s i) ""*"") (= (seq.nth s i) ""/"")) (or (= (seq.nth s (+ i 1)) ""+"") (= (seq.nth s (+ i 1)) ""-"") (= (seq.nth s (+ i 1)) ""*"") (= (seq.nth s (+ i 1)) ""/""))))"
+Expression,True,"Except for the minus sign (-), every operator (+, *, /) in the arithmetic expression shall have a number before and after it.","(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (=> (or (= (str.at s i) ""+"") (= (str.at s i) ""*"") (= (str.at s i) ""/"")) (and (not (= (str.at s (- i 1)) "" "")) (not (= (str.at s (+ i 1)) "" ""))))))"
+Expression,True,"The arithmetic expression shall not start with operators from the set {+, *, /}.","(and (not (= (str.at s 0) ""+"")) (not (= (str.at s 0) ""*"")) (not (= (str.at s 0) ""/"")))"
+Expression,False,"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","(str.in.re s (re.++ (re.* re.allchar) (re.union (re.diff re.allchar (re.range ""0"" ""9"")) (re.diff re.allchar (re.union (str.to.re ""+"") (str.to.re ""-"") (str.to.re ""*"") (str.to.re ""/"")))) (re.* re.allchar)))"
+Expression,False,"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","(or (str.contains s ""++"") (str.contains s ""--"") (str.contains s ""**"") (str.contains s ""//"") (str.contains s ""+-"") (str.contains s ""-+"") (str.contains s ""+*"") (str.contains s ""*+"") (str.contains s ""+/"") (str.contains s ""/+"") (str.contains s ""-*"") (str.contains s ""*-"") (str.contains s ""-/"") (str.contains s ""/-"") (str.contains s ""*/"") (str.contains s ""/*""))"
+Expression,False,"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.",(exssts ((s Int)) (and (>= s 0) (< s (seq.len s)) (or (and (ss_operator (seq.nth s s)) (or (not (ss_number (seq.nth s (- s 1)))) (not (ss_number (seq.nth s (+ s 1))))))))
+Expression,False,"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","(or (= (str.at s 0) ""+"") (= (str.at s 0) ""*"") (= (str.at s 0) ""/""))"
+IBAN,True,The length of the bank number shall be 22.,(= (str.len s) 22)
+IBAN,True,The bank number shall start with 1210.,"(= (str.substr s 0 4) ""1210"")"
+IBAN,True,"The bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.","(and (>= (str.len s) 6) (= (str.at s 4) ""0"") (= (str.at s 5) ""0""))"
+IBAN,False,The length of the bank account shall not be 22.,(not (= (str.len s) 22))
+IBAN,False,The bank number shall not start with 1210.,"(not (= (str.substr s 0 4) ""1210""))"
+IBAN,False,"The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.
+","(or (< (str.len s) 6) (not (= (str.at s 4) ""0"")) (not (= (str.at s 5) ""0"")))"
+ISBN,True,"The ISBN shall only contain numbers (0-9), the letter X, or hyphens.","(str.in.re s (re.++ (re.* (re.union (re.range ""0"" ""9"") (str.to.re ""X"") (str.to.re ""-"")))))"
+ISBN,True,The last character of the ISBN shall either be a number (0-9) or the letter X.,"(or (and (>= (str.to_code (str.at s (- (str.len s) 1))) 48) (<= (str.to_code (str.at s (- (str.len s) 1))) 57)) (= (str.at s (- (str.len s) 1)) ""X""))"
+ISBN,True,"The ISBN shall contain exactly 10 characters, excluding hyphens.","(= (str.len (str.replace_all s ""-"" """")) 10)"
+ISBN,True,The ISBN shall not start with a hyphen.,"(not (= (str.at s 0) ""-""))"
+ISBN,True,Hyphens shall not occur consecutively in the ISBN.,"(forall ((i Int)) (=> (and (>= i 0) (< i (- (str.len s) 1))) (not (and (= (str.at s i) ""-"") (= (str.at s (+ i 1)) ""-"")))))"
+ISBN,True,The ISBN shall contain at most 3 hyphens.,"(str.in.re s (re.++ (re.* (re.union (re.range ""0"" ""9"") (str.to.re ""-"")) (re.opt (str.to.re ""-"")) (re.* (re.union (re.range ""0"" ""9"") (str.to.re ""-""))) (re.opt (str.to.re ""-"")) (re.* (re.union (re.range ""0"" ""9"") (str.to.re ""-""))) (re.opt (str.to.re ""-"")) (re.* (re.union (re.range ""0"" ""9"") (str.to.re ""-"")))))"
+ISBN,False,"The ISBN shall contain at least one character that is neither a number (0-9), nor the letter X, nor a hyphen.","(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (not (or (and (>= (str.to_code (str.at s i)) 48) (<= (str.to_code (str.at s i)) 57)) (= (str.at s i) ""X"") (= (str.at s i) ""-"")))))"
+ISBN,False,"The last character of the ISBN shall be neither a number (0-9), nor the letter X.","(not (or (str.in_re (str.at s (- (str.len s) 1)) (re.range ""0"" ""9"")) (= (str.at s (- (str.len s) 1)) ""X"")))"
+ISBN,False,"Without counting hyphens, the ISBN shall contain less than or more than 10 characters.","(or (< (str.len (str.replace_all s ""-"" """")) 10) (> (str.len (str.replace_all s ""-"" """")) 10))"
+ISBN,False,The ISBN shall start with a hyphen.,"(= (str.at s 0) ""-"")"
+ISBN,False,The ISBN shall contain two consecutive hyphens.,"(str.contains s ""--"")"
+ISBN,False,The ISBN shall contain more than 3 hyphens.,"(> (str.len (str.replace_all s ""-"" """")) (- (str.len s) 3))"
+Name,True,"The name shall only contain letters a-z, letters A-Z and space characters.","(str.in.re s (re.++ (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))) (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" "")))))"
+Name,True,The name shall contain at least one space character.,"(str.contains s "" "")"
+Name,True,The name shall not end with a space character.,"(not (= (str.at s (- (str.len s) 1)) "" ""))"
+Name,True,The name shall not start with a space character.,"(not (= (str.at s 0) "" ""))"
+Name,True,The first character in the name shall be capitalized.,"(and (>= (str.to_code (str.at s 0)) (str.to_code ""A"")) (<= (str.to_code (str.at s 0)) (str.to_code ""Z"")))"
+Name,True,Any character in the name following a space character shall be capitalized.,"(str.in.re s (re.++ (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z""))) (re.* (re.++ (str.to.re "" "") (re.range ""A"" ""Z"")))))"
+Name,False,"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","(str.in.re s (re.++ (re.* (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))) (re.comp (re.union (re.range ""a"" ""z"") (re.range ""A"" ""Z"") (str.to.re "" ""))) (re.* re.allchar)))"
+Name,False,The name shall contain no space character.,"(not (str.contains s "" ""))"
+Name,False,The name shall end with a space character.,"(str.suffixof "" "" s)"
+Name,False,The name shall start with a space character.,"(= (str.at s 0) "" "")"
+Name,False,The first character in the name shall not be capitalized.,(not (and (>= (str.to_code (str.at s 0)) 65) (<= (str.to_code (str.at s 0)) 90)))
+Name,False,"In the name, there shall be some characters following a space character which are not capitalized.","(str.in.re s (re.++ (re.* re.allchar) (str.to.re "" "") (re.+ (re.range ""a"" ""z"")) (re.* re.allchar)))"
+Palindrome,True,The palindrome shall be at least 3 characters long.,(>= (str.len s) 3)
+Palindrome,True,The palindrome shall be identical to its reverse.,(= s (str.reverse s))
+Palindrome,False,The palindrome shall be at most 2 characters long.,(<= (str.len s) 2)
+Palindrome,False,The palindrome shall not be identical to its reverse.,(not (= s (str.reverse s)))
+Parentheses,True,The parentheses string shall be at least 10 characters long.,(>= (str.len s) 10)
+Parentheses,True,The parentheses string shall only contains ( and ) characters.,"(str.in.re s (re.* (re.union (str.to.re ""("") (str.to.re "")""))))"
+Parentheses,True,The parenthesis string shall contain an equal number of ( characters and ) characters.,"(= (str.len (str.replace_all s ""("" """")) (str.len (str.replace_all s "")"" """")))"
+Parentheses,True,"When scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.","(forall ((i Int)) (=> (and (>= i 0) (< i (str.len s))) (>= (str.count s ""("" 0 i) (str.count s "")"" 0 i))))"
+Parentheses,False,The parentheses string shall be at most 9 characters long.,(<= (str.len s) 9)
+Parentheses,False,The parentheses string shall contain at least one character that is neither ( nor ).,"(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (not (or (= (str.at s i) ""("") (= (str.at s i) "")""))))"
+Parentheses,False,The parenthesis string shall not contain an equal number of ( characters and ) characters.,"(not (= (str.len (str.replace_all s ""("" """")) (str.len (str.replace_all s "")"" """"))))"
+Parentheses,False,"There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.","(exists ((i Int)) (and (>= i 0) (< i (str.len s)) (> (str.count s "")"" 0 i) (str.count s ""("" 0 i))))"
+Password,True,The password shall be at least 4 characters long.,(>= (str.len s) 4)
+Password,True,"The password shall contain one of the following characters: !, #, $.","(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))"
+Password,True,The password shall contain at least one upper case characters.,"(str.in.re s (re.++ (re.* re.allchar) (re.range ""A"" ""Z"") (re.* re.allchar)))"
+Password,True,The password shall contain at least one lower case characters.,"(str.in.re s (re.++ (re.* re.allchar) (re.range ""a"" ""z"") (re.* re.allchar)))"
+Password,True,The password shall contain at least one number.,
+Password,False,The password shall contain less than 4 characters.,(< (str.len s) 4)
+Password,False,"The password shall not contain any of the following characters: !, #, $.","(and (not (str.contains s ""!"")) (not (str.contains s ""#"")) (not (str.contains s ""$"")))"
+Password,False,The password shall not contain any upper case characters.,"(not (str.in.re s (re.++ (re.* re.allchar) (re.range ""A"" ""Z"") (re.* re.allchar))))"
+Password,False,The password shall not contain any lower case characters.,"(not (str.in.re s (re.range ""a"" ""z"")))"
+Password,False,The password shall not contain any numbers.,"(not (str.in.re s (re.++ (re.* re.allchar) (re.range ""0"" ""9"") (re.* re.allchar))))"
+Url,True,The url shall start with either http:// or https://.,"(or (str.prefixof ""http://"" s) (str.prefixof ""https://"" s))"
+Url,True,The url shall not contain any spaces.,"(not (str.contains s "" ""))"
+Url,True,The url shall contain at least one dot character (.).,"(str.contains s ""."")"
+Url,False,"The url shall not start with http://, nor with https://.","(and (not (str.prefixof ""http://"" s)) (not (str.prefixof ""https://"" s)))"
+Url,False,The url shall contain at least one space.,"(str.contains s "" "")"
+Url,False,The url shall not contain any dot character (.).,"(not (str.contains s "".""))"

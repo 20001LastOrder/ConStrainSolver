@@ -1,0 +1,5 @@
+constraint,result
+The length of the bank account shall not be 22.,
+The bank number shall not start with 1210.,"(not (and (str.starts-with s ""1210"") (not (= s 1210))))"
+"The bank number shall either have less than 6 characters, or either the fifth or sixth character shall not be 0.
+",

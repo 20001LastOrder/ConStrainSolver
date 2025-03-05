@@ -1,0 +1,70 @@
+constraint,result
+The date shall contain two hyphens.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The date shall contain two hyphens.
+    
+    Args:
+        s (str): The date string.
+
+    Returns:
+        bool: True if the date contains two hyphens, False otherwise.
+    """"""
+    # Use regular expression to check if there are exactly two hyphens
+    return re.match(r'^\d+\-\d+\-\d+$', s) is not None"
+"If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool:
+    """"""
+    Check if If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.
+    
+    Args:
+        s (str): The date string.
+
+    Returns:
+        bool: True if the date meets the conditions, False otherwise.
+    """"""
+    # Check if the string contains a hyphen
+    if '-' not in s:
+        return False
+    
+    # Split the string into parts separated by hyphens
+    parts = s.split('-')
+    
+    # Check if the first part is a number between 0 and 2025
+    return (parts[0].isdigit() and 0 <= int(parts[0]) <= 2025)"
+"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool:
+    """"""
+    Check if If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.
+    
+    Args:
+        s (str): The date string.
+
+    Returns:
+        bool: True if the date meets the conditions, False otherwise.
+    """"""
+    # Check if the string contains exactly two hyphens
+    if s.count('-') != 2:
+        return False
+    
+    # Split the string into parts separated by hyphens
+    parts = s.split('-')
+    
+    # Check if the second part is a number between 1 and 12
+    return (parts[1].isdigit() and 1 <= int(parts[1]) <= 12)"
+"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool:
+    """"""
+    Check if If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.
+    
+    Args:
+        s (str): The date string.
+
+    Returns:
+        bool: True if the date meets the conditions, False otherwise.
+    """"""
+    # Check if the string contains exactly two hyphens
+    if s.count('-') != 2:
+        return False
+    
+    # Split the string into parts separated by hyphens
+    parts = s.split('-')
+    
+    # Check if the third part is a number between 1 and 31
+    return (parts[2].isdigit() and 1 <= int(parts[2]) <= 31)"

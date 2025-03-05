@@ -1,0 +1,5 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).",
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).",
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.",
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.",

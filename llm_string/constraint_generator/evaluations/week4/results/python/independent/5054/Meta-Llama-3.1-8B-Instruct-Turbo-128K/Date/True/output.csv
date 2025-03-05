@@ -1,0 +1,108 @@
+constraint,result
+The date shall contain two hyphens.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the input string represents a date and contains two hyphens.
+
+    Args:
+        s (str): The input string to be checked.
+
+    Returns:
+        bool: True if the string represents a date with two hyphens, False otherwise.
+    """"""
+    return (len(s.split('-')) == 3) and (-90 <= int(s.split('-')[2]) <= 90)"
+"If there is at least one hyphen, the part before the hyphen shall be a number between 0 and 2025.","def this_function(s: str) -> bool:
+    """"""
+    Check if if there is at least one hyphen in the string, 
+    the part before the hyphen shall be a number between 0 and 2025.
+
+    Args:
+        s (str): The input string.
+
+    Returns:
+        bool: True if the string meets the specified condition, False otherwise.
+    """"""
+    if '-' in s:
+        num_str = s.split('-')[0]
+        try:
+            num = int(num_str)
+            return 0 <= num <= 2025
+        except ValueError:
+            return False
+    else:
+        return False"
+"If there are at least two hyphens, the part after the first hyphen but before the second hyphen shall be a number between 1 and 12.","def this_function(s: str) -> bool:
+    """"""
+    Check if the string s contains at least two hyphens. 
+    If it does, the part after the first hyphen but before the second hyphen 
+    should be a number between 1 and 12.
+
+    Args:
+        s (str): The input string to check.
+
+    Returns:
+        bool: True if the condition is met, False otherwise.
+    """"""
+    
+    # Find all occurrences of two or more hyphens in the string
+    matches = re.findall('-{2,}', s)
+    
+    # If there is no match, return False
+    if not matches:
+        return False
+    
+    # Iterate over all matches
+    for match in matches:
+        # Find the start of the match (the index of the first hyphen)
+        start = s.find(match)
+        
+        # The part we are interested in is between the start of the string 
+        # and the start of the match (inclusive) if the match is at the 
+        # start of the string, and otherwise between the character before 
+        # the first hyphen and the last character in the match
+        if start == 0:
+            part = s[:match.index('-')+1]
+        else:
+            part = s[start+1:start+match.index('-')+1]
+        
+        # Try to convert the part to an integer
+        try:
+            num = int(part)
+        except ValueError:
+            # If it is not an integer, return False
+            return False
+        
+        # If the number is not between 1 and 12, return False
+        if not 1 <= num <= 12:
+            return False
+    
+    # If we have checked all matches and haven't returned False, return True
+    return True"
+"If there are at least two hyphen, The part after the second hyphen shall be a number between 1 and 31.","def this_function(s: str) -> bool:
+    """"""
+    Check if there are at least two hyphens in the input string.
+    If there are, the part after the second hyphen shall be a number between 1 and 31.
+    
+    Args:
+    s (str): Input string
+
+    Returns:
+    bool: True if the input string meets the conditions, False otherwise
+    """"""
+
+    # Split the input string to find the parts separated by hyphens
+    parts = s.split('-')
+
+    # Check if there are at least two hyphens
+    if len(parts) < 3:
+        return False
+
+    # The third part should be a number between 1 and 31
+    try:
+        # Try to convert the third part to an integer
+        if 1 <= int(parts[2]) <= 31:
+            return True
+        else:
+            return False
+    except ValueError:
+        # If the third part is not a valid number, return False
+        return False"

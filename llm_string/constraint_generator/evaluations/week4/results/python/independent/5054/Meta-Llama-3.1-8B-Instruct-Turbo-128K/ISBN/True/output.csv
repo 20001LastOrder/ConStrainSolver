@@ -1,0 +1,102 @@
+constraint,result
+"The ISBN shall only contain numbers (0-9), the letter X, or hyphens.","def this_function(s: str) -> bool:
+    """"""
+    Check if The ISBN shall only contain numbers (0-9), the letter X, or hyphens.
+
+    Args:
+    s (str): The ISBN to be checked.
+
+    Returns:
+    bool: True if the ISBN is valid, False otherwise.
+    """"""
+
+    # A set of valid characters
+    valid_chars = set('0123456789-X-')
+
+    # Convert the string to a set of characters and check if it's a subset of valid_chars
+    return set(s).issubset(valid_chars)"
+The last character of the ISBN shall either be a number (0-9) or the letter X.,"def this_function(s: str) -> bool:
+    """"""
+    Check if The last character of the ISBN shall either be a number (0-9) or the letter X.
+
+    Args:
+    s (str): The ISBN to check.
+
+    Returns:
+    bool: True if the ISBN is valid, False otherwise.
+    """"""
+    if not s.isdigit() and s[-1].upper() != 'X':
+        return False
+    if s[-1].upper() == 'X':
+        # check if the sum of 10 times each digit in even positions minus the sum of each digit in odd positions is divisible by 11
+        s = s[:-1]  # remove the last character
+        return (10 * (int(s[1::2]) if len(s) > 1 else 0) - int(s[::2])) % 11 == 0
+    return s[:-1].isdigit() and (10 * (int(s[1::2])) - int(s[::2])) % 11 == 0"
+"The ISBN shall contain exactly 10 characters, excluding hyphens.","def this_function(s: str) -> bool:
+    """"""
+    Check if the provided ISBN string shall contain exactly 10 characters,
+    excluding hyphens.
+
+    Args:
+        s (str): The ISBN string.
+
+    Returns:
+        bool: True if the string has exactly 10 characters without hyphens, False otherwise.
+    """"""
+    return s.replace('-', '') == s and len(s.replace('-', '')) == 10"
+The ISBN shall not start with a hyphen.,"def this_function(s: str) -> bool:
+    """"""Check if The ISBN shall not start with a hyphen.""""""
+    return not s.startswith('-')"
+Hyphens shall not occur consecutively in the ISBN.,"def this_function(s: str) -> bool:
+    """"""
+    Check if Hyphens shall not occur consecutively in the ISBN.
+
+    Args:
+    s (str): The ISBN to be checked.
+
+    Returns:
+    bool: True if the ISBN has consecutive hyphens, False otherwise.
+    """"""
+    # Find the length of the string
+    length = len(s)
+
+    # Check if the length of the string is 13 (standard length for an ISBN)
+    if length != 13:
+        return f""ISBN length must be 13, got {length}""
+
+    # Initialize a counter for consecutive hyphens
+    consecutive_hyphens = 0
+
+    # Iterate over the characters in the string
+    for i in range(length):
+        # If the character is a hyphen and it's not the last character in the string
+        if s[i] == '-' and i < length - 1:
+            # Check if the next character is also a hyphen
+            if s[i + 1] == '-':
+                # If it is, increment the counter
+                consecutive_hyphens += 1
+            else:
+                # If it's not, reset the counter
+                consecutive_hyphens = 0
+        # If the character is not a hyphen, reset the counter
+        else:
+            consecutive_hyphens = 0
+
+        # If the counter is greater than 1, return True
+        if consecutive_hyphens > 1:
+            return True
+
+    # If the function hasn't returned True by now, return False
+    return False"
+The ISBN shall contain at most 3 hyphens.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the ISBN shall contain at most 3 hyphens.
+
+    Args:
+        s (str): The ISBN to be checked.
+
+    Returns:
+        bool: True if the ISBN contains at most 3 hyphens, False otherwise.
+    """"""
+    hyphen_count = s.count('-')
+    return hyphen_count <= 3"

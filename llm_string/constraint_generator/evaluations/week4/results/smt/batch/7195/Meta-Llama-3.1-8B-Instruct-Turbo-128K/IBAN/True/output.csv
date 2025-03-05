@@ -1,0 +1,4 @@
+constraint,result
+The length of the bank number shall be 22.,
+The bank number shall start with 1210.,
+"The bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.",

@@ -1,0 +1,34 @@
+constraint,result
+"The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if The arithmetic expression shall contain at least one character that is neither a number (0-9), nor an arithmetic operator (+, -, *, /).'''
+    
+    # Regular expression pattern to match numbers or arithmetic operators
+    pattern = r'\d|\+|-|\*|\/'
+    
+    # If no matched characters are found outside the pattern, return true
+    return not re.search(pattern, s)"
+"The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).","def this_function(s: str) -> bool:
+    ''' Check if The arithmetic expression shall contain consecutive arithmetic operators (+, -, *, /).'''
+    
+    # Regular expression pattern to match two consecutive arithmetic operators
+    pattern = r'\+[-+*/]*(\+|-|\*|\/)[-+*/]*'
+    
+    # If the pattern is found in the expression, return true
+    return bool(re.search(pattern, s))"
+"The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.","def this_function(s: str) -> bool:
+    ''' Check if The arithmetic expression shall contain an operator from the set {+, *, /} that either does not have a number immediately before it or does not have a number immediately after it.'''
+    
+    # Regular expression patterns to match operators with no preceding or following number
+    pattern1 = r'(\+|-|\*|\/)(?![\d\.\+\-\*\/])'
+    pattern2 = r'(?<![\d\.\+\-\*\/])(\+|-|\*|\/)'
+    
+    # If either pattern is found in the expression, return true
+    return bool(re.search(pattern1, s)) or bool(re.search(pattern2, s))"
+"The arithmetic expression shall start with one of the operators in the set {+, *, /}.","def this_function(s: str) -> bool:
+    ''' Check if The arithmetic expression shall start with one of the operators in the set {+, *, /}.'''
+    
+    # Regular expression pattern to match a valid starting operator
+    pattern = r'^\+|-|\*|\/'
+    
+    # If the pattern matches the start of the expression, return true
+    return bool(re.match(pattern, s, re.IGNORECASE))"

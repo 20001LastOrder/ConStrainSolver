@@ -1,0 +1,7 @@
+constraint,result
+"The DNA sequence shall only contain letters A, T, C and G.","(forall (B) (= (or (= B 65) (= B 68) (= B 67) (= B 70) (= B 71)) (= B 84) (= B 87) (= B 86) (= B 89)) (in B s)))]
+}"
+The length of The DNA sequence shall be at least 10.,(>= (str.len s) 10)
+The length of The DNA sequence shall be a multiple of three.,( última ( Str.iden Len s 3))
+The DNA sequence shall start with ATG.,
+"The DNA sequence shall end with either TAA, or TAG, or TGA.","(or (= suffix s ""TAA"") (= suffix s ""TAG"") (= suffix s ""TGA""))"

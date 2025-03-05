@@ -1,0 +1,50 @@
+constraint,result
+The parentheses string shall be at most 9 characters long.,"def this_function(s: str) -> bool:
+    '''Check if the parentheses string is at most 9 characters long.'''
+    return len(s) <= 9"
+The parentheses string shall contain at least one character that is neither ( nor ).,"def this_function(s: str) -> bool:
+    ''' 
+    Check if the parentheses string contains at least one character that is neither ( nor ).
+    
+    Args:
+    s (str): The input string to check.
+    
+    Returns:
+    bool: True if the string contains at least one character that is neither ( nor ), False otherwise.
+    '''
+    for char in s:
+        if char != '(' and char != ')':
+            return True
+    return False"
+The parenthesis string shall not contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool:
+    ''' 
+    Check if the number of '(' characters is not equal to the number of ')' characters in the string.
+    
+    Args:
+        s (str): The input string containing parentheses.
+        
+    Returns:
+        bool: True if the counts of '(' and ')' are not equal, False otherwise.
+    '''
+    return s.count('(') != s.count(')')"
+"There shall exist at least one position in a parentheses string such that, when scanning from left to right up to that position, the count of ) characters exceeds the count of ( characters.","def this_function(s: str) -> bool:
+    ''' 
+    Check if there exists at least one position in a parentheses string such that, 
+    when scanning from left to right up to that position, the count of ')' characters 
+    exceeds the count of '(' characters.
+    '''
+    count_open = 0  # Count of '('
+    count_close = 0  # Count of ')'
+    
+    for char in s:
+        if char == '(':
+            count_open += 1
+        elif char == ')':
+            count_close += 1
+        
+        # If at any point, ')' count exceeds '(' count, return True
+        if count_close > count_open:
+            return True
+    
+    # If we finish the loop without finding such a position, return False
+    return False"

@@ -1,0 +1,83 @@
+constraint,result
+The parentheses string shall be at least 10 characters long.,"def this_function(s: str) -> bool:
+    '''
+    Check if the input string is at least 10 characters long.
+    
+    Parameters:
+    s (str): The input string to be checked.
+    
+    Returns:
+    bool: True if the string is at least 10 characters long, False otherwise.
+    '''
+    return len(s) >= 10"
+The parentheses string shall only contains ( and ) characters.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the string contains only ( and ) characters.
+
+    Args:
+        s (str): The input string to check.
+
+    Returns:
+        bool: True if the string contains only ( and ) characters, False otherwise.
+    """"""
+    return set(s) <= {'(', ')'}"
+The parenthesis string shall contain an equal number of ( characters and ) characters.,"def this_function(s: str) -> bool:
+    """"""
+    Check if the parenthesis string contains an equal number of ( characters and ) characters.
+
+    Args:
+    s (str): The input string containing parentheses.
+
+    Returns:
+    bool: True if the string has an equal number of open and close parentheses, False otherwise.
+    """"""
+
+    # Initialize open and close parenthesis counters to 0
+    open_count = 0
+    close_count = 0
+
+    # Iterate through each character in the string
+    for char in s:
+        # If the character is an open parenthesis, increment the open_count
+        if char == '(':
+            open_count += 1
+        # If the character is a close parenthesis, increment the close_count
+        elif char == ')':
+            close_count += 1
+
+    # Return True if the counts are equal, False otherwise
+    return open_count == close_count"
+"When scanning from left to right on the parentheses string, at no point shall the count of ) characters exceed the count of ( characters.","def this_function(s: str) -> bool:
+    """""" Check if When scanning from left to right on the parentheses string, 
+    at no point shall the count of ) characters exceed the count of ( characters. """"""
+    
+    # Initialize a counter for the left and right parentheses
+    left_count = 0
+    right_count = 0
+    
+    # Initialize a flag to track if we've seen any right parentheses
+    seen_right = False
+    
+    # Iterate over each character in the string
+    for char in s:
+        # If the character is an '(', increment the left_count
+        if char == '(':
+            left_count += 1
+        # If the character is a ')', 
+        # if we've seen any right parentheses before or the current right_count exceeds left_count at this point, return False
+        elif char == ')':
+            if seen_right or (right_count != 0 and right_count > left_count):
+                return False
+            # If it's not the first right parenthesis we've seen, set the seen_right flag to True
+            if not seen_right:
+                seen_right = True
+            # Increment the right_count
+            right_count += 1
+    
+    # Return True if the function didn't return False, indicating that the input string is valid
+    return True
+
+# Example usage
+print(this_function(""(())""))  # → True
+print(this_function(""(()""))   # → False
+print(this_function(""())""))   # → False"

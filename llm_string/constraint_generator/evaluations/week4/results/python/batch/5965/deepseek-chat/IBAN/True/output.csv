@@ -1,0 +1,10 @@
+constraint,result
+The length of the bank number shall be 22.,"def this_function(s: str) -> bool:
+    '''Check if the length of the bank number shall be 22.'''
+    return len(s) == 22"
+The bank number shall start with 1210.,"def this_function(s: str) -> bool:
+    '''Check if the bank number shall start with 1210.'''
+    return s.startswith('1210')"
+"The bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.","def this_function(s: str) -> bool:
+    '''Check if the bank number shall have at least 6 characters, and the fifth and sixth characters shall both be 0.'''
+    return len(s) >= 6 and s[4] == '0' and s[5] == '0'"

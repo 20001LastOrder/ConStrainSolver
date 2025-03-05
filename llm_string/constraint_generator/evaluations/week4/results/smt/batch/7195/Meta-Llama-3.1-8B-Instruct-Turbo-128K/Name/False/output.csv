@@ -1,0 +1,7 @@
+constraint,result
+"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","(or (not (str.in.re s (re.union (str.to.re ""a-z"") (str.to.re ""A-Z"") (str.to.re "" "")))) (not (=? true (str.count s (str.to.re ""a-z"")))) (not (=? true (str.count s (str.to.re ""A-Z"")))) (not (=? true (str.count s (str.to.re "" "")))))"
+The name shall contain no space character.,"(not (str.contains s "" ""))"
+The name shall end with a space character.,"(=? true (strSuffix s "" ""))"
+The name shall start with a space character.,"(=? true (strPrefix s "" ""))"
+The first character in the name shall not be capitalized.,(not (=? true (= (str.at s 0) (str.to.re (str.capitalizeChar (str.at s 0))))))
+"In the name, there shall be some characters following a space character which are not capitalized.","(and (=? true (str.contains s "" "")) (>? 0 (str.count s (str.to.re ""A-Z""))))"
