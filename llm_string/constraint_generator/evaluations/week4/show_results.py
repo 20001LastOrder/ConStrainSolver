@@ -105,8 +105,8 @@ def calculate_python_results(cfg: DictConfig, constraint_store: ConstraintStore)
 
 def calculate_smt_results(cfg: DictConfig, constraint_store: ConstraintStore):
     test_cases_root_path = "constraint_files/raw/"
-    smt_csv_path = f'{cfg.output_folder}smt.csv'
-    smt_ignore_path = f'{cfg.output_folder}smt_ignore.txt'
+    smt_csv_path = f'{cfg.output_folder}smt/smt.csv'
+    smt_ignore_path = f'{cfg.output_folder}smt/smt_ignore.txt'
     generator_modes = ["independent", "batch"]
 
     smt_csv = pd.read_csv(smt_csv_path, header=0)
