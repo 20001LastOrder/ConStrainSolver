@@ -3,14 +3,16 @@ import os
 
 import hydra
 import pandas as pd
-from tabulate import tabulate
-from func_timeout import func_timeout, FunctionTimedOut
+from func_timeout import FunctionTimedOut, func_timeout
 from hydra.utils import instantiate
 from omegaconf import DictConfig
+from tabulate import tabulate
 from z3 import Solver
 
-from llm_string.constraint_generator.core.batch_constraint_generator_agent import postprocess_constraint
+from llm_string.constraint_generator.core.batch_constraint_generator_agent import \
+    postprocess_constraint
 from llm_string.constraints import ConstraintStore
+
 
 def calculate_python_results(cfg: DictConfig, constraint_store: ConstraintStore):
     test_cases_root_path = "constraint_files/raw/"
@@ -41,7 +43,7 @@ def calculate_python_results(cfg: DictConfig, constraint_store: ConstraintStore)
                 for index, row in df.iterrows():
                     name = row["name"]
                     mask = row["mask"]
-                    constraint = row["constraint"]
+                    constraint = row["constraint"].replace("\r\n", "\n")
                     result = row["result"]
 
                     num_of_constraints = constraint_store.get_num_constraints(name)
@@ -285,6 +287,7 @@ def calculate_smt_results(cfg: DictConfig, constraint_store: ConstraintStore):
 
 def display_table(results: list[tuple[str, str, str, int, int, int, int]]):
     df = pd.DataFrame(results, columns=["generator_type", "generator_mode", "model_name", "total_results", "generation_success", "validation_success", "formal_verification_success"])
+    df.to_csv("results.csv", index=False)
 
     table_columns = ["Generator Type", "Generator Mode", "Model Name", "Generation Success Rate", "Validation Success Rate", "Formal Verification Success Rate"]
 
