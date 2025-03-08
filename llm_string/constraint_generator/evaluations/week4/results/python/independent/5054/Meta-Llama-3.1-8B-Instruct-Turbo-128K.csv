@@ -724,14 +724,7 @@ Expression,False,"The arithmetic expression shall start with one of the operator
         if s and s[0] == '-' and (len(s) == 1 or s[1] in {'+', '-', '*', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}):
             return True
         return True
-    return False
-
-# Example use cases:
-print(this_function(""+5""))  # Returns: True
-print(this_function(""-5""))  # Returns: True
-print(this_function(""*5""))  # Returns: True
-print(this_function(""/5""))  # Returns: True
-print(this_function(""5""))   # Returns: False"
+    return False"
 IBAN,True,The length of the bank number shall be 22.,"def this_function(s: str) -> bool:
     """"""
     Check if the length of the bank account number is 22.
@@ -1251,12 +1244,7 @@ Parentheses,True,"When scanning from left to right on the parentheses string, at
             right_count += 1
     
     # Return True if the function didn't return False, indicating that the input string is valid
-    return True
-
-# Example usage
-print(this_function(""(())""))  # â†’ True
-print(this_function(""(()""))   # â†’ False
-print(this_function(""())""))   # â†’ False"
+    return True"
 Parentheses,False,The parentheses string shall be at most 9 characters long.,"def this_function(s: str) -> bool:
     """"""
     Check if the input string is at most 9 characters long.

@@ -533,40 +533,7 @@ IBAN,False,"The bank number shall either have less than 6 characters, or either 
     if len(s) < 6:
         return True
     else:
-        return s[4] != '0' or s[5] != '0'
-
-# Test cases
-def test_this_function():
-    """"""Test this_function""""""
-    s = '1234'  # expected length 4
-    assert this_function(s) == True
-    s = '12345678901234567890'  # expected length 22
-    assert this_function(s) == False
-
-def test_this_function():
-    """"""Test this_function""""""
-    s = '1234'  # expected not to start with '1210'
-    assert this_function(s) == True
-    s = '1210'  # expected to start with '1210'
-    assert this_function(s) == False
-
-def test_this_function():
-    """"""Test this_function""""""
-    s = '123'  # expected to have less than 6 characters
-    assert this_function(s) == True
-    s = '12345'  # expected fifth character to not be '0'
-    assert this_function(s) == True
-    s = '123450'  # expected sixth character to not be '0'
-    assert this_function(s) == True
-    s = '123404'  # expected fifth character to not be '0'
-    assert this_function(s) == True
-    s = '1234500'  # expected sixth character to be '0'
-    assert this_function(s) == False
-
-if __name__ == ""__main__"":
-    test_this_function()
-    test_this_function()
-    test_this_function()"
+        return s[4] != '0' or s[5] != '0'"
 ISBN,True,"The ISBN shall only contain numbers (0-9), the letter X, or hyphens.","def this_function(s: str) -> bool:
     """"""Check if The ISBN shall only contain numbers (0-9), the letter X, or hyphens.
     
@@ -777,28 +744,7 @@ Name,True,Any character in the name following a space character shall be capital
     Returns:
     bool: True if each character following a space is capitalized, False otherwise.
     """"""
-    return all(not s[i].isspace() or s[i].isupper() for i in range(1, len(s)))
-
-# Example usage:
-print(this_function(""John Doe""))  # True
-print(this_function("" John Doe""))  # False
-print(this_function(""123 Jones""))  # False
-
-print(this_function(""John Doe""))  # True
-print(this_function(""JohnDoe""))  # False
-
-print(this_function(""John Doe ""))  # False
-print(this_function(""John Doe""))  # True
-
-print(this_function("" John Doe""))  # False
-print(this_function(""John Doe""))  # True
-
-print(this_function(""John Doe""))  # True
-print(this_function(""john doe""))  # False
-
-print(this_function(""John Doe""))  # True
-print(this_function(""john doe""))  # False
-print(this_function(""john   doe""))  # False"
+    return all(not s[i].isspace() or s[i].isupper() for i in range(1, len(s)))"
 Name,False,"The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.","def this_function(s: str) -> bool:
     """"""
     Check if The name shall contain at least one character that is neither a letter a-z, nor a letter A-Z, nor a space.
@@ -1020,19 +966,7 @@ Password,False,The password shall not contain any lower case characters.,"def th
     return not any(char.islower() for char in s)"
 Password,False,The password shall not contain any numbers.,"def this_function(s: str) -> bool: 
     ''' Check if The password shall not contain any numbers.'''
-    return not any(char.isdigit() for char in s)
-
-def password_validator(s: str) -> bool:
-    ''' Validate password under all conditions and return True if valid'''
-    conditions = [
-        this_function(s),  # Function 1 should be the opposite of this function due to it requiring less than 4 characters
-        this_function(s),
-        this_function(s),
-        # this_function(s): it seems somewhat redundant with the others, the function would be problematic in its default behavior, so this has been commented out 
-        this_function(s)
-    ]
-    
-    return all(conditions)  # Returns True if all conditions are met"
+    return not any(char.isdigit() for char in s)"
 Url,True,The url shall start with either http:// or https://.,"def this_function(s: str) -> bool:
     """"""
     Check if The url shall start with either http:// or https://.
@@ -1065,9 +999,7 @@ Url,True,The url shall contain at least one dot character (.).,"def this_functio
     Returns:
         bool: True if the URL contains at least one dot, False otherwise.
     """"""
-    return re.search('\.', s)
-
-# Or a more explicit version with the 'in' operator"
+    return re.search('\.', s)"
 Url,False,"The url shall not start with http://, nor with https://.","def this_function(s: str) -> bool:
     """"""
     Check if the url shall not start with http://, nor with https://.
