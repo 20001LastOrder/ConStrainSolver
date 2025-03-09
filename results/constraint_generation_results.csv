@@ -1,0 +1,17 @@
+generator_type,generator_mode,model_name,total_results,generation_success,validation_success,formal_verification_success
+python,batch,Meta-Llama-3.1-8B-Instruct-Turbo-128K,104,104,104,-1
+python,batch,deepseek-chat,104,104,104,-1
+python,batch,gpt-4o,104,104,104,-1
+python,batch,gpt-4o-mini,104,104,104,-1
+python,independent,Meta-Llama-3.1-8B-Instruct-Turbo-128K,104,104,102,-1
+python,independent,deepseek-chat,104,104,104,-1
+python,independent,gpt-4o,104,104,104,-1
+python,independent,gpt-4o-mini,104,104,104,-1
+smt,batch,Meta-Llama-3.1-8B-Instruct-Turbo-128K,104,2,2,2
+smt,batch,deepseek-chat,104,83,81,70
+smt,batch,gpt-4o,104,89,75,65
+smt,batch,gpt-4o-mini,104,43,38,36
+smt,independent,Meta-Llama-3.1-8B-Instruct-Turbo-128K,104,18,13,12
+smt,independent,deepseek-chat,104,89,82,71
+smt,independent,gpt-4o,104,90,78,70
+smt,independent,gpt-4o-mini,104,65,51,46

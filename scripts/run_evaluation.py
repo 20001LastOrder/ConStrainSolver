@@ -16,8 +16,6 @@ def validate_constraints(
     validator = PythonStringValidator()
 
     for index, row in tqdm(list(df.iterrows())):
-        # if index < 178:
-            # continue
         name = row["name"]
         result = str(row["result"])
         status = str(row.get("status", "sat" if result.lower() != "unsat" else "unsat"))
