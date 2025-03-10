@@ -1,0 +1,341 @@
+status,result,name,truth_masks,valid?
+sat,John Doe,Name,"(True, True, True, True, True, True)",1.0
+sat,John Doe,Name,"(True, True, True, True, True, False)",0.0
+sat,john smith,Name,"(True, True, True, True, False, True)",0.0
+sat,john smith,Name,"(True, True, True, True, False, False)",1.0
+unsat,,Name,"(True, True, True, False, True, True)",-1.0
+unsat,,Name,"(True, True, True, False, True, False)",-1.0
+sat,unrealistic name,Name,"(True, True, True, False, False, True)",0.0
+unsat,,Name,"(True, True, True, False, False, False)",-1.0
+sat,John Smith ,Name,"(True, True, False, True, True, True)",1.0
+sat,John Doe,Name,"(True, True, False, True, True, False)",0.0
+sat,john smith ,Name,"(True, True, False, True, False, True)",0.0
+sat,john smith ,Name,"(True, True, False, True, False, False)",1.0
+unsat,,Name,"(True, True, False, False, True, True)",-1.0
+unsat,,Name,"(True, True, False, False, True, False)",-1.0
+unsat,,Name,"(True, True, False, False, False, True)",-1.0
+sat, space a Space b,Name,"(True, True, False, False, False, False)",0.0
+unsat,,Name,"(True, False, True, True, True, True)",-1.0
+unsat,,Name,"(True, False, True, True, True, False)",-1.0
+sat,john,Name,"(True, False, True, True, False, True)",1.0
+unsat,,Name,"(True, False, True, True, False, False)",-1.0
+unsat,,Name,"(True, False, True, False, True, True)",-1.0
+unsat,,Name,"(True, False, True, False, True, False)",-1.0
+unsat,,Name,"(True, False, True, False, False, True)",-1.0
+unsat,,Name,"(True, False, True, False, False, False)",-1.0
+unsat,,Name,"(True, False, False, True, True, True)",-1.0
+unsat,,Name,"(True, False, False, True, True, False)",-1.0
+unsat,,Name,"(True, False, False, True, False, True)",-1.0
+unsat,,Name,"(True, False, False, True, False, False)",-1.0
+unsat,,Name,"(True, False, False, False, True, True)",-1.0
+unsat,,Name,"(True, False, False, False, True, False)",-1.0
+unsat,,Name,"(True, False, False, False, False, True)",-1.0
+unsat,,Name,"(True, False, False, False, False, False)",-1.0
+sat,John Smith Jr.,Name,"(False, True, True, True, True, True)",1.0
+sat,John Smith Jr.,Name,"(False, True, True, True, True, False)",0.0
+sat,john smith Jr.,Name,"(False, True, True, True, False, True)",0.0
+sat,john 123,Name,"(False, True, True, True, False, False)",1.0
+unsat,,Name,"(False, True, True, False, True, True)",-1.0
+unsat,,Name,"(False, True, True, False, True, False)",-1.0
+sat,  John Smith!,Name,"(False, True, True, False, False, True)",0.0
+sat,!@#hello world,Name,"(False, True, True, False, False, False)",0.0
+sat,John Smith Jr.,Name,"(False, True, False, True, True, True)",0.0
+sat,John ! Smith,Name,"(False, True, False, True, True, False)",0.0
+sat,John Smith ,Name,"(False, True, False, True, False, True)",0.0
+sat,hello world!,Name,"(False, True, False, True, False, False)",0.0
+unsat,,Name,"(False, True, False, False, True, True)",-1.0
+unsat,,Name,"(False, True, False, False, True, False)",-1.0
+sat, aB cD eF gH iJ kL mN oP qR sT uV wX yZ !  ,Name,"(False, True, False, False, False, True)",0.0
+sat,  a1 b2 c3 ,Name,"(False, True, False, False, False, False)",1.0
+sat,JohnDoe,Name,"(False, False, True, True, True, True)",0.0
+unsat,,Name,"(False, False, True, True, True, False)",-1.0
+sat,John#Doe,Name,"(False, False, True, True, False, True)",0.0
+unsat,,Name,"(False, False, True, True, False, False)",-1.0
+unsat,,Name,"(False, False, True, False, True, True)",-1.0
+unsat,,Name,"(False, False, True, False, True, False)",-1.0
+unsat,,Name,"(False, False, True, False, False, True)",-1.0
+unsat,,Name,"(False, False, True, False, False, False)",-1.0
+unsat,,Name,"(False, False, False, True, True, True)",-1.0
+unsat,,Name,"(False, False, False, True, True, False)",-1.0
+unsat,,Name,"(False, False, False, True, False, True)",-1.0
+unsat,,Name,"(False, False, False, True, False, False)",-1.0
+unsat,,Name,"(False, False, False, False, True, True)",-1.0
+unsat,,Name,"(False, False, False, False, True, False)",-1.0
+unsat,,Name,"(False, False, False, False, False, True)",-1.0
+unsat,,Name,"(False, False, False, False, False, False)",-1.0
+sat,john.doe@example.com,Email,"(True, True, True, True, True, True)",1.0
+sat,john.manager@example.com,Email,"(True, True, True, True, True, False)",1.0
+sat,test@subdomain.example.,Email,"(True, True, True, True, False, True)",1.0
+sat,john.manager@example.co.,Email,"(True, True, True, True, False, False)",1.0
+sat,test@user,Email,"(True, True, True, False, True, True)",1.0
+sat,john.manager@company,Email,"(True, True, True, False, True, False)",1.0
+sat,testuser@domain.,Email,"(True, True, True, False, False, True)",0.0
+unsat,,Email,"(True, True, True, False, False, False)",-1.0
+sat,john.doe@example.com,Email,"(True, True, False, True, True, True)",0.0
+sat,john.manager@company@domain.com.au.manager,Email,"(True, True, False, True, True, False)",1.0
+sat,test@example.com.,Email,"(True, True, False, True, False, True)",0.0
+sat,john.manager@company@domain.com.,Email,"(True, True, False, True, False, False)",1.0
+sat,john.doe@company@domain,Email,"(True, True, False, False, True, True)",1.0
+sat,john.manager@example.com,Email,"(True, True, False, False, True, False)",0.0
+unsat,,Email,"(True, True, False, False, False, True)",-1.0
+unsat,,Email,"(True, True, False, False, False, False)",-1.0
+sat,test@example.co,Email,"(True, False, True, True, True, True)",0.0
+sat,john.manager@example.com,Email,"(True, False, True, True, True, False)",0.0
+sat,@example.com.,Email,"(True, False, True, True, False, True)",1.0
+sat,manager@company.com.,Email,"(True, False, True, True, False, False)",0.0
+sat,@example,Email,"(True, False, True, False, True, True)",1.0
+sat,@managercompany,Email,"(True, False, True, False, True, False)",1.0
+sat,@example.,Email,"(True, False, True, False, False, True)",0.0
+unsat,,Email,"(True, False, True, False, False, False)",-1.0
+sat,test@example.com,Email,"(True, False, False, True, True, True)",0.0
+sat,manager@company.com,Email,"(True, False, False, True, True, False)",0.0
+sat,test@example.com.,Email,"(True, False, False, True, False, True)",0.0
+sat,manager@company.manager@domain.,Email,"(True, False, False, True, False, False)",0.0
+sat,test@example.com,Email,"(True, False, False, False, True, True)",0.0
+sat,manager@company.com,Email,"(True, False, False, False, True, False)",0.0
+unsat,,Email,"(True, False, False, False, False, True)",-1.0
+unsat,,Email,"(True, False, False, False, False, False)",-1.0
+sat,test example@example.com,Email,"(False, True, True, True, True, True)",1.0
+sat,john manager@company.com,Email,"(False, True, True, True, True, False)",1.0
+sat,test @domain.com.,Email,"(False, True, True, True, False, True)",1.0
+sat,local manager@domain.example.,Email,"(False, True, True, True, False, False)",1.0
+sat,john smith@example,Email,"(False, True, True, False, True, True)",1.0
+sat,John Smith manager@company,Email,"(False, True, True, False, True, False)",1.0
+sat,John Doe Smith@localdomain.,Email,"(False, True, True, False, False, True)",0.0
+sat,John manager @test.,Email,"(False, True, True, False, False, False)",0.0
+sat,john.doe@example.com ,Email,"(False, True, False, True, True, True)",0.0
+sat,john.doe manager@company.com,Email,"(False, True, False, True, True, False)",0.0
+sat,john.doe@example.com ,Email,"(False, True, False, True, False, True)",0.0
+sat,john.doe manager@company.com.,Email,"(False, True, False, True, False, False)",0.0
+sat,John Smith example.com,Email,"(False, True, False, False, True, True)",1.0
+sat,John Smith manager at company,Email,"(False, True, False, False, True, False)",1.0
+sat,test email@subdomain@domain .,Email,"(False, True, False, False, False, True)",0.0
+sat,John Manager manager@company@other.,Email,"(False, True, False, False, False, False)",0.0
+sat,@example.com user1,Email,"(False, False, True, True, True, True)",1.0
+sat,a@b.c manager d,Email,"(False, False, True, True, True, False)",0.0
+sat,test@user.space.,Email,"(False, False, True, True, False, True)",0.0
+sat,@ manager .,Email,"(False, False, True, True, False, False)",1.0
+sat,@local domain,Email,"(False, False, True, False, True, True)",1.0
+sat,manager@company space,Email,"(False, False, True, False, True, False)",0.0
+sat,@ test user.,Email,"(False, False, True, False, False, True)",0.0
+sat, @ manager .,Email,"(False, False, True, False, False, False)",0.0
+sat,@example@domain.com space,Email,"(False, False, False, True, True, True)",1.0
+sat,manager@domain1.com manager@domain2.com,Email,"(False, False, False, True, True, False)",0.0
+sat,test.user@domain.com. ,Email,"(False, False, False, True, False, True)",0.0
+sat,@ manager@.com. manager.,Email,"(False, False, False, True, False, False)",1.0
+sat,test@user1 user2,Email,"(False, False, False, False, True, True)",0.0
+sat,manager@def ghi,Email,"(False, False, False, False, True, False)",0.0
+unsat,,Email,"(False, False, False, False, False, True)",-1.0
+unsat,,Email,"(False, False, False, False, False, False)",-1.0
+sat,A1bC#,Password,"(True, True, True, True, True)",1.0
+sat,Ab!c,Password,"(True, True, True, True, False)",1.0
+sat,A1$A,Password,"(True, True, True, False, True)",1.0
+sat,ABCD!,Password,"(True, True, True, False, False)",1.0
+sat,!a1b2c,Password,"(True, True, False, True, True)",1.0
+sat,a!b$,Password,"(True, True, False, True, False)",1.0
+sat,1234!$,Password,"(True, True, False, False, True)",1.0
+sat,!##$,Password,"(True, True, False, False, False)",1.0
+sat,Ab1c,Password,"(True, False, True, True, True)",1.0
+sat,aAabB@,Password,"(True, False, True, True, False)",1.0
+sat,ABCD1A,Password,"(True, False, True, False, True)",1.0
+unsat,,Password,"(True, False, True, False, False)",-1.0
+sat,a1b2,Password,"(True, False, False, True, True)",1.0
+sat,abcd,Password,"(True, False, False, True, False)",1.0
+unsat,,Password,"(True, False, False, False, True)",-1.0
+sat,____,Password,"(True, False, False, False, False)",1.0
+unsat,,Password,"(False, True, True, True, True)",-1.0
+sat,Ab!,Password,"(False, True, True, True, False)",1.0
+sat,1A!,Password,"(False, True, True, False, True)",1.0
+sat,A!A,Password,"(False, True, True, False, False)",1.0
+sat,a1!,Password,"(False, True, False, True, True)",1.0
+sat,a!,Password,"(False, True, False, True, False)",1.0
+sat,!2,Password,"(False, True, False, False, True)",1.0
+sat,!,Password,"(False, True, False, False, False)",1.0
+sat,A1a,Password,"(False, False, True, True, True)",1.0
+sat,Ab,Password,"(False, False, True, True, False)",1.0
+unsat,,Password,"(False, False, True, False, True)",-1.0
+sat,AB,Password,"(False, False, True, False, False)",1.0
+sat,a1,Password,"(False, False, False, True, True)",1.0
+sat,abc,Password,"(False, False, False, True, False)",1.0
+sat,1,Password,"(False, False, False, False, True)",1.0
+unsat,,Password,"(False, False, False, False, False)",-1.0
+sat,https://subdomain.example.com/path/to/resource,Url,"(True, True, True)",1.0
+sat,http://example,Url,"(True, True, False)",1.0
+sat,https://example.com/path with space and dot,Url,"(True, False, True)",1.0
+sat,https://example.com test,Url,"(True, False, False)",0.0
+sat,example.com,Url,"(False, True, True)",1.0
+sat,example/test/path?query=string,Url,"(False, True, False)",1.0
+sat,ftp://example.com/path/to/file with extension .txt,Url,"(False, False, True)",1.0
+sat,file share,Url,"(False, False, False)",1.0
+sat,2024-12-31,Date,"(True, True, True, True)",1.0
+sat,2025-01-32,Date,"(True, True, True, False)",1.0
+sat,2025-13-01,Date,"(True, True, False, True)",1.0
+sat,2025-13-32,Date,"(True, True, False, False)",1.0
+sat,2024-02-28,Date,"(True, False, True, True)",0.0
+sat,2024-01-32,Date,"(True, False, True, False)",0.0
+sat,2024-02-28,Date,"(True, False, False, True)",0.0
+sat,2023-04-32-15,Date,"(True, False, False, False)",0.0
+unsat,,Date,"(False, True, True, True)",-1.0
+sat,2025-12-32,Date,"(False, True, True, False)",0.0
+sat,2025-13-01,Date,"(False, True, False, True)",0.0
+unsat,,Date,"(False, True, False, False)",-1.0
+sat,2024-01-01,Date,"(False, False, True, True)",0.0
+sat,2024-02-32,Date,"(False, False, True, False)",0.0
+sat,2026-01-01,Date,"(False, False, False, True)",0.0
+sat,2026-abc-99-99,Date,"(False, False, False, False)",1.0
+sat,12100012345678901234,IBAN,"(True, True, True)",0.0
+sat,1210 12345678901234,IBAN,"(True, True, False)",0.0
+sat,DE89 1234 5678 9012 3456 00,IBAN,"(True, False, True)",0.0
+sat,1234567890123456789A,IBAN,"(True, False, False)",0.0
+sat,12100001,IBAN,"(False, True, True)",1.0
+sat,DE89 1210 1234 5678 98,IBAN,"(False, True, False)",0.0
+sat,DE89370400404432029867,IBAN,"(False, False, True)",0.0
+sat,DE00 1234,IBAN,"(False, False, False)",1.0
+sat,123456789X,ISBN,"(True, True, True, True, True, True)",1.0
+sat,978-3-16-148410-0X,ISBN,"(True, True, True, True, True, False)",0.0
+sat,978-0-306-40615-XX,ISBN,"(True, True, True, True, False, True)",0.0
+sat,123456789X,ISBN,"(True, True, True, True, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(True, True, True, False, True, True)",0.0
+sat,978-1-234-567-890X,ISBN,"(True, True, True, False, True, False)",0.0
+sat,-123-456-789-X,ISBN,"(True, True, True, False, False, True)",0.0
+sat,1-2-3-4-5-6-7-8-9-X,ISBN,"(True, True, True, False, False, False)",0.0
+sat,978-3-16-148410-0X,ISBN,"(True, True, False, True, True, True)",0.0
+sat,978-3-16-148410-0-X,ISBN,"(True, True, False, True, True, False)",1.0
+sat,123456-78-9X,ISBN,"(True, True, False, True, False, True)",0.0
+sat,1234567890X-1-2-3-4-5-6-7-8-9-0X,ISBN,"(True, True, False, True, False, False)",0.0
+sat,978-3-16-148410-0X,ISBN,"(True, True, False, False, True, True)",0.0
+sat,-1-2-3-4-5-6-78-9,ISBN,"(True, True, False, False, True, False)",1.0
+unsat,,ISBN,"(True, True, False, False, False, True)",-1.0
+unsat,,ISBN,"(True, True, False, False, False, False)",-1.0
+sat,123456789X,ISBN,"(True, False, True, True, True, True)",0.0
+sat,978-3-16-148410-0,ISBN,"(True, False, True, True, True, False)",0.0
+sat,123456789X,ISBN,"(True, False, True, True, False, True)",0.0
+unsat,,ISBN,"(True, False, True, True, False, False)",-1.0
+sat,978-3-16-148410-0,ISBN,"(True, False, True, False, True, True)",0.0
+unsat,,ISBN,"(True, False, True, False, True, False)",-1.0
+unsat,,ISBN,"(True, False, True, False, False, True)",-1.0
+sat,-XXXXX-XX-XX,ISBN,"(True, False, True, False, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(True, False, False, True, True, True)",0.0
+sat,1234567890-1-2-3-4-5-6-7-8-9-0X,ISBN,"(True, False, False, True, True, False)",0.0
+sat,123456789-XX,ISBN,"(True, False, False, True, False, True)",0.0
+sat,123456-7890-XX,ISBN,"(True, False, False, True, False, False)",0.0
+sat,10-20-30X,ISBN,"(True, False, False, False, True, True)",0.0
+sat,10-20-30-40-50-60-70-80-90-0X,ISBN,"(True, False, False, False, True, False)",0.0
+sat,-1234567-XX----,ISBN,"(True, False, False, False, False, True)",0.0
+sat,10-20---X,ISBN,"(True, False, False, False, False, False)",0.0
+sat,123456789X,ISBN,"(False, True, True, True, True, True)",0.0
+sat,978-3-16-148410-0-X,ISBN,"(False, True, True, True, True, False)",0.0
+sat,978-3-16-148410-0-X,ISBN,"(False, True, True, True, False, True)",0.0
+sat,1234567890-XX-XXXXXa,ISBN,"(False, True, True, True, False, False)",0.0
+sat,-123456789X,ISBN,"(False, True, True, False, True, True)",0.0
+sat,-1234567-8A1B3,ISBN,"(False, True, True, False, True, False)",0.0
+sat,-1-2-3-4-5-6-7-8-9-X,ISBN,"(False, True, True, False, False, True)",0.0
+sat,- --a0102003X,ISBN,"(False, True, True, False, False, False)",0.0
+sat,123-45-6789X,ISBN,"(False, True, False, True, True, True)",0.0
+sat,1234567890-123-45A,ISBN,"(False, True, False, True, True, False)",0.0
+sat,978-3-16-148410-0--X,ISBN,"(False, True, False, True, False, True)",0.0
+sat,1234567-XX-XX-XX-XX-XX-XX-XX-XX-XX,ISBN,"(False, True, False, True, False, False)",0.0
+sat,-A-1-2-3-4-5-6-7-9X,ISBN,"(False, True, False, False, True, True)",0.0
+sat,978-3-16-148410-0-1,ISBN,"(False, True, False, False, True, False)",0.0
+sat,-a-11b-1--,ISBN,"(False, True, False, False, False, True)",0.0
+unsat,,ISBN,"(False, True, False, False, False, False)",-1.0
+sat,978-3-16-148410-0,ISBN,"(False, False, True, True, True, True)",0.0
+sat,978-3-16-148410-0,ISBN,"(False, False, True, True, True, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(False, False, True, True, False, True)",0.0
+sat,1234567890-AB-,ISBN,"(False, False, True, True, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(False, False, True, False, True, True)",0.0
+sat,13-978-3-16-148410-0,ISBN,"(False, False, True, False, True, False)",0.0
+unsat,,ISBN,"(False, False, True, False, False, True)",-1.0
+unsat,,ISBN,"(False, False, True, False, False, False)",-1.0
+sat,978-3-16-148410-0,ISBN,"(False, False, False, True, True, True)",0.0
+sat,978-3-16-148410-0-1,ISBN,"(False, False, False, True, True, False)",0.0
+sat,978-3-16-148410-0-abc,ISBN,"(False, False, False, True, False, True)",0.0
+sat,123-4567-89X-0,ISBN,"(False, False, False, True, False, False)",0.0
+sat,978-3-16-148410-0,ISBN,"(False, False, False, False, True, True)",0.0
+sat,978-3-16-X-4A43-6A,ISBN,"(False, False, False, False, True, False)",0.0
+sat,-1234-AB-CD-XXXX-XX,ISBN,"(False, False, False, False, False, True)",0.0
+unsat,,ISBN,"(False, False, False, False, False, False)",-1.0
+sat,1 + 2 * 3 - 4 / 5,Expression,"(True, True, True, True)",0.0
+sat,3+4*2-1,Expression,"(True, True, True, False)",0.0
+sat,1*2/3,Expression,"(True, True, False, True)",0.0
+sat,+*1+*2-3+*4/5,Expression,"(True, True, False, False)",0.0
+unsat,,Expression,"(True, False, True, True)",-1.0
+unsat,,Expression,"(True, False, True, False)",-1.0
+sat,*+*,Expression,"(True, False, False, True)",0.0
+sat,+*,Expression,"(True, False, False, False)",1.0
+sat,2 + 3 * 4 - 5,Expression,"(False, True, True, True)",0.0
+sat,*/2+3,Expression,"(False, True, True, False)",0.0
+sat,a + b * c d,Expression,"(False, True, False, True)",1.0
+sat,*/a,Expression,"(False, True, False, False)",0.0
+unsat,,Expression,"(False, False, True, True)",-1.0
+unsat,,Expression,"(False, False, True, False)",-1.0
+unsat,,Expression,"(False, False, False, True)",-1.0
+sat,/**,Expression,"(False, False, False, False)",0.0
+sat,madam,Palindrome,"(True, True)",1.0
+sat,aba,Palindrome,"(True, False)",0.0
+sat,a,Palindrome,"(False, True)",1.0
+sat,ab,Palindrome,"(False, False)",1.0
+sat,(())(())()(),Parentheses,"(True, True, True, True)",1.0
+sat,(())(())(())(())(())(())(())(())(())(()),Parentheses,"(True, True, True, False)",0.0
+sat,((()))(()),Parentheses,"(True, True, False, True)",0.0
+sat,((()))(())(()),Parentheses,"(True, True, False, False)",0.0
+sat,( () ) ( ) ( ) ( ) ( ) ( ) ( ) ( ) ,Parentheses,"(True, False, True, True)",1.0
+sat,((()))(())()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()(),Parentheses,"(True, False, True, False)",0.0
+sat,(((((1)),Parentheses,"(True, False, False, True)",0.0
+sat,)(())3()()()),Parentheses,"(True, False, False, False)",1.0
+sat,()()(),Parentheses,"(False, True, True, True)",1.0
+sat,(())()(),Parentheses,"(False, True, True, False)",0.0
+sat,((())),Parentheses,"(False, True, False, True)",0.0
+sat,((())),Parentheses,"(False, True, False, False)",0.0
+sat,(a),Parentheses,"(False, False, True, True)",1.0
+sat,((())),Parentheses,"(False, False, True, False)",0.0
+sat,((())()),Parentheses,"(False, False, False, True)",0.0
+sat,(())x(,Parentheses,"(False, False, False, False)",0.0
+sat,ATGATCGCTAA,DNA,"(True, True, True, True, True)",0.0
+sat,ATGATGATGATG,DNA,"(True, True, True, True, False)",1.0
+sat,ATCGATCGATCGTAA,DNA,"(True, True, True, False, True)",1.0
+sat,ACGTACGTACGT,DNA,"(True, True, True, False, False)",1.0
+sat,ATGATCGATGTAAGTAA,DNA,"(True, True, False, True, True)",1.0
+sat,ATGCACTAGC,DNA,"(True, True, False, True, False)",1.0
+sat,ATCTAGCTA,DNA,"(True, True, False, False, True)",0.0
+sat,ATCGATCGAT,DNA,"(True, True, False, False, False)",1.0
+sat,ATGCGTAA,DNA,"(True, False, True, True, True)",0.0
+sat,ATGATG,DNA,"(True, False, True, True, False)",1.0
+sat,ACGTAA,DNA,"(True, False, True, False, True)",1.0
+sat,ACG,DNA,"(True, False, True, False, False)",1.0
+sat,ATGCTAG,DNA,"(True, False, False, True, True)",1.0
+sat,ATGAC,DNA,"(True, False, False, True, False)",1.0
+sat,ATCGTAA,DNA,"(True, False, False, False, True)",1.0
+sat,TGCA,DNA,"(True, False, False, False, False)",1.0
+sat,ATGATGATGATGCT,DNA,"(False, True, True, True, True)",0.0
+sat,ATGATGATGACU,DNA,"(False, True, True, True, False)",1.0
+sat,NNNNNNNNNTAA,DNA,"(False, True, True, False, True)",1.0
+sat,ATCGTACGK,DNA,"(False, True, True, False, False)",0.0
+sat,ATGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCT,DNA,"(False, True, False, True, True)",0.0
+sat,ATGCGNACGAT,DNA,"(False, True, False, True, False)",1.0
+sat,KATGCTAGTAA,DNA,"(False, True, False, False, True)",1.0
+sat,ATCGKATCGTAT,DNA,"(False, True, False, False, False)",0.0
+sat,ATG-KMT-TG,DNA,"(False, False, True, True, True)",0.0
+sat,ATGKYA,DNA,"(False, False, True, True, False)",1.0
+sat,ACGTAKTAA,DNA,"(False, False, True, False, True)",1.0
+sat,ACGNNNNN,DNA,"(False, False, True, False, False)",0.0
+sat,ATGKCTAA,DNA,"(False, False, False, True, True)",1.0
+sat,ATGNN,DNA,"(False, False, False, True, False)",1.0
+sat,AYTAA,DNA,"(False, False, False, False, True)",1.0
+sat,ACGNT,DNA,"(False, False, False, False, False)",1.0
+sat,/home/user/Documents,Absolute_Path,"(True, True, True, True)",1.0
+sat,/home//user//documents//file.txt,Absolute_Path,"(True, True, True, False)",1.0
+sat,/home/user/documents/,Absolute_Path,"(True, True, False, True)",1.0
+sat,/home//user//Documents/,Absolute_Path,"(True, True, False, False)",1.0
+unsat,,Absolute_Path,"(True, False, True, True)",-1.0
+sat,/ dir//subdir,Absolute_Path,"(True, False, True, False)",1.0
+sat,/home/user/ Documents/ /Files/,Absolute_Path,"(True, False, False, True)",1.0
+sat,/ home// /,Absolute_Path,"(True, False, False, False)",1.0
+unsat,,Absolute_Path,"(False, True, True, True)",-1.0
+sat,/home/user/bin//usr//local//bin,Absolute_Path,"(False, True, True, False)",0.0
+sat,/home/user/documents/,Absolute_Path,"(False, True, False, True)",0.0
+sat,home//user//Documents/,Absolute_Path,"(False, True, False, False)",1.0
+sat,Documents/My Folder/My File.txt,Absolute_Path,"(False, False, True, True)",1.0
+sat,Documents/ User/ Files// test.txt,Absolute_Path,"(False, False, True, False)",1.0
+sat,/home/user/Documents/ folder /,Absolute_Path,"(False, False, False, True)",0.0
+sat,/path/to/ Documents/somewhere/,Absolute_Path,"(False, False, False, False)",0.0
