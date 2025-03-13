@@ -66,7 +66,7 @@ def radar_factory(num_vars, frame="circle"):
                 line.set_data(x, y)
 
         def set_varlabels(self, labels):
-            self.set_thetagrids(np.degrees(theta), labels)
+            self.set_thetagrids(np.degrees(theta), labels, fontsize=12)
 
         def _gen_axes_patch(self):
             # The Axes patch must be centered at (0.5, 0.5) and of radius 0.5
