@@ -1,9 +1,16 @@
 _target_: llm_string.constraints.ConstraintStore
 file_path: constraint_files/constraints.csv
 sample_ids: 
+  - "Name"
+  - "Email"
+  - "Password"
+  - "Url"
+  - "Date"
+  - "IBAN"
   - "ISBN"
   - "Expression"
   - "Palindrome"
   - "Parentheses"
   - "DNA"
   - "Absolute_Path"
+generated_constraint_file: constraint_files/generated/gpt-4o-mini-independent.csv

@@ -101,7 +101,11 @@ class PythonStringValidator(BaseValidator):
 
         unsat_constraints = []
         for i, checker in enumerate(checkers):
-            if not checker(solution):
+            try:
+                result = checker(solution)
+            except Exception:
+                result = False
+            if not result:
                 unsat_constraints.append(problem.nl_constraints[i])
 
         if len(unsat_constraints) == 0:

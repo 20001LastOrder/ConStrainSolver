@@ -59,6 +59,16 @@ Run hybrid validator
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/llm_solver_with_explanation/hybrid/<llm>" +string_solver.with_explanation=True
 ```
 
+
+## Generation with generated constraints
+Run hybrid validator with explanation
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/generated_constraints/gpt-4o-mini/vfe/<llm>" +string_solver.with_explanation=True constraint_store=re_generated.yaml
+```
+
+
+
+
 * Validate the generated LLM outputs
     * Note: this (1) reads the generated .csv file, (2) validates it line by line and (3) generates a new file which is a copy of the .csv file, extended with a validation column checking whetherthe generated strings actually satify the constraints
     * Note that the file it will read to find the llm outputs is computed from the `output_path`, `llm` and `use_variable_name` arguments, s for the `llm` approach.

@@ -1,3 +1,2 @@
 _target_: llm_string.string_solvers.formal_solvers.CVC5Solver
-name: cvc5_solver
-name: cvc5
+solver_name: cvc5_solver
