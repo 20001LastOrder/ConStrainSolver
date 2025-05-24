@@ -1,5 +1,7 @@
 # llm-string-constraints
 
+Note: you must have corresponding API keys in your environment variables (e.g. OPENAI_API_KEY for GPT models) for the LLM calls to work properly.
+
 ## Run LLM String Generation
 ### Run single LLM calls
 * Available options:
@@ -9,7 +11,7 @@
 python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full output_folder="outputs/llm/<llm>" string_solver/llm=<llm>
 ```
 
-### Run LLM with validation
+### Run LLM with validation (+V)
 * Available options:
     * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
     * <validator>: ground_truth_python, ground_truth_smt, hybrid (special case)
@@ -24,7 +26,7 @@ Run the hybrid approach
 python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/<validator>/<llm>"
 ```
 
-### Run LLM with feedback
+### Run LLM with feedback (+VF)
 * Available options:
     * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
     * <validator>: ground_truth_python, ground_truth_smt, hybrid (special case)
@@ -39,7 +41,7 @@ Run the hybrid approach
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/hybrid/<llm>"
 ```
 
-### Run LLM with explanation
+### Run LLM with explanation (+VFE)
 * Available options:
     * <llm>: gpt-4o-mini_v, gpt-4o_v, deepseek-v3_v, llama3.1-8b_v
     * Each validator takes slightly different arguments
@@ -70,13 +72,13 @@ python -m scripts.run_generation string_solver=llm_solver_with_feedback string_s
 
 
 * Validate the generated LLM outputs
-    * Note: this (1) reads the generated .csv file, (2) validates it line by line and (3) generates a new file which is a copy of the .csv file, extended with a validation column checking whetherthe generated strings actually satify the constraints
+    * Note: this (1) reads the generated .csv file, (2) validates it line by line and (3) generates a new file which is a copy of the .csv file, extended with a validation column checking whether the generated strings actually satisfy the constraints
     * Note that the file it will read to find the llm outputs is computed from the `output_path`, `llm` and `use_variable_name` arguments, s for the `llm` approach.
 ```bash
 python -m scripts.run_evaluation input_path=outputs/llm_with_validation/2025-02-28_15-52-28/gpt-4o-mini.csv
 ```
 
-* Run an SMT solver:
+* Run a SMT solver:
 ```bash
 python -m scripts.run_generation --approach smt --file_path=constraint_files/constraints.csv --output_path results/smt --smt_solver=z3
 ```
