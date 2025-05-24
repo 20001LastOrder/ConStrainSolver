@@ -1,7 +1,0 @@
-constraint,function
-The email shall contain a space character.,"def this_function(s: str) -> bool:
-    ''' Check if The email shall contain a space character.'''
-    return ' ' in s"
-The email shall start with a @ character.,
-The email shall have either no @ characters or more than one @ character.,
-"If the email contains a @ character, then the email shall not include any dot characters (.) after the @ character and before the end.",

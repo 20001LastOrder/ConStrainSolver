@@ -1,6 +1,0 @@
-constraint0,level,step
-,0,0
-"(or (= (str.count s ""-"") 0) (= (str.count s ""-"") 1) (> (str.count s ""-"") 2))",0,1
-"(or (= (str.count s ""-"") 0) (= (str.count s ""-"") 1) (> (str.count s ""-"") 2))",0,2
-,0,3
-"(or (not (str.contains s ""-"")) (= (str.count s ""-"") 1) (> (str.count s ""-"") 2))",0,4

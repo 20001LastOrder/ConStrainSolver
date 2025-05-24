@@ -1,9 +1,0 @@
-constraint,function
-The password shall be at least 4 characters long.,
-"The password shall contain one of the following characters: !, #, $.",
-The password shall contain at least one upper case characters.,"def this_function(s: str) -> bool:
-    ''' Check if The password shall contain at least one upper case characters.'''
-    return any(c.isupper() for c in s)"
-The password shall contain at least one lower case characters.,"def this_function(s: str) -> bool:
-    ''' Check if The password shall contain at least one lower case characters.'''
-    return any(c.islower() for c in s)"

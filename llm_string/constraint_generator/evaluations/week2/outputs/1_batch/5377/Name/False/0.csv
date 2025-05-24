@@ -1,6 +1,0 @@
-constraint0,level,step
-"(not (str.in.re s (str.to.re ""[a-zA-Z ]"")))",1,0
-"(not (str.in.re s (str.to.re ""[a-zA-Z ]"")))",2,1
-"(not (str.in.re s (str.to.re ""[a-zA-Z ]"")))",2,2
-"(not (str.in.re s (str.to.re ""[a-zA-Z ]"")))",2,3
-"(not (str.in.re s (str.to.re ""[a-zA-Z ]"")))",2,4

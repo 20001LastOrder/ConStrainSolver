@@ -1,6 +1,0 @@
-constraint0,level,step
-"(str.contains s (str.to.re ""[a-z]""))",0,0
-"(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[a-z]""))))",1,1
-"(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[a-z]""))))",1,2
-"(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[a-z]""))))",1,3
-"(exists ((c String)) (and (str.contains s c) (str.in.re c (str.to.re ""[a-z]""))))",1,4

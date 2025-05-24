@@ -1,1 +1,0 @@
-{"name": "Name", "mask": true, "nl_constraints": ["The name shall only contain letters a-z, letters A-Z and space characters.", "The name shall contain at least one space character."]}

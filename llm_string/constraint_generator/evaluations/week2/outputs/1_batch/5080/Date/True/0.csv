@@ -1,6 +1,0 @@
-constraint0,level,step
-"(and (str.contains s ""-"") (str.contains (str.substr s (str.indexof s ""-"") (str.length s)) ""-"") (not (= (str.count s ""-"") 2)))",0,0
-"(= (str.count s ""-"") 2)",0,1
-"(= (str.len (str.replace s ""-"" """")) (- (str.len s) 2))",0,2
-"(= (str.count s ""-"") 2)",0,3
-"(= (str.count s ""-"") 2)",0,4

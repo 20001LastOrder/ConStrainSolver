@@ -1,5 +1,0 @@
-defaults:
-  - constraint_store: mo2re_independent_clamped
-  - _self_
-
-output_folder: llm_string/constraint_generator/evaluations/week3/outputs/

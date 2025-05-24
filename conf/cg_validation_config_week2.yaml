@@ -1,6 +1,0 @@
-defaults:
-  - constraint_store: mo2re_independent_clamped
-  - _self_
-
-batch_size: 4
-run_id: 0

@@ -1,6 +1,0 @@
-constraint0,level,step
-"(=> (>= (str.count s ""-"") 2) (or (< (str.to.int (str.substr s (+ (str.indexof s ""-"" 2) 1) (str.len s))) 1) (> (str.to.int (str.substr s (+ (str.indexof s ""-"" 2) 1) (str.len s))) 31)))",0,0
-"(let ((hyphen-count (str.count s ""-""))) (and (>= hyphen-count 2) (or (< (str.to.int (str.substr s (+ (str.indexof s ""-"" 1) 1) (str.indexof s ""-"" 2))) 1) (> (str.to.int (str.substr s (+ (str.indexof s ""-"" 1) 1) (str.indexof s ""-"" 2))) 31))))",0,1
-"(=> (>= (str.count s ""-"") 2) (or (< (str.to.int s) 1) (> (str.to.int s) 31)))",0,2
-"(=> (>= (str.count s ""-"") 2) (or (< (str.to.int (str.substr s (+ (str.indexof s ""-"" 1) 1) (str.indexof s ""-"" 2))) 1) (> (str.to.int (str.substr s (+ (str.indexof s ""-"" 1) 1) (str.indexof s ""-"" 2))) 31)))",0,3
-,0,4

@@ -1,6 +1,0 @@
-constraint0,level,step
-"(and (>= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 0) (<= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 2025))",1,0
-"(and (>= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 0) (<= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 2025))",1,1
-"(and (>= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 0) (<= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 2025))",1,2
-"(and (>= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 0) (<= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 2025))",1,3
-"(and (>= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 0) (<= (str.to.int (str.substr s 0 (str.indexof s ""-""))) 2025))",1,4

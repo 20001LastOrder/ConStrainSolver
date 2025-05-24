@@ -1,1 +1,0 @@
-{"name": "Email", "mask": true, "nl_constraints": ["The email shall not contain a space character.", "The email shall not start with a @ character."]}

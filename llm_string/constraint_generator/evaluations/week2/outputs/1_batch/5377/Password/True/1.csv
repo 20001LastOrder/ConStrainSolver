@@ -1,6 +1,0 @@
-constraint0,level,step
-"(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))",1,0
-"(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))",2,1
-"(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))",2,2
-"(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))",2,3
-"(or (str.contains s ""!"") (str.contains s ""#"") (str.contains s ""$""))",2,4

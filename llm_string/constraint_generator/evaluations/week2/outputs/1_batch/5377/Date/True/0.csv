@@ -1,6 +1,0 @@
-constraint0,level,step
-"(= (str.count s ""-"") 2)",0,0
-"(= (str.len s) (+ (str.len (str.replace s ""-"" """")) 2))",0,1
-"(= (str.len (str.replace s ""-"" """")) (+ (str.len s) -2))",0,2
-"(= (- (str.len s) (str.len (str.replace s ""-"" """"))) 2)",0,3
-"(= (str.count s ""-"") 2)",0,4

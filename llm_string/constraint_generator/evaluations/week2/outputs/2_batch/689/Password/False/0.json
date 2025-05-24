@@ -1,1 +1,0 @@
-{"name": "Password", "mask": false, "nl_constraints": ["The password shall contain less than 4 characters.", "The password shall not contain any of the following characters: !, #, $."]}

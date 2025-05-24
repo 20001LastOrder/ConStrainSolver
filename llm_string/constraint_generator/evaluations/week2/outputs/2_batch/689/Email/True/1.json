@@ -1,1 +1,0 @@
-{"name": "Email", "mask": true, "nl_constraints": ["The email shall have exactly one @ character.", "If the email contains a @ character, then the email shall include a dot character (.) after the @ character but before the end."]}

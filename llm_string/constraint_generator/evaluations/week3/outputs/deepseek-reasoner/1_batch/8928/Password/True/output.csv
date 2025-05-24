@@ -1,6 +1,0 @@
-constraint,function
-The password shall be at least 4 characters long.,
-"The password shall contain one of the following characters: !, #, $.","def this_function(s: str) -> bool:
-    return any(c in {'!', '#', '$'} for c in s)"
-The password shall contain at least one upper case characters.,
-The password shall contain at least one lower case characters.,

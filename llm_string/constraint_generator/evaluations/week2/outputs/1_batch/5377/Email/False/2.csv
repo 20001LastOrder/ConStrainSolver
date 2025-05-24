@@ -1,6 +1,0 @@
-constraint0,level,step
-"(or (not (str.contains s ""@"")) (str.in.re s (re.+ (str.to.re ""@""))))",1,0
-"(or (not (str.contains s ""@"")) (str.in.re s (re.+ (str.to.re ""@""))))",2,1
-"(or (not (str.contains s ""@"")) (str.in.re s (re.+ (str.to.re ""@""))))",2,2
-"(or (not (str.contains s ""@"")) (str.in.re s (re.+ (str.to.re ""@""))))",2,3
-"(or (not (str.contains s ""@"")) (str.in.re s (re.+ (str.to.re ""@""))))",2,4
