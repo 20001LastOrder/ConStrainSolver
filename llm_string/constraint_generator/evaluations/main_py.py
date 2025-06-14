@@ -25,7 +25,7 @@ def generate_functions(
 ) -> list[tuple[str, str]]:
     model, name, mask = model_name_mask_comb
 
-    process_path = f"{cfg.output_folder}{cfg.generator_type}/{cfg.generator_mode}/{run_id}/{model}/{name}/{mask}"
+    process_path = f"{cfg.output_folder}python/{cfg.generator_mode}/{run_id}/{model}/{name}/{mask}"
 
     if not os.path.exists(process_path):
         os.makedirs(process_path)
@@ -100,7 +100,7 @@ def main(cfg: DictConfig):
     partial_generate_functions = partial(generate_functions, run_id, cfg, constraint_store)
 
     with Pool(processes=cfg.num_processes) as p:
-        results = list(
+        list(
             tqdm(
                 p.imap_unordered(
                     partial_generate_functions,

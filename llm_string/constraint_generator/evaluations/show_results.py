@@ -132,8 +132,6 @@ def calculate_smt_results(cfg: DictConfig, constraint_store: ConstraintStore):
 
                 df = pd.read_csv(f"{run_path}/{model_name_file}", header=0)
 
-                total_results = len(df)
-
                 generation_success = smt_csv[smt_csv_index]["generation_success"].values[0]
 
                 formal_verification_success = smt_csv[smt_csv_index]["formal_verification_success"].values[0]

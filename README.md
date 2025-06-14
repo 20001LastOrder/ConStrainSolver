@@ -2,6 +2,10 @@
 
 Note: you must have corresponding API keys in your environment variables (e.g. OPENAI_API_KEY for GPT models) for the LLM calls to work properly.
 
+## Run LLM Checker Generation
+
+See [llm_string/constraint_generator/README.md](llm_string/constraint_generator/README.md).
+
 ## Run LLM String Generation
 ### Run single LLM calls
 * Available options:

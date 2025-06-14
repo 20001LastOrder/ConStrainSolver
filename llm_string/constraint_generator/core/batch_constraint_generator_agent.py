@@ -4,8 +4,6 @@ from langchain_openai import ChatOpenAI
 from langchain_together import ChatTogether
 
 from llm_string.constraint_generator.core.history_helper import format_history
-from llm_string.string_generator.core.judge_agent import JudgeAgent
-from llm_string.string_generator.core.string_generator_agent import StringGeneratorAgent
 from llm_string.utils import JSONPydanticOutputParser
 
 from llm_string.constraint_generator.core.constraint_evaluator import ConstraintEvaluator
@@ -23,8 +21,6 @@ class BatchConstraintGeneratorAgent:
     _number_of_items: int
     _nl_constraints: list[str]
     _evaluator: ConstraintEvaluator
-    _string_generator_agent: StringGeneratorAgent
-    _judge_agent: JudgeAgent
 
 
     def __init__(self, constraint_type: str, model_name='gpt-4o-mini', temperature=0.5):
@@ -38,13 +34,16 @@ class BatchConstraintGeneratorAgent:
             model = ChatDeepSeek(model_name=model_name, temperature=temperature)
         elif model_name == "Meta-Llama-3.1-8B-Instruct-Turbo-128K":
             model = ChatTogether(model_name=f"meta-llama/{model_name}", temperature=temperature)
+        else:
+            logger.info(f"Unknown model name: {model_name}. Falling back to gpt-4o-mini.")
+            model = ChatOpenAI(model_name="gpt-4o-mini", temperature=temperature)
 
         self.chain = prompt_template | model | parser
         self.constraint_type = constraint_type
         self.model_name = model_name
         self.temperature = temperature
 
-        self.levels = [self._execute_evaluator_step, self._execute_examples_step, self._execute_judge_step]
+        self.levels = [self._execute_evaluator_step]
         self.min_level = -1
         self.max_level = -1
 
@@ -53,15 +52,11 @@ class BatchConstraintGeneratorAgent:
         self._number_of_items = 10
         self._nl_constraints = []
         self._evaluator = None
-        self._string_generator_agent = None
-        self._judge_agent = None
 
 
     def get_evaluator(
             self,
             constraint_text: list[str],
-            use_examples=False,
-            use_judge=False,
             max_steps=1,
             max_retries_per_attempt=0,
             naive=True
@@ -71,14 +66,7 @@ class BatchConstraintGeneratorAgent:
         self._naive = naive
 
         self.min_level = 0
-        self.max_level = 1  # generate evaluator -> done
-
-        if use_examples:
-            self.max_level = 2  # generate evaluator -> test with examples -> done
-
-            if use_judge:
-                raise NotImplementedError("Judgement is not implemented yet.")
-                self.max_level = 3  # generate evaluator -> test with examples -> judgement -> done
+        self.max_level = 1
 
         return self._execute_steps(max_steps)
 
@@ -86,8 +74,6 @@ class BatchConstraintGeneratorAgent:
     def setup_steps(
             self,
             constraint_text: list[str],
-            use_examples=False,
-            use_judge=False,
             max_retries_per_attempt=0,
             naive=True
     ):
@@ -98,13 +84,6 @@ class BatchConstraintGeneratorAgent:
 
         self.min_level = 0
         self.max_level = 1  # generate evaluator -> done
-
-        if use_examples:
-            self.max_level = 2  # generate evaluator -> test with examples -> done
-
-            if use_judge:
-                raise NotImplementedError("Judgement is not implemented yet.")
-                self.max_level = 3  # generate evaluator -> test with examples -> judgement -> done
 
 
     def _execute_steps(self, max_steps: int) -> tuple[ConstraintEvaluator, int, int]:
@@ -129,13 +108,6 @@ class BatchConstraintGeneratorAgent:
 
 
     def _execute_evaluator_step(self) -> int:
-        if self._naive:
-            return self._execute_evaluator_step_naive()
-        else:
-            return self._execute_evaluator_step_advanced()
-
-
-    def _execute_evaluator_step_naive(self) -> int:
         evaluator = ConstraintEvaluator()
         attempt = 0
         history = []
@@ -181,104 +153,6 @@ class BatchConstraintGeneratorAgent:
         self._evaluator = evaluator
 
         return -1
-
-
-    def _execute_evaluator_step_advanced(self) -> int:
-        evaluator = ConstraintEvaluator()
-        constraint_generated = Constraints(variables=[], constraint=[])
-        constraint_generated.constraint = [None for _ in self._nl_constraints]
-
-        attempt = 0
-        history = []
-
-        while attempt <= self._max_retries_per_step:
-            nl_constraint_to_generate = [nl_constraint for i, nl_constraint in enumerate(self._nl_constraints) if constraint_generated.constraint[i] is None]
-
-            logger.info("Attempt {0}: sending constraint to the LLM: {1}", attempt + 1, str(nl_constraint_to_generate))
-
-            try:
-                constraints = self._invoke_chain(nl_constraint_to_generate, history)
-
-                constraints = _postprocess_constraints(constraints)
-
-                constraint_generated = _merge_constraints(constraint_generated, constraints)
-            except Exception as e:
-                logger.error("Error invoking chain: {0}", str(e))
-                attempt += 1
-                continue
-
-            logger.info("Received constraints from the LLM: {0}", str(constraints))
-
-            try:
-                evaluator, error_list = ConstraintEvaluator.create_evaluator_with_multiple_constraints(self.constraint_type, constraint_generated)
-
-                if len(error_list) == 0:
-                    logger.info("Successfully created evaluator. Returning evaluator.")
-                    self._evaluator = evaluator
-
-                    return 1
-
-                if -1 in [err[0] for err in error_list]:
-                    # constraint is unsatisfiable, and we can't pinpoint which constraint is correct and which is not.
-                    parsed_error_list = _parse_error_list(error_list, constraint_generated.constraint)
-                    constraint_generated.constraint = [None for _ in self._nl_constraints]
-                    raise ValueError(f"Error creating evaluator.", parsed_error_list)
-
-                parsed_error_list = _parse_error_list(error_list, constraint_generated.constraint)
-
-                for i, nl_constraint in enumerate(self._nl_constraints):
-                    if i in [err[0] for err in error_list]:
-                        constraint_generated.constraint[i] = None
-
-                raise ValueError(f"Error creating evaluator.", parsed_error_list)
-
-            except Exception as e:
-                logger.error(str(e))
-                history.extend([(Constraint(variables=constraint_generated.variables, constraint=c), ex) for c, ex in e.args[1]])
-                attempt += 1
-
-        logger.error("Failed to create evaluator after {0} attempts. See log for details.", self._max_retries_per_step + 1)
-        self._evaluator = evaluator
-
-        return -1
-
-
-    def _execute_examples_step(self) -> int:
-        self._failed_examples = []
-
-        if self._string_generator_agent is None:
-            self._string_generator_agent = StringGeneratorAgent(self.model_name, self.temperature)
-
-        try:
-            example_strings = self._string_generator_agent.generate_strings_with_retries(
-                self._nl_constraints,
-                variables=self._evaluator.constraint.variables,
-                number_of_items=self._number_of_items,
-                max_retries=self._max_retries_per_step
-            )
-        except Exception as e:
-            logger.error("Error generating example strings: {0}", str(e))
-            return 1
-
-        failed_examples = []
-
-        for example in example_strings:
-            if not self._evaluator.safe_evaluate(*example):
-                failed_examples.append(example)
-
-        if len(failed_examples) == 0:
-            logger.info("Evaluation of all examples succeeded.")
-
-            return 1
-
-        logger.error("Evaluation of examples failed. Failed examples: {0}", failed_examples)
-        self._failed_examples = failed_examples
-
-        return -1
-
-
-    def _execute_judge_step(self) -> int:
-        pass
 
 
     def _invoke_chain(self, constraint_text: list[str], history: list[tuple[Constraints, Exception]]) -> Constraints:

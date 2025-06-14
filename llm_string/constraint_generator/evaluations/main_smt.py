@@ -26,7 +26,7 @@ def generate_formal_constraints(
 ) -> list[tuple[str, str]]:
     model, name, mask = model_name_mask_comb
 
-    process_path = f"{cfg.output_folder}{cfg.generator_type}/{cfg.generator_mode}/{run_id}/{model}/{name}/{mask}"
+    process_path = f"{cfg.output_folder}smt/{cfg.generator_mode}/{run_id}/{model}/{name}/{mask}"
 
     if not os.path.exists(process_path):
         os.makedirs(process_path)
@@ -51,7 +51,6 @@ def generate_formal_constraints(
 
         results = [(constraint, smt_constraint) for constraint, smt_constraint in zip(nl_constraints, smt_constraints)]
     elif cfg.generator_mode == "independent":
-
         results = []
 
         for constraint in nl_constraints:
