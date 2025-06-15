@@ -1,6 +1,32 @@
 # llm-string-constraints
 
+Artifacts for the paper *"LLM-based Satisfiability Checking of String Requirements by Consistent Data and Checker Generation"*
+
+## Artifact Summary
+This repository contains code to run the LLM-based string constraint generation from natural language requirements and generating string values using natural language constraints. It also contains the dataset used in the paper, which is a collection of string constraints and their corresponding checkers in Python and SMT-Lib format. Finally, the scripts to run the constraint generation and string generation used in the paper as well as notebooks to reproduce tables / figures from the paper are provided. 
+
+The artifact can also be customized in the following ways using configuration through [Hydra](https://hydra.cc/docs/intro/):
+* Use different local or remote LLMs for the generation of constraints and strings
+* Use different validation approaches of the generated strings
+* Use different SMT solvers for the validation of the generated strings
+
+
+## Authors and Citations
+Please cite the following paper if use found this repository useful:
+```bibtex
+@inproceedings{chen2025llm,
+  author = {Boqi Chen and Aren A. Babikian and Shuzhao Feng and D{\'{a}}niel Varr{\'{o}} and Gunter Mussbacher},
+  title  = {{LLM}-based Requirements Verification Through Consistent Text Data and Checker Generation},
+  booktitle = {33rd {IEEE} International Requirements Engineering Conference, {RE} 2025, Valencia, Spain, September 1-5, 2025},
+  publisher = {{IEEE}},
+  year   = {2025}
+}
+```
+
 Note: you must have corresponding API keys in your environment variables (e.g. OPENAI_API_KEY for GPT models) for the LLM calls to work properly.
+
+## Artifact Location:
+The repository is available at:
 
 ## Run LLM Checker Generation
 
@@ -86,3 +112,7 @@ python -m scripts.run_evaluation input_path=outputs/llm_with_validation/2025-02-
 ```bash
 python -m scripts.run_generation --approach smt --file_path=constraint_files/constraints.csv --output_path results/smt --smt_solver=z3
 ```
+
+
+# License
+The code and data in this repository are licensed under the [MIT License](./LICENSE). 
