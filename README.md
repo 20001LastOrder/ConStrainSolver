@@ -31,6 +31,8 @@ The repository contains the following modules:
 * `requirements.txt`: Contains the Python dependencies required to run the code in this repository.
 
 ## Installation
+> Note: All the following commands assumes that you are in the project root directory.
+
 ### Install Python
 To run the code in this repository, you need to install Python. We recommend using a virtual environment such as [venv](https://docs.python.org/3/library/venv.html) or [conda](https://docs.conda.io/en/latest/).
 
@@ -43,9 +45,6 @@ python -m venv constrainsolver
 
 # For conda
 conda create -n constrainsolver python=3.12
-```
-Or, if you use conda:
-```bash
 ```
 
 Activate the virtual environment:
@@ -80,91 +79,17 @@ export DEEPSEEK_API_KEY=<your_deepseek_api_key>
 export TOGETHER_API_KEY=<your_together_api_key>
 ```
 
-## Run LLM Checker Generation
+## Run the Experiments
+
+### Run LLM Checker Generation
 
 See [llm_string/constraint_generator/README.md](llm_string/constraint_generator/README.md).
 
-## Run LLM String Generation
-### Run single LLM calls
-* Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+### Run LLM String Generation
+See [llm_string/README.md](llm_string/README.md).
 
-```bash
-python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full output_folder="outputs/llm/<llm>" string_solver/llm=<llm>
-```
-
-### Run LLM with validation (+V)
-* Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
-    * <validator>: ground_truth_python, ground_truth_smt, hybrid (special case)
-
-Run python or smt
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> output_folder="outputs/${string_solver.name}/<validator>/<llm>"
-```
-
-Run the hybrid approach
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/<validator>/<llm>"
-```
-
-### Run LLM with feedback (+VF)
-* Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
-    * <validator>: ground_truth_python, ground_truth_smt, hybrid (special case)
-
-Run python or smt
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> output_folder="outputs/${string_solver.name}/<validator>/<llm>"
-```
-
-Run the hybrid approach
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/hybrid/<llm>"
-```
-
-### Run LLM with explanation (+VFE)
-* Available options:
-    * <llm>: gpt-4o-mini_v, gpt-4o_v, deepseek-v3_v, llama3.1-8b_v
-    * Each validator takes slightly different arguments
-
-Run python validator
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/python/<llm>" +string_solver.with_explanation=True
-```
-
-Run smt validator
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/smt/<llm>" +string_solver.with_explanation=True +string_solver/validator.produce_failed_constraints=True
-```
-
-Run hybrid validator
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/llm_solver_with_explanation/hybrid/<llm>" +string_solver.with_explanation=True
-```
-
-
-## Generation with generated constraints
-Run hybrid validator with explanation
-```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/generated_constraints/gpt-4o-mini/vfe/<llm>" +string_solver.with_explanation=True constraint_store=re_generated.yaml
-```
-
-
-
-
-* Validate the generated LLM outputs
-    * Note: this (1) reads the generated .csv file, (2) validates it line by line and (3) generates a new file which is a copy of the .csv file, extended with a validation column checking whether the generated strings actually satisfy the constraints
-    * Note that the file it will read to find the llm outputs is computed from the `output_path`, `llm` and `use_variable_name` arguments, s for the `llm` approach.
-```bash
-python -m scripts.run_evaluation input_path=outputs/llm_with_validation/2025-02-28_15-52-28/gpt-4o-mini.csv
-```
-
-* Run a SMT solver:
-```bash
-python -m scripts.run_generation --approach smt --file_path=constraint_files/constraints.csv --output_path results/smt --smt_solver=z3
-```
-
+### Run Measurements (Tables and Figures in the Paper)
+See [measurements/README.md](measurements/README.md).
 
 ## Authors and Citations
 Please cite the following paper if use found this repository useful:
@@ -178,5 +103,5 @@ Please cite the following paper if use found this repository useful:
 }
 ```
 
-# License
+## License
 The code and data in this repository are licensed under the [MIT License](./LICENSE). 
