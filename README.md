@@ -64,7 +64,9 @@ pip install -r requirements.txt
 ### Install solvers
 Note that the Z3 Solvers are installed automatically when installing dependencies, but you will need to manually install the CVC5 solver:
 
-<TODO: Add instructions for installing CVC5>
+1. Download the appropriate binary for your platform from the [CVC5 GitHub releases](https://github.com/cvc5/cvc5/releases/). This repository was developed with the `cvc5-Win64-x86_64-static.zip` package.
+2. Extract the contents of the zip file into the `solvers` directory at the root of this repository.
+3. If necessary, update the path to the CVC5 executable in [llm_string/string_solvers/formal_solvers.py](llm_string/string_solvers/formal_solvers.py#L52).
 
 ### LLMs
 The code in this repository uses the [LangChain](https://python.langchain.com/docs/) library to interact with LLMs. Specifically, it uses APIs from the following platforms:
