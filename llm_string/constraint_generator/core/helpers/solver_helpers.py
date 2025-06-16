@@ -1,8 +1,8 @@
 from func_timeout import func_timeout
 from z3 import Solver, Z3Exception
 
+from llm_string.constraint_generator.constraints import Constraint, Constraints
 from llm_string.logging.logging_overrides import getLogger
-from llm_string.models import Constraint, Constraints
 
 logger = getLogger()
 

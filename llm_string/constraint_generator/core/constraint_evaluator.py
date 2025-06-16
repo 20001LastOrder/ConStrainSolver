@@ -1,13 +1,10 @@
 from z3 import Solver, Z3Exception
 
-from llm_string.constraint_generator.core.helpers.solver_helpers import \
-    create_solver_with_smt_lib2_constraint, \
-    create_solver_with_smt_lib2_constraints, \
-    create_solver_with_z3py_constraint, \
-    create_solver_with_z3py_constraints
-
-from llm_string.models import Constraint, Constraints
-
+from llm_string.constraint_generator.constraints import Constraint, Constraints
+from llm_string.constraint_generator.core.helpers.solver_helpers import (
+    create_solver_with_smt_lib2_constraint,
+    create_solver_with_smt_lib2_constraints,
+    create_solver_with_z3py_constraint, create_solver_with_z3py_constraints)
 from llm_string.logging.logging_overrides import getLogger
 
 logger = getLogger()

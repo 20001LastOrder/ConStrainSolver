@@ -1,4 +1,4 @@
-from llm_string.models import Constraints
+from llm_string.constraint_generator.constraints import Constraints
 
 
 def parse_constraints(constraint: Constraints, default=None) -> list[str]:
