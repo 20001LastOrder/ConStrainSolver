@@ -2,6 +2,7 @@ z3-solver
 tqdm
 pydantic
 numpy
+notebook
 matplotlib
 tabulate
 pandas==2.2.3

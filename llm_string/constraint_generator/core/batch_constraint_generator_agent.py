@@ -3,14 +3,14 @@ from langchain_deepseek import ChatDeepSeek
 from langchain_openai import ChatOpenAI
 from langchain_together import ChatTogether
 
+from llm_string.constraint_generator.constraints import Constraint, Constraints
+from llm_string.constraint_generator.core.constraint_evaluator import \
+    ConstraintEvaluator
 from llm_string.constraint_generator.core.history_helper import format_history
-from llm_string.utils import JSONPydanticOutputParser
-
-from llm_string.constraint_generator.core.constraint_evaluator import ConstraintEvaluator
-from llm_string.models import Constraints, Constraint
-from llm_string.constraint_generator.core.prompt_template_generator import get_prompt_template
-
+from llm_string.constraint_generator.core.prompt_template_generator import \
+    get_prompt_template
 from llm_string.logging.logging_overrides import getLogger
+from llm_string.utils import JSONPydanticOutputParser
 
 logger = getLogger()
 

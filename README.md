@@ -11,22 +11,74 @@ The artifact can also be customized in the following ways using configuration th
 * Use different SMT solvers for the validation of the generated strings
 
 
-## Authors and Citations
-Please cite the following paper if use found this repository useful:
-```bibtex
-@inproceedings{chen2025llm,
-  author = {Boqi Chen and Aren A. Babikian and Shuzhao Feng and D{\'{a}}niel Varr{\'{o}} and Gunter Mussbacher},
-  title  = {{LLM}-based Requirements Verification Through Consistent Text Data and Checker Generation},
-  booktitle = {33rd {IEEE} International Requirements Engineering Conference, {RE} 2025, Valencia, Spain, September 1-5, 2025},
-  publisher = {{IEEE}},
-  year   = {2025}
-}
+## Artifact Location:
+The repository is available at: TODO
+
+## Artifact Contents:
+The repository contains the following modules:
+* `llm_string/constraint_generator`: Contains the code to generate string constraints from natural language requirements using LLMs (For details, see [llm_string/constraint_generator/README.md](llm_string/constraint_generator/README.md)).
+* The rest of the `llm_string` folder contains the code to generate string values from the generated constraints using LLMs, including:
+    * `llm_string/prompts`: Contains the prompts used for generating string values from constraints.
+    * `llm_string/string_solvers`: Contains various solvers for generating string values using LLMs, including validation and feedback. It also contains formal solvers to generate string values using the SMT-Lib format.
+    * `llm_string/base.py`: Contains the base classes for the generation results
+    * `llm_string/constraints.py`: Contains code to process and store string and formal constraints
+    * `llm_string/string_validator.py`: Contains code to validate the generated string values against the constraints using Python or SMT-Lib during the generation process.
+    * `string_solvers/structs.py`: Contains the data structures used for the string generation process, including the constraint problem, feedback and solutions.
+    * `utils.py`: Contains utility functions for the string generation process.
+* `results`: Contains string generation results of the experiments in the paper
+* `scripts`: Contains scripts to run the constraint generation and string generation experiments.
+* `measurements`: Contains Jupyter notebooks to reproduce the tables and figures in the paper for each RQ.
+* `requirements.txt`: Contains the Python dependencies required to run the code in this repository.
+
+## Installation
+### Install Python
+To run the code in this repository, you need to install Python. We recommend using a virtual environment such as [venv](https://docs.python.org/3/library/venv.html) or [conda](https://docs.conda.io/en/latest/).
+
+> The code in this repository has been developed with Python 3.12. Earlier or later versions may also work, but are not guaranteed.
+
+Create the virtual environment:
+```bash
+# For venv
+python -m venv constrainsolver
+
+# For conda
+conda create -n constrainsolver python=3.12
+```
+Or, if you use conda:
+```bash
 ```
 
-Note: you must have corresponding API keys in your environment variables (e.g. OPENAI_API_KEY for GPT models) for the LLM calls to work properly.
+Activate the virtual environment:
+```bash
+# For venv
+source constrainsolver/bin/activate
+# For conda
+conda activate constrainsolver
+```
 
-## Artifact Location:
-The repository is available at:
+### Install Dependencies
+Install the dependencies using pip:
+```bash
+pip install -r requirements.txt
+```
+
+### Install solvers
+Note that the Z3 Solvers are installed automatically when installing dependencies, but you will need to manually install the CVC5 solver:
+
+<TODO: Add instructions for installing CVC5>
+
+### LLMs
+The code in this repository uses the [LangChain](https://python.langchain.com/docs/) library to interact with LLMs. Specifically, it uses APIs from the following platforms:
+* [OpenAI](https://openai.com/): For gpr-4o-mini and gpt-4o
+* [DeepSeek](https://deepseek.com/): For DeepSeek v3
+* [Together](https://together.xyz/): For Llama3.1-8b
+
+Then, you will need to set the corresponding environment variables for the LLMs:
+```bash
+export OPENAI_API_KEY=<your_openai_api_key>
+export DEEPSEEK_API_KEY=<your_deepseek_api_key>
+export TOGETHER_API_KEY=<your_together_api_key>
+```
 
 ## Run LLM Checker Generation
 
@@ -113,6 +165,18 @@ python -m scripts.run_evaluation input_path=outputs/llm_with_validation/2025-02-
 python -m scripts.run_generation --approach smt --file_path=constraint_files/constraints.csv --output_path results/smt --smt_solver=z3
 ```
 
+
+## Authors and Citations
+Please cite the following paper if use found this repository useful:
+```bibtex
+@inproceedings{chen2025llm,
+  author = {Boqi Chen and Aren A. Babikian and Shuzhao Feng and D{\'{a}}niel Varr{\'{o}} and Gunter Mussbacher},
+  title  = {{LLM}-based Requirements Verification Through Consistent Text Data and Checker Generation},
+  booktitle = {33rd {IEEE} International Requirements Engineering Conference, {RE} 2025, Valencia, Spain, September 1-5, 2025},
+  publisher = {{IEEE}},
+  year   = {2025}
+}
+```
 
 # License
 The code and data in this repository are licensed under the [MIT License](./LICENSE). 
