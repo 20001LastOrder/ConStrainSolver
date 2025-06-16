@@ -8,7 +8,7 @@ This module is designed to generate strings that satisfy given constraints using
 
 ### Run single LLM calls (Direct)
 * Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * **llm**: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
 
 ```bash
 python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full output_folder="outputs/llm/<llm>" string_solver/llm=<llm>
@@ -16,8 +16,8 @@ python -m scripts.run_generation string_solver=llm_solver constraint_store=re_fu
 
 ### Run LLM with validation (+V)
 * Available options:
-    * <llm>: gpt-4o-mini_v, gpt-4o_v, deepseek-v3_v, llama3.1-8b_v
-    * <validator>: ground_truth_python, ground_truth_smt, hybrid (combine both python and smt validation)
+    * **llm**: gpt-4o-mini_v, gpt-4o_v, deepseek-v3_v, llama3.1-8b_v
+    * **validator**: ground_truth_python, ground_truth_smt, hybrid (combine both python and smt validation)
 
 Run python or smt
 ```bash
@@ -31,8 +31,8 @@ python -m scripts.run_generation string_solver=llm_solver_with_validation constr
 
 ### Run LLM with feedback (+VF)
 * Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
-    * <validator>: ground_truth_python, ground_truth_smt, hybrid (combine both python and smt validation)
+    * **llm**: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * **validator**: ground_truth_python, ground_truth_smt, hybrid (combine both python and smt validation)
 
 Run python or smt
 ```bash
@@ -46,8 +46,8 @@ python -m scripts.run_generation string_solver=llm_solver_with_feedback constrai
 
 ### Run LLM with explanation (+VFE)
 * Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
-    * Each validator takes slightly different arguments
+    * **llm**: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * Each validator takes slightly different arguments (see below)
 
 Run python validator
 ```bash
@@ -69,8 +69,8 @@ python -m scripts.run_generation string_solver=llm_solver_with_feedback constrai
 Run hybrid validator with explanation using generated constraints (same configuration as used in the paper)
 
 * Available options:
-    * <llm>: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
-    * <llm_generation> (which llm-generated constraints to use): gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * **llm**: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
+    * **llm_generation** (which llm-generated constraints to use): gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
 
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_feedback string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/generated_constraints/<llm>/vfe/<llm_generation>" +string_solver.with_explanation=True constraint_store=re_generated.yaml constraint_store.generated_constraint_files=constraint_files/generated/<llm_generation>-independent.csv
