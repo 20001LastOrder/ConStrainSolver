@@ -4,7 +4,28 @@ This module is designed to generate constraint checkers for string verification.
 
 Note: you must have corresponding API keys in your environment variables (e.g. OPENAI_API_KEY for GPT models) for the LLM calls to work properly.
 
-## Options
+## Content
+
+### Core
+
+- `constraint_generator_prompt.txt` and `constraint_generator_history_prompt.txt`: The prompts used to generate Python and SMT checkers.
+- `batch_constraint_generator_agent.py`: core logic for generating SMT checkers.
+- `python\batch_constraint_generator_agent.py`: core logic for generating Python checkers.
+
+The rest are utility files that are used by the core logic.
+
+### Evaluations
+
+- `evaluations/demo.ipynb`: A Jupyter notebook demonstrating the generation of Python or SMT checkers for given constraints.
+- `evaluations/main_py.py`: The main script for running Python checker generation experiments.
+- `evaluations/main_smt.py`: The main script for running SMT checker generation experiments.
+- `evaluations/postprocessing.py`: A script to postprocess the raw results from each run to summarizing CSV files. Its functions are already integrated into the `main_py.py` and `main_smt.py` scripts, so you don't need to run it separately unless you want to reprocess the results.
+- `evaluations/postpostprocessing.py`: A standalone script to take the result of the post processing and generate the final results in a more readable format.
+- `evaluations/show_results.py`: A script to display results from our experiments. It relies on the content within the `evaluations/results/` folder.
+- `evaluations/results/`: Results from our experiments. You can use the `show_results.py` script to visualize them.
+- 
+
+## Run Options
 
 - `generator_mode`: `independent` or `batch`.
 - `num_processes`: an integer.
