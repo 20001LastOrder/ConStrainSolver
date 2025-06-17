@@ -1,0 +1,4 @@
+## Configuration files
+This folder contains the configuration files for the experiments in the paper. The configuration files are used to run the experiments with different LLMs and validators. It is defined using [Hydra](https://hydra.cc/docs/intro/). Specifically:
+* The `constraint_store` contains configurations for different types of constraints such as generated or ground truth constraints.
+* The `string_solver` contains configurations for different string solvers, including LLM-based solvers with or without feedback, and hybrid solvers. It also includes configurations for variables LLMs and validators.

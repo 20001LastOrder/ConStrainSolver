@@ -30,6 +30,8 @@ The repository contains the following modules:
 * `scripts`: Contains scripts to run the constraint generation and string generation experiments.
 * `measurements`: Contains Jupyter notebooks to reproduce the tables and figures in the paper for each RQ.
 * `requirements.txt`: Contains the Python dependencies required to run the code in this repository.
+* `conf`: Contains the configuration files for the experiments in the paper. See [conf/README.md](conf/README.md) for details.
+* `constraint_files`: Contains the dataset used in the paper, which is a collection of string constraints and their corresponding checkers in Python and SMT-Lib format. See [constraint_files/README.md](constraint_files/README.md) for details.
 
 ## Installation
 > Note: All the following commands assumes that you are in the project root directory.
