@@ -1,4 +1,5 @@
 # ConStrainSolver
+[![DOI](https://zenodo.org/badge/924350799.svg)](https://doi.org/10.5281/zenodo.15679254)
 
 Artifacts for the paper *"LLM-based Satisfiability Checking of String Requirements by Consistent Data and Checker Generation"*
 
