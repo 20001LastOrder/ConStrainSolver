@@ -14,19 +14,34 @@ This module is designed to generate strings that satisfy given constraints using
 python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full output_folder="outputs/llm/<llm>" string_solver/llm=<llm>
 ```
 
+For example, to run gpt-4o-mini:
+```bash
+python -m scripts.run_generation string_solver=llm_solver constraint_store=re_full output_folder="outputs/llm/gpt-4o-mini" string_solver/llm=gpt-4o-mini
+```
+
 ### Run LLM with validation (+V)
 * Available options:
     * **llm**: gpt-4o-mini_v, gpt-4o_v, deepseek-v3_v, llama3.1-8b_v
     * **validator**: ground_truth_python, ground_truth_smt, hybrid (combine both python and smt validation)
 
-Run python or smt
+#### Run python or smt
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> output_folder="outputs/${string_solver.name}/<validator>/<llm>"
 ```
 
-Run the hybrid approach
+For example, to run gpt-4o-mini with python validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/llm_with_validation/python/gpt-4o-mini"
+```
+
+#### Run the hybrid approach
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/<validator>/<llm>"
+```
+
+For example, to run gpt-4o-mini with hybrid validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_validation constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=gpt-4o-mini +string_solver.hybrid=True output_folder="outputs/llm_with_validation/hybrid/gpt-4o-mini"
 ```
 
 ### Run LLM with feedback (+VF)
@@ -34,14 +49,24 @@ python -m scripts.run_generation string_solver=llm_solver_with_validation constr
     * **llm**: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
     * **validator**: ground_truth_python, ground_truth_smt, hybrid (combine both python and smt validation)
 
-Run python or smt
+#### Run python or smt
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=<validator> string_solver/llm=<llm> output_folder="outputs/${string_solver.name}/<validator>/<llm>"
 ```
 
-Run the hybrid approach
+For example, to run gpt-4o-mini with python validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/llm_with_feedback/python/gpt-4o-mini"
+```
+
+#### Run the hybrid approach
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/${string_solver.name}/hybrid/<llm>"
+```
+
+For example, to run gpt-4o-mini with hybrid validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=gpt-4o-mini +string_solver.hybrid=True output_folder="outputs/llm_with_feedback/hybrid/gpt-4o-mini"
 ```
 
 ### Run LLM with explanation (+VFE)
@@ -49,19 +74,34 @@ python -m scripts.run_generation string_solver=llm_solver_with_feedback constrai
     * **llm**: gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
     * Each validator takes slightly different arguments (see below)
 
-Run python validator
+#### Run python validator
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/python/<llm>" +string_solver.with_explanation=True
 ```
 
-Run smt validator
+For example, to run gpt-4o-mini with python validation:
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/smt/<llm>" +string_solver.with_explanation=True +string_solver/validator.produce_failed_constraints=True
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_python string_solver/llm=gpt-4o-mini output_folder="outputs/llm_solver_with_explanation/python/gpt-4o-mini" +string_solver.with_explanation=True
 ```
 
-Run hybrid validator
+#### Run smt validator
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> output_folder="outputs/llm_solver_with_explanation/smt/<llm>" +string_solver.with_explanation=True +string_solver.validator.produce_failed_constraints=True
+```
+
+For example, to run gpt-4o-mini with smt validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=gpt-4o-mini output_folder="outputs/llm_solver_with_explanation/smt/gpt-4o-mini" +string_solver.with_explanation=True +string_solver.validator.produce_failed_constraints=True
+```
+
+#### Run hybrid validator
 ```bash
 python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/llm_solver_with_explanation/hybrid/<llm>" +string_solver.with_explanation=True
+```
+
+For example, to run gpt-4o-mini with hybrid validation:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback constraint_store=re_full string_solver/validator=ground_truth_smt string_solver/llm=gpt-4o-mini +string_solver.hybrid=True output_folder="outputs/llm_solver_with_explanation/hybrid/gpt-4o-mini" +string_solver.with_explanation=True
 ```
 
 
@@ -73,7 +113,12 @@ Run hybrid validator with explanation using generated constraints (same configur
     * **llm_generation** (which llm-generated constraints to use): gpt-4o-mini, gpt-4o, deepseek-v3, llama3.1-8b
 
 ```bash
-python -m scripts.run_generation string_solver=llm_solver_with_feedback string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/generated_constraints/<llm>/vfe/<llm_generation>" +string_solver.with_explanation=True constraint_store=re_generated.yaml constraint_store.generated_constraint_files=constraint_files/generated/<llm_generation>-independent.csv
+python -m scripts.run_generation string_solver=llm_solver_with_feedback string_solver/validator=ground_truth_smt string_solver/llm=<llm> +string_solver.hybrid=True output_folder="outputs/generated_constraints/<llm>/vfe/<llm_generation>" +string_solver.with_explanation=True constraint_store=re_generated constraint_store.generated_constraint_file=constraint_files/generated/<llm_generation>-independent.csv
+```
+
+For example, to run gpt-4o-mini with hybrid validation using constraints generated by deepseek-v3:
+```bash
+python -m scripts.run_generation string_solver=llm_solver_with_feedback string_solver/validator=ground_truth_smt string_solver/llm=gpt-4o-mini +string_solver.hybrid=True output_folder="outputs/generated_constraints/gpt-4o-mini/vfe/deepseek-chat" +string_solver.with_explanation=True constraint_store=re_generated constraint_store.generated_constraint_file=constraint_files/generated/deepseek-chat-independent.csv
 ```
 
 ## Move generated results to the results folder

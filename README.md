@@ -1,4 +1,4 @@
-# llm-string-constraints
+# ConStrainSolver
 
 Artifacts for the paper *"LLM-based Satisfiability Checking of String Requirements by Consistent Data and Checker Generation"*
 
@@ -12,7 +12,7 @@ The artifact can also be customized in the following ways using configuration th
 
 
 ## Artifact Location:
-The repository is available at: TODO
+The repository is available at: https://github.com/20001LastOrder/ConStrainSolver
 
 ## Artifact Contents:
 The repository contains the following modules:
