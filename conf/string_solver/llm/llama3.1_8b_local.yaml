@@ -1,0 +1,4 @@
+_target_: langchain_ollama.chat_models.ChatOllama
+model: llama3.1:8b
+temperature: 0.1
+max_tokens: 4000

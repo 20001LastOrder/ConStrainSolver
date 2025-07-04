@@ -1,5 +1,5 @@
 defaults:
-  - constraint_store: mo2re_independent
+  - constraint_store: re_independent
   - _self_
 
 output_folder: llm_string/constraint_generator/evaluations/results/

@@ -30,9 +30,11 @@ class BatchConstraintGeneratorAgent:
 
         if model_name == "gpt-4o-mini" or model_name == "gpt-4o":
             model = ChatOpenAI(model_name=model_name, temperature=temperature)
-        elif model_name == "deepseek-chat":
+        elif model_name == "deepseek-v3":
+            model_name = "deepseek-chat"
             model = ChatDeepSeek(model_name=model_name, temperature=temperature)
-        elif model_name == "Meta-Llama-3.1-8B-Instruct-Turbo-128K":
+        elif model_name == "llama3.1-8b":
+            model_name = "Meta-Llama-3.1-8B-Instruct-Turbo-128K"
             model = ChatTogether(model_name=f"meta-llama/{model_name}", temperature=temperature)
         else:
             logger.info(f"Unknown model name: {model_name}. Falling back to gpt-4o-mini.")

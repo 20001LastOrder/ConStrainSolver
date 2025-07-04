@@ -122,7 +122,7 @@ python -m scripts.run_generation string_solver=llm_solver_with_feedback string_s
 ```
 
 ## Move generated results to the results folder
-Move the generated results to the results folder for further analysis depending on the LLM and setup used. For example, for gpt-4o-mini with validation using Python, you can run:
+Move the generated results to the results folder for further analysis depending on the LLM and setup used. For example, for gpt-4o-mini with validation using Python, you can run (Note that if you are using Windows, you may need to use the Windows alternative commands to move files):
 
 ```bash
 mv outputs/llm_with_validation/python/gpt-4o-mini/gpt-4o-mini.csv results/generation_with_gt/validation/python/gpt-4o-mini.csv

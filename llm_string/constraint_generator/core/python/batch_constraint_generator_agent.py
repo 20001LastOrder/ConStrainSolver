@@ -2,8 +2,8 @@ from langchain_deepseek import ChatDeepSeek
 from langchain_openai import ChatOpenAI
 from langchain_together import ChatTogether
 
-from llm_string.constraint_generator.core.python.prompt import get_template, get_functions, CallableExtension
-
+from llm_string.constraint_generator.core.python.prompt import (
+    CallableExtension, get_functions, get_template)
 from llm_string.logging.logging_overrides import getLogger
 
 logger = getLogger()
@@ -13,9 +13,11 @@ class BatchPythonGeneratorAgent:
     def __init__(self, model_name='gpt-4o-mini', temperature=0.5):
         if model_name == "gpt-4o-mini" or model_name == "gpt-4o":
             self.model = ChatOpenAI(model_name=model_name, temperature=temperature)
-        elif model_name == "deepseek-chat":
+        elif model_name == "deepseek-v3":
+            model_name = "deepseek-chat"
             self.model = ChatDeepSeek(model_name=model_name, temperature=temperature)
-        elif model_name == "Meta-Llama-3.1-8B-Instruct-Turbo-128K":
+        elif model_name == "llama3.1-8b":
+            model_name = "Meta-Llama-3.1-8B-Instruct-Turbo-128K"
             self.model = ChatTogether(model_name=f"meta-llama/{model_name}", temperature=temperature)
 
 

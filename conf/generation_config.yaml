@@ -1,5 +1,5 @@
 defaults:
-  - constraint_store: mo2re
+  - constraint_store: re_full
   - string_solver: llm_solver
   - _self_
 

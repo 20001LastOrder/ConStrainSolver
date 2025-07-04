@@ -35,8 +35,12 @@ The rest are utility files that are used by the core logic.
 - `model_names`: a list of strings. Available options include:
   - gpt-4o-mini
   - gpt-4o
-  - deepseek-chat
-  - Meta-Llama-3.1-8B-Instruct-Turbo-128K
+  - deepseek-v3
+  - llama3.1-8b
+
+> [!WARNING]
+>
+> Please note that the `model_names` option is a list, so you need to use square brackets `[]` when providing the model names. For example, when use multiple models set `model_names=[gpt-4o-mini, gpt-4o]`.
 
 ## Generate Python Checkers
 

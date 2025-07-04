@@ -4,16 +4,26 @@
 Artifacts for the paper *"LLM-based Satisfiability Checking of String Requirements by Consistent Data and Checker Generation"*
 
 ## Artifact Summary
-This repository contains code to run the LLM-based string constraint generation from natural language requirements and generating string values using natural language constraints. It also contains the dataset used in the paper, which is a collection of string constraints and their corresponding checkers in Python and SMT-Lib format. Finally, the scripts to run the constraint generation and string generation used in the paper as well as notebooks to reproduce tables / figures from the paper are provided. 
+The main purpose of the work is to evaluate the satisfiability of natural language requirements/constraints on String values. For example, for the following natural language requirements:
+* R1: The system shall require an email address to contain exactly one “@” character.
+* R2: The system shall require an email address not to end with a “.” character.
+* R3: The system shall require an email to contain at least one “.” character after the “@” character.
+
+A combination of R1 ∧ R2 ∧ R3 is satisfiable. So the verifier should generate a string that satisfies the constraints, such as `ab@cd.com`
+
+However, a combination of R1 ∧ ¬R2 ∧ ¬R3 is unsatisfiable, considering that if an email containing exactly one “@” character (R1) does not contain any “.” characters after the “@” (¬R3), then it cannot end with a “.” (¬R2). In this case, the verifier should indicate that the constraints are unsatisfiable. 
+
+This repository contains code for the approach introduced in the paper that jointly generates checkers as well as the verification outcome for string constraints using large language models. It also contains the dataset used in the paper, which is a collection of string constraints and their corresponding checkers in Python and SMT-Lib format. Finally, the scripts to run the constraint generation and string generation used in the paper, as well as notebooks to reproduce tables/figures from the paper, are provided. 
 
 The artifact can also be customized in the following ways using configuration through [Hydra](https://hydra.cc/docs/intro/):
 * Use different local or remote LLMs for the generation of constraints and strings
-* Use different validation approaches of the generated strings
+* Use different validation approaches for the generated strings
 * Use different SMT solvers for the validation of the generated strings
 
 
 ## Artifact Location:
-The repository is available at: https://github.com/20001LastOrder/ConStrainSolver
+* The repository is available at: https://github.com/20001LastOrder/ConStrainSolver
+* the Zenodo DOI for this artifact is: [10.5281/zenodo.15679254](https://doi.org/10.5281/zenodo.15679254)
 
 ## Artifact Contents:
 The repository contains the following modules:
@@ -32,6 +42,36 @@ The repository contains the following modules:
 * `requirements.txt`: Contains the Python dependencies required to run the code in this repository.
 * `conf`: Contains the configuration files for the experiments in the paper. See [conf/README.md](conf/README.md) for details.
 * `constraint_files`: Contains the dataset used in the paper, which is a collection of string constraints and their corresponding checkers in Python and SMT-Lib format. See [constraint_files/README.md](constraint_files/README.md) for details.
+
+## System Requirements
+### General requirements
+The code in this repository is runnable on any OS supports Python 3.12. However, Linux or MacOS is recommended. If you are using Windows, please consider using the Windows Subsystem for Linux (WSL) to run the code.
+
+### Remote LLMs
+The code in this repository uses the [LangChain](https://python.langchain.com/docs/) library to interact with LLMs. Specifically, it uses APIs from the following platforms:
+* [OpenAI](https://openai.com/): For gpr-4o-mini and gpt-4o
+* [DeepSeek](https://deepseek.com/): For DeepSeek v3
+* [Together](https://together.xyz/): For Llama3.1-8b
+
+> [!NOTE]
+>
+> The cost of using LLMs can vary significantly based on the model and the size of the dataset. For reference, the cost of running all datasets for GPT-4o should be around $30-40 as of July 2025. The cost for running other LLMs should be cheaper. 
+>
+> You can always adjust the `sample_ids` entry of the configuration files `conf/constraint_store/re_independent.yaml` and `conf/constraint_store/re_full.yaml` to limit the number of domains used for constraint generation and string generation, respectively. 
+
+### Local LLMs
+The **string generation part can be** customized to use local LLMs through [Ollama](https://ollama.com/) and [LangChain-Ollama](https://python.langchain.com/api_reference/ollama/index.html). One example is shown in `conf/string_solver/llm/llama3.1_8b_local.yaml`. The constraint generation part is not yet supported for local LLMs through direct configuration, but it can be implemented by modifying the code in `llm_string\constraint_generator\core\batch_constraint_generator_agent.py` to use the `ChatOllama` class from `langchain_ollama.chat_models`.
+
+To run this example, first install [Ollama](https://ollama.com/docs/installation), make sure it is running, and then install `langchain-ollama`:
+```bash
+pip install langchain-ollama
+```
+
+Then, simply use `llama3.1_8b_local` and the name of the model when running the scripts.
+
+> [!NOTE]
+>
+> The system requirements for hosting LLMs can vary depending on the size of LLMs. Please refer to the [Ollama Model Page](https://ollama.com/library/llama3.1/tags) for details. For example, the Llama3.1-8b model requires at least a GPU with 8GB of VRAM. 
 
 ## Installation
 > Note: All the following commands assumes that you are in the project root directory.
@@ -71,17 +111,19 @@ Note that the Z3 Solvers are installed automatically when installing dependencie
 2. Extract the contents of the zip file into the `solvers` directory at the root of this repository.
 3. If necessary, update the path to the CVC5 executable in [llm_string/string_solvers/formal_solvers.py](llm_string/string_solvers/formal_solvers.py#L52).
 
-### LLMs
-The code in this repository uses the [LangChain](https://python.langchain.com/docs/) library to interact with LLMs. Specifically, it uses APIs from the following platforms:
-* [OpenAI](https://openai.com/): For gpr-4o-mini and gpt-4o
-* [DeepSeek](https://deepseek.com/): For DeepSeek v3
-* [Together](https://together.xyz/): For Llama3.1-8b
 
 Then, you will need to set the corresponding environment variables for the LLMs:
+On Linux or MacOS, you can set the environment variables in your terminal:
 ```bash
 export OPENAI_API_KEY=<your_openai_api_key>
 export DEEPSEEK_API_KEY=<your_deepseek_api_key>
 export TOGETHER_API_KEY=<your_together_api_key>
+```
+On Windows, you can set the environment variables in your terminal:
+```bash
+set OPENAI_API_KEY=<your_openai_api_key>
+set DEEPSEEK_API_KEY=<your_deepseek_api_key>
+set TOGETHER_API_KEY=<your_together_api_key>
 ```
 
 ## Run the Experiments
